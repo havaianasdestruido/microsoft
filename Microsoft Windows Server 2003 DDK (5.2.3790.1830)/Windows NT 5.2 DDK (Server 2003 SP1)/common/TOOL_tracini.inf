@@ -1,0 +1,65 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\tracing\ia64\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"TOOL_tracini"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_tracini",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_tracini.inf
+
+
+[Files_0]
+default.tmf,TOOL_tracini_FILE_0,,
+system.tmf,TOOL_tracini_FILE_1,,
+tracefmt.exe,TOOL_tracini_FILE_2,,
+tracelog.exe,TOOL_tracini_FILE_3,,
+tracepdb.exe,TOOL_tracini_FILE_4,,
+traceprt.dll,TOOL_tracini_FILE_5,,
+traceview.chm,TOOL_tracini_FILE_6,,
+traceview.exe,TOOL_tracini_FILE_7,,
+
+[SourceDisksNames]
+1="TOOL_tracini.cab",TOOL_tracini.cab,0
+[SourceDisksFiles]
+TOOL_tracini_FILE_0=1,,4841
+TOOL_tracini_FILE_1=1,,18204
+TOOL_tracini_FILE_2=1,,50688
+TOOL_tracini_FILE_3=1,,76288
+TOOL_tracini_FILE_4=1,,57856
+TOOL_tracini_FILE_5=1,,417280
+TOOL_tracini_FILE_6=1,,1540375
+TOOL_tracini_FILE_7=1,,1298944
+
+
+[Strings]
+FriendlyName=tracing_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=8
+TotalSize=3464476

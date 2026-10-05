@@ -1,0 +1,87 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2,Files_3
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2,Files_3
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\general\cancel\"
+Files_1=49000,"\src\general\cancel\exe\"
+Files_2=49000,"\src\general\cancel\startio\"
+Files_3=49000,"\src\general\cancel\sys\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"GENE_cancel"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","GENE_cancel",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+GENE_cancel.inf
+
+
+[Files_0]
+cancel.htm,GENE_cancel_FILE_0,,
+[Files_1]
+install.c,GENE_cancel_FILE_1,,
+makefile,GENE_cancel_FILE_2,,
+sources,GENE_cancel_FILE_3,,
+testapp.c,GENE_cancel_FILE_4,,
+testapp.h,GENE_cancel_FILE_5,,
+[Files_2]
+cancel.c,GENE_cancel_FILE_6,,
+cancel.h,GENE_cancel_FILE_7,,
+cancel.rc,GENE_cancel_FILE_8,,
+makefile,GENE_cancel_FILE_9,,
+sources,GENE_cancel_FILE_10,,
+[Files_3]
+cancel.c,GENE_cancel_FILE_11,,
+cancel.h,GENE_cancel_FILE_12,,
+cancel.rc,GENE_cancel_FILE_13,,
+makefile,GENE_cancel_FILE_14,,
+sources,GENE_cancel_FILE_15,,
+
+[SourceDisksNames]
+1="GENE_cancel.cab",GENE_cancel.cab,0
+[SourceDisksFiles]
+GENE_cancel_FILE_0=1,,14031
+GENE_cancel_FILE_1=1,,10143
+GENE_cancel_FILE_2=1,,267
+GENE_cancel_FILE_3=1,,364
+GENE_cancel_FILE_4=1,,6931
+GENE_cancel_FILE_5=1,,260
+GENE_cancel_FILE_6=1,,22511
+GENE_cancel_FILE_7=1,,3847
+GENE_cancel_FILE_8=1,,253
+GENE_cancel_FILE_9=1,,267
+GENE_cancel_FILE_10=1,,157
+GENE_cancel_FILE_11=1,,22996
+GENE_cancel_FILE_12=1,,3918
+GENE_cancel_FILE_13=1,,253
+GENE_cancel_FILE_14=1,,267
+GENE_cancel_FILE_15=1,,163
+
+
+[Strings]
+FriendlyName=general
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=16
+TotalSize=86628

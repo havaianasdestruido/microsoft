@@ -1,0 +1,53 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\help\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"PARALLEL"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","PARALLEL",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+PARALLEL.inf
+
+
+[Files_0]
+parallel.chi,PARALLEL_FILE_0,,
+parallel.chm,PARALLEL_FILE_1,,
+
+[SourceDisksNames]
+1="PARALLEL.cab",PARALLEL.cab,0
+[SourceDisksFiles]
+PARALLEL_FILE_0=1,,18701
+PARALLEL_FILE_1=1,,137176
+
+
+[Strings]
+FriendlyName=PARALLEL_Doc
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=2
+TotalSize=155877

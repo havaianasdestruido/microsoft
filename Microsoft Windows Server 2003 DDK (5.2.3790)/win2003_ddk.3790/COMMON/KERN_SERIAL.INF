@@ -1,0 +1,115 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\kernel\serial\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"KERN_serial"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","KERN_serial",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+KERN_serial.inf
+
+
+[Files_0]
+comtst.c,KERN_serial_FILE_0,,
+comtst2.c,KERN_serial_FILE_1,,
+comtstd.c,KERN_serial_FILE_2,,
+error.c,KERN_serial_FILE_3,,
+flush.c,KERN_serial_FILE_4,,
+immediat.c,KERN_serial_FILE_5,,
+initunlo.c,KERN_serial_FILE_6,,
+ioctl.c,KERN_serial_FILE_7,,
+isr.c,KERN_serial_FILE_8,,
+legacy.c,KERN_serial_FILE_9,,
+log.c,KERN_serial_FILE_10,,
+log.h,KERN_serial_FILE_11,,
+makefile,KERN_serial_FILE_12,,
+modmflow.c,KERN_serial_FILE_13,,
+openclos.c,KERN_serial_FILE_14,,
+pktxfer.c,KERN_serial_FILE_15,,
+pnp.c,KERN_serial_FILE_16,,
+power.c,KERN_serial_FILE_17,,
+precomp.h,KERN_serial_FILE_18,,
+purge.c,KERN_serial_FILE_19,,
+qsfile.c,KERN_serial_FILE_20,,
+read.c,KERN_serial_FILE_21,,
+registry.c,KERN_serial_FILE_22,,
+serial.h,KERN_serial_FILE_23,,
+serial.htm,KERN_serial_FILE_24,,
+serial.rc,KERN_serial_FILE_25,,
+serialp.h,KERN_serial_FILE_26,,
+serlog.mc,KERN_serial_FILE_27,,
+sources,KERN_serial_FILE_28,,
+utils.c,KERN_serial_FILE_29,,
+waitmask.c,KERN_serial_FILE_30,,
+wmi.c,KERN_serial_FILE_31,,
+write.c,KERN_serial_FILE_32,,
+
+[SourceDisksNames]
+1="KERN_serial.cab",KERN_serial.cab,0
+[SourceDisksFiles]
+KERN_serial_FILE_0=1,,3852
+KERN_serial_FILE_1=1,,7476
+KERN_serial_FILE_2=1,,3852
+KERN_serial_FILE_3=1,,1510
+KERN_serial_FILE_4=1,,3474
+KERN_serial_FILE_5=1,,12477
+KERN_serial_FILE_6=1,,114547
+KERN_serial_FILE_7=1,,68166
+KERN_serial_FILE_8=1,,64264
+KERN_serial_FILE_9=1,,70458
+KERN_serial_FILE_10=1,,4128
+KERN_serial_FILE_11=1,,1051
+KERN_serial_FILE_12=1,,491
+KERN_serial_FILE_13=1,,48405
+KERN_serial_FILE_14=1,,29236
+KERN_serial_FILE_15=1,,11119
+KERN_serial_FILE_16=1,,112057
+KERN_serial_FILE_17=1,,31010
+KERN_serial_FILE_18=1,,213
+KERN_serial_FILE_19=1,,4218
+KERN_serial_FILE_20=1,,5762
+KERN_serial_FILE_21=1,,56154
+KERN_serial_FILE_22=1,,12234
+KERN_serial_FILE_23=1,,88103
+KERN_serial_FILE_24=1,,3651
+KERN_serial_FILE_25=1,,329
+KERN_serial_FILE_26=1,,21337
+KERN_serial_FILE_27=1,,10462
+KERN_serial_FILE_28=1,,657
+KERN_serial_FILE_29=1,,44215
+KERN_serial_FILE_30=1,,19761
+KERN_serial_FILE_31=1,,13385
+KERN_serial_FILE_32=1,,34825
+
+
+[Strings]
+FriendlyName=kernel
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=33
+TotalSize=902879

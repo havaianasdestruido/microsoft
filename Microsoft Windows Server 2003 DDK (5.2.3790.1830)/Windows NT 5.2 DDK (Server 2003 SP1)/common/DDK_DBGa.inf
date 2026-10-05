@@ -1,0 +1,65 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\debug\amd64\"
+Files_1=49000,"\debug\amd64\dll\"
+Files_2=49000,"\debug\amd64\exe\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"DDK_DBGa"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","DDK_DBGa",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+DDK_DBGa.inf
+
+
+[Files_0]
+hal.dll,DDK_DBGa_FILE_0,,
+ntkrnlmp.exe,DDK_DBGa_FILE_1,,
+ntoskrnl.exe,DDK_DBGa_FILE_2,,
+[Files_1]
+hal.pdb,DDK_DBGa_FILE_3,,
+[Files_2]
+ntkrnlmp.pdb,DDK_DBGa_FILE_4,,
+ntoskrnl.pdb,DDK_DBGa_FILE_5,,
+
+[SourceDisksNames]
+1="DDK_DBGa.cab",DDK_DBGa.cab,0
+[SourceDisksFiles]
+DDK_DBGa_FILE_0=1,,310784
+DDK_DBGa_FILE_1=1,,5707264
+DDK_DBGa_FILE_2=1,,5707264
+DDK_DBGa_FILE_3=1,,306176
+DDK_DBGa_FILE_4=1,,3124224
+DDK_DBGa_FILE_5=1,,3124224
+
+
+[Strings]
+FriendlyName=Extra_Debug_Files
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=6
+TotalSize=18279936

@@ -1,0 +1,81 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\print\cpsuisam\"
+Files_1=49000,"\src\print\cpsuisam\icons\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"PRIN_cpsuis"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","PRIN_cpsuis",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+PRIN_cpsuis.inf
+
+
+[Files_0]
+cpsui.htm,PRIN_cpsuis_FILE_0,,
+cpsuidat.c,PRIN_cpsuis_FILE_1,,
+cpsuidat.h,PRIN_cpsuis_FILE_2,,
+cpsuisam.c,PRIN_cpsuis_FILE_3,,
+cpsuisam.def,PRIN_cpsuis_FILE_4,,
+cpsuisam.dlg,PRIN_cpsuis_FILE_5,,
+cpsuisam.h,PRIN_cpsuis_FILE_6,,
+debug.c,PRIN_cpsuis_FILE_7,,
+debug.h,PRIN_cpsuis_FILE_8,,
+makefile,PRIN_cpsuis_FILE_9,,
+precomp.h,PRIN_cpsuis_FILE_10,,
+res.rc,PRIN_cpsuis_FILE_11,,
+sources,PRIN_cpsuis_FILE_12,,
+[Files_1]
+apple.ico,PRIN_cpsuis_FILE_13,,
+cpsuisam.ico,PRIN_cpsuis_FILE_14,,
+
+[SourceDisksNames]
+1="PRIN_cpsuis.cab",PRIN_cpsuis.cab,0
+[SourceDisksFiles]
+PRIN_cpsuis_FILE_0=1,,10330
+PRIN_cpsuis_FILE_1=1,,42845
+PRIN_cpsuis_FILE_2=1,,2312
+PRIN_cpsuis_FILE_3=1,,15551
+PRIN_cpsuis_FILE_4=1,,232
+PRIN_cpsuis_FILE_5=1,,1301
+PRIN_cpsuis_FILE_6=1,,751
+PRIN_cpsuis_FILE_7=1,,1920
+PRIN_cpsuis_FILE_8=1,,1382
+PRIN_cpsuis_FILE_9=1,,326
+PRIN_cpsuis_FILE_10=1,,353
+PRIN_cpsuis_FILE_11=1,,1159
+PRIN_cpsuis_FILE_12=1,,608
+PRIN_cpsuis_FILE_13=1,,1078
+PRIN_cpsuis_FILE_14=1,,1078
+
+
+[Strings]
+FriendlyName=print
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=15
+TotalSize=81226

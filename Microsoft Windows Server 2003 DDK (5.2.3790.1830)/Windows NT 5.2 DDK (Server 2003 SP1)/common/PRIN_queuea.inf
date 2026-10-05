@@ -1,0 +1,57 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\print\queueasp\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"PRIN_queuea"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","PRIN_queuea",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+PRIN_queuea.inf
+
+
+[Files_0]
+custom.inf,PRIN_queuea_FILE_0,,
+customq.asp,PRIN_queuea_FILE_1,,
+loptrap.ppd,PRIN_queuea_FILE_2,,
+queueasp.htm,PRIN_queuea_FILE_3,,
+
+[SourceDisksNames]
+1="PRIN_queuea.cab",PRIN_queuea.cab,0
+[SourceDisksFiles]
+PRIN_queuea_FILE_0=1,,2698
+PRIN_queuea_FILE_1=1,,5674
+PRIN_queuea_FILE_2=1,,26642
+PRIN_queuea_FILE_3=1,,2480
+
+
+[Strings]
+FriendlyName=print
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=4
+TotalSize=37494

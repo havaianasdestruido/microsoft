@@ -1,0 +1,77 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\vdd\com_vdd\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"VDD_com_vd"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","VDD_com_vd",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+VDD_com_vd.inf
+
+
+[Files_0]
+com_vdd.c,VDD_com_vd_FILE_0,,
+com_vdd.def,VDD_com_vd_FILE_1,,
+com_vdd.h,VDD_com_vd_FILE_2,,
+com_vdd.htm,VDD_com_vd_FILE_3,,
+makefile,VDD_com_vd_FILE_4,,
+nt_com.c,VDD_com_vd_FILE_5,,
+nt_com.h,VDD_com_vd_FILE_6,,
+pc_com.c,VDD_com_vd_FILE_7,,
+pc_com.h,VDD_com_vd_FILE_8,,
+pc_def.h,VDD_com_vd_FILE_9,,
+readme,VDD_com_vd_FILE_10,,
+sources,VDD_com_vd_FILE_11,,
+uart.h,VDD_com_vd_FILE_12,,
+util_def.h,VDD_com_vd_FILE_13,,
+
+[SourceDisksNames]
+1="VDD_com_vd.cab",VDD_com_vd.cab,0
+[SourceDisksFiles]
+VDD_com_vd_FILE_0=1,,5543
+VDD_com_vd_FILE_1=1,,77
+VDD_com_vd_FILE_2=1,,507
+VDD_com_vd_FILE_3=1,,11103
+VDD_com_vd_FILE_4=1,,252
+VDD_com_vd_FILE_5=1,,32338
+VDD_com_vd_FILE_6=1,,5613
+VDD_com_vd_FILE_7=1,,25487
+VDD_com_vd_FILE_8=1,,2906
+VDD_com_vd_FILE_9=1,,924
+VDD_com_vd_FILE_10=1,,4223
+VDD_com_vd_FILE_11=1,,336
+VDD_com_vd_FILE_12=1,,3484
+VDD_com_vd_FILE_13=1,,324
+
+
+[Strings]
+FriendlyName=vdd
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=14
+TotalSize=93117

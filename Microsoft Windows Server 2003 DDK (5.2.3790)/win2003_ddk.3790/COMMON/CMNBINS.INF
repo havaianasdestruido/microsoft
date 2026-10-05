@@ -1,0 +1,109 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\bin\"
+Files_1=49000,"\bin\wppconfig\rev1\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"CMNBINS"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","CMNBINS",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+CMNBINS.inf
+
+
+[Files_0]
+amd64mk.inc,CMNBINS_FILE_0,,
+appschema.xml,CMNBINS_FILE_1,,
+coffbase.txt,CMNBINS_FILE_2,,
+ddktree.mac,CMNBINS_FILE_3,,
+generic.mac,CMNBINS_FILE_4,,
+i386mk.inc,CMNBINS_FILE_5,,
+ia64mk.inc,CMNBINS_FILE_6,,
+makefile.def,CMNBINS_FILE_7,,
+makefile.new,CMNBINS_FILE_8,,
+makefile.plt,CMNBINS_FILE_9,,
+projects.inc,CMNBINS_FILE_10,,
+setenv.bat,CMNBINS_FILE_11,,
+verify.src,CMNBINS_FILE_12,,
+[Files_1]
+control.tpl,CMNBINS_FILE_13,,
+defaultwpp.ini,CMNBINS_FILE_14,,
+header.tpl,CMNBINS_FILE_15,,
+km-default.tpl,CMNBINS_FILE_16,,
+km-header.tpl,CMNBINS_FILE_17,,
+km-init.tpl,CMNBINS_FILE_18,,
+km-w2k.tpl,CMNBINS_FILE_19,,
+mof.tpl,CMNBINS_FILE_20,,
+r1defwpp.ini,CMNBINS_FILE_21,,
+simple.tpl,CMNBINS_FILE_22,,
+stdout.tpl,CMNBINS_FILE_23,,
+trmacro.tpl,CMNBINS_FILE_24,,
+um-default.tpl,CMNBINS_FILE_25,,
+um-header.tpl,CMNBINS_FILE_26,,
+um-init.tpl,CMNBINS_FILE_27,,
+um-w2k.tpl,CMNBINS_FILE_28,,
+
+[SourceDisksNames]
+1="CMNBINS.cab",CMNBINS.cab,0
+[SourceDisksFiles]
+CMNBINS_FILE_0=1,,9484
+CMNBINS_FILE_1=1,,7395
+CMNBINS_FILE_2=1,,52594
+CMNBINS_FILE_3=1,,5648
+CMNBINS_FILE_4=1,,465
+CMNBINS_FILE_5=1,,12644
+CMNBINS_FILE_6=1,,9393
+CMNBINS_FILE_7=1,,3222
+CMNBINS_FILE_8=1,,129227
+CMNBINS_FILE_9=1,,11577
+CMNBINS_FILE_10=1,,2440
+CMNBINS_FILE_11=1,,8385
+CMNBINS_FILE_12=1,,11276
+CMNBINS_FILE_13=1,,9697
+CMNBINS_FILE_14=1,,7904
+CMNBINS_FILE_15=1,,2272
+CMNBINS_FILE_16=1,,974
+CMNBINS_FILE_17=1,,2731
+CMNBINS_FILE_18=1,,17123
+CMNBINS_FILE_19=1,,6350
+CMNBINS_FILE_20=1,,425
+CMNBINS_FILE_21=1,,3530
+CMNBINS_FILE_22=1,,1204
+CMNBINS_FILE_23=1,,844
+CMNBINS_FILE_24=1,,7133
+CMNBINS_FILE_25=1,,976
+CMNBINS_FILE_26=1,,2648
+CMNBINS_FILE_27=1,,14335
+CMNBINS_FILE_28=1,,5748
+
+
+[Strings]
+FriendlyName=Comon_Build_Tools
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=29
+TotalSize=347644

@@ -1,0 +1,18 @@
+  BODY {background: #FFFFFF;
+	link: #435BFF;
+	vlink: #435BFF;
+	alink: #435BFF;
+	font: 11pt "Arial";
+	color: black}
+  .gif  {margin-top: -12px}
+  .gifmain {margin-left: 2px;
+	margin-top: 1px}
+  .jump {font: 9pt "Arial";
+	color: #435BFF}
+  H1 {font: 20pt "Georgia";
+	color: #0000FF}
+  H2 {font: 12pt "Arial";
+	font-style: bold;
+	color: #0000FF}
+   P {font: 11pt "Arial";
+           color : black}

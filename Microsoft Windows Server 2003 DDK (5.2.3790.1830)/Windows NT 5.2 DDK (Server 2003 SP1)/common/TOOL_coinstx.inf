@@ -1,0 +1,65 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2,Files_3
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2,Files_3
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\coinstallers\i386\"
+Files_1=49000,"\tools\coinstallers\i386\dll\"
+Files_2=49000,"\tools\coinstallers\x86\"
+Files_3=49000,"\tools\coinstallers\i386\dll\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"TOOL_coinstx"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_coinstx",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_coinstx.inf
+
+
+[Files_0]
+wmiinst.dll,TOOL_coinstx_FILE_0,,
+[Files_1]
+wmiinst.pdb,TOOL_coinstx_FILE_1,,
+[Files_2]
+cocpyinf.dll,TOOL_coinstx_FILE_2,,
+cocpyinf.htm,TOOL_coinstx_FILE_3,,
+[Files_3]
+wmiinst.pdb,TOOL_coinstx_FILE_4,,
+
+[SourceDisksNames]
+1="TOOL_coinstx.cab",TOOL_coinstx.cab,0
+[SourceDisksFiles]
+TOOL_coinstx_FILE_0=1,,13856
+TOOL_coinstx_FILE_1=1,,35840
+TOOL_coinstx_FILE_2=1,,16656
+TOOL_coinstx_FILE_3=1,,10075
+TOOL_coinstx_FILE_4=1,,35840
+
+
+[Strings]
+FriendlyName=coinstallers_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=5
+TotalSize=112267

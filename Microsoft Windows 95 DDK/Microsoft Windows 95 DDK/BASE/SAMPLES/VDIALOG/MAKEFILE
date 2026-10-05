@@ -1,0 +1,135 @@
+#****************************************************************************
+#                                                                           *
+# THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY     *
+# KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE       *
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR     *
+# PURPOSE.                                                                  *
+#                                                                           *
+# Copyright (C) 1993-95  Microsoft Corporation.  All Rights Reserved.       *
+#                                                                           *
+#****************************************************************************
+
+
+# sample make file for building vdialog virtual device for Windows
+
+NAME = VDIALOG
+
+#       Definitions for the debug level 
+
+!ifdef DEBUG
+DDEBUG  =-DDEBLEVEL=1 -DDEBUG
+!else
+DDEBUG  =-DDEBLEVEL=0
+!endif
+
+#       Definitions for MASM 6 Assembler
+
+ASM    = ml
+AFLAGS = -coff -DBLD_COFF -DIS_32 -W2 -c -Cx -Zm -DMASM6 $(DDEBUG)
+ASMENV = ML
+LFLAGS = /VXD /NOD
+
+
+#!ifdef MASTER_MAKE
+all : $(NAME).vxd dosacc.exe winacc.exe
+#!else
+#all : $(NAME).vxd
+#!endif
+
+vdialog.obj: vdialog.asm
+	set $(ASMENV)=$(AFLAGS)
+	$(ASM) -Fo$*.obj vdialog.asm
+	set $(ASMENV)=
+
+OBJS =  vdialog.obj 
+
+!ifdef MASTER_MAKE
+$(NAME).vxd: SET_BUILD_BITS_32 $(NAME).def $(OBJS)
+!else
+$(NAME).vxd: $(NAME).def $(OBJS)
+!endif
+        link @<<$(NAME).lnk
+$(LFLAGS) 
+/OUT:$(NAME).vxd
+/MAP:$(NAME).map
+/DEF:$(NAME).def
+$(OBJS)
+<<
+        mapsym -s -o $(NAME).sym $(NAME).map
+
+
+!ifdef MASTER_MAKE
+#****************************************************************************
+#                                                                           *
+# THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY     *
+# KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE       *
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR     *
+# PURPOSE.                                                                  *
+#                                                                           *
+# Copyright (C) 1993-95  Microsoft Corporation.  All Rights Reserved.       *
+#                                                                           *
+#****************************************************************************
+
+# NOTE: this make file uses 16-bit tools!
+
+# supply the location of a 16-bit linker, compiler, and resource compiler
+
+LINK16 = link  
+CL16   = cl
+RC16   = rc 
+
+# Standard Windows make file.  The make utility compares the
+# creation date of the file to the left of the colon with the file(s)
+# to the right of the colon.  If the file(s) on the right are newer
+# then the file on the left, Make will execute all of the command lines
+# following this line that are indented by at least one tab or space.
+# Any valid MS-DOS command line may be used.
+
+# This line allows NMAKE to work as well
+
+# Update the resource if necessary
+
+winacc.res: winacc.rc winacc.h
+    $(RC16) -r winacc.rc
+
+
+# Update the object file if necessary
+
+winacc.obj: winacc.c winacc.h
+    $(CL16) -c -AS -Gsw -Oas -W3 -Zpei winacc.c
+
+# Update the executable file if necessary, and if so, add the resource back in.
+
+winacc.exe: SET_BUILD_BITS_16 winacc.obj winacc.def winacc.res
+    $(LINK16) /CO/NOD winacc,,, libw slibcew, winacc.def
+    $(RC16) winacc.res
+
+
+# If the .res file is new and the .exe file is not, update the resource.
+# Note that the .rc file can be updated without having to either 
+# compile or link the file.
+
+#winacc.exe:: winacc.res
+#   $(RC16) winacc.res
+
+dosacc.obj: SET_BUILD_BITS_16 dosacc.asm vdevice.inc
+    ml -c -Cx -Fodosacc.obj dosacc.asm
+
+dosacc.exe: dosacc.obj
+    $(LINK16) dosacc.obj;
+
+BUILD_TYPE=base
+!INCLUDE $(DDKROOT)\master.mk
+
+!endif # ends MASTER_MAKE section
+
+clean:
+	-@del *.obj
+	-@del *.vxd
+	-@del *.exp
+	-@del *.lib
+	-@del *.map
+	-@del *.sym
+	-@del *.exe
+	-@del *.res
+	-@del *.pdb

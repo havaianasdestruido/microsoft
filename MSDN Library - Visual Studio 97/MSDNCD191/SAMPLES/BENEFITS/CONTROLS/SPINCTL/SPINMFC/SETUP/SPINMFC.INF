@@ -1,0 +1,49 @@
+;INF file for SpinMFC.ocx
+;DestDir can be 10 for Windows directory, 11 for Windows\System(32) directory, or left blank for the Occache directory.
+
+[version]
+signature=$CHICAGO$
+
+[Add.Code]
+SPINMFC.OCX=SPINMFC.OCX
+MFC42D.DLL=MFC42D.DLL
+MSVCRTD.DLL=MSVCRTD.DLL
+MFCO42D.DLL=MFCO42D.DLL
+
+[SPINMFC.OCX]
+file-win32-x86=thiscab
+RegisterServer=yes
+clsid={073F3256-30EB-11D0-B84A-00AA00C0803B}
+DestDir=11
+FileVersion=1,0,0,0
+
+[MFC42D.DLL]
+file-win32-x86=thiscab
+RegisterServer=no
+DestDir=11
+FileVersion=
+
+[MSVCRTD.DLL]
+file-win32-x86=thiscab
+RegisterServer=no
+DestDir=11
+FileVersion=
+
+[MFCO42D.DLL]
+file-win32-x86=thiscab
+RegisterServer=no
+DestDir=11
+FileVersion=
+
+[Setup Hooks]
+hook1=hook1
+
+[hook1]
+InfSection=DefaultInstall
+
+[DefaultInstall]
+AddReg=AddSafeToScript
+
+[AddSafeToScript]
+HKLM,"SOFTWARE\Classes\CLSID\{073F3256-30EB-11D0-B84A-00AA00C0803B}\Implemented Categories\{7DD95801-9882-11CF-9FA9-00AA006C42C4}
+HKLM,"SOFTWARE\Classes\CLSID\{073F3256-30EB-11D0-B84A-00AA00C0803B}\Implemented Categories\{7DD95802-9882-11CF-9FA9-00AA006C42C4}

@@ -1,0 +1,65 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2,Files_3
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2,Files_3
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\debug\"
+Files_1=49000,"\debug\ia64\"
+Files_2=49000,"\debug\ia64\dll\"
+Files_3=49000,"\debug\ia64\exe\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"DDK_DBGi"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","DDK_DBGi",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+DDK_DBGi.inf
+
+
+[Files_0]
+ia64ldr_dbg.efi,DDK_DBGi_FILE_0,,
+[Files_1]
+hal.dll,DDK_DBGi_FILE_1,,
+ntkrnlmp.exe,DDK_DBGi_FILE_2,,
+[Files_2]
+hal.pdb,DDK_DBGi_FILE_3,,
+[Files_3]
+ntkrnlmp.pdb,DDK_DBGi_FILE_4,,
+
+[SourceDisksNames]
+1="DDK_DBGi.cab",DDK_DBGi.cab,0
+[SourceDisksFiles]
+DDK_DBGi_FILE_0=1,,870912
+DDK_DBGi_FILE_1=1,,418304
+DDK_DBGi_FILE_2=1,,9303552
+DDK_DBGi_FILE_3=1,,248832
+DDK_DBGi_FILE_4=1,,3132416
+
+
+[Strings]
+FriendlyName=Extra_Debug_Files
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=5
+TotalSize=13974016

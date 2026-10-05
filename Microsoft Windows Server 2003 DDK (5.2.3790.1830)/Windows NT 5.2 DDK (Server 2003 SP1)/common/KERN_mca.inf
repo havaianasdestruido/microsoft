@@ -1,0 +1,75 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\kernel\mca\mcamgmt\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"KERN_mca"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","KERN_mca",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+KERN_mca.inf
+
+
+[Files_0]
+common.cpp,KERN_mca_FILE_0,,
+common.h,KERN_mca_FILE_1,,
+correctedengine.cpp,KERN_mca_FILE_2,,
+correctedengine.h,KERN_mca_FILE_3,,
+fatalengine.cpp,KERN_mca_FILE_4,,
+fatalengine.h,KERN_mca_FILE_5,,
+makefile,KERN_mca_FILE_6,,
+mca.cpp,KERN_mca_FILE_7,,
+mca.h,KERN_mca_FILE_8,,
+mcaobjectsink.cpp,KERN_mca_FILE_9,,
+mcaobjectsink.h,KERN_mca_FILE_10,,
+readme.htm,KERN_mca_FILE_11,,
+sources,KERN_mca_FILE_12,,
+
+[SourceDisksNames]
+1="KERN_mca.cab",KERN_mca.cab,0
+[SourceDisksFiles]
+KERN_mca_FILE_0=1,,25185
+KERN_mca_FILE_1=1,,1034
+KERN_mca_FILE_2=1,,9598
+KERN_mca_FILE_3=1,,739
+KERN_mca_FILE_4=1,,4469
+KERN_mca_FILE_5=1,,445
+KERN_mca_FILE_6=1,,282
+KERN_mca_FILE_7=1,,6585
+KERN_mca_FILE_8=1,,760
+KERN_mca_FILE_9=1,,5619
+KERN_mca_FILE_10=1,,1570
+KERN_mca_FILE_11=1,,14439
+KERN_mca_FILE_12=1,,576
+
+
+[Strings]
+FriendlyName=kernel
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=13
+TotalSize=71301

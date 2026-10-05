@@ -1,0 +1,65 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\input\kbfiltr\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"INPU_kbfilt"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","INPU_kbfilt",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+INPU_kbfilt.inf
+
+
+[Files_0]
+kbfiltr.c,INPU_kbfilt_FILE_0,,
+kbfiltr.cat,INPU_kbfilt_FILE_1,,
+kbfiltr.h,INPU_kbfilt_FILE_2,,
+kbfiltr.htm,INPU_kbfilt_FILE_3,,
+kbfiltr.inf,INPU_kbfilt_FILE_4,,
+kbfiltr.rc,INPU_kbfilt_FILE_5,,
+makefile,INPU_kbfilt_FILE_6,,
+sources,INPU_kbfilt_FILE_7,,
+
+[SourceDisksNames]
+1="INPU_kbfilt.cab",INPU_kbfilt.cab,0
+[SourceDisksFiles]
+INPU_kbfilt_FILE_0=1,,24840
+INPU_kbfilt_FILE_1=1,,131
+INPU_kbfilt_FILE_2=1,,4195
+INPU_kbfilt_FILE_3=1,,3892
+INPU_kbfilt_FILE_4=1,,2154
+INPU_kbfilt_FILE_5=1,,295
+INPU_kbfilt_FILE_6=1,,249
+INPU_kbfilt_FILE_7=1,,119
+
+
+[Strings]
+FriendlyName=input
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=8
+TotalSize=35875

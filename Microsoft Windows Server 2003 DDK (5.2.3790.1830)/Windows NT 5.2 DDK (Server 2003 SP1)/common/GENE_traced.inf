@@ -1,0 +1,79 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\general\tracedrv\"
+Files_1=49000,"\src\general\tracedrv\tracectl\"
+Files_2=49000,"\src\general\tracedrv\tracedrv\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"GENE_traced"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","GENE_traced",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+GENE_traced.inf
+
+
+[Files_0]
+dirs,GENE_traced_FILE_0,,
+tracedrv.htm,GENE_traced_FILE_1,,
+[Files_1]
+install.c,GENE_traced_FILE_2,,
+install.h,GENE_traced_FILE_3,,
+makefile,GENE_traced_FILE_4,,
+sources,GENE_traced_FILE_5,,
+tracectl.c,GENE_traced_FILE_6,,
+[Files_2]
+drvioctl.h,GENE_traced_FILE_7,,
+makefile,GENE_traced_FILE_8,,
+sources,GENE_traced_FILE_9,,
+tracedrv.c,GENE_traced_FILE_10,,
+tracedrv.ctl,GENE_traced_FILE_11,,
+tracedrv.rc,GENE_traced_FILE_12,,
+
+[SourceDisksNames]
+1="GENE_traced.cab",GENE_traced.cab,0
+[SourceDisksFiles]
+GENE_traced_FILE_0=1,,41
+GENE_traced_FILE_1=1,,18288
+GENE_traced_FILE_2=1,,10479
+GENE_traced_FILE_3=1,,283
+GENE_traced_FILE_4=1,,269
+GENE_traced_FILE_5=1,,195
+GENE_traced_FILE_6=1,,6491
+GENE_traced_FILE_7=1,,710
+GENE_traced_FILE_8=1,,269
+GENE_traced_FILE_9=1,,311
+GENE_traced_FILE_10=1,,8319
+GENE_traced_FILE_11=1,,49
+GENE_traced_FILE_12=1,,710
+
+
+[Strings]
+FriendlyName=general
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=13
+TotalSize=46414

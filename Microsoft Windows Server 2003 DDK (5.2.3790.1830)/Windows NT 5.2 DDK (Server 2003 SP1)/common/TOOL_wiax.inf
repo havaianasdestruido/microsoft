@@ -1,0 +1,65 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\wia\x86\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"TOOL_wiax"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_wiax",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_wiax.inf
+
+
+[Files_0]
+scanpanl.exe,TOOL_wiax_FILE_0,,
+scanpanl.htm,TOOL_wiax_FILE_1,,
+wiadbgcfg.exe,TOOL_wiax_FILE_2,,
+wiadbgcfg.htm,TOOL_wiax_FILE_3,,
+wialogcfg.exe,TOOL_wiax_FILE_4,,
+wialogcfg.htm,TOOL_wiax_FILE_5,,
+wiatest.exe,TOOL_wiax_FILE_6,,
+wiatest.htm,TOOL_wiax_FILE_7,,
+
+[SourceDisksNames]
+1="TOOL_wiax.cab",TOOL_wiax.cab,0
+[SourceDisksFiles]
+TOOL_wiax_FILE_0=1,,6656
+TOOL_wiax_FILE_1=1,,9737
+TOOL_wiax_FILE_2=1,,19968
+TOOL_wiax_FILE_3=1,,11341
+TOOL_wiax_FILE_4=1,,27136
+TOOL_wiax_FILE_5=1,,11751
+TOOL_wiax_FILE_6=1,,113664
+TOOL_wiax_FILE_7=1,,11121
+
+
+[Strings]
+FriendlyName=wia_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=8
+TotalSize=211374

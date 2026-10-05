@@ -1,0 +1,55 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\geninf\x86\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"TOOL_geninfx"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_geninfx",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_geninfx.inf
+
+
+[Files_0]
+geninf.cnt,TOOL_geninfx_FILE_0,,
+geninf.exe,TOOL_geninfx_FILE_1,,
+geninf.hlp,TOOL_geninfx_FILE_2,,
+
+[SourceDisksNames]
+1="TOOL_geninfx.cab",TOOL_geninfx.cab,0
+[SourceDisksFiles]
+TOOL_geninfx_FILE_0=1,,494
+TOOL_geninfx_FILE_1=1,,561152
+TOOL_geninfx_FILE_2=1,,51905
+
+
+[Strings]
+FriendlyName=geninf_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=3
+TotalSize=613551

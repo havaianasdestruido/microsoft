@@ -1,0 +1,9 @@
+[autorun]
+ShellExecute=Install.htm
+ICON=SETUP.EXE,0
+
+[autorun.i386]
+ShellExecute=Install.htm
+
+[autorun.ia64]
+ShellExecute=Install.htm

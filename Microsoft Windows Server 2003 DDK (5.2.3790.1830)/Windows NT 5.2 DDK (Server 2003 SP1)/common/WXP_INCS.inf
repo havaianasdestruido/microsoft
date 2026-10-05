@@ -1,0 +1,57 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\inc\ddk\wxp\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"WXP_INCS"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","WXP_INCS",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+WXP_INCS.inf
+
+
+[Files_0]
+csq.h,WXP_INCS_FILE_0,,
+ntintsafe.h,WXP_INCS_FILE_1,,
+ntstrsafe.h,WXP_INCS_FILE_2,,
+wdmsec.h,WXP_INCS_FILE_3,,
+
+[SourceDisksNames]
+1="WXP_INCS.cab",WXP_INCS.cab,0
+[SourceDisksFiles]
+WXP_INCS_FILE_0=1,,8248
+WXP_INCS_FILE_1=1,,61111
+WXP_INCS_FILE_2=1,,401350
+WXP_INCS_FILE_3=1,,16641
+
+
+[Strings]
+FriendlyName=WXP_Include_Files
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=4
+TotalSize=487350

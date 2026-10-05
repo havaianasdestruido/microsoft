@@ -1,0 +1,71 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\print\infs\driver5\"
+Files_1=49000,"\src\print\infs\mfp\"
+Files_2=49000,"\src\print\infs\multios\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"PRIN_infs"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","PRIN_infs",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+PRIN_infs.inf
+
+
+[Files_0]
+oemprint.inf,PRIN_infs_FILE_0,,
+readme.htm,PRIN_infs_FILE_1,,
+[Files_1]
+dot4oem.inf,PRIN_infs_FILE_2,,
+dot4oems.inf,PRIN_infs_FILE_3,,
+oemprn.inf,PRIN_infs_FILE_4,,
+oemprnd4.inf,PRIN_infs_FILE_5,,
+readme.htm,PRIN_infs_FILE_6,,
+[Files_2]
+multios.htm,PRIN_infs_FILE_7,,
+multios.inf,PRIN_infs_FILE_8,,
+
+[SourceDisksNames]
+1="PRIN_infs.cab",PRIN_infs.cab,0
+[SourceDisksFiles]
+PRIN_infs_FILE_0=1,,4762
+PRIN_infs_FILE_1=1,,2230
+PRIN_infs_FILE_2=1,,3658
+PRIN_infs_FILE_3=1,,4329
+PRIN_infs_FILE_4=1,,3536
+PRIN_infs_FILE_5=1,,3638
+PRIN_infs_FILE_6=1,,1599
+PRIN_infs_FILE_7=1,,11623
+PRIN_infs_FILE_8=1,,15971
+
+
+[Strings]
+FriendlyName=print
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=9
+TotalSize=51346

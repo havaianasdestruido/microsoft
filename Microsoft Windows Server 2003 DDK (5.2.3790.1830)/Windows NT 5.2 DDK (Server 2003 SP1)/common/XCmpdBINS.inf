@@ -1,0 +1,93 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\bin\win64\x86\"
+Files_1=49000,"\bin\win64\x86\1033\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"XCmpdBINS"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","XCmpdBINS",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+XCmpdBINS.inf
+
+
+[Files_0]
+asmutils.dll,XCmpdBINS_FILE_0,,
+build.exe,XCmpdBINS_FILE_1,,
+c1.dll,XCmpdBINS_FILE_2,,
+c1xx.dll,XCmpdBINS_FILE_3,,
+c2.dll,XCmpdBINS_FILE_4,,
+cl.exe,XCmpdBINS_FILE_5,,
+ias.exe,XCmpdBINS_FILE_6,,
+lib.exe,XCmpdBINS_FILE_7,,
+link.exe,XCmpdBINS_FILE_8,,
+mofl.dll,XCmpdBINS_FILE_9,,
+msobj80.dll,XCmpdBINS_FILE_10,,
+mspdb80.dll,XCmpdBINS_FILE_11,,
+mspdbcore.dll,XCmpdBINS_FILE_12,,
+mspdbsrv.exe,XCmpdBINS_FILE_13,,
+msvcp80.dll,XCmpdBINS_FILE_14,,
+msvcr80.dll,XCmpdBINS_FILE_15,,
+sched.dll,XCmpdBINS_FILE_16,,
+symdbg.dll,XCmpdBINS_FILE_17,,
+wmimofck.exe,XCmpdBINS_FILE_18,,
+[Files_1]
+clui.dll,XCmpdBINS_FILE_19,,
+linkui.dll,XCmpdBINS_FILE_20,,
+
+[SourceDisksNames]
+1="XCmpdBINS.cab",XCmpdBINS.cab,0
+[SourceDisksFiles]
+XCmpdBINS_FILE_0=1,,745472
+XCmpdBINS_FILE_1=1,,123392
+XCmpdBINS_FILE_2=1,,536576
+XCmpdBINS_FILE_3=1,,1937408
+XCmpdBINS_FILE_4=1,,2338816
+XCmpdBINS_FILE_5=1,,90112
+XCmpdBINS_FILE_6=1,,3014656
+XCmpdBINS_FILE_7=1,,5120
+XCmpdBINS_FILE_8=1,,507904
+XCmpdBINS_FILE_9=1,,372736
+XCmpdBINS_FILE_10=1,,53248
+XCmpdBINS_FILE_11=1,,153088
+XCmpdBINS_FILE_12=1,,247808
+XCmpdBINS_FILE_13=1,,103936
+XCmpdBINS_FILE_14=1,,520192
+XCmpdBINS_FILE_15=1,,491520
+XCmpdBINS_FILE_16=1,,1064960
+XCmpdBINS_FILE_17=1,,225280
+XCmpdBINS_FILE_18=1,,77416
+XCmpdBINS_FILE_19=1,,372736
+XCmpdBINS_FILE_20=1,,50688
+
+
+[Strings]
+FriendlyName=CrossCompile_Build_Tools
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=21
+TotalSize=13033064

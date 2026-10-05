@@ -1,0 +1,69 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2,Files_3
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2,Files_3
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\setup\infs\clasfilt\"
+Files_1=49000,"\src\setup\infs\multios\"
+Files_2=49000,"\src\setup\infs\scsi\"
+Files_3=49000,"\src\setup\infs\tape\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"SETU_infs"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","SETU_infs",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+SETU_infs.inf
+
+
+[Files_0]
+clasfilt.htm,SETU_infs_FILE_0,,
+clasfilt.inf,SETU_infs_FILE_1,,
+[Files_1]
+multios.htm,SETU_infs_FILE_2,,
+multios.inf,SETU_infs_FILE_3,,
+[Files_2]
+txtsetup.oem,SETU_infs_FILE_4,,
+[Files_3]
+hpssdrv.tag,SETU_infs_FILE_5,,
+hpsstape.inf,SETU_infs_FILE_6,,
+
+[SourceDisksNames]
+1="SETU_infs.cab",SETU_infs.cab,0
+[SourceDisksFiles]
+SETU_infs_FILE_0=1,,6106
+SETU_infs_FILE_1=1,,2481
+SETU_infs_FILE_2=1,,12962
+SETU_infs_FILE_3=1,,17445
+SETU_infs_FILE_4=1,,1377
+SETU_infs_FILE_5=1,,44
+SETU_infs_FILE_6=1,,1807
+
+
+[Strings]
+FriendlyName=setup
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=7
+TotalSize=42222

@@ -1,0 +1,55 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\avstream\amd64\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"TOOL_avstrea"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_avstrea",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_avstrea.inf
+
+
+[Files_0]
+ksmon.sys,TOOL_avstrea_FILE_0,,
+ksstudio.exe,TOOL_avstrea_FILE_1,,
+mcstream.exe,TOOL_avstrea_FILE_2,,
+
+[SourceDisksNames]
+1="TOOL_avstrea.cab",TOOL_avstrea.cab,0
+[SourceDisksFiles]
+TOOL_avstrea_FILE_0=1,,19968
+TOOL_avstrea_FILE_1=1,,745984
+TOOL_avstrea_FILE_2=1,,91136
+
+
+[Strings]
+FriendlyName=avstream_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=3
+TotalSize=857088

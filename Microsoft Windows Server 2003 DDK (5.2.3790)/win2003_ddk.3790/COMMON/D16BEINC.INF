@@ -1,0 +1,255 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\inc\inc16"
+Files_1=49000,"\inc\inc16\sys"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"d16beinc"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","d16beinc",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+d16beinc.inf
+
+[Files_0]
+ASSERT.H        ,ASSERT.H       
+BIOS.H          ,BIOS.H         
+CDERR.H         ,CDERR.H        
+CMACROS.INC     ,CMACROS.INC    
+COBJPS.H        ,COBJPS.H       
+COGUID.H        ,COGUID.H       
+COLORDLG.H      ,COLORDLG.H     
+COMMDLG.H       ,COMMDLG.H      
+COMPOBJ.H       ,COMPOBJ.H      
+CONIO.H         ,CONIO.H        
+CPL.H           ,CPL.H          
+CTYPE.H         ,CTYPE.H        
+CUSTCNTL.H      ,CUSTCNTL.H     
+DDE.H           ,DDE.H          
+DDEML.H         ,DDEML.H        
+DIRECT.H        ,DIRECT.H       
+DISPATCH.H      ,DISPATCH.H     
+DLGS.H          ,DLGS.H         
+DOS.H           ,DOS.H          
+DRIVINIT.H      ,DRIVINIT.H     
+DVOBJ.H         ,DVOBJ.H        
+ERRNO.H         ,ERRNO.H        
+FCNTL.H         ,FCNTL.H        
+FGRAPH.FD       ,FGRAPH.FD      
+FGRAPH.FI       ,FGRAPH.FI      
+FLOAT.H         ,FLOAT.H        
+FSTREAM.H       ,FSTREAM.H      
+GRAPH.H         ,GRAPH.H        
+INITGUID.H      ,INITGUID.H     
+IO.H            ,IO.H           
+IOMANIP.H       ,IOMANIP.H      
+IOS.H           ,IOS.H          
+IOSTREAM.H      ,IOSTREAM.H     
+ISTREAM.H       ,ISTREAM.H      
+LIMITS.H        ,LIMITS.H       
+LOCALE.H        ,LOCALE.H       
+LZDOS.H         ,LZDOS.H        
+LZEXPAND.H      ,LZEXPAND.H     
+MALLOC.H        ,MALLOC.H       
+MAPI.H          ,MAPI.H         
+MATH.H          ,MATH.H         
+MEMORY.H        ,MEMORY.H       
+MMSYSTEM.H      ,MMSYSTEM.H     
+MMSYSTEM.INC    ,MMSYSTEM.INC   
+MONIKER.H       ,MONIKER.H      
+NEW.H           ,NEW.H          
+ODBCINST.H      ,ODBCINST.H     
+ODBCVER.H       ,ODBCVER.H      
+OLE.H           ,OLE.H          
+OLE1CLS.H       ,OLE1CLS.H      
+OLE2.H          ,OLE2.H         
+OLE2DBG.H       ,OLE2DBG.H      
+OLE2UI.H        ,OLE2UI.H       
+OLE2VER.H       ,OLE2VER.H      
+OLEGUID.H       ,OLEGUID.H      
+OLENLS.H        ,OLENLS.H       
+OLESTD.H        ,OLESTD.H       
+OSTREAM.H       ,OSTREAM.H      
+PENWIN.H        ,PENWIN.H       
+PENWOEM.H       ,PENWOEM.H      
+PGCHART.H       ,PGCHART.H      
+PRINT.H         ,PRINT.H        
+PROCESS.H       ,PROCESS.H      
+SCODE.H         ,SCODE.H        
+SCRNSAVE.H      ,SCRNSAVE.H     
+SEARCH.H        ,SEARCH.H       
+SETJMP.H        ,SETJMP.H       
+SHARE.H         ,SHARE.H        
+SHELLAPI.H      ,SHELLAPI.H     
+SIGNAL.H        ,SIGNAL.H       
+SQL.H           ,SQL.H          
+SQLEXT.H        ,SQLEXT.H       
+STDARG.H        ,STDARG.H       
+STDDEF.H        ,STDDEF.H       
+STDIO.H         ,STDIO.H        
+STDIOSTR.H      ,STDIOSTR.H     
+STDLIB.H        ,STDLIB.H       
+STORAGE.H       ,STORAGE.H      
+STREAMB.H       ,STREAMB.H      
+STRESS.H        ,STRESS.H       
+STRING.H        ,STRING.H       
+STRSTREA.H      ,STRSTREA.H     
+SYSINCL.DAT     ,SYSINCL.DAT    
+TCHAR.H         ,TCHAR.H        
+TIME.H          ,TIME.H         
+TOOLHELP.H      ,TOOLHELP.H     
+TOOLHELP.INC    ,TOOLHELP.INC   
+VARARGS.H       ,VARARGS.H      
+VARIANT.H       ,VARIANT.H      
+VER.H           ,VER.H          
+VMEMORY.H       ,VMEMORY.H      
+WFEXT.H         ,WFEXT.H        
+WINDOWS.H       ,WINDOWS.H      
+WINDOWS.INC     ,WINDOWS.INC    
+WINDOWSX.H      ,WINDOWSX.H     
+WINMEM32.H      ,WINMEM32.H     
+WINSOCK.H       ,WINSOCK.H      
+
+[Files_1]
+locking.h   ,SYS_LOCKING.H
+stat.h      ,SYS_STAT.H
+timeb.h     ,SYS_TIMEB.H
+types.h     ,SYS_TYPES.H
+utime.h     ,SYS_UTIME.H
+
+[SourceDisksNames]
+1="d16beinc.cab",d16beinc.cab,0
+
+[SourceDisksFiles]
+ASSERT.H        =1
+BIOS.H          =1
+CDERR.H         =1
+CMACROS.INC     =1
+COBJPS.H        =1
+COGUID.H        =1
+COLORDLG.H      =1
+COMMDLG.H       =1
+COMPOBJ.H       =1
+CONIO.H         =1
+CPL.H           =1
+CTYPE.H         =1
+CUSTCNTL.H      =1
+DDE.H           =1
+DDEML.H         =1
+DIRECT.H        =1
+DISPATCH.H      =1
+DLGS.H          =1
+DOS.H           =1
+DRIVINIT.H      =1
+DVOBJ.H         =1
+ERRNO.H         =1
+FCNTL.H         =1
+FGRAPH.FD       =1
+FGRAPH.FI       =1
+FLOAT.H         =1
+FSTREAM.H       =1
+GRAPH.H         =1
+INITGUID.H      =1
+IO.H            =1
+IOMANIP.H       =1
+IOS.H           =1
+IOSTREAM.H      =1
+ISTREAM.H       =1
+LIMITS.H        =1
+LOCALE.H        =1
+LZDOS.H         =1
+LZEXPAND.H      =1
+MALLOC.H        =1
+MAPI.H          =1
+MATH.H          =1
+MEMORY.H        =1
+MMSYSTEM.H      =1
+MMSYSTEM.INC    =1
+MONIKER.H       =1
+NEW.H           =1
+ODBCINST.H      =1
+ODBCVER.H       =1
+OLE.H           =1
+OLE1CLS.H       =1
+OLE2.H          =1
+OLE2DBG.H       =1
+OLE2UI.H        =1
+OLE2VER.H       =1
+OLEGUID.H       =1
+OLENLS.H        =1
+OLESTD.H        =1
+OSTREAM.H       =1
+PENWIN.H        =1
+PENWOEM.H       =1
+PGCHART.H       =1
+PRINT.H         =1
+PROCESS.H       =1
+SCODE.H         =1
+SCRNSAVE.H      =1
+SEARCH.H        =1
+SETJMP.H        =1
+SHARE.H         =1
+SHELLAPI.H      =1
+SIGNAL.H        =1
+SQL.H           =1
+SQLEXT.H        =1
+STDARG.H        =1
+STDDEF.H        =1
+STDIO.H         =1
+STDIOSTR.H      =1
+STDLIB.H        =1
+STORAGE.H       =1
+STREAMB.H       =1
+STRESS.H        =1
+STRING.H        =1
+STRSTREA.H      =1
+SYSINCL.DAT     =1
+sys_locking.h   =1
+sys_stat.h      =1
+sys_timeb.h     =1
+sys_types.h     =1
+sys_utime.h     =1
+TCHAR.H         =1
+TIME.H          =1
+TOOLHELP.H      =1
+TOOLHELP.INC    =1
+VARARGS.H       =1
+VARIANT.H       =1
+VER.H           =1
+VMEMORY.H       =1
+WFEXT.H         =1
+WINDOWS.H       =1
+WINDOWS.INC     =1
+WINDOWSX.H      =1
+WINMEM32.H      =1
+WINSOCK.H       =1
+
+[Strings]
+FriendlyName=16Bit_Headers
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=102
+TotalSize=1185038

@@ -1,0 +1,85 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\bin\win64\x86\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"XCmpdBINS"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","XCmpdBINS",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+XCmpdBINS.inf
+
+
+[Files_0]
+asmutils.dll,XCmpdBINS_FILE_0,,
+build.exe,XCmpdBINS_FILE_1,,
+c1.dll,XCmpdBINS_FILE_2,,
+c1xx.dll,XCmpdBINS_FILE_3,,
+c2.dll,XCmpdBINS_FILE_4,,
+cl.exe,XCmpdBINS_FILE_5,,
+ias.exe,XCmpdBINS_FILE_6,,
+lib.exe,XCmpdBINS_FILE_7,,
+link.exe,XCmpdBINS_FILE_8,,
+mofl.dll,XCmpdBINS_FILE_9,,
+msobj10.dll,XCmpdBINS_FILE_10,,
+mspdb70.dll,XCmpdBINS_FILE_11,,
+msvcp70.dll,XCmpdBINS_FILE_12,,
+msvcr70.dll,XCmpdBINS_FILE_13,,
+sched.dll,XCmpdBINS_FILE_14,,
+stubgen.exe,XCmpdBINS_FILE_15,,
+symdbg.dll,XCmpdBINS_FILE_16,,
+wmimofck.exe,XCmpdBINS_FILE_17,,
+
+[SourceDisksNames]
+1="XCmpdBINS.cab",XCmpdBINS.cab,0
+[SourceDisksFiles]
+XCmpdBINS_FILE_0=1,,675840
+XCmpdBINS_FILE_1=1,,111616
+XCmpdBINS_FILE_2=1,,733184
+XCmpdBINS_FILE_3=1,,1900544
+XCmpdBINS_FILE_4=1,,1560576
+XCmpdBINS_FILE_5=1,,81920
+XCmpdBINS_FILE_6=1,,3022895
+XCmpdBINS_FILE_7=1,,5120
+XCmpdBINS_FILE_8=1,,606208
+XCmpdBINS_FILE_9=1,,319488
+XCmpdBINS_FILE_10=1,,73728
+XCmpdBINS_FILE_11=1,,237568
+XCmpdBINS_FILE_12=1,,487424
+XCmpdBINS_FILE_13=1,,339968
+XCmpdBINS_FILE_14=1,,1060864
+XCmpdBINS_FILE_15=1,,69120
+XCmpdBINS_FILE_16=1,,106496
+XCmpdBINS_FILE_17=1,,77416
+
+
+[Strings]
+FriendlyName=CrossCompile_Build_Tools
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=18
+TotalSize=11469975

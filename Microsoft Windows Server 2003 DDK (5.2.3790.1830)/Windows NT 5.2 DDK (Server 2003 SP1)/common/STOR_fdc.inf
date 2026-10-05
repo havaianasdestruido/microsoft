@@ -1,0 +1,87 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\storage\fdc\fdc\"
+Files_1=49000,"\src\storage\fdc\flpydisk\"
+Files_2=49000,"\src\storage\fdc\inc\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"STOR_fdc"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","STOR_fdc",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+STOR_fdc.inf
+
+
+[Files_0]
+acpi.c,STOR_fdc_FILE_0,,
+fdc.c,STOR_fdc_FILE_1,,
+fdc.htm,STOR_fdc_FILE_2,,
+fdc.inf,STOR_fdc_FILE_3,,
+fdc.rc,STOR_fdc_FILE_4,,
+fdc_data.h,STOR_fdc_FILE_5,,
+makefile,STOR_fdc_FILE_6,,
+sources,STOR_fdc_FILE_7,,
+[Files_1]
+floppy.c,STOR_fdc_FILE_8,,
+floppy.rc,STOR_fdc_FILE_9,,
+flo_data.h,STOR_fdc_FILE_10,,
+flpydisk.htm,STOR_fdc_FILE_11,,
+flpydisk.inf,STOR_fdc_FILE_12,,
+makefile,STOR_fdc_FILE_13,,
+sources,STOR_fdc_FILE_14,,
+[Files_2]
+flpyenbl.h,STOR_fdc_FILE_15,,
+ntddfdc.h,STOR_fdc_FILE_16,,
+
+[SourceDisksNames]
+1="STOR_fdc.cab",STOR_fdc.cab,0
+[SourceDisksFiles]
+STOR_fdc_FILE_0=1,,22624
+STOR_fdc_FILE_1=1,,235901
+STOR_fdc_FILE_2=1,,9357
+STOR_fdc_FILE_3=1,,2212
+STOR_fdc_FILE_4=1,,362
+STOR_fdc_FILE_5=1,,27688
+STOR_fdc_FILE_6=1,,802
+STOR_fdc_FILE_7=1,,136
+STOR_fdc_FILE_8=1,,192336
+STOR_fdc_FILE_9=1,,352
+STOR_fdc_FILE_10=1,,23776
+STOR_fdc_FILE_11=1,,7489
+STOR_fdc_FILE_12=1,,3818
+STOR_fdc_FILE_13=1,,802
+STOR_fdc_FILE_14=1,,244
+STOR_fdc_FILE_15=1,,5172
+STOR_fdc_FILE_16=1,,10748
+
+
+[Strings]
+FriendlyName=storage
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=17
+TotalSize=543819

@@ -1,0 +1,73 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\storage\filters\addfilter\"
+Files_1=49000,"\src\storage\filters\diskperf\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"STOR_filter"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","STOR_filter",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+STOR_filter.inf
+
+
+[Files_0]
+addfilter.c,STOR_filter_FILE_0,,
+addfilter.rc,STOR_filter_FILE_1,,
+addfiltr.htm,STOR_filter_FILE_2,,
+makefile,STOR_filter_FILE_3,,
+sources,STOR_filter_FILE_4,,
+[Files_1]
+diskperf.c,STOR_filter_FILE_5,,
+diskperf.htm,STOR_filter_FILE_6,,
+diskperf.inf,STOR_filter_FILE_7,,
+diskperf.rc,STOR_filter_FILE_8,,
+makefile,STOR_filter_FILE_9,,
+sources,STOR_filter_FILE_10,,
+
+[SourceDisksNames]
+1="STOR_filter.cab",STOR_filter.cab,0
+[SourceDisksFiles]
+STOR_filter_FILE_0=1,,33576
+STOR_filter_FILE_1=1,,646
+STOR_filter_FILE_2=1,,4065
+STOR_filter_FILE_3=1,,373
+STOR_filter_FILE_4=1,,378
+STOR_filter_FILE_5=1,,64639
+STOR_filter_FILE_6=1,,1741
+STOR_filter_FILE_7=1,,1082
+STOR_filter_FILE_8=1,,614
+STOR_filter_FILE_9=1,,891
+STOR_filter_FILE_10=1,,229
+
+
+[Strings]
+FriendlyName=storage
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=11
+TotalSize=108234

@@ -1,0 +1,51 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\lib\wnet\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"wnet_NALIBS"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","wnet_NALIBS",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+wnet_NALIBS.inf
+
+
+[Files_0]
+stub512.com,wnet_NALIBS_FILE_0,,
+
+[SourceDisksNames]
+1="wnet_NALIBS.cab",wnet_NALIBS.cab,0
+[SourceDisksFiles]
+wnet_NALIBS_FILE_0=1,,512
+
+
+[Strings]
+FriendlyName=Nonarchitecture-specific_libraries
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=1
+TotalSize=512

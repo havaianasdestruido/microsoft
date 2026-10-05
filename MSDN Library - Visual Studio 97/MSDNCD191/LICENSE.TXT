@@ -1,0 +1,222 @@
+MICROSOFT DEVELOPER NETWORK LIBRARY
+IMPORTANT READ CAREFULLY: This Microsoft End-User License Agreement ("EULA") 
+is a legal agreement between you (either an individual or a single entity) and Microsoft 
+Corporation for the Microsoft software product(s) identified below, which include(s) 
+computer software and may include online or electronic documentation, associated 
+media and printed materials ("SOFTWARE PRODUCT" or "SOFTWARE"). By installing, 
+copying, or otherwise using the SOFTWARE PRODUCT, you agree to be bound by the 
+terms of this EULA. If you do not agree to the terms of this EULA, do not install or use the 
+SOFTWARE PRODUCT and promptly return the entire unused SOFTWARE PRODUCT to 
+your place of purchase for a full refund.
+MICROSOFT SOFTWARE LICENSE 
+The SOFTWARE PRODUCT is protected by copyright laws and international copyright treaties, 
+as well as other intellectual property laws and treaties. The SOFTWARE PRODUCT is licensed,
+not sold. 
+1. GRANT OF LICENSE
+Microsoft grants to you as an individual a personal, nonexclusive license to make and 
+use copies of the SOFTWARE  PRODUCT in the manner provided below.  If you are an entity, 
+Microsoft grants to you the right to designate one individual within your organization 
+to have the right to use the SOFTWARE PRODUCT in the manner provided below.
+Microsoft grants to you as an individual, a personal, nonexclusive license to 
+make and use copies of the SOFTWARE PRODUCT for the sole purposes of designing, 
+developing, and testing your software product(s) that operate in conjunction 
+with Microsoft Windows or Windows NT. You may install copies of the SOFTWARE PRODUCT 
+on up to ten (10) computers, provided that you are the only individual using the 
+SOFTWARE PRODUCT.  In addition, Microsoft grants to you, as an individual, a personal,
+nonexclusive license to make and use an unlimited number of copies of any material 
+from the SOFTWARE PRODUCT or from other written materials accompanying the SOFTWARE 
+PRODUCT, provided that such copies shall be used only for personal purposes and are 
+not to be republished or distributed (either in hard copy or electronic form) beyond 
+the user’s premises, except as provided in Section 4.
+2.  DESCRIPTION OF OTHER RIGHTS AND LIMITATIONS. 
+2.1  ALL SOFTWARE PRODUCTS
+Limitations on Reverse-Engineering, Decompilation, and Disassembly. 
+You may not reverse engineer, decompile, or disassemble the SOFTWARE PRODUCT,
+except and only to the extent that such activity is expressly permitted by applicable law, 
+notwithstanding this limitation. 
+Software Transfer. You may permanently transfer all of your rights under this EULA, 
+provided you retain no copies, you transfer all of the SOFTWARE PRODUCT 
+(including all component parts, the media and printed materials, any upgrades, and this EULA),
+ you provide Microsoft notice of your name, company, and address and the name, company, 
+and address of the person to whom you are transferring the rights granted herein, and 
+the recipient agrees to the terms of this EULA. If the SOFTWARE PRODUCT 
+is an upgrade, any transfer must include all prior versions of the SOFTWARE PRODUCT.
+If the SOFTWARE PRODUCT is received as part of a subscription, any transfer must include 
+all prior deliverables of SOFTWARE PRODUCT and all other subscription deliverables. 
+Support Services.  Microsoft may provide you with support services related to the 
+SOFTWARE PRODUCT ("Support Services"),  Use of Support Services is governed by the 
+Microsoft polices and programs described in the user manual, in on line documentation 
+and/or Microsoft-provided materials.  Any supplemental software code provided to you 
+as part of the Support Services shall be considered part of the SOFTWARE PRODUCT 
+and subject to the terms and conditions of this EULA.  With respect to technical 
+information you provide to Microsoft as part of the Support Services, Microsoft 
+may use such information for its business purposes, including for product 
+support and development.  Microsoft will not utilize such technical information in a form 
+that personally  identifies you.
+Termination. Without prejudice to any other rights, Microsoft may terminate this 
+EULA if you fail to comply with the terms and conditions of this EULA. 
+In such event, you must destroy all copies of the SOFTWARE PRODUCT and 
+all of its component parts. 
+3. PRERELEASE CODE. Portions of the SOFTWARE PRODUCT may be identified as 
+prerelease code ("Prerelease Code"). Such Prerelease Code is not at the 
+level of performance and compatibility of the final, generally available 
+product offering. The Prerelease Code may not operate correctly and may be substantially 
+modified prior to first commercial shipment. Microsoft is not obligated to make 
+this or any later version of the Prerelease Code commercially available. 
+The grant of license to use Prerelease Code expires upon availability of a 
+commercial release of the Prerelease Code from Microsoft.
+4. SAMPLE CODE. Microsoft grants to you a nonexclusive, royalty-free 
+right to use and modify the source code version of, and to reproduce 
+and distribute the object code version of, the sample code, icons, cursors, and 
+bitmaps provided within the Sample Code bin or folder.  In addition, 
+Microsoft grants to you a nonexclusive, royalty-free right to reproduce 
+and distribute the DLL files included as part of the Sample Code, provided that 
+you comply with Section 5.
+5. DISTRIBUTION REQUIREMENTS. If you are authorized to redistribute 
+the Sample Code as described in Section 4 above, you must (a) 
+distribute the Sample Code only in conjunction with and as a part of your 
+software product that adds primary and significant functionality to the 
+Sample Code and that is designed, developed, and tested to operate 
+in conjunction with the Microsoft Windows or Windows NT; (b) not permit 
+further redistribution of the Sample Code by your end-user customers; 
+(c) not use Microsoft’s name, logo, or trademarks to market your 
+software application product; (d) include a valid copyright notice on your 
+software product; (e) agree to indemnify, hold harmless, and defend 
+Microsoft from and against any claims or lawsuits, including attorney’s 
+fees, that arise or result from the use or distribution of your software 
+product; (f) include Copyright <year> Microsoft Systems Journal in all 
+Microsoft Systems Journal (MSJ) code used within your program(s); 
+(g) otherwise comply with the terms of this license agreement; and 
+(h) agree that Microsoft reserves all rights not expressly granted. 
+Contact Microsoft for the applicable royalties due and other licensing 
+terms for all other uses and/or distribution of the Sample Code. 
+6. COPYRIGHT. All title and copyrights in and to the SOFTWARE PRODUCT 
+(including but not limited to any images, photographs, animations, video, 
+audio, music, text, and applets, incorporated into the SOFTWARE PRODUCT), 
+the accompanying printed materials, and any copies of the SOFTWARE PRODUCT, 
+are owned by Microsoft or its suppliers. The SOFTWARE PRODUCT is protected 
+by copyright laws and international treaty provisions. Therefore, you must 
+treat the SOFTWARE PRODUCT like any other copyrighted material except 
+that you may either (a) make one copy of the SOFTWARE PRODUCT solely for 
+backup or archival purposes, or (b) install the SOFTWARE PRODUCT on a 
+single computer provided you keep the original solely for backup or 
+archival purposes. You may not copy the printed materials accompanying 
+the SOFTWARE PRODUCT.
+7. EXPORT RESTRICTIONS. You agree that neither you nor your 
+customers intend to or will, directly or indirectly, export or 
+transmit the SOFTWARE PRODUCT or related documentation and technical data (or any 
+part thereof), or  your software application product as described above 
+(or any part thereof), process, or service that is the direct product 
+of the SOFTWARE PRODUCT to any country to which such export or 
+transmission is restricted by any applicable U.S. regulation or 
+statute, without the prior written consent, if required, of the 
+Bureau of Export Administration of the U.S. Department of 
+Commerce, or such other governmental entity as may have 
+jurisdiction over such export or transmission. 
+8. U.S. GOVERNMENT RESTRICTED RIGHTS. The SOFTWARE PRODUCT and 
+documentation are provided with RESTRICTED RIGHTS. Use, 
+duplication, or disclosure by the Government is subject to restrictions 
+as set forth in subparagraph (c)(1)(ii) of The Rights in 
+Technical Data and Computer Software clause at DFARS 
+252.227-7013 or subparagraphs (c)(1) and (2) of the 
+Commercial Computer SoftwareRestricted Rights at 48 
+CFR 52.227-19, as applicable. Manufacturer is Microsoft 
+Corporation/One Microsoft Way/Redmond, WA 98052-6399.
+DISCLAIMER OF WARRANTY
+NO WARRANTIES. THE SOFTWARE PRODUCT IS PROVIDED AS IS WITHOUT 
+WARRANTY OF ANY KIND. TO THE MAXIMUM EXTENT PERMITTED BY 
+APPLICABLE LAW, MICROSOFT AND ITS SUPPLIERS DISCLAIM ALL 
+WARRANTIES, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED 
+TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A 
+PARTICULAR PURPOSE AND ANY WARRANTY AGAINST INFRINGEMENT, WITH 
+REGARD TO THE SOFTWARE PRODUCT. THIS LIMITED WARRANTY GIVES YOU 
+SPECIFIC LEGAL RIGHTS. YOU MAY HAVE OTHERS, WHICH VARY FROM 
+STATE/JURISDICTION TO STATE/JURISDICTION.
+CUSTOMER REMEDIES. MICROSOFT’S ENTIRE LIABILITY AND YOUR 
+EXCLUSIVE REMEDY SHALL NOT EXCEED THE PRICE PAID FOR THE 
+SOFTWARE PRODUCT.
+NO LIABILITY FOR DAMAGES. TO THE MAXIMUM EXTENT PERMITTED BY 
+APPLICABLE LAW, IN NO EVENT SHALL MICROSOFT OR ITS SUPPLIERS BE 
+LIABLE FOR ANY DAMAGES WHATSOEVER (INCLUDING, WITHOUT 
+LIMITATION, DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS 
+INTERRUPTION, LOSS OF BUSINESS INFORMATION, OR ANY OTHER 
+PECUNIARY LOSS) ARISING OUT OF THE USE OF OR INABILITY TO USE THIS 
+MICROSOFT PRODUCT, EVEN IF MICROSOFT HAS BEEN ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGES. BECAUSE SOME STATES/ JURISDICTIONS DO 
+NOT ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR 
+CONSEQUENTIAL OR INCIDENTAL DAMAGES, THE ABOVE LIMITATION MAY 
+NOT APPLY TO YOU.
+U.S. GOVERNMENT RESTRICTED RIGHTS
+If you acquired this product in the United States, this EULA is 
+governed by the laws of the State of Washington.
+If you acquired this product in Canada, this EULAis 
+governed by the laws of the Province of Ontario, Canada. 
+Each of the parties hereto irrevocably attorns to the 
+jurisdiction of the courts of the Province of Ontario and further 
+agrees to commence any litigation which may arise hereunder 
+in the courts located in the Judicial District of York, 
+Province of Ontario.
+
+
+If this product was acquired outside the United States, then 
+local law may apply.
+Should you have any questions concerning this EULA, or
+if you desire to contact Microsoft for any reason, please 
+contact the Microsoft subsidiary serving your country, 
+or write: Microsoft Sales Information Center/One 
+Microsoft Way/Redmond, WA 98052-6399.
+Si vous avez acquis votre produit Microsoft au CANADA, la garantie 
+limitée suivante vous 
+concerne :
+GARANTIE LIMITEE
+EXCLUSION DE GARANTIES. MICROSOFT RENONCE ENTIÈREMENT À TOUTE 
+GARANTIE POUR LE LOGICIEL. LE LOGICIEL ET TOUTE AUTRE 
+DOCUMENTATION S’Y RAPPORTANT SONT FOURNIS «COMME TELS» SANS 
+AUCUNE GARANTIE QUELLE QU’ELLE SOIT, EXPRESSE OU IMPLICITE, Y 
+COMPRIS, MAIS NE SE LIMITANT PAS AUX GARANTIES IMPLICITES DE LA 
+QUALITÉ MARCHANDE OU UN USAGE PARTICULIER. LE RISQUE TOTAL 
+DÉCOULANT DE L’UTILISATION OU DE LA PERFORMANCE DU LOGICIEL EST 
+ENTRE VOS MAINS.
+RECOURS DU CLIENT. LA SEULE OBLIGATION DE MICROSOFT ET VOTRE 
+RECOURS EXCLUSIF N’EXCÈDERONT PAS LE PRIX PAYÉ POUR LE LOGICIEL.
+ABSENCE DE RESPONSABILITÉ POUR LES DOMMAGES INDIRECTS. MICROSOFT 
+OU SES FOURNISSEURS NE POURRONT ÊTRE TENUS RESPONSABLES EN 
+AUCUNE CIRCONSTANCE DE TOUT DOMMAGE QUEL QU’IL SOIT (Y COMPRIS 
+MAIS NON DE FAÇON LIMITATIVE LES DOMMAGES DIRECTS OU INDIRECTS 
+CAUSÉS PAR LA PERTE DE BÉNÉFICES COMMERCIAUX, L’INTERRUPTION DES 
+AFFAIRES, LA PERTE D’INFORMATION COMMERCIALE OU TOUTE AUTRE 
+PERTE PÉCUNIAIRE) RÉSULTANT DE L’UTILISATION OU DE L’IMPOSSIBILITÉ 
+D’UTILISATION DE CE PRODUIT, ET CE, MÊME SI LA SOCIÉTÉ MICROSOFT A 
+ÉTÉ AVISÉE DE L’ÉVENTUALITÉ DE TELS DOMMAGES. CERTAINS 
+ÉTATS/JURIDICTIONS NE PERMETTENT PAS L’EXCLUSION OU LA LIMITATION 
+DE RESPONSABILITÉ RELATIVE AUX DOMMAGES INDIRECTS OU 
+CONSÉCUTIFS, ET LA LIMITATION CI-DESSUS PEUT NE PAS S’APPLIQUER À 
+VOTRE ÉGARD.
+DROITS LIMITÉS DU GOUVERNEMENT AMÉRICAIN
+Le LOGICIEL et la documentation sont offerts avec des DROITS LIMITÉS. 
+L’utilisation, la reproduction ou la divulgation par le gouvernement 
+sont sujettes aux restrictions énoncées au sous-aliéna (c)(1)(ii) 
+de The Rights in Technical Data and Computer Software, 
+clause au DFARS 252.227-7013 ou aux sous-aliénas (c)(1) et (2) de 
+Commercial Computer Software Droits limités au 48 CFR 
+52.227-19, tel qu’applicable. Microsoft Corporation, 
+One Microsoft Way, Redmond, Washington 98052-6399 est 
+le fabricant.
+La présente Convention est régie par les lois de la 
+province d’Ontario, Canada. Chacune des parties à la 
+Convention reconnaît irrévocablement la compétence des 
+tribunaux de la province d’Ontario et consent à instituer 
+tout litige qui pourrait découler de la Convention 
+auprès des tribunaux situés dans le district judiciaire de York, 
+province d’Ontario.
+Au cas où vous auriez des questions concernant cette 
+licence ou que vous désiriez vous mettre en rapport avec 
+Microsoft pour quelque raison que ce soit, veuillez 
+contacter la succursale Microsoft desservant votre pays, dont 
+l’adresse est fournie dans ce produit, ou écrire à: 
+Microsoft Sales Information Center, One Microsoft Way, 
+Redmond, Washington 98052-6399.
+
+
+
+

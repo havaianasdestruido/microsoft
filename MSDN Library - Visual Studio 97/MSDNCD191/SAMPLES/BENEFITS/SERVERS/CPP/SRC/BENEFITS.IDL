@@ -1,0 +1,505 @@
+//Benefits.idl- Copyright (C) 1996 Microsoft Corporation
+//            - All rights reserved.
+//Date        - 10/19/96
+//Authors     - Ken Bergmann, Robert Coleridge
+//Purpose     - IDL source for BenefitsCPP.OLB.
+
+interface IAdmin;
+interface IBank;
+interface IBenefit;
+interface IBenefitLink;
+interface IDependant;
+interface IEmployee;
+interface IList;
+interface IListBank;
+interface IListBenefit;
+interface IListBenefitLink;
+interface IListDependant;
+interface IListEmployee;
+
+
+	[
+		object,
+		uuid(0CD88B04-14DB-11d0-95E3-00AA00686074),
+		dual,
+		helpstring("IBenefit Interface"),
+		pointer_default(unique)
+                ,hidden
+	]
+	interface IBenefit : IDispatch
+	{
+		import "oaidl.idl";
+		[propget, id(1), helpstring("Property PKId")] HRESULT PKId([out, retval] long *newVal);
+		[propput, id(1), helpstring("Property PKId")] HRESULT PKId([in] long newVal);
+		[propget, id(9), helpstring("Property Multiples")] HRESULT Multiples([out, retval] short *newVal);
+		[propput, id(9), helpstring("Property Multiples")] HRESULT Multiples([in] short newVal);
+		[propget, id(2), helpstring("Property BnfTaxId")] HRESULT BnfTaxId([out, retval] long *newVal);
+		[propput, id(2), helpstring("Property BnfTaxId")] HRESULT BnfTaxId([in] long newVal);
+		[propget, id(3), helpstring("Property BnfTypeId")] HRESULT BnfTypeId([out, retval] long *newVal);
+		[propput, id(3), helpstring("Property BnfTypeId")] HRESULT BnfTypeId([in] long newVal);
+		[propget, id(4), helpstring("Property Cost")] HRESULT Cost([out, retval] long *newVal);
+		[propput, id(4), helpstring("Property Cost")] HRESULT Cost([in] long newVal);
+		[propget, id(5), helpstring("Property Maximum")] HRESULT Maximum([out, retval] long *newVal);
+		[propput, id(5), helpstring("Property Maximum")] HRESULT Maximum([in] long newVal);
+		[propget, id(6), helpstring("Property Minimum")] HRESULT Minimum([out, retval] long *newVal);
+		[propput, id(6), helpstring("Property Minimum")] HRESULT Minimum([in] long newVal);
+		[propget, id(7), helpstring("Property Increment")] HRESULT Increment([out, retval] short *newVal);
+		[propput, id(7), helpstring("Property Increment")] HRESULT Increment([in] short newVal);
+		[propget, id(8), helpstring("Property Description")] HRESULT Description([out, retval] BSTR *newVal);
+		[propput, id(8), helpstring("Property Description")] HRESULT Description([in] BSTR newVal);
+		[id(10), helpstring("Method Term")] HRESULT Term();
+		[propputref, id(11), helpstring("Property Admin")] HRESULT Admin([in] IAdmin * newVal);
+	};
+
+
+
+	[
+		object,
+		uuid(0CD88B12-14DB-11d0-95E3-00AA00686074),
+		dual,
+		helpstring("IBenefitLink Interface"),
+		pointer_default(unique)
+                ,hidden
+	]
+	interface IBenefitLink : IDispatch
+	{
+		import "oaidl.idl";
+		[propget, id(10), helpstring("Property PKId")] HRESULT PKId([out, retval] long *newVal);
+		[propput, id(10), helpstring("Property PKId")] HRESULT PKId([in] long newVal);
+		[id(1), helpstring("Method Term")] HRESULT Term();
+		[propget, id(2), helpstring("Property Amount")] HRESULT Amount([out, retval] CURRENCY *newVal);
+		[propput, id(2), helpstring("Property Amount")] HRESULT Amount([in] CURRENCY newVal);
+		[propget, id(3), helpstring("Property CoverageId")] HRESULT CoverageId([out, retval] long *newVal);
+		[propput, id(3), helpstring("Property CoverageId")] HRESULT CoverageId([in] long newVal);
+		[propget, id(4), helpstring("Property TaxId")] HRESULT TaxId([out, retval] long *newVal);
+		[propput, id(4), helpstring("Property TaxId")] HRESULT TaxId([in] long newVal);
+		[propputref, id(7), helpstring("Property Admin")] HRESULT Admin([in] IAdmin * newVal);
+		[propget, id(8), helpstring("Property Employee")] HRESULT Employee([out, retval] IEmployee ** newVal);
+		[propputref, id(8), helpstring("Property Employee")] HRESULT Employee([in] IEmployee * newVal);
+		[propget, id(9), helpstring("Property Benefit")] HRESULT Benefit([out, retval] IBenefit ** newVal);
+		[propputref, id(9), helpstring("Property Benefit")] HRESULT Benefit([in] IBenefit * newVal);
+	};
+
+
+
+	[
+		object,
+		uuid(0CD88B0A-14DB-11d0-95E3-00AA00686074),
+		dual,
+		helpstring("IDependant Interface"),
+		pointer_default(unique)
+                ,hidden
+	]
+	interface IDependant : IDispatch
+	{
+		import "oaidl.idl";
+		[propget, id(10), helpstring("Property PKId")] HRESULT PKId([out, retval] long *newVal);
+		[propput, id(10), helpstring("Property PKId")] HRESULT PKId([in] long newVal);
+		[id(1), helpstring("Method Term")] HRESULT Term();
+		[propputref, id(2), helpstring("Property Admin")] HRESULT Admin([in] IAdmin * newVal);
+		[propget, id(3), helpstring("Property Employee")] HRESULT Employee([out, retval] IEmployee ** newVal);
+		[propputref, id(3), helpstring("Property Employee")] HRESULT Employee([in] IEmployee * newVal);
+		[propget, id(4), helpstring("Property FirstName")] HRESULT FirstName([out, retval] BSTR *newVal);
+		[propput, id(4), helpstring("Property FirstName")] HRESULT FirstName([in] BSTR newVal);
+		[propget, id(5), helpstring("Property LastName")] HRESULT LastName([out, retval] BSTR *newVal);
+		[propput, id(5), helpstring("Property LastName")] HRESULT LastName([in] BSTR newVal);
+		[propget, id(6), helpstring("Property DateOfBirth")] HRESULT DateOfBirth([out, retval] DATE *newVal);
+		[propput, id(6), helpstring("Property DateOfBirth")] HRESULT DateOfBirth([in] DATE newVal);
+		[propget, id(7), helpstring("Property DepTypeId")] HRESULT DepTypeId([out, retval] long *newVal);
+		[propput, id(7), helpstring("Property DepTypeId")] HRESULT DepTypeId([in] long newVal);
+		[propget, id(8), helpstring("Property Gender")] HRESULT Gender([out, retval] BOOL *newVal);
+		[propput, id(8), helpstring("Property Gender")] HRESULT Gender([in] BOOL newVal);
+		[propget, id(9), helpstring("Property Status")] HRESULT Status([out, retval] BOOL *newVal);
+		[propput, id(9), helpstring("Property Status")] HRESULT Status([in] BOOL newVal);
+	};
+
+
+
+	[
+		object,
+		uuid(0CD88B08-14DB-11d0-95E3-00AA00686074),
+		dual,
+		helpstring("IEmployee Interface"),
+		pointer_default(unique)
+                ,hidden
+	]
+	interface IEmployee : IDispatch
+	{
+		import "oaidl.idl";
+		[propget, id(1), helpstring("Property PKId")] HRESULT PKId([out, retval] long *newVal);
+		[propput, id(1), helpstring("Property PKId")] HRESULT PKId([in] long newVal);
+		[id(2), helpstring("Method Term")] HRESULT Term();
+		[propget, id(3), helpstring("Property Gender")] HRESULT Gender([out, retval] BOOL *newVal);
+		[propput, id(3), helpstring("Property Gender")] HRESULT Gender([in] BOOL newVal);
+		[propget, id(4), helpstring("Property DateOfBirth")] HRESULT DateOfBirth([out, retval] DATE *newVal);
+		[propput, id(4), helpstring("Property DateOfBirth")] HRESULT DateOfBirth([in] DATE newVal);
+		[propget, id(5), helpstring("Property EndDate")] HRESULT EndDate([out, retval] DATE *newVal);
+		[propput, id(5), helpstring("Property EndDate")] HRESULT EndDate([in] DATE newVal);
+		[propget, id(6), helpstring("Property StartDate")] HRESULT StartDate([out, retval] DATE *newVal);
+		[propput, id(6), helpstring("Property StartDate")] HRESULT StartDate([in] DATE newVal);
+		[propget, id(7), helpstring("Property Salary")] HRESULT Salary([out, retval] CURRENCY *newVal);
+		[propput, id(7), helpstring("Property Salary")] HRESULT Salary([in] CURRENCY newVal);
+		[propget, id(8), helpstring("Property Address1")] HRESULT Address1([out, retval] BSTR *newVal);
+		[propput, id(8), helpstring("Property Address1")] HRESULT Address1([in] BSTR newVal);
+		[propget, id(9), helpstring("Property Address2")] HRESULT Address2([out, retval] BSTR *newVal);
+		[propput, id(9), helpstring("Property Address2")] HRESULT Address2([in] BSTR newVal);
+		[propget, id(10), helpstring("Property BankAccount")] HRESULT BankAccount([out, retval] BSTR *newVal);
+		[propput, id(10), helpstring("Property BankAccount")] HRESULT BankAccount([in] BSTR newVal);
+		[propget, id(11), helpstring("Property City")] HRESULT City([out, retval] BSTR *newVal);
+		[propput, id(11), helpstring("Property City")] HRESULT City([in] BSTR newVal);
+		[propget, id(12), helpstring("Property FirstName")] HRESULT FirstName([out, retval] BSTR *newVal);
+		[propput, id(12), helpstring("Property FirstName")] HRESULT FirstName([in] BSTR newVal);
+		[propget, id(13), helpstring("Property LastName")] HRESULT LastName([out, retval] BSTR *newVal);
+		[propput, id(13), helpstring("Property LastName")] HRESULT LastName([in] BSTR newVal);
+		[propget, id(14), helpstring("Property Position")] HRESULT Position([out, retval] BSTR *newVal);
+		[propput, id(14), helpstring("Property Position")] HRESULT Position([in] BSTR newVal);
+		[propget, id(15), helpstring("Property UserName")] HRESULT UserName([out, retval] BSTR *newVal);
+		[propput, id(15), helpstring("Property UserName")] HRESULT UserName([in] BSTR newVal);
+		[propget, id(16), helpstring("Property BenefitLinks")] HRESULT BenefitLinks([out, retval] IListBenefitLink ** newVal);
+		[propget, id(17), helpstring("Property Dependants")] HRESULT Dependants([out, retval] IListDependant ** newVal);
+		[propputref, id(18), helpstring("Property Admin")] HRESULT Admin([in] IAdmin * newVal);
+		[propget, id(19), helpstring("Property Bank")] HRESULT Bank([out, retval] IBank **  newVal);
+		[propputref, id(19), helpstring("Property Bank")] HRESULT Bank([in] IBank * newVal);
+	};
+
+
+
+	[
+		object,
+		uuid(0CD88B06-14DB-11d0-95E3-00AA00686074),
+		dual,
+		helpstring("IBank Interface"),
+		pointer_default(unique)
+                ,hidden
+	]
+	interface IBank : IDispatch
+	{
+		import "oaidl.idl";
+		[propget, id(1), helpstring("Property PKId")] HRESULT PKId([out, retval] long *newVal);
+		[propput, id(1), helpstring("Property PKId")] HRESULT PKId([in] long newVal);
+		[id(2), helpstring("Method Term")] HRESULT Term();
+		[propget, id(4), helpstring("Property Employees")] HRESULT Employees([out, retval] IListEmployee **  newVal);
+		[propget, id(5), helpstring("Property Address1")] HRESULT Address1([out, retval] BSTR *newVal);
+		[propput, id(5), helpstring("Property Address1")] HRESULT Address1([in] BSTR newVal);
+		[propget, id(6), helpstring("Property Address2")] HRESULT Address2([out, retval] BSTR *newVal);
+		[propput, id(6), helpstring("Property Address2")] HRESULT Address2([in] BSTR newVal);
+		[propget, id(7), helpstring("Property City")] HRESULT City([out, retval] BSTR *newVal);
+		[propput, id(7), helpstring("Property City")] HRESULT City([in] BSTR newVal);
+		[propget, id(8), helpstring("Property Code")] HRESULT Code([out, retval] BSTR *newVal);
+		[propput, id(8), helpstring("Property Code")] HRESULT Code([in] BSTR newVal);
+		[propget, id(9), helpstring("Property Name")] HRESULT Name([out, retval] BSTR *newVal);
+		[propput, id(9), helpstring("Property Name")] HRESULT Name([in] BSTR newVal);
+		[propputref, id(10), helpstring("Property Admin")] HRESULT Admin([in] IAdmin * newVal);
+	};
+
+
+	[
+		object,
+		uuid(0CD88B02-14DB-11d0-95E3-00AA00686074),
+		dual,
+		helpstring("IAdmin Interface"),
+		pointer_default(unique)
+                ,hidden
+	]
+	interface IAdmin : IDispatch
+	{
+		import "oaidl.idl";
+		[propget, id(0), helpstring("Property UseODBC")] HRESULT UseODBC([out, retval] BOOL * newVal);
+		[id(1), helpstring("Method Term")] HRESULT Term();
+		[propget, id(2), helpstring("Property Banks")] HRESULT Banks([out, retval] IListBank **  newVal);
+		[propget, id(3), helpstring("Property Benefits")] HRESULT Benefits([out, retval] IListBenefit **  newVal);
+		[propget, id(4), helpstring("Property Employees")] HRESULT Employees([out, retval] IListEmployee **  newVal);
+		[id(5), helpstring("Delete")] HRESULT Delete(
+			[in, optional] VARIANT * oEmployee,
+			[in, optional] VARIANT * oBank,
+			[in, optional] VARIANT * oDependant,
+			[in, optional] VARIANT * oBenefit,
+			[in, optional] VARIANT * oBenefitLink,
+			[out, retval] BOOL * pbSuccess);
+		[id(6), helpstring("Insert")] HRESULT Insert(
+			[in, optional] VARIANT * oEmployee,
+			[in, optional] VARIANT * oBank,
+			[in, optional] VARIANT * oDependant,
+			[in, optional] VARIANT * oBenefit,
+			[in, optional] VARIANT * oBenefitLink,
+			[out, retval] BOOL * pbSuccess);
+		[id(7), helpstring("Update")] HRESULT Update(
+			[in, optional] VARIANT * oEmployee,
+			[in, optional] VARIANT * oBank,
+			[in, optional] VARIANT * oDependant,
+			[in, optional] VARIANT * oBenefit,
+			[in, optional] VARIANT * oBenefitLink,
+			[out, retval] BOOL * pbSuccess);
+		[id(8), helpstring("ExecFillArray")] HRESULT ExecFillArray([in] BSTR sQry, [in, out] VARIANT* sArray, [in,optional] BOOL bAddColumnName, [out, retval] BOOL * pbSuccess);
+		[id(9), helpstring("FillListBanks")] HRESULT FillListBanks();
+		[id(10), helpstring("Method FillListBenefits")] HRESULT FillListBenefits();
+		[id(11), helpstring("Method FillListEmployees")] HRESULT FillListEmployees();
+		[id(12), helpstring("Method GetListBanks")] HRESULT GetListBanks([out, retval] VARIANT * pvSARRAY);
+		[id(13), helpstring("Method GetListBenefits")] HRESULT GetListBenefits([out, retval] VARIANT * pvSARRAY);
+		[id(14), helpstring("Method GetListEmployees")] HRESULT GetListEmployees([out, retval] VARIANT * pvSARRAY);
+		[id(15), helpstring("Method GetDomain")] HRESULT GetDomain([in] BSTR sQry, [in, out] IList ** lstOut, [out, retval] BOOL * pbSuccess);
+		[id(16), helpstring("Method Init")] HRESULT Init([in] BOOL bUseODBC, [in] BSTR sDataSource, [in] int iSourceType, [in] int iRemoteSvr, [in] int iLinkSvr, [out, retval] BOOL * pbSuccess);
+		[id(17), helpstring("Method IsUserValid")] HRESULT IsUserValid([in] BSTR sUserName, [out, retval] int * piReturn);
+		[id(18), helpstring("Method ExecFillList")] HRESULT ExecFillList([in] BSTR sQry, [in,out] IList ** lstOut, [out,retval] BOOL * pbSuccess);
+		[id(19), helpstring("Get Number Employees Per Benefit")] HRESULT GetNumEmplsPerBenefit([in, out] IList * * lstOut, [in] long lCoverageId, [in] long lTaxId, [in, optional] VARIANT * bGender, [out, retval] BOOL * pbSuccess);
+		[id(20), helpstring("Get Number Employees Per Benefit Type")] HRESULT GetNumEmplsPerBenefitType([in, out] IList * * lstOut, [in] long lCoverageId, [in] long lTaxId, [in, optional] VARIANT * bGender, [out, retval] BOOL * pbSuccess);
+		[id(21), helpstring("Get Benefit Tax Types")] HRESULT GetBenefitTaxTypes([in, out] IList * * lstOut, [out, retval] BOOL * pbSuccess);
+		[id(22), helpstring("Get Benefit Types")] HRESULT GetBenefitTypes([in, out] IList * * lstOut, [out, retval] BOOL * pbSuccess);
+		[id(23), helpstring("Get Dependant Types")] HRESULT GetDependantTypes([in, out] IList * * lstOut, [out, retval] BOOL * pbSuccess);
+		[id(24), helpstring("Get Employee Benefit Coverage Types")] HRESULT GetEmployeeBenefitCoverageTypes([in, out] IList * * lstOut, [out, retval] BOOL * pbSuccess);
+		[id(25), helpstring("Get Employee Benefit Tax Types")] HRESULT GetEmployeeBenefitTaxTypes([in, out] IList * * lstOut, [out, retval] BOOL * pbSuccess);
+		[id(26), helpstring("ExecBooleanMDB")] HRESULT ExecBooleanMDB([in] BSTR sQry, [in] IDispatch * lstParameters, [out, retval] BOOL * pbSuccess);
+		[id(27), helpstring("ExecBooleanSQL")] HRESULT ExecBooleanSQL([in] BSTR sQry, [out, retval] BOOL * pbSuccess);
+	};
+
+	[
+		object,
+		uuid(0CD88B0E-14DB-11d0-95E3-00AA00686074),
+		dual,
+		helpstring("IList Interface"),
+		pointer_default(unique)
+                ,hidden
+	]
+	interface IList : IDispatch
+	{
+		import "oaidl.idl";
+		[propget, id(0), helpstring("Property Item")] HRESULT Item([in] BSTR sKey, [out, retval] VARIANT * vItem);
+		[propget, id(1), helpstring("Property Count")] HRESULT Count([out, retval] long *newVal);
+		[id(2), helpstring("Method Add")] HRESULT Add(BSTR sKey, VARIANT * vItem);
+		[propget, id(DISPID_NEWENUM), helpstring("Property _NewEnum")] HRESULT _NewEnum([out, retval] IUnknown ** ppIEnumVariantIUnk);
+		[id(3), helpstring("Method Remove")] HRESULT Remove([in] BSTR sKey);
+	};
+
+	[
+		object,
+		uuid(0CD88B21-14DB-11d0-95E3-00AA00686074),
+		dual,
+		helpstring("IListBank Interface"),
+		pointer_default(unique)
+                ,hidden
+	]
+	interface IListBank : IDispatch
+	{
+		import "oaidl.idl";
+		[propget, id(0), helpstring("Property Item")] HRESULT Item([in] long lIndexKey, [out, retval] IBank **  vItem);
+		[propget, id(1), helpstring("Property Count")] HRESULT Count([out, retval] long *newVal);
+		[id(2), helpstring("Method Add")] HRESULT Add([in] IBank * oBank);
+		[propget, id(DISPID_NEWENUM), helpstring("Property _NewEnum")] HRESULT _NewEnum([out, retval] IUnknown ** ppIEnumVariantIUnk);
+		[id(3), helpstring("Method Remove")] HRESULT Remove([in] long lIndexKey);
+	};
+
+	[
+		object,
+		uuid(0CD88B23-14DB-11d0-95E3-00AA00686074),
+		dual,
+		helpstring("IListBenefit Interface"),
+		pointer_default(unique)
+                ,hidden
+	]
+	interface IListBenefit : IDispatch
+	{
+		import "oaidl.idl";
+		[propget, id(0), helpstring("Property Item")] HRESULT Item([in] long lIndexKey, [out, retval] IBenefit ** vItem);
+		[propget, id(1), helpstring("Property Count")] HRESULT Count([out, retval] long *newVal);
+		[id(2), helpstring("Method Add")] HRESULT Add([in] IBenefit * oBenefit);
+		[propget, id(DISPID_NEWENUM), helpstring("Property _NewEnum")] HRESULT _NewEnum([out, retval] IUnknown ** ppIEnumVariantIUnk);
+		[id(3), helpstring("Method Remove")] HRESULT Remove([in] long lIndexKey);
+	};
+
+	[
+		object,
+		uuid(0CD88B25-14DB-11d0-95E3-00AA00686074),
+		dual,
+		helpstring("IListBenefitLink Interface"),
+		pointer_default(unique)
+                ,hidden
+	]
+	interface IListBenefitLink : IDispatch
+	{
+		import "oaidl.idl";
+		[propget, id(0), helpstring("Property Item")] HRESULT Item([in] long lIndexKey, [out, retval] IBenefitLink ** vItem);
+		[propget, id(1), helpstring("Property Count")] HRESULT Count([out, retval] long *newVal);
+		[id(2), helpstring("Method Add")] HRESULT Add([in] IBenefitLink * oBenefitLink);
+		[id(3), helpstring("Method Remove")] HRESULT Remove([in] long lIndexKey);
+		[propget, id(DISPID_NEWENUM), helpstring("Property _NewEnum")] HRESULT _NewEnum([out, retval] IUnknown ** ppIEnumVariantIUnk);
+	};
+
+	[
+		object,
+		uuid(0CD88B27-14DB-11d0-95E3-00AA00686074),
+		dual,
+		helpstring("IListDependant Interface"),
+		pointer_default(unique)
+                ,hidden
+	]
+	interface IListDependant : IDispatch
+	{
+		import "oaidl.idl";
+		[propget, id(0), helpstring("Property Item")] HRESULT Item([in] long lIndexKey, [out, retval] IDependant ** vItem);
+		[propget, id(1), helpstring("Property Count")] HRESULT Count([out, retval] long *newVal);
+		[id(2), helpstring("Method Add")] HRESULT Add([in] IDependant * oDependant);
+		[propget, id(DISPID_NEWENUM), helpstring("Property _NewEnum")] HRESULT _NewEnum([out, retval] IUnknown ** ppIEnumVariantIUnk);
+		[id(3), helpstring("Method Remove")] HRESULT Remove([in] long lIndexKey);
+	};
+
+	[
+		object,
+		uuid(0CD88B29-14DB-11d0-95E3-00AA00686074),
+		dual,
+		helpstring("IListEmployee Interface"),
+		pointer_default(unique)
+                ,hidden
+	]
+	interface IListEmployee : IDispatch
+	{
+		import "oaidl.idl";
+		[propget, id(0), helpstring("Property Item")] HRESULT Item([in] long lIndexKey, [out, retval] IEmployee ** vItem);
+		[propget, id(1), helpstring("Property Count")] HRESULT Count([out, retval] long *newVal);
+		[id(2), helpstring("Method Add")] HRESULT Add([in] IEmployee * oEmployee);
+		[propget, id(DISPID_NEWENUM), helpstring("Property _NewEnum")] HRESULT _NewEnum([out, retval] IUnknown ** ppIEnumVariantIUnk);
+		[id(3), helpstring("Method Remove")] HRESULT Remove([in] long lIndexKey);
+	};
+[
+	uuid(0CD88B00-14DB-11d0-95E3-00AA00686074),
+	version(1.0),
+	helpstring("Corporate Benefits Sample [C++ Server]")
+]
+library BenefitsCPP
+{
+	importlib("stdole32.tlb");
+
+	typedef enum LinkServer {
+		icLnkVB = 512,
+		icLnkATL = 1024,
+		icLnkCPP = 2048,
+		icLnkMFC = 4096
+	} tagLinkServer;
+
+	typedef enum RemoteServer {
+		icRemVB = 16,
+		icRemATL = 32,
+		icRemCPP = 64,
+		icRemMFC = 128
+	} tagRemoteServer;
+
+	typedef enum SourceServer {
+		icDoDataDirect = 1,
+		icDoDataRemote = 2,
+		icDoDataLinked = 4
+	} tagSourceServer;
+
+	typedef enum UserType {
+		icInvalidUser = 0,
+		icValidUser = 1,
+		icValidAdmin = 2
+	} tagUserType;
+
+	[
+		uuid(0CD88B01-14DB-11d0-95E3-00AA00686074),
+		helpstring("Admin Class")
+	]
+	coclass CAdmin
+	{
+		[default] interface IAdmin;
+	};
+
+	[
+		uuid(0CD88B03-14DB-11d0-95E3-00AA00686074),
+		helpstring("Benefit Class")
+	]
+	coclass CBenefit
+	{
+		[default] interface IBenefit;
+	};
+
+	[
+		uuid(0CD88B11-14DB-11d0-95E3-00AA00686074),
+		helpstring("BenefitLink Class")
+	]
+	coclass CBenefitLink
+	{
+		[default] interface IBenefitLink;
+	};
+
+	[
+		uuid(0CD88B09-14DB-11d0-95E3-00AA00686074),
+		helpstring("Dependant Class")
+	]
+	coclass CDependant
+	{
+		[default] interface IDependant;
+	};
+
+	[
+		uuid(0CD88B07-14DB-11d0-95E3-00AA00686074),
+		helpstring("Employee Class")
+	]
+	coclass CEmployee
+	{
+		[default] interface IEmployee;
+	};
+
+	[
+		uuid(0CD88B05-14DB-11d0-95E3-00AA00686074),
+		helpstring("Bank Class")
+	]
+	coclass CBank
+	{
+		[default] interface IBank;
+	};
+
+	[
+		uuid(0CD88B0D-14DB-11d0-95E3-00AA00686074),
+		helpstring("List Class")
+	]
+	coclass CList
+	{
+		[default] interface IList;
+	};
+
+
+	[
+		uuid(0CD88B20-14DB-11d0-95E3-00AA00686074),
+		helpstring("ListBank Class")
+	]
+	coclass CListBank
+	{
+		[default] interface IListBank;
+	};
+
+	[
+		uuid(0CD88B22-14DB-11d0-95E3-00AA00686074),
+		helpstring("ListBenefit Class")
+	]
+	coclass CListBenefit
+	{
+		[default] interface IListBenefit;
+	};
+
+	[
+		uuid(0CD88B24-14DB-11d0-95E3-00AA00686074),
+		helpstring("ListBenefitLink Class")
+	]
+	coclass CListBenefitLink
+	{
+		[default] interface IListBenefitLink;
+	};
+
+	[
+		uuid(0CD88B26-14DB-11d0-95E3-00AA00686074),
+		helpstring("ListDependant Class")
+	]
+	coclass CListDependant
+	{
+		[default] interface IListDependant;
+	};
+
+	[
+		uuid(0CD88B28-14DB-11d0-95E3-00AA00686074),
+		helpstring("ListEmployee Class")
+	]
+	coclass CListEmployee
+	{
+		[default] interface IListEmployee;
+	};
+};

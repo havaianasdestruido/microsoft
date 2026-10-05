@@ -1,0 +1,127 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"inc\w2k"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"SDKINC2k2"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","SDKINC2k2",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+SDKINC2k2.inf
+
+
+[Files_0]
+cfg.h,SDKINCS2_FILE_0,,
+d3dnthal.h,SDKINCS2_FILE_1,,
+ddrawint.h,SDKINCS2_FILE_2,,
+dls1.h,SDKINCS2_FILE_3,,
+dmemmgr.h,SDKINCS2_FILE_4,,
+dmusbuff.h,SDKINCS2_FILE_5,,
+dxmini.h,SDKINCS2_FILE_6,,
+gameport.h,SDKINCS2_FILE_7,,
+hidsdi.h,SDKINCS2_FILE_8,,
+ia64reg.h,SDKINCS2_FILE_9,,
+kbd.h,SDKINCS2_FILE_10,,
+ksguid.h,SDKINCS2_FILE_11,,
+lmon.h,SDKINCS2_FILE_12,,
+mmddk.h,SDKINCS2_FILE_13,,
+netcfgn.h,SDKINCS2_FILE_14,,
+netcfgx.idl,SDKINCS2_FILE_15,,
+newdev.h,SDKINCS2_FILE_16,,
+ntddbeep.h,SDKINCS2_FILE_17,,
+ntddchgr.h,SDKINCS2_FILE_18,,
+ntddft2.h,SDKINCS2_FILE_19,,
+ntddndis.h,SDKINCS2_FILE_20,,
+ntddser.h,SDKINCS2_FILE_21,,
+ntddtdi.h,SDKINCS2_FILE_22,,
+ntdskreg.h,SDKINCS2_FILE_23,,
+ntverp.h,SDKINCS2_FILE_24,,
+packoff.h,SDKINCS2_FILE_25,,
+prcomoem.h,SDKINCS2_FILE_26,,
+propidl.h,SDKINCS2_FILE_27,,
+qossp.h,SDKINCS2_FILE_28,,
+stierr.h,SDKINCS2_FILE_29,,
+tdiinfo.h,SDKINCS2_FILE_30,,
+unknown.h,SDKINCS2_FILE_31,,
+usbdi.h,SDKINCS2_FILE_32,,
+vfw.h,SDKINCS2_FILE_33,,
+wbemdisp.h,SDKINCS2_FILE_34,,
+wbemtime.h,SDKINCS2_FILE_35,,
+winddiui.h,SDKINCS2_FILE_36,,
+winppi.h,SDKINCS2_FILE_37,,
+wmistr.h,SDKINCS2_FILE_38,,
+
+[SourceDisksNames]
+1="SDKINC2k2.cab",SDKINC2k2.cab,0
+[SourceDisksFiles]
+SDKINCS2_FILE_0=1,,9357
+SDKINCS2_FILE_1=1,,34751
+SDKINCS2_FILE_2=1,,86066
+SDKINCS2_FILE_3=1,,9304
+SDKINCS2_FILE_4=1,,6314
+SDKINCS2_FILE_5=1,,1780
+SDKINCS2_FILE_6=1,,13510
+SDKINCS2_FILE_7=1,,9537
+SDKINCS2_FILE_8=1,,12126
+SDKINCS2_FILE_9=1,,166
+SDKINCS2_FILE_10=1,,97531
+SDKINCS2_FILE_11=1,,630
+SDKINCS2_FILE_12=1,,719
+SDKINCS2_FILE_13=1,,26275
+SDKINCS2_FILE_14=1,,42626
+SDKINCS2_FILE_15=1,,15767
+SDKINCS2_FILE_16=1,,1126
+SDKINCS2_FILE_17=1,,1518
+SDKINCS2_FILE_18=1,,22777
+SDKINCS2_FILE_19=1,,9159
+SDKINCS2_FILE_20=1,,83402
+SDKINCS2_FILE_21=1,,25909
+SDKINCS2_FILE_22=1,,2553
+SDKINCS2_FILE_23=1,,4921
+SDKINCS2_FILE_24=1,,3911
+SDKINCS2_FILE_25=1,,787
+SDKINCS2_FILE_26=1,,29249
+SDKINCS2_FILE_27=1,,47579
+SDKINCS2_FILE_28=1,,27774
+SDKINCS2_FILE_29=1,,4714
+SDKINCS2_FILE_30=1,,4167
+SDKINCS2_FILE_31=1,,1764
+SDKINCS2_FILE_32=1,,26533
+SDKINCS2_FILE_33=1,,143056
+SDKINCS2_FILE_34=1,,284495
+SDKINCS2_FILE_35=1,,5556
+SDKINCS2_FILE_36=1,,15283
+SDKINCS2_FILE_37=1,,1572
+SDKINCS2_FILE_38=1,,16721
+
+
+[Strings]
+FriendlyName=SDK_Include_Files
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=39
+TotalSize=1130985

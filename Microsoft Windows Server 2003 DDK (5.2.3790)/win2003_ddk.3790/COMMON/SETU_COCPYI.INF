@@ -1,0 +1,67 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\setup\cocpyinf\"
+Files_1=49000,"\src\setup\cocpyinf\install\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"SETU_cocpyi"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","SETU_cocpyi",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+SETU_cocpyi.inf
+
+
+[Files_0]
+cocpyinf.c,SETU_cocpyi_FILE_0,,
+cocpyinf.def,SETU_cocpyi_FILE_1,,
+cocpyinf.htm,SETU_cocpyi_FILE_2,,
+cocpyinf.rc,SETU_cocpyi_FILE_3,,
+makefile,SETU_cocpyi_FILE_4,,
+sources,SETU_cocpyi_FILE_5,,
+[Files_1]
+a.inf,SETU_cocpyi_FILE_6,,
+b.inf,SETU_cocpyi_FILE_7,,
+
+[SourceDisksNames]
+1="SETU_cocpyi.cab",SETU_cocpyi.cab,0
+[SourceDisksFiles]
+SETU_cocpyi_FILE_0=1,,12879
+SETU_cocpyi_FILE_1=1,,56
+SETU_cocpyi_FILE_2=1,,12719
+SETU_cocpyi_FILE_3=1,,361
+SETU_cocpyi_FILE_4=1,,271
+SETU_cocpyi_FILE_5=1,,301
+SETU_cocpyi_FILE_6=1,,796
+SETU_cocpyi_FILE_7=1,,796
+
+
+[Strings]
+FriendlyName=setup
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=8
+TotalSize=28179

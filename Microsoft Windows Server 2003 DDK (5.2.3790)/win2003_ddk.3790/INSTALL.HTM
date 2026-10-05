@@ -1,0 +1,243 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <TITLE>Getting Started</TITLE></HEAD>
+<BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">
+<!----------------------  TITLE  -------------------------->
+<FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>
+<B><FONT FACE="Verdana" SIZE=+3>Getting Started</FONT></B> 
+
+<!----------------------  Description  -------------------->
+<P><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>The Microsoft<SUP>®</SUP> Windows<SUP>®</SUP> Server 2003 Driver Development Kit (DDK) provides a development environment for the creation of drivers for Windows Server 2003, Windows XP, and Windows 2000. The DDK provides additional driver-specific headers, libraries, sources, tools, and documentation that are used to develop drivers for Windows Server 2003. </FONT>
+
+<P><!-------------------- Legal Bits ---------------->
+<B><FONT FACE="Verdana" SIZE=+2>Legal Information</FONT></B>
+<P>
+
+<FONT FACE="Verdana, Arial, Times New Roman" SIZE=-1>This document is for informational purposes only. MICROSOFT
+MAKES NO WARRANTIES, EXPRESS OR IMPLIED, IN THIS DOCUMENT.</FONT>
+
+<P><FONT FACE="Verdana, Arial, Times New Roman" SIZE=-1>Microsoft may have
+patents, patent applications, trademarks, copyrights, or other intellectual
+property rights covering subject matter in this document. <span class=GramE>Except
+as expressly provided in any written license agreement from Microsoft, the
+furnishing of this document does not give you any license to these patents,
+trademarks, copyrights, or other intellectual property.</FONT>
+
+<P><FONT FACE="Verdana, Arial, Times New Roman" SIZE=-1>Information in this
+document is subject to change without notice and is provided for informational
+purposes only. The entire risk of the use or results of the use of this document
+remains with the user, and Microsoft Corporation makes no warranties, either
+express or implied. The names of companies, products, people, characters,
+and/or data mentioned herein are fictitious and are in no way intended to
+represent any real individual, company, product, or event, unless otherwise
+noted. Complying with all applicable copyright laws is the responsibility of
+the user. No part of this document may be reproduced or transmitted in any form
+or by any means, electronic or mechanical, for any purpose, without the express
+written permission of Microsoft Corporation.</FONT>
+
+<P><FONT FACE="Verdana, Arial, Times New Roman" SIZE=-1>ActiveSync, ActiveX,
+BackOffice, Direct3D, DirectAnimation, DirectDraw, DirectInput, DirectMusic,
+DirectPlay, DirectShow, DirectSound, DirectX, MSDN, Microsoft, MS-DOS, Outlook,
+Visual C++, Win32, Windows, Windows NT, Windows XP, and Windows Server 2003 are either
+registered trademarks or trademarks of Microsoft Corporation in the United
+States and/or other countries. Other product and company names mentioned herein
+may be the trademarks of their respective owners.</FONT>
+
+<P><FONT FACE="Verdana, Arial, Times New Roman" SIZE=-1>©2003 Microsoft
+Corporation. All rights reserved. <br>
+&nbsp;<br></FONT>
+
+<!--------  Purpose ---------------->
+<B><FONT FACE="Verdana" SIZE=+2>Introduction</FONT></B>
+
+<P>
+<FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>This document presents an
+overview of the Microsoft<SUP>®</SUP> Windows<SUP>®</SUP> Driver Development Kit (DDK) for Windows Server 2003 and provides essential installation information for this
+driver development kit. Before installing the DDK, read through this document
+to determine whether or not to install optional DDK components and how to set
+up your systems for a trouble-free installation. This document contains the
+following topics:</FONT>
+
+
+<P><!------------- ToC -------------->
+<UL>
+<LI><A href="install.htm#INSTALL"><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>Installing the DDK</FONT></A>
+<LI><A href="install.htm#DBG"><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>Installing the Debuggers</FONT></A>
+<LI><A href="install.htm#VERIFY"><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>Verifying DDK Installation</FONT></A>
+<LI><A href="install.htm#INFO"><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>Information on the Microsoft Web Site</FONT></A>
+<LI><A href="install.htm#NEWS"><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>Late-Breaking News</FONT></A></LI>
+</UL>
+
+
+<FONT FACE="Verdana" SIZE=+2><B>Please Read The Release Notes</B></FONT> <FONT FACE="Verdana, Arial, Times New Roman" SIZE=2> (<A href="relnote.htm">Click here to read the Release Notes now!</A>)</FONT>
+
+<P>
+<FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>There have been a number
+of changes to the DDK. Some of these changes may affect driver compatibility
+among versions of Windows. As a result, after installing the DDK, it is more
+important than usual to read the release notes. For your convenience, the
+release notes may be accessed from the Start menu (Start… Development Kits…
+Windows DDK… Help… Release Notes).</FONT>
+
+
+<P><!------ Installing --->
+<P>
+<A NAME="INSTALL"></A><B><FONT FACE="Verdana" SIZE=+2>Installing the DDK</FONT></B>
+
+<P><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>
+To install the Microsoft<SUP>®</SUP> Windows<SUP>®</SUP> Driver Development Kit for Windows Server 2003, you must be able to access a CD-ROM drive from Windows, either
+locally or through a network.</FONT>
+
+<P><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>  
+A development machine running Windows Windows NT® 4.0, Windows 95, Windows 98, or Windows Me is not supported when developing drivers for Windows 2000, Windows XP, or Windows Server 2003.</FONT>
+
+<P><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>Developing 16-bit drivers
+(for example, <span class=SpellE>VxD</span> and <span class=SpellE>WinMe</span>) is not
+supported on a Windows 64-bit platform.</FONT>
+
+
+<P><B><FONT FACE="Verdana" SIZE=+1>System Requirements</FONT></B><P>
+
+
+<FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>The system requirements for using this DDK on a <B>driver-development</B> machine are:
+<P>
+<UL>
+<LI>Microsoft® Windows® Server 2003, Windows XP, Windows XP Service Pack 1, or Windows 2000. 
+<LI>CD-ROM drive or Internet access.
+<LI>At least 128MB RAM. 256MB of RAM or more is recommended.
+<LI>At least 574MB hard-disk space for a full 
+  installation. Significantly more space may be required to compile all samples; 
+  up to 900MB may be required.</LI>                        
+</UL></FONT>
+
+<BR><FONT FACE="Verdana, Arial,Times New Roman" SIZE=2>The system requirements for using this DDK on a <B>driver-testing</B> machine are:
+<P>
+<UL>
+<LI>Microsoft Windows Server 2003 for Windows Server 2003 driver development.
+<LI>At least 128MB RAM if you are running a <i>free</i> or retail build of Windows Server 2003, or 256MB RAM if you are running a <i>checked</i> build. In some cases, checked builds may require only 128MB of RAM, depending on the particular drivers loaded on the machine.
+<LI>A second machine that is capable of running 
+  Windows&nbsp;2000, Windows XP, or Windows Server 2003 for kernel 
+  debugging of your under-development drivers. This machine can be your 
+  driver-development system if desired.</LI>                               
+</UL>
+</FONT>
+
+<!-------------- DDK Install ------------->
+<P><B><FONT FACE="Verdana" SIZE=+1>DDK Installation</FONT></B>
+<P>
+<P>
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="90%">
+  <TBODY>
+<TR VALIGN=top><TD ALIGN=left><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2><B>Note:&nbsp;&nbsp;&nbsp;</B></FONT></TD>
+<TD ALIGN=left><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>You must have Administrator privileges to correctly install the DDK.<P></FONT></P></TD></TR>
+
+<TR VALIGN=top><TD ALIGN=left><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2><B>Note:&nbsp;&nbsp;&nbsp;</B></FONT></TD>
+<TD ALIGN=left><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>Do <B>not</B> install this DDK over previous versions of this or any other DDK.
+Improper installation of the DDK can cause the use of old and incorrect files, which will lead to unreliable
+results in any drivers you develop.<P></FONT></P></TD></TR>
+
+<TR VALIGN=top><TD ALIGN=left><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2><B>Note:&nbsp;</B></FONT></TD>
+<TD ALIGN=left><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>The installation path and icon placement have been changed. The default
+installation path is now x:\WinDDK\Kit &lt;BldNum&gt;. The icons can be found at <I>Programs\Development Kits\DDK Kit &lt;BldNum&gt;</I>.
+<P></FONT></P></TD></TR></TBODY></TABLE>
+
+To install the DDK, perform the following steps:
+<p>
+<OL>
+<LI>Execute the <A href="setup.exe">setup.exe</A> file from the CD-ROM.
+<LI>If installing on a Windows 2000 computer, answer 'Run the program from it's current location' to the question,which asks "What would you like to do with this file?" <b>OR</b>  If installing on a Windows Server 2003 or Windows XP computer, answer 'Open' to the question, which asks "Would you like to open the file or save it to your computer?"
+<LI>Click the <b>Next</b> button to install the Windows DDK.
+<LI>Read and accept the Software License Agreement. 
+<LI>Click the <B>Next</B> button to proceed.
+<LI>Select the installation path (it is suggested to use the path that is displayed).
+<LI>Click the <B>Next</B> button to proceed.
+<LI>Choose the components that you would like to install.
+<LI>Click the <B>Next</B> button to proceed.
+<LI>Confirm that you want to install the DDK by verifying that the installation path is correct. 
+<LI>Click the <B>Next</B> button to 
+  install the kit.</LI>     </OL>
+
+<P>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="90%">
+  <TBODY>
+<TR VALIGN=top><TD ALIGN=left><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2><B>Note:&nbsp;&nbsp;&nbsp;</B></FONT></TD>
+<TD ALIGN=left><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>On machines with large hard disk sectors such as "FAT 16" file systems, the setup program may miscalculate the amount of space needed to attempt an installation even though the space is not available.<P></FONT></P></TD></TR></TBODY></TABLE>
+
+<!-------------- Debugger Install ----------------------->
+<P><A NAME="DBG"></A><B><FONT FACE="Verdana" SIZE=+2>Installing the Debuggers</FONT></B></P>
+				
+<P><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>The Debugging Tools for Windows package features WinDbg, a powerful debugger with a graphical interface that can debug both user-mode and kernel-mode code. This package also includes the debuggers KD, NTSD, and CDB,
+and many additional tools. The documentation in this package describes the use of these debuggers and includes tips for user-mode and kernel-mode debugging.</FONT>
+
+<P><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>Debugging Tools for Windows is available in 32-bit and 64-bit
+versions. The 32-bit version is appropriate for most users. However, if you are
+planning on debugging an application on an IA-64 based processor, you should
+select the 64-bit version. The 64-bit version can be installed only on 64-bit
+versions of Windows.</FONT>
+
+<P><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>These debugging tools require approximately 21 MB of hard disk space.</FONT>
+
+<P><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>To obtain the most current version of Debugging Tools for Windows,
+see&nbsp; <a href="http://www.microsoft.com/ddk/debugging">Microsoft Debugging Tools</a>.</FONT>
+
+<P><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>If you cannot install Debugging Tools for Windows from this internet
+site, then use one of the following links:</FONT>
+
+<p>
+<OL>
+<LI><A href="./Debuggers/setup_x86.exe">Install 32-bit Debugging Tools for Windows</a> (Required for most customers)
+<LI><A href="./Debuggers/setup_ia64.exe">Install 64-bit Debugging Tools for Windows</a></LI>
+</OL>
+
+<P><A NAME="DBG"></A><B><FONT FACE="Verdana"><H4>Symbols</H4></FONT></B>
+<P></P>
+<P>The new linker strips all debug information from the SYS file and moves the data into a PDB file.  The PDB file should be copied to the symbols directory for debugging.  Copying the SYS file will not provide debugging information.</P>
+
+<BR><!-------------- Verifying Your Installation ------------>
+<P><A NAME="VERIFY"></A>
+<B><FONT FACE="Verdana" SIZE=+2>Verifying Driver Development Kit Installation</FONT></B>
+
+<P><FONT FACE="Verdana, Arial, Times New Roman" SIZE=2>To verify that you have properly installed the Windows Server 2003 DDK, perform the following steps:</FONT>
+
+<p>
+<OL>
+<LI>Start a command window with environment variables set for a Windows Server 2003 checked build environment, using the Programs/Development Kits/Windows DDK &lt;BldNum&gt;/Build Environments/Windows Server 2003/Windows Server 2003 Checked Build Environment menu item.
+
+<LI>In the command window, type the command <b>build</b> <b>–cZ</b>. This command compiles and links the complete set of installed sources. This can take more than 30 minutes to complete, depending on which DDK components are installed and the system on which the build is being performed.
+
+<LI>The build command should complete with no errors and 
+  no warnings displayed.</LI>           
+</OL>
+
+<p>
+<BR><!--- Information @ MicroSoft.com ------>
+<A NAME="INFO"><B><FONT FACE="Verdana" SIZE=+2>Microsoft® Web Sites containing additional DDK Information</FONT></B></A>
+<P>
+The <B>Driver Development Kit Web Site:</B> <A HREF="http://www.microsoft.com/ddk/">http://www.microsoft.com/ddk</A>.
+<P>
+
+<P>The <B>Hardware Development Web Site:</B> <A HREF="http://www.microsoft.com/hwdev">http://www.microsoft.com/hwdev</A>
+
+<P>The <B>Hardware Testing Web Site - WHQL:</B> <A HREF="http://www.microsoft.com/hwdq/hwtest/">http://www.microsoft.com/hwdq/hwtest/</A>
+
+<P><B>MSDN™</B>, the <B>Microsoft Developers Network:</B> <A HREF="http://msdn.microsoft.com/">http://msdn.microsoft.com</A>
+
+
+<P>
+<BR><!-------------------- Late Breaking News  -------------->
+
+<A NAME="NEWS"></A><P>
+
+
+<B><FONT FACE="Verdana"><FONT SIZE=+2>Late-Breaking News</B></FONT> (<A href="relnote.htm">Click here to read the Release Notes now!</A>)</FONT>
+<P>
+
+<FONT FACE="Verdana, Arial,Times New Roman" SIZE=2><P>For release notes and late-breaking news, please see the 
+<A href="relnote.htm">Release Notes</A> file in the root directory. <A href="setup.exe">setup.exe</A> copies the Release Notes file from the 
+CD to the root directory of the DDK installation.</A></FONT>
+
+<BR>&nbsp;<BR></FONT></P></SPAN></SPAN>
+</BODY>
+</HTML>

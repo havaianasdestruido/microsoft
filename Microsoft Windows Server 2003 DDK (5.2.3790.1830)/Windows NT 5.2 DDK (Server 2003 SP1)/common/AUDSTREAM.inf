@@ -1,0 +1,53 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\help\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"AUDSTREAM"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","AUDSTREAM",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+AUDSTREAM.inf
+
+
+[Files_0]
+audstream.chi,AUDSTREAM_FILE_0,,
+audstream.chm,AUDSTREAM_FILE_1,,
+
+[SourceDisksNames]
+1="AUDSTREAM.cab",AUDSTREAM.cab,0
+[SourceDisksFiles]
+AUDSTREAM_FILE_0=1,,84477
+AUDSTREAM_FILE_1=1,,1460010
+
+
+[Strings]
+FriendlyName=AUDSTREAM_Doc
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=2
+TotalSize=1544487

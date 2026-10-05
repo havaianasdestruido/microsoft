@@ -1,0 +1,117 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\network\irda\miniport\nscirda\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"NETW_irda"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","NETW_irda",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+NETW_irda.inf
+
+
+[Files_0]
+comm.c,NETW_irda_FILE_0,,
+comm.h,NETW_irda_FILE_1,,
+convert.c,NETW_irda_FILE_2,,
+defs.h,NETW_irda_FILE_3,,
+dma.h,NETW_irda_FILE_4,,
+dmautil.c,NETW_irda_FILE_5,,
+dmautil.h,NETW_irda_FILE_6,,
+dongle.c,NETW_irda_FILE_7,,
+dongle.h,NETW_irda_FILE_8,,
+externs.h,NETW_irda_FILE_9,,
+fcs.c,NETW_irda_FILE_10,,
+firrecv1.gif,NETW_irda_FILE_11,,
+firrecv2.gif,NETW_irda_FILE_12,,
+init.c,NETW_irda_FILE_13,,
+irql.c,NETW_irda_FILE_14,,
+makefile,NETW_irda_FILE_15,,
+newdong.h,NETW_irda_FILE_16,,
+nsc.c,NETW_irda_FILE_17,,
+nsc.h,NETW_irda_FILE_18,,
+nscdemo.h,NETW_irda_FILE_19,,
+nscfir.c,NETW_irda_FILE_20,,
+nscirda.htm,NETW_irda_FILE_21,,
+nscirda.inf,NETW_irda_FILE_22,,
+nscirda.rc,NETW_irda_FILE_23,,
+nsctypes.h,NETW_irda_FILE_24,,
+readme.uir,NETW_irda_FILE_25,,
+request.c,NETW_irda_FILE_26,,
+resource.c,NETW_irda_FILE_27,,
+resource.h,NETW_irda_FILE_28,,
+settings.c,NETW_irda_FILE_29,,
+settings.h,NETW_irda_FILE_30,,
+sources,NETW_irda_FILE_31,,
+sync.c,NETW_irda_FILE_32,,
+sync.h,NETW_irda_FILE_33,,
+
+[SourceDisksNames]
+1="NETW_irda.cab",NETW_irda.cab,0
+[SourceDisksFiles]
+NETW_irda_FILE_0=1,,28153
+NETW_irda_FILE_1=1,,4340
+NETW_irda_FILE_2=1,,5509
+NETW_irda_FILE_3=1,,925
+NETW_irda_FILE_4=1,,3425
+NETW_irda_FILE_5=1,,2609
+NETW_irda_FILE_6=1,,926
+NETW_irda_FILE_7=1,,20738
+NETW_irda_FILE_8=1,,1422
+NETW_irda_FILE_9=1,,5179
+NETW_irda_FILE_10=1,,3305
+NETW_irda_FILE_11=1,,3467
+NETW_irda_FILE_12=1,,4118
+NETW_irda_FILE_13=1,,27213
+NETW_irda_FILE_14=1,,184
+NETW_irda_FILE_15=1,,633
+NETW_irda_FILE_16=1,,6175
+NETW_irda_FILE_17=1,,74337
+NETW_irda_FILE_18=1,,9614
+NETW_irda_FILE_19=1,,646
+NETW_irda_FILE_20=1,,28729
+NETW_irda_FILE_21=1,,25521
+NETW_irda_FILE_22=1,,8120
+NETW_irda_FILE_23=1,,895
+NETW_irda_FILE_24=1,,2045
+NETW_irda_FILE_25=1,,5437
+NETW_irda_FILE_26=1,,12708
+NETW_irda_FILE_27=1,,11318
+NETW_irda_FILE_28=1,,622
+NETW_irda_FILE_29=1,,2782
+NETW_irda_FILE_30=1,,9058
+NETW_irda_FILE_31=1,,828
+NETW_irda_FILE_32=1,,2047
+NETW_irda_FILE_33=1,,3873
+
+
+[Strings]
+FriendlyName=network
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=34
+TotalSize=316901

@@ -1,0 +1,1248 @@
+App Name	Microsoft Developer Network							
+App Version	1.97.1.3							
+Frame Bitmap	msdncah.dll,100,100							
+Frame Caption	Microsoft Developer Network Setup							
+Dialog Caption Base	Microsoft Developer Network Library - Visual Studio 97							
+Usage String	Run Setup.exe \n Admin Mode not supported.							
+About Box String	Microsoft Developer Network Library - Visual Studio 97\n\nCopyright (C) 1996 Microsoft Corporation\n\nAll Rights Reserved							
+Check Modules	STFSETUP-SHELL,HackMe Setup,msaccess,MS Access,msarn110,MS Access Runtime,msarn200,MS Access Runtime,vb,MS Visual Basic,vbrun100,MS Visual Basic Runtime,vbrun200,MS Visual Basic Runtime,vbrun300,MS Visual Basic Runtime							
+Check Modules2	msdev,Dev Office,MSOfficeWClass,Microsoft Office Manager,OMAIN, Access,OpusApp,Word,XLMAIN,Excel,PP7FrameClass, PowerPoint,WFrameClass, Word,JWinproj-WhimperMainClass, Microsoft Project							
+MSAPPS Mode	local							
+Inf File Name	setup.inf							
+Maximum Object ID	12320							
+Floppy Mode Root Object ID	20:10							
+Maintenance Mode Root Object ID	30:10							
+Batch Mode Root Object ID	40:10							
+Setup Version	1.20.0.2402							
+								
+ObjID	Install	During Batch Mode	Title	Descr	Type	Data	BMP Id	Vital	Shared	Dir Chang	Dest Dir	Check Dir	Installed By Us								
+--- Begin Search ---								
+10		Microsoft Developers Studio		AppSearch	"""C:\MSDN""<%p\DevStudio>,msdev.exe,,128,yes,no,"							
+--- End Search ---
+								
+--- Begin Install ---								
+--- Begin Modes ---								
+20	yes	Floppy Install		AppMainDlg	80 90 : 310 60 50 70				yes			
+30		Maintenance Mode		CustomDlg	150 160 : 100 190 200 170 140 60 50							
+40	yes	Batch Install		Group	80 60 50							
+--- End Modes ---
+								
+50				CustomAction	"msdncah.dll,VerifyOS_OK,"							
+60				CustomAction	"msdncah.dll,CheckForDevStudioPath,"							
+70	yes			CustomAction	"msdncah.dll,DisplayEULAList,"							
+--- Begin Components ---								
+80		&Typical	Installs Microsoft Developer Network Library Edition with the most common options. 10MB Max.	Group	130 100 190 1010 170 430 150	"msdncah.dll, 200"			yes			
+90		&Custom	Installs Microsoft Developer Network Library Edition with only the options you select. 660 MB Max.	CustomDlg	150  160 : 100 190 200 170 130 140	"msdncah.dll, 201"			yes			
+--- End Components ---
+								
+--- Begin Search ---								
+100		Search	Find Installed Dir and MSDEV.EXE.	Group	110 120							
+110				CustomAction	"msdncah.dll,GetPathFromReg,""HKEY_LOCAL_MACHINE,SOFTWARE\Microsoft\DevStudio\5.0\Directories,ProductDir"""					%d		
+120				CustomAction	"msdncah.dll,GetPathFromReg,""HKEY_LOCAL_MACHINE,SOFTWARE\Microsoft\DevStudio\5.0\Directories,Install Dirs"""					%110\SharedIDE\bin		
+--- End Search ---
+								
+--- Begin Subs ---								
+130	yes	Microsoft Developer Network Library Edition	Installs Microsoft Developer Network Library Edition.	Group	810		vital		yes			
+140	yes	Microsoft Developer Network Shared Components	Installs shared Microsoft Developer Network components including the development environment.	Group	420		vital		yes	%110		
+150	yes	Stand alone MSDN Information Viewer	Installs the stand alone MSDN Information Viewer and all of its required files	Group	520 180				no	%110		
+160	no	Books Online	Installs Online documentation. If this is option is selected, online books will be copied to your hard drive. This will make help access faster but will take up additional disk space.	Group	9320				no	%110		
+170	no	Always Install	Always Install component of Books Online.	Group	1120 2510 10710				no	%110		
+180	yes	Help files	Installs Microsoft Developer Network Library Edition Infoviewer help files.	Group	920				no			
+190				CustomAction	"msdncah.dll,DetectAdminPrivileges,"							
+200		Setup	Install the setup files for MSDN.	Group	1010							
+--- End Subs ---
+								
+--- End Install ---
+								
+								
+***Billboards ***								
+310				Group	320							
+320				AddBillboard	"MSDNcah.dll,1022,FBillbrdDlgProc"							
+--- Begin Shared Files ---								
+410				DetectOlderFile	"""msdev.exe"""					%120		
+420				Depend	"410 ?  : 450"							
+430				Depend	"410 ?  : 460"							
+440				Group						%110		
+450				Group	470 480					%d		
+460				Group	470 480					%d		
+470				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\DevStudio\5.0\Directories"",""ProductDir"",""%s"","""""					%d		
+480				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\DevStudio\5.0\Directories"",""Install Dirs"",""%s"","""""					%d\SharedIDE\Bin		
+--- End Shared Files ---
+								
+--- Begin MSDN Bin Copy ---								
+510				DetectOlderFile	"""msdev.exe"""					%120		
+520				Depend	"510 ? 530 : 540"							
+530				Group	550					%110		
+540				Group	550					%140		
+550				Group	570 580 590 600 710 610 620 630 640 650 660 12110 670 680 690 700 12310							
+560				CustomAction	"msdncah.dll,DeleteMSDNFiles,"					%s		
+570		iv5.exe		CopyFile	"msdn bin,iv5_exe"					%d\MSDN\BIN		
+580		msdn.ico		CopyFile	"SetupBB,msdn_ico"					%d\MSDN\BIN		
+590				StampCDInfo	"570, 20001, 20000"							
+600		ivauto.dll		CopyFile	"msdn bin,ivauto_dll"					%d\MSDN\BIN		
+610		devshl.dll		CopyFile	"msdn bin,devshl_dll"					%d\MSDN\BIN		
+620		deviv.pkg		CopyFile	"msdn bin,deviv_pkg"					%d\MSDN\BIN		
+630		devedit.pkg		CopyFile	"msdn bin,devedit_pkg"					%d\MSDN\BIN		
+640		devprj.pkg		CopyFile	"msdn bin,devprj_pkg"					%d\MSDN\BIN		
+650				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\MSDN\Location"","""","""","""""							
+660				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\MSDN\Location"",""executable"",""%s\MSDN\BIN\iv5.exe"",""REG_SZ"""							
+670				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\DevStudio\5.0\Products\Microsoft Developer Network"",""PackagesUsed"",""DEVIV.PKG;DEVAUT1.PKG;DEVEDIT.PKG;DEVPRJ.PKG"",""REG_SZ"""							
+680				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\DevStudio\5.0\Products\Microsoft Developer Network"",""ProductDir"",""%s\MSDN\BIN"",""REG_SZ"""							
+690				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\DevStudio\5.0\Products\Microsoft Developer Network"",""ProductsUsed"","""",""REG_SZ"""							
+700				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\DevStudio\5.0\Products\Microsoft Developer Network"",""ProductsUsedBy"","""",""REG_SZ"""							
+710		ivtmon.dll		CopyFile	"msdn bin,ivtmon_dll"					%d\MSDN\BIN		
+--- End MSDN Bin Copy ---
+								
+--- Begin System Items ---								
+810				Group	820 830							
+820		mfc42.dll		InstallSysFile	"sys,mfc42_dll"					%m		
+830		msvcrt.dll		InstallSysFile	"sys,msvcrt_dll"					%m		
+--- End System Items ---
+								
+--- Begin Help Files ---								
+910				DetectOlderFile	"""msdev.exe"""					%120		
+920				Depend	"910 ? 930 : 940"							
+930				Group	950					%110		
+940				Group	950					%140		
+950				Group	960					%d\MSDN\Bin		
+960				Group	970 980							
+970		MSDN_Help		CopySection	"msdn help"					%d		
+--- Begin Register Help Files ---								
+980				Group	990							
+990				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\Windows\Help"",""infoview.hlp"",""%s"",""REG_SZ"""					%970		
+--- End Register Help Files ---
+								
+--- End Help Files ---
+								
+--- Begin Setup Files ---								
+1010				Group	1020 1030  1040 1050							
+1020				CopySection	"Setup"					%d\MSDN\Setup		
+1030		bb.dll		CopyFile	"SetupBB,bb_dll"					%d\MSDN\Setup		
+1040				WriteTableFile	"setup.stf"					%d\MSDN\Setup		
+1050				Group	1070 1060 1080							
+1060				AddRegData	"""LOCAL"",""Software\Microsoft\DevStudio\5.0"",""MSDNdir"",""%s"",""REG_SZ"""							
+1070				AddRegData	"""LOCAL"",""Software\Microsoft\Windows\CurrentVersion\Uninstall\MSDN"",""DisplayName"",""Microsoft Developer Network Library - Visual Studio 97"",""REG_SZ"""							
+1080				AddRegData	"""LOCAL"",""Software\Microsoft\Windows\CurrentVersion\Uninstall\MSDN"",""UninstallString"",""%s\MSDN\Setup\setup.exe"",""REG_SZ"""							
+--- End Setup Files ---
+								
+--- Begin IVI Copy ---								
+1110				DetectOlderFile	"""msdev.exe"""					%120		
+1120				Depend	"1110 ? 1130 : 1140"							
+1130				Group	1150					%110		
+1140				Group	1150					%140		
+1150				Group	1160 1250 2170 1320 1520 1590 1640 1710 2040 1730 1980 1750 1920 2120 2300 2350							
+1160				Group	1170 1180 1190 1200 1210 1220 1230 1240							
+1170		access.ivi		InstallShared	"ivi,access_ivi,access.ivi,,1030 "					%d\MSDN		
+1180		activex.ivi		InstallShared	"ivi,activex_ivi,activex.ivi,,1030 "					%d\MSDN		
+1190		transerv.ivi		InstallShared	"ivi,transerv_ivi,transerv.ivi,,1030 "					%d\MSDN		
+1200		ado.ivi		InstallShared	"ivi,ado_ivi,ado.ivi,,1030 "					%d\MSDN		
+1210		ats.ivi		InstallShared	"ivi,ats_ivi,ats.ivi,,1030 "					%d\MSDN		
+1220		bores.ivi		InstallShared	"ivi,bores_ivi,bores.ivi,,1030 "					%d\MSDN		
+1230		catapult.ivi		InstallShared	"ivi,catapult_ivi,catapult.ivi,,1030 "					%d\MSDN		
+1240		conf.ivi		InstallShared	"ivi,conf_ivi,conf.ivi,,1030 "					%d\MSDN		
+1250				Group	1260 1270 1280 1290 1300 1310							
+1260		backapp.ivi		InstallShared	"ivi,backapp_ivi,backapp.ivi,,1030 "					%d\MSDN		
+1270		backback.ivi		InstallShared	"ivi,backback_ivi,backback.ivi,,1030 "					%d\MSDN		
+1280		backint.ivi		InstallShared	"ivi,backint_ivi,backint.ivi,,1030 "					%d\MSDN		
+1290		backplat.ivi		InstallShared	"ivi,backplat_ivi,backplat.ivi,,1030 "					%d\MSDN		
+1300		backtech.ivi		InstallShared	"ivi,backtech_ivi,backtech.ivi,,1030 "					%d\MSDN		
+1310		backcase.ivi		InstallShared	"ivi,backcase_ivi,backcase.ivi,,1030 "					%d\MSDN		
+1320				Group	1330 1350 1340 1360 1370 1380 1390 1400 1410 1470 1480 1490 1420 1430 1440 1450 1460 1500 1510							
+1330		datatool.ivi		InstallShared	"ivi,datatool_ivi,datatool.ivi,,1030 "					%d\MSDN		
+1340		denali.ivi		InstallShared	"ivi,denali_ivi,denali.ivi,,1030 "					%d\MSDN		
+1350		daosdk35.ivi		InstallShared	"ivi,daosdk35_ivi,daosdk35.ivi,,1030 "					%d\MSDN		
+1360		directx.ivi		InstallShared	"ivi,directx_ivi,directx.ivi,,1030 "					%d\MSDN		
+1370		dnembed.ivi		InstallShared	"ivi,dnembed_ivi,dnembed.ivi,,1030 "					%d\MSDN		
+1380		dnmfc.ivi		InstallShared	"ivi,dnmfc_ivi,dnmfc.ivi,,1030 "					%d\MSDN		
+1390		dnmult.ivi		InstallShared	"ivi,dnmult_ivi,dnmult.ivi,,1030 "					%d\MSDN		
+1400		dnplatf.ivi		InstallShared	"ivi,dnplatf_ivi,dnplatf.ivi,,1030 "					%d\MSDN		
+1410		dnvss.ivi		InstallShared	"ivi,dnvss_ivi,dnvss.ivi,,1030 "					%d\MSDN		
+1420		dsdoc.ivi		InstallShared	"ivi,dsdoc_ivi,dsdoc.ivi,,1030 "					%d\MSDN		
+1430		dshelp.ivi		InstallShared	"ivi,dshelp_ivi,dshelp.ivi,,1030 "					%d\MSDN		
+1440		dsmsdn.ivi		InstallShared	"ivi,dsmsdn_ivi,dsmsdn.ivi,,1030 "					%d\MSDN		
+1450		dstour.ivi		InstallShared	"ivi,dstour_ivi,dstour.ivi,,1030 "					%d\MSDN		
+1460		dsug.ivi		InstallShared	"ivi,dsug_ivi,dsug.ivi,,1030 "					%d\MSDN		
+1470		dnwin95.ivi		InstallShared	"ivi,dnwin95_ivi,dnwin95.ivi,,1030 "					%d\MSDN		
+1480		dnwinnt.ivi		InstallShared	"ivi,dnwinnt_ivi,dnwinnt.ivi,,1030 "					%d\MSDN		
+1490		grk.ivi		InstallShared	"ivi,grk_ivi,grk.ivi,,1030 "					%d\MSDN		
+1500		excel.ivi		InstallShared	"ivi,excel_ivi,excel.ivi,,1030 "					%d\MSDN		
+1510		fpage.ivi		InstallShared	"ivi,fpage_ivi,fpage.ivi,,1030 "					%d\MSDN		
+1520				Group	1530 1540 1550 1560 1570 1580							
+1530		glossary.ivi		InstallShared	"ivi,glossary_ivi,glossary.ivi,,1030 "					%d\MSDN		
+1540		hdgwin97.ivi		InstallShared	"ivi,hdgwin97_ivi,hdgwin97.ivi,,1030 "					%d\MSDN		
+1550		htmlref.ivi		InstallShared	"ivi,htmlref_ivi,htmlref.ivi,,1030 "					%d\MSDN		
+1560		imgcomp.ivi		InstallShared	"ivi,imgcomp_ivi,imgcomp.ivi,,1030 "					%d\MSDN		
+1570		istudio.ivi		InstallShared	"ivi,istudio_ivi,istudio.ivi,,1030 "					%d\MSDN		
+1580		istudfp.ivi		InstallShared	"ivi,istudfp_ivi,istudfp.ivi,,1030 "					%d\MSDN		
+1590				Group	1600 1610 1620 1630							
+1600		java.ivi		InstallShared	"ivi,java_ivi,java.ivi,,1030 "					%d\MSDN		
+1610		jscript.ivi		InstallShared	"ivi,jscript_ivi,jscript.ivi,,1030 "					%d\MSDN		
+1620		linkview.ivi		InstallShared	"ivi,linkview_ivi,linkview.ivi,,1030 "					%d\MSDN		
+1630		kb.ivi		InstallShared	"ivi,kb_ivi,kb.ivi,,1030 "					%d\MSDN		
+1640				Group	1650 1660 1670 1690 1680 1700							
+1650		mmanager.ivi		InstallShared	"ivi,mmanager_ivi,mmanager.ivi,,1030 "					%d\MSDN		
+1660		muscprd.ivi		InstallShared	"ivi,muscprd_ivi,muscprd.ivi,,1030 "					%d\MSDN		
+1670		ntddk.ivi		InstallShared	"ivi,ntddk_ivi,ntddk.ivi,,1030 "					%d\MSDN		
+1680		ntserv.ivi		InstallShared	"ivi,ntserv_ivi,ntserv.ivi,,1030 "					%d\MSDN		
+1690		nt40res.ivi		InstallShared	"ivi,nt40res_ivi,nt40res.ivi,,1030 "					%d\MSDN		
+1700		office.ivi		InstallShared	"ivi,office_ivi,office.ivi,,1030 "					%d\MSDN		
+1710				Group	1720							
+1720		project.ivi		InstallShared	"ivi,project_ivi,project.ivi,,1030 "					%d\MSDN		
+1730				Group	1740							
+1740		tsql.ivi		InstallShared	"ivi,tsql_ivi,tsql.ivi,,1030 "					%d\MSDN		
+1750				Group	1760 1770 1780 1790 1800 1810 1820 1830 1840 1850 1860 1870 1880 1890 1900 1910							
+1760		vbdoc.ivi		InstallShared	"ivi,vbdoc_ivi,vbdoc.ivi,,1030 "					%d\MSDN		
+1770		vbscript.ivi		InstallShared	"ivi,vbscript_ivi,vbscript.ivi,,1030 "					%d\MSDN		
+1780		vccore.ivi		InstallShared	"ivi,vccore_ivi,vccore.ivi,,1030 "					%d\MSDN		
+1790		vcedit.ivi		InstallShared	"ivi,vcedit_ivi,vcedit.ivi,,1030 "					%d\MSDN		
+1800		vclang.ivi		InstallShared	"ivi,vclang_ivi,vclang.ivi,,1030 "					%d\MSDN		
+1810		vcmfc.ivi		InstallShared	"ivi,vcmfc_ivi,vcmfc.ivi,,1030 "					%d\MSDN		
+1820		vcsample.ivi		InstallShared	"ivi,vcsample_ivi,vcsample.ivi,,1030 "					%d\MSDN		
+1830		vctutor.ivi		InstallShared	"ivi,vctutor_ivi,vctutor.ivi,,1030 "					%d\MSDN		
+1840		vfp.ivi		InstallShared	"ivi,vfp_ivi,vfp.ivi,,1030 "					%d\MSDN		
+1850		vjug.ivi		InstallShared	"ivi,vjug_ivi,vjug.ivi,,1030 "					%d\MSDN		
+1860		vjapi.ivi		InstallShared	"ivi,vjapi_ivi,vjapi.ivi,,1030 "					%d\MSDN		
+1870		vjlang.ivi		InstallShared	"ivi,vjlang_ivi,vjlang.ivi,,1030 "					%d\MSDN		
+1880		vjcom.ivi		InstallShared	"ivi,vjcom_ivi,vjcom.ivi,,1030 "					%d\MSDN		
+1890		vjdao.ivi		InstallShared	"ivi,vjdao_ivi,vjdao.ivi,,1030 "					%d\MSDN		
+1900		vjrdo.ivi		InstallShared	"ivi,vjrdo_ivi,vjrdo.ivi,,1030 "					%d\MSDN		
+1910		vjsamp.ivi		InstallShared	"ivi,vjsamp_ivi,vjsamp.ivi,,1030 "					%d\MSDN		
+1920				Group	1930 1940 1950 1960 1970							
+1930		whatsnew.ivi		InstallShared	"ivi,whatsnew_ivi,whatsnew.ivi,,1030 "					%d\MSDN		
+1940		wincesdk.ivi		InstallShared	"ivi,wincesdk_ivi,wincesdk.ivi,,1030 "					%d\MSDN		
+1950		winceddk.ivi		InstallShared	"ivi,winceddk_ivi,winceddk.ivi,,1030 "					%d\MSDN		
+1960		win95ddk.ivi		InstallShared	"ivi,win95ddk_ivi,win95ddk.ivi,,1030 "					%d\MSDN		
+1970		word.ivi		InstallShared	"ivi,word_ivi,word.ivi,,1030 "					%d\MSDN		
+1980				Group	1990 2000 2010 2020 2030							
+1990		taapp.ivi		InstallShared	"ivi,taapp_ivi,taapp.ivi,,1030 "					%d\MSDN		
+2000		tabacko.ivi		InstallShared	"ivi,tabacko_ivi,tabacko.ivi,,1030 "					%d\MSDN		
+2010		taint.ivi		InstallShared	"ivi,taint_ivi,taint.ivi,,1030 "					%d\MSDN		
+2020		taplat.ivi		InstallShared	"ivi,taplat_ivi,taplat.ivi,,1030 "					%d\MSDN		
+2030		tatech.ivi		InstallShared	"ivi,tatech_ivi,tatech.ivi,,1030 "					%d\MSDN		
+2040				Group	2050 2060 2070 2080 2090 2100 2110							
+2050		foxtalk.ivi		InstallShared	"ivi,foxtalk_ivi,foxtalk.ivi,,1030 "					%d\MSDN		
+2060		msdnn.ivi		InstallShared	"ivi,msdnn_ivi,msdnn.ivi,,1030 "					%d\MSDN		
+2070		msj.ivi		InstallShared	"ivi,msj_ivi,msj.ivi,,1030 "					%d\MSDN		
+2080		smartacc.ivi		InstallShared	"ivi,smartacc_ivi,smartacc.ivi,,1030 "					%d\MSDN		
+2090		sqlpro.ivi		InstallShared	"ivi,sqlpro_ivi,sqlpro.ivi,,1030 "					%d\MSDN		
+2100		vcdj.ivi		InstallShared	"ivi,vcdj_ivi,vcdj.ivi,,1030 "					%d\MSDN		
+2110		vcdev.ivi		InstallShared	"ivi,vcdev_ivi,vcdev.ivi,,1030 "					%d\MSDN		
+2120				Group	2130 2140 2150 2160							
+2130		booksamp.ivi		InstallShared	"ivi,booksamp_ivi,booksamp.ivi,,1030 "					%d\MSDN		
+2140		confsamp.ivi		InstallShared	"ivi,confsamp_ivi,confsamp.ivi,,1030 "					%d\MSDN		
+2150		sampcity.ivi		InstallShared	"ivi,sampcity_ivi,sampcity.ivi,,1030 "					%d\MSDN		
+2160		prodsamp.ivi		InstallShared	"ivi,prodsamp_ivi,prodsamp.ivi,,1030 "					%d\MSDN		
+2170				Group	2180 2190 2200 2210 2220 2230 2240 2250 2260 2270 2280 2290							
+2180		buildexc.ivi		InstallShared	"ivi,buildexc_ivi,buildexc.ivi,,1030 "					%d\MSDN		
+2190		field.ivi		InstallShared	"ivi,field_ivi,field.ivi,,1030 "					%d\MSDN		
+2200		byoweb.ivi		InstallShared	"ivi,byoweb_ivi,byoweb.ivi,,1030 "					%d\MSDN		
+2210		ie30step.ivi		InstallShared	"ivi,ie30step_ivi,ie30step.ivi,,1030 "					%d\MSDN		
+2220		learnj.ivi		InstallShared	"ivi,learnj_ivi,learnj.ivi,,1030 "					%d\MSDN		
+2230		officint.ivi		InstallShared	"ivi,officint_ivi,officint.ivi,,1030 "					%d\MSDN		
+2240		win95ui.ivi		InstallShared	"ivi,win95ui_ivi,win95ui.ivi,,1030 "					%d\MSDN		
+2250		hdgwin95.ivi		InstallShared	"ivi,hdgwin95_ivi,hdgwin95.ivi,,1030 "					%d\MSDN		
+2260		hdgwinsu.ivi		InstallShared	"ivi,hdgwinsu_ivi,hdgwinsu.ivi,,1030 "					%d\MSDN		
+2270		dnjet.ivi		InstallShared	"ivi,dnjet_ivi,dnjet.ivi,,1030 "					%d\MSDN		
+2280		inole.ivi		InstallShared	"ivi,inole_ivi,inole.ivi,,1030 "					%d\MSDN		
+2290		inmapi.ivi		InstallShared	"ivi,inmapi_ivi,inmapi.ivi,,1030 "					%d\MSDN		
+2300				Group	2310 2320 2330 2340							
+2310		3dgraph.ivi		InstallShared	"ivi,3dgraph_ivi,3dgraph.ivi,,1030 "					%d\MSDN		
+2320		vbdev.ivi		InstallShared	"ivi,vbdev_ivi,vbdev.ivi,,1030 "					%d\MSDN		
+2330		ocd.ivi		InstallShared	"ivi,ocd_ivi,ocd.ivi,,1030 "					%d\MSDN		
+2340		dnplatf2.ivi		InstallShared	"ivi,dnplatf2_ivi,dnplatf2.ivi,,1030 "					%d\MSDN		
+2350				Group	2360 2370 2380 2390 2400 2410 2420 2430 2440 2450 2460							
+2360		pdintro.ivi		InstallShared	"ivi,pdintro_ivi,pdintro.ivi,,1030 "					%d\MSDN		
+2370		pdapp.ivi		InstallShared	"ivi,pdapp_ivi,pdapp.ivi,,1030 "					%d\MSDN		
+2380		pdmsg.ivi		InstallShared	"ivi,pdmsg_ivi,pdmsg.ivi,,1030 "					%d\MSDN		
+2390		pdgrmm.ivi		InstallShared	"ivi,pdgrmm_ivi,pdgrmm.ivi,,1030 "					%d\MSDN		
+2400		intcsdk.ivi		InstallShared	"ivi,intcsdk_ivi,intcsdk.ivi,,1030 "					%d\MSDN		
+2410		pdinet.ivi		InstallShared	"ivi,pdinet_ivi,pdinet.ivi,,1030 "					%d\MSDN		
+2420		pdobj.ivi		InstallShared	"ivi,pdobj_ivi,pdobj.ivi,,1030 "					%d\MSDN		
+2430		pdsms.ivi		InstallShared	"ivi,pdsms_ivi,pdsms.ivi,,1030 "					%d\MSDN		
+2440		pdui.ivi		InstallShared	"ivi,pdui_ivi,pdui.ivi,,1030 "					%d\MSDN		
+2450		pdwbase.ivi		InstallShared	"ivi,pdwbase_ivi,pdwbase.ivi,,1030 "					%d\MSDN		
+2460		pdref.ivi		InstallShared	"ivi,pdref_ivi,pdref.ivi,,1030 "					%d\MSDN		
+--- End IVI Copy ---
+								
+--- Begin IVI Reg ---								
+2510				Group	2530 2540 2520 3170 3180 3300 3190 3200 3210 3220 3230 3240 3250 3260 3270 3280 3290 3310 3320					%1150\MSDN		
+2520				Group	2560 2550 2610 2970 2810 3080 3110 2760 2860 2910 2940 3140					%1150\MSDN		
+2530				CustomAction	"msdncah.dll,DelMSDN18b1Keys,"							
+2540				CustomAction	"msdncah.dll,DeleteMSDNFiles,"					%d		
+2550				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition"","""",""Microsoft Developer Network Visual Studio Edition"","""""							
+2560				Group	2570 2580 2590 2600					%1150\MSDN		
+2570				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0"",""HomePage"",""mk:@ivt:dsmsdn/D1/msdn.htm"",""REG_SZ"""							
+2580				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0"",""ShowHomePage"",""yes"",""REG_SZ"""							
+2590				AddRegData	"""CURRENT"",""SOFTWARE\Microsoft\InfoViewer\5.0\General"",""MaximizeDoc"",""1"",""REG_SZ"""							
+2600				AddRegData	"""CURRENT"",""SOFTWARE\Microsoft\InfoViewer\5.0\IVOptions"",""AutoSync"",""1"",""REG_SZ"""							
+2610				Group	2620 2630 2640 2650 2660 2670 2680 2690 2700 2710 2720 2730 2740 2750					%1150\MSDN		
+2620				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products"","""",""Developer Products"","""""							
+2630				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products"",""order"",""2"","""""							
+2640				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual Studio 97"","""",""Visual Studio 97"","""""							
+2650				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual Studio 97"",""order"",""1"","""""							
+2660				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev"","""",""Visual InterDev"","""""							
+2670				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev"",""order"",""2"","""""							
+2680				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual Basic"","""",""Visual Basic"","""""							
+2690				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual Basic"",""order"",""3"","""""							
+2700				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual C++"","""",""Visual C/C++"","""""							
+2710				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual C++"",""order"",""4"","""""							
+2720				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual J++"","""",""Visual J++"","""""							
+2730				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual J++"",""order"",""7"","""""							
+2740				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual SourceSafe"","""",""Visual SourceSafe"","""""							
+2750				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual SourceSafe"",""order"",""8"","""""							
+2760				Group	2770 2780 2790 2800					%1150\MSDN		
+2770				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies"","""",""Tools and Technologies"","""""							
+2780				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies"",""order"",""3"","""""							
+2790				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\Multimedia Tools"","""",""Multimedia Tools"","""""							
+2800				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\Multimedia Tools"",""order"",""9"","""""							
+2810				Group	2820 2830 2840 2850					%1150\MSDN		
+2820				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Microsoft Office Development"","""",""Microsoft Office Development"","""""							
+2830				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Microsoft Office Development"",""Order"",""4"","""""							
+2840				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Backgrounders"","""",""Backgrounders"","""""							
+2850				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Backgrounders"",""Order"",""9"","""""							
+2860				Group	2870 2880 2890 2900					%1150\MSDN		
+2870				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Technical Articles"","""",""Technical Articles"","""""							
+2880				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Technical Articles"",""order"",""8"","""""							
+2890				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Welcome to the MSDN Library"","""",""Welcome to the MSDN Library"","""""							
+2900				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Welcome to the MSDN Library"",""order"",""1"","""""							
+2910				Group	2920 2930					%1150\MSDN		
+2920				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation"","""",""Platform, SDK, and DDK Documentation"","""""							
+2930				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation"",""Order"",""5"","""""							
+2940				Group	2950 2960					%1150\MSDN		
+2950				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Platform SDK"","""",""Platform SDK"","""""							
+2960				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Platform SDK"",""Order"",""1"","""""							
+2970				Group	2980 2990 3000 3010 3020 3030 3040 3050 3060 3070					%1150\MSDN		
+2980				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books"","""",""Books"","""""							
+2990				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books"",""order"",""11"","""""							
+3000				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\BackOffice"","""",""BackOffice"","""""							
+3010				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\BackOffice"",""order"",""2"","""""							
+3020				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Internet"","""",""Internet"","""""							
+3030				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Internet"",""order"",""3"","""""							
+3040				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Platforms"","""",""Platforms"","""""							
+3050				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Platforms"",""order"",""4"","""""							
+3060				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Technologies and Languages"","""",""Technologies and Languages"","""""							
+3070				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Technologies and Languages"",""order"",""5"","""""							
+3080				Group	3090 3100					%1150\MSDN		
+3090				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Periodicals"","""",""Periodicals"","""""							
+3100				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Periodicals"",""Order"",""13"","""""							
+3110				Group	3120 3130					%1150\MSDN		
+3120				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Sample Code for Articles and Books"","""",""Sample Code for Articles and Books"","""""							
+3130				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Sample Code for Articles and Books"",""order"",""17"","""""							
+3140				Group	3150 3160					%1150\MSDN		
+3150				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Windows Resource Kits"","""",""Windows Resource Kits"","""""							
+3160				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Windows Resource Kits"",""order"",""15"","""""							
+3170				Group	3330 3380 6010 3430 3490 3540 3590 3640					%1150\MSDN		
+3180				Group	6610 6660 6710 6760 6810 6860					%1150\MSDN		
+3190				Group	3690 4230 3750 6060 5810 3810 3860 3910 3960 6210 6260 6310 4020 8460 4070 4120 4170 5910 4280					%1150\MSDN		
+3200				Group	4330 4390 4440 4500 4560 5710 4770					%1150\MSDN		
+3210				Group	4610 4660 4720					%1150\MSDN		
+3220				Group	4820 4880 4940 5040 4990 5090					%1150\MSDN		
+3230				Group	5960					%1150\MSDN		
+3240				Group	6960 7010 7060 7110 7160 7210 7260					%1150\MSDN		
+3250				Group	5140					%1150\MSDN		
+3260				Group	6360 6410 6460 6510 6560					%1150\MSDN		
+3270				Group	5200 5250 5310 5360 5410 5460 5760 5510 5560 8110 8160 8210 8260 8310 8360 8410					%1150\MSDN		
+3280				Group	5610 6110 6160 5660 5860					%1150\MSDN		
+3290				Group	7310 7360 7410 7460					%1150\MSDN		
+3300				Group	7510 7560 7610 7660 7710 7760 7810 7860 7910 7960 8010 8060					%1150\MSDN		
+3310				Group	8550 8600 8650 8700					%1150\MSDN		
+3320				Group	8750 8800 8850 8900 8950 9000 9050 9100 9150 9200 9250					%1150\MSDN		
+3330				Group	3340 3360 3370 3350							
+3340				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Microsoft Office Development\=access"",""Order"",""1"",""REG_SZ"""							
+3350				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\access,,Access,"""					%s		
+3360				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\access,Index,%s\access.ivi,"""							
+3370				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\access,Location,MSDNCD19d1,"""							
+3380				Group	3390 3410 3420 3400							
+3390				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\=activex"",""Order"",""3"",""REG_SZ"""							
+3400				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\activex,,ActiveX SDK,"""					%s		
+3410				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\activex,Index,%s\activex.ivi,"""							
+3420				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\activex,Location,MSDNCD19d1,"""							
+3430				Group	3440 3450 3470 3480 3460							
+3440				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=ado"",""Order"",""10"",""REG_SZ"""							
+3450				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\=ado"",""Order"",""1"",""REG_SZ"""							
+3460				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ado,,ADO Reference,"""					%s		
+3470				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ado,Index,%s\ado.ivi,"""							
+3480				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ado,Location,MSDNCD19d1,"""							
+3490				Group	3500 3520 3530 3510							
+3500				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\=ats"",""Order"",""2"",""REG_SZ"""							
+3510				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ats,,Anomoly Tracking System,"""					%s		
+3520				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ats,Index,%s\ats.ivi,"""							
+3530				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ats,Location,MSDNCD19d1,"""							
+3540				Group	3550 3560 3570 3580							
+3550				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Windows Resource Kits\=bores"",""Order"",""1"",""REG_SZ"""							
+3560				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\bores,,BackOffice Resource Kit,"""					%s		
+3570				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\bores,Index,%s\bores.ivi,"""							
+3580				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\bores,Location,MSDNCD19d1,"""							
+3590				Group	3600 3610 3620 3630							
+3600				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\=catapult"",""Order"",""4"",""REG_SZ"""							
+3610				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\catapult,,Microsoft Proxy Server,"""					%s		
+3620				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\catapult,Index,%s\catapult.ivi,"""							
+3630				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\catapult,Location,MSDNCD19d1,"""							
+3640				Group	3650 3660 3670 3680							
+3650				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\=conf"",""Order"",""15"",""REG_SZ"""							
+3660				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\conf,,Conference Papers,"""					%s		
+3670				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\conf,Index,%s\conf.ivi,"""							
+3680				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\conf,Location,MSDNCD19d1,"""							
+3690				Group	3700 3710 3720 3730 3740							
+3700				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=datatool"",""Order"",""3"",""REG_SZ"""							
+3710				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\=datatool"",""Order"",""12"",""REG_SZ"""							
+3720				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\datatool,,Microsoft Visual Database Tools,"""					%s		
+3730				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\datatool,Index,%s\datatool.ivi,"""							
+3740				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\datatool,Location,MSDNCD19d1,"""							
+3750				Group	3760 3770 3780 3790 3800							
+3760				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=denali"",""Order"",""5"",""REG_SZ"""							
+3770				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\=denali"",""Order"",""2"",""REG_SZ"""							
+3780				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\denali,,Active Server Pages,"""					%s		
+3790				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\denali,Index,%s\denali.ivi,"""							
+3800				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\denali,Location,MSDNCD19d1,"""							
+3810				Group	3820 3830 3840 3850							
+3820				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\=dnmfc"",""Order"",""7"",""REG_SZ"""							
+3830				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnmfc,,MFC Migration Kit,"""					%s		
+3840				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnmfc,Index,%s\dnmfc.ivi,"""							
+3850				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnmfc,Location,MSDNCD19d1,"""							
+3860				Group	3870 3880 3890 3900							
+3870				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\=dnmult"",""Order"",""8"",""REG_SZ"""							
+3880				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnmult,,Multimedia Standards Update,"""					%s		
+3890				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnmult,Index,%s\dnmult.ivi,"""							
+3900				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnmult,Location,MSDNCD19d1,"""							
+3910				Group	3920 3930 3940 3950							
+3920				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Additional SDKs and DDKs\=dnplatf"",""Order"",""1"",""REG_SZ"""							
+3930				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnplatf,,Addtional Platform SDK's and DDK's,"""					%s		
+3940				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnplatf,Index,%s\dnplatf.ivi,"""							
+3950				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnplatf,Location,MSDNCD19d1,"""							
+3960				Group	3970 3980 3990 4000 4010							
+3970				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual Basic\=dnvss"",""Order"",""2"",""REG_SZ"""							
+3980				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual SourceSafe\=dnvss"",""Order"",""8"",""REG_SZ"""							
+3990				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnvss,,Visual SourceSafe Documentation,"""					%s		
+4000				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnvss,Index,%s\dnvss.ivi,"""							
+4010				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnvss,Location,MSDNCD19d1,"""							
+4020				Group	4030 4040 4050 4060							
+4030				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual Studio 97\=dsdoc"",""Order"",""2"",""REG_SZ"""							
+4040				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dsdoc,,Getting Results with Visual Studio '97,"""					%s		
+4050				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dsdoc,Index,%s\dsdoc.ivi,"""							
+4060				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dsdoc,Location,MSDNCD19d1,"""							
+4070				Group	4080 4090 4100 4110							
+4080				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Welcome to the MSDN Library\=dsmsdn"",""Order"",""1"",""REG_SZ"""							
+4090				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dsmsdn,,Welcome to the MSDN Library,"""					%s		
+4100				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dsmsdn,Index,%s\dsmsdn.ivi,"""							
+4110				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dsmsdn,Location,MSDNCD19d1,"""							
+4120				Group	4130 4140 4150 4160							
+4130				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual Studio 97\=dstour"",""Order"",""1"",""REG_SZ"""							
+4140				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dstour,,Welcome to Visual Studio,"""					%s		
+4150				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dstour,Index,%s\dstour.ivi,"""							
+4160				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dstour,Location,MSDNCD19d1,"""							
+4170				Group	4180 4190 4200 4210 4220							
+4180				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual C++\=dsug"",""Order"",""7"",""REG_SZ"""							
+4190				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual J++\=dsug"",""Order"",""8"",""REG_SZ"""							
+4200				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dsug,,Developer Studio Environment User's Guide,"""					%s		
+4210				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dsug,Index,%s\dsug.ivi,"""							
+4220				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dsug,Location,MSDNCD19d1,"""							
+4230				Group	4240 4250 4260 4270							
+4240				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\=daosdk35"",""Order"",""7"",""REG_SZ"""							
+4250				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\daosdk35,,DAO SDK 3.5,"""					%s		
+4260				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\daosdk35,Index,%s\daosdk35.ivi,"""							
+4270				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\daosdk35,Location,MSDNCD19d1,"""							
+4280				Group	4290 4300 4310 4320							
+4290				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\=fpage"",""Order"",""4"",""REG_SZ"""							
+4300				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\fpage,,FrontPage,"""					%s		
+4310				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\fpage,Index,%s\fpage.ivi,"""							
+4320				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\fpage,Location,MSDNCD19d1,"""							
+4330				Group	4340 4350 4370 4380 4360							
+4340				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual C++\=glossary"",""Order"",""8"",""REG_SZ"""							
+4350				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual J++\=glossary"",""Order"",""9"",""REG_SZ"""							
+4360				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\glossary,,Glossary,"""					%s		
+4370				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\glossary,Index,%s\glossary.ivi,"""							
+4380				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\glossary,Location,MSDNCD19d1,"""							
+4390				Group	4400 4410 4420 4430							
+4400				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Platforms\=hdgwin97"",""Order"",""5"",""REG_SZ"""							
+4410				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\hdgwin97,,PC 97 Hardware Design Guide,"""					%s		
+4420				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\hdgwin97,Index,%s\hdgwin97.ivi,"""							
+4430				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\hdgwin97,Location,MSDNCD19d1,"""							
+4440				Group	4450 4460 4470 4480 4490							
+4450				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=htmlref"",""Order"",""12"",""REG_SZ"""							
+4460				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\=htmlref"",""Order"",""6"",""REG_SZ"""							
+4470				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\htmlref,,HTML Reference,"""					%s		
+4480				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\htmlref,Index,%s\htmlref.ivi,"""							
+4490				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\htmlref,Location,MSDNCD19d1,"""							
+4500				Group	4510 4520 4530 4540 4550							
+4510				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=imgcomp"",""Order"",""7"",""REG_SZ"""							
+4520				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\Multimedia Tools\=imgcomp"",""Order"",""1"",""REG_SZ"""							
+4530				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\imgcomp,,Microsoft Image Composer,"""					%s		
+4540				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\imgcomp,Index,%s\imgcomp.ivi,"""							
+4550				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\imgcomp,Location,MSDNCD19d1,"""							
+4560				Group	4570 4580 4590 4600							
+4570				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=istudio"",""Order"",""1"",""REG_SZ"""							
+4580				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\istudio,,Visual InterDev Documentation,"""					%s		
+4590				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\istudio,Index,%s\istudio.ivi,"""							
+4600				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\istudio,Location,MSDNCD19d1,"""							
+4610				Group	4620 4630 4640 4650							
+4620				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\=java"",""Order"",""10"",""REG_SZ"""							
+4630				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\java,,Microsoft SDK for Java,"""					%s		
+4640				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\java,Index,%s\java.ivi,"""							
+4650				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\java,Location,MSDNCD19d1,"""							
+4660				Group	4670 4680 4690 4700 4710							
+4670				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\=jscript"",""Order"",""5"",""REG_SZ"""							
+4680				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=jscript"",""Order"",""11"",""REG_SZ"""							
+4690				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\jscript,,JScript Reference,"""					%s		
+4700				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\jscript,Index,%s\jscript.ivi,"""							
+4710				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\jscript,Location,MSDNCD19d1,"""							
+4720				Group	4730 4740 4750 4760							
+4730				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=linkview"",""Order"",""4"",""REG_SZ"""							
+4740				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\linkview,,Microsoft Link View,"""					%s		
+4750				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\linkview,Index,%s\linkview.ivi,"""							
+4760				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\linkview,Location,MSDNCD19d1,"""							
+4770				Group	4780 4790 4800 4810							
+4780				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=istudfp"",""Order"",""2"",""REG_SZ"""							
+4790				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\istudfp,,Front Page Editor for Visual InterDev,"""					%s		
+4800				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\istudfp,Index,%s\istudfp.ivi,"""							
+4810				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\istudfp,Location,MSDNCD19d1,"""							
+4820				Group	4830 4840 4850 4860 4870							
+4830				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=mmanager"",""Order"",""8"",""REG_SZ"""							
+4840				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\Multimedia Tools\=mmanager"",""Order"",""2"",""REG_SZ"""							
+4850				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\mmanager,,Microsoft Media Manager,"""					%s		
+4860				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\mmanager,Index,%s\mmanager.ivi,"""							
+4870				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\mmanager,Location,MSDNCD19d1,"""							
+4880				Group	4890 4900 4910 4920 4930							
+4890				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=muscprd"",""Order"",""9"",""REG_SZ"""							
+4900				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\Multimedia Tools\=muscprd"",""Order"",""3"",""REG_SZ"""							
+4910				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\muscprd,,Microsoft Music Producer,"""					%s		
+4920				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\muscprd,Index,%s\muscprd.ivi,"""							
+4930				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\muscprd,Location,MSDNCD19d1,"""							
+4940				Group	4950 4960 4970 4980							
+4950				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\=ntddk"",""Order"",""16"",""REG_SZ"""							
+4960				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ntddk,,Windows NT 4.0 DDK,"""					%s		
+4970				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ntddk,Index,%s\ntddk.ivi,"""							
+4980				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ntddk,Location,MSDNCD19d1,"""							
+4990				Group	5000 5010 5020 5030							
+5000				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Windows Resource Kits\=ntserv"",""Order"",""4"",""REG_SZ"""							
+5010				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ntserv,,Windows NT 4.0 Server Resource Kit,"""					%s		
+5020				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ntserv,Index,%s\ntserv.ivi,"""							
+5030				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ntserv,Location,MSDNCD19d1,"""							
+5040				Group	5050 5060 5070 5080							
+5050				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Windows Resource Kits\=nt40res"",""Order"",""5"",""REG_SZ"""							
+5060				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\nt40res,,Windows NT 4.0 Workstation Resource Kit,"""					%s		
+5070				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\nt40res,Index,%s\nt40res.ivi,"""							
+5080				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\nt40res,Location,MSDNCD19d1,"""							
+5090				Group	5100 5110 5120 5130							
+5100				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Microsoft Office Development\=office"",""Order"",""3"",""REG_SZ"""							
+5110				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\office,,Office,"""					%s		
+5120				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\office,Index,%s\office.ivi,"""							
+5130				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\office,Location,MSDNCD19d1,"""							
+5140				Group	5150 5160 5170 5180 5190							
+5150				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=tsql"",""Order"",""13"",""REG_SZ"""							
+5160				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\=tsql"",""Order"",""6"",""REG_SZ"""							
+5170				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\tsql,,Transact SQL Reference,"""					%s		
+5180				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\tsql,Index,%s\tsql.ivi,"""							
+5190				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\tsql,Location,MSDNCD19d1,"""							
+5200				Group	5210 5220 5230 5240							
+5210				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual Basic\=vbdoc"",""Order"",""1"",""REG_SZ"""							
+5220				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vbdoc,,Visual Basic 5.0 Documentation,"""					%s		
+5230				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vbdoc,Index,%s\vbdoc.ivi,"""							
+5240				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vbdoc,Location,MSDNCD19d1,"""							
+5250				Group	5260 5270 5280 5290 5300							
+5260				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=vbscript"",""Order"",""11"",""REG_SZ"""							
+5270				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\=vbscript"",""Order"",""10"",""REG_SZ"""							
+5280				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vbscript,,VBScript Reference,"""					%s		
+5290				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vbscript,Index,%s\vbscript.ivi,"""							
+5300				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vbscript,Location,MSDNCD19d1,"""							
+5310				Group	5320 5330 5340 5350							
+5320				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual C++\=vccore"",""Order"",""3"",""REG_SZ"""							
+5330				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vccore,,Visual C++ Programmer's Guide,"""					%s		
+5340				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vccore,Index,%s\vccore.ivi,"""							
+5350				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vccore,Location,MSDNCD19d1,"""							
+5360				Group	5370 5380 5390 5400							
+5370				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual C++\=vcedit"",""Order"",""1"",""REG_SZ"""							
+5380				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcedit,,Welcome to Visual C++,"""					%s		
+5390				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcedit,Index,%s\vcedit.ivi,"""							
+5400				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcedit,Location,MSDNCD19d1,"""							
+5410				Group	5420 5430 5440 5450							
+5420				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual C++\=vclang"",""Order"",""5"",""REG_SZ"""							
+5430				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vclang,,C/C++ Language and C++ Libraries,"""					%s		
+5440				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vclang,Index,%s\vclang.ivi,"""							
+5450				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vclang,Location,MSDNCD19d1,"""							
+5460				Group	5470 5480 5490 5500							
+5470				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual C++\=vcmfc"",""Order"",""4"",""REG_SZ"""							
+5480				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcmfc,,Microsoft Foundation Class Reference,"""					%s		
+5490				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcmfc,Index,%s\vcmfc.ivi,"""							
+5500				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcmfc,Location,MSDNCD19d1,"""							
+5510				Group	5520 5530 5540 5550							
+5520				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual C++\=vctutor"",""Order"",""2"",""REG_SZ"""							
+5530				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vctutor,,Visual C++ Tutorials,"""					%s		
+5540				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vctutor,Index,%s\vctutor.ivi,"""							
+5550				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vctutor,Location,MSDNCD19d1,"""							
+5560				Group	5570 5580 5590 5600							
+5570				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\=vfp"",""Order"",""6"",""REG_SZ"""							
+5580				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vfp,,Visual FoxPro,"""					%s		
+5590				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vfp,Index,%s\vfp.ivi,"""							
+5600				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vfp,Location,MSDNCD19d1,"""							
+5610				Group	5620 5630 5640 5650							
+5620				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=whatsnew"",""Order"",""14"",""REG_SZ"""							
+5630				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\whatsnew,,What's New for SQL Server 6.5,"""					%s		
+5640				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\whatsnew,Index,%s\whatsnew.ivi,"""							
+5650				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\whatsnew,Location,MSDNCD19d1,"""							
+5660				Group	5670 5680 5690 5700							
+5670				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\=win95ddk"",""Order"",""13"",""REG_SZ"""							
+5680				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\win95ddk,,Windows 95 DDK,"""					%s		
+5690				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\win95ddk,Index,%s\win95ddk.ivi,"""							
+5700				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\win95ddk,Location,MSDNCD19d1,"""							
+5710				Group	5720 5730 5740 5750							
+5720				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\=kb"",""Order"",""7"",""REG_SZ"""							
+5730				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\kb,,Knowledge Base,"""					%s		
+5740				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\kb,Index,%s\kb.ivi,"""							
+5750				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\kb,Location,MSDNCD19d1,"""							
+5760				Group	5770 5780 5790 5800							
+5770				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual C++\=vcsample"",""Order"",""6"",""REG_SZ"""							
+5780				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcsample,,Visual C++ Samples,"""					%s		
+5790				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcsample,Index,%s\vcsample.ivi,"""							
+5800				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcsample,Location,MSDNCD19d1,"""							
+5810				Group	5820 5830 5840 5850							
+5820				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\=dnembed"",""Order"",""3"",""REG_SZ"""							
+5830				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnembed,,Embedded SQL for C 6.5,"""					%s		
+5840				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnembed,Index,%s\dnembed.ivi,"""							
+5850				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnembed,Location,MSDNCD19d1,"""							
+5860				Group	5870 5880 5890 5900							
+5870				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Microsoft Office Development\=word"",""Order"",""6"",""REG_SZ"""							
+5880				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\word,,Word,"""					%s		
+5890				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\word,Index,%s\word.ivi,"""							
+5900				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\word,Location,MSDNCD19d1,"""							
+5910				Group	5920 5930 5940 5950							
+5920				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Microsoft Office Development\=excel"",""Order"",""2"",""REG_SZ"""							
+5930				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\excel,,Excel,"""					%s		
+5940				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\excel,Index,%s\excel.ivi,"""							
+5950				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\excel,Location,MSDNCD19d1,"""							
+5960				Group	5970 5980 5990 6000							
+5970				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Microsoft Office Development\=project"",""Order"",""4"",""REG_SZ"""							
+5980				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\project,,Project,"""					%s		
+5990				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\project,Index,%s\project.ivi,"""							
+6000				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\project,Location,MSDNCD19d1,"""							
+6010				Group	6020 6040 6050 6030							
+6020				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Tools and Technologies\=transerv"",""Order"",""3"",""REG_SZ"""							
+6030				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\transerv,,Microsoft Transaction Server,"""					%s		
+6040				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\transerv,Index,%s\transerv.ivi,"""							
+6050				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\transerv,Location,MSDNCD19d1,"""							
+6060				Group	6070 6090 6100 6080							
+6070				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\=directx"",""Order"",""8"",""REG_SZ"""							
+6080				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\directx,,ActiveMovie SDK and DirectX SDK,"""					%s		
+6090				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\directx,Index,%s\directx.ivi,"""							
+6100				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\directx,Location,MSDNCD19d1,"""							
+6110				Group	6120 6130 6140 6150							
+6120				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\=wincesdk"",""Order"",""14"",""REG_SZ"""							
+6130				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\wincesdk,,Windows CE Desktop Emulation SDK,"""					%s		
+6140				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\wincesdk,Index,%s\wincesdk.ivi,"""							
+6150				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\wincesdk,Location,MSDNCD19d1,"""							
+6160				Group	6170 6180 6190 6200							
+6170				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\=winceddk"",""Order"",""15"",""REG_SZ"""							
+6180				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\winceddk,,Windows CE Desktop Emulation DDK,"""					%s		
+6190				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\winceddk,Index,%s\winceddk.ivi,"""							
+6200				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\winceddk,Location,MSDNCD19d1,"""							
+6210				Group	6220 6230 6240 6250							
+6220				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Windows Resource Kits\=dnwin95"",""Order"",""6"",""REG_SZ"""							
+6230				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnwin95,,Windows 95,"""					%s		
+6240				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnwin95,Index,%s\dnwin95.ivi,"""							
+6250				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnwin95,Location,MSDNCD19d1,"""							
+6260				Group	6270 6280 6290 6300							
+6270				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Windows Resource Kits\=dnwinnt"",""Order"",""7"",""REG_SZ"""							
+6280				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnwinnt,,Windows NT 3.51,"""					%s		
+6290				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnwinnt,Index,%s\dnwinnt.ivi,"""							
+6300				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnwinnt,Location,MSDNCD19d1,"""							
+6310				Group	6320 6330 6340 6350							
+6320				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Windows Resource Kits\=grk"",""Order"",""8"",""REG_SZ"""							
+6330				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\grk,,Globalization Resource Kit,"""					%s		
+6340				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\grk,Index,%s\grk.ivi,"""							
+6350				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\grk,Location,MSDNCD19d1,"""							
+6360				Group	6370 6380 6390 6400							
+6370				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Technical Articles\=taapp"",""Order"",""1"",""REG_SZ"""							
+6380				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\taapp,,Applications,"""					%s		
+6390				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\taapp,Index,%s\taapp.ivi,"""							
+6400				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\taapp,Location,MSDNCD19d1,"""							
+6410				Group	6420 6430 6440 6450							
+6420				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Technical Articles\=tabacko"",""Order"",""2"",""REG_SZ"""							
+6430				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\tabacko,,BackOffice,"""					%s		
+6440				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\tabacko,Index,%s\tabacko.ivi,"""							
+6450				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\tabacko,Location,MSDNCD19d1,"""							
+6460				Group	6470 6480 6490 6500							
+6470				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Technical Articles\=taint"",""Order"",""3"",""REG_SZ"""							
+6480				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\taint,,Internet,"""					%s		
+6490				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\taint,Index,%s\taint.ivi,"""							
+6500				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\taint,Location,MSDNCD19d1,"""							
+6510				Group	6520 6530 6540 6550							
+6520				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Technical Articles\=taplat"",""Order"",""4"",""REG_SZ"""							
+6530				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\taplat,,Platforms,"""					%s		
+6540				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\taplat,Index,%s\taplat.ivi,"""							
+6550				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\taplat,Location,MSDNCD19d1,"""							
+6560				Group	6570 6580 6590 6600							
+6570				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Technical Articles\=tatech"",""Order"",""5"",""REG_SZ"""							
+6580				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\tatech,,Technologies and Languages,"""					%s		
+6590				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\tatech,Index,%s\tatech.ivi,"""							
+6600				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\tatech,Location,MSDNCD19d1,"""							
+6610				Group	6620 6630 6640 6650							
+6620				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Backgrounders\=backapp"",""Order"",""1"",""REG_SZ"""							
+6630				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backapp,,Applications,"""					%s		
+6640				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backapp,Index,%s\backapp.ivi,"""							
+6650				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backapp,Location,MSDNCD19d1,"""							
+6660				Group	6670 6680 6690 6700							
+6670				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Backgrounders\=backback"",""Order"",""2"",""REG_SZ"""							
+6680				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backback,,BackOffice,"""					%s		
+6690				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backback,Index,%s\backback.ivi,"""							
+6700				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backback,Location,MSDNCD19d1,"""							
+6710				Group	6720 6730 6740 6750							
+6720				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Backgrounders\=backint"",""Order"",""3"",""REG_SZ"""							
+6730				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backint,,Internet,"""					%s		
+6740				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backint,Index,%s\backint.ivi,"""							
+6750				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backint,Location,MSDNCD19d1,"""							
+6760				Group	6770 6780 6790 6800							
+6770				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Backgrounders\=backplat"",""Order"",""4"",""REG_SZ"""							
+6780				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backplat,,Platforms,"""					%s		
+6790				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backplat,Index,%s\backplat.ivi,"""							
+6800				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backplat,Location,MSDNCD19d1,"""							
+6810				Group	6820 6830 6840 6850							
+6820				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Backgrounders\=backtech"",""Order"",""5"",""REG_SZ"""							
+6830				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backtech,,Technologies and Languages,"""					%s		
+6840				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backtech,Index,%s\backtech.ivi,"""							
+6850				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backtech,Location,MSDNCD19d1,"""							
+6860				Group	6870 6880 6890 6900							
+6870				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Backgrounders\=backcase"",""Order"",""6"",""REG_SZ"""							
+6880				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backcase,,Case Studies,"""					%s		
+6890				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backcase,Index,%s\backcase.ivi,"""							
+6900				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backcase,Location,MSDNCD19d1,"""							
+6910				Group	6920 6930 6940 6950							
+6920				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Periodicals\=advisor"",""Order"",""1"",""REG_SZ"""							
+6930				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\advisor,,Access/Visual Basic (Advisor Publishing),"""					%s		
+6940				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\advisor,Index,%s\advisor.ivi,"""							
+6950				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\advisor,Location,MSDNCD19d1,"""							
+6960				Group	6970 6980 6990 7000							
+6970				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Periodicals\=foxtalk"",""Order"",""2"",""REG_SZ"""							
+6980				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\foxtalk,,FoxTalk (Pinnacle Publishing),"""					%s		
+6990				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\foxtalk,Index,%s\foxtalk.ivi,"""							
+7000				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\foxtalk,Location,MSDNCD19d1,"""							
+7010				Group	7020 7030 7040 7050							
+7020				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Periodicals\=msdnn"",""Order"",""5"",""REG_SZ"""							
+7030				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\msdnn,,Microsoft Developer Network News,"""					%s		
+7040				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\msdnn,Index,%s\msdnn.ivi,"""							
+7050				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\msdnn,Location,MSDNCD19d1,"""							
+7060				Group	7070 7080 7090 7100							
+7070				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Periodicals\=msj"",""Order"",""6"",""REG_SZ"""							
+7080				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\msj,,Microsoft Systems Journal,"""					%s		
+7090				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\msj,Index,%s\msj.ivi,"""							
+7100				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\msj,Location,MSDNCD19d1,"""							
+7110				Group	7120 7130 7140 7150							
+7120				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Periodicals\=smartacc"",""Order"",""7"",""REG_SZ"""							
+7130				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\smartacc,,Smart Access (Pinnacle Publishing),"""					%s		
+7140				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\smartacc,Index,%s\smartacc.ivi,"""							
+7150				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\smartacc,Location,MSDNCD19d1,"""							
+7160				Group	7170 7180 7190 7200							
+7170				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Periodicals\=sqlpro"",""Order"",""8"",""REG_SZ"""							
+7180				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\sqlpro,,SQL Server Professional,"""					%s		
+7190				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\sqlpro,Index,%s\sqlpro.ivi,"""							
+7200				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\sqlpro,Location,MSDNCD19d1,"""							
+7210				Group	7220 7230 7240 7250							
+7220				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Periodicals\=vcdj"",""Order"",""11"",""REG_SZ"""							
+7230				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcdj,,Visual C++ Developer Journal,"""					%s		
+7240				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcdj,Index,%s\vcdj.ivi,"""							
+7250				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcdj,Location,MSDNCD19d1,"""							
+7260				Group	7270 7280 7290 7300							
+7270				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Periodicals\=vcdev"",""Order"",""12"",""REG_SZ"""							
+7280				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcdev,,Visual C++ Developer,"""					%s		
+7290				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcdev,Index,%s\vcdev.ivi,"""							
+7300				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcdev,Location,MSDNCD19d1,"""							
+7310				Group	7320 7330 7340 7350							
+7320				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Sample Code for Articles and Books\=booksamp"",""Order"",""2"",""REG_SZ"""							
+7330				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\booksamp,,Book Samples,"""					%s		
+7340				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\booksamp,Index,%s\booksamp.ivi,"""							
+7350				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\booksamp,Location,MSDNCD19d1,"""							
+7360				Group	7370 7380 7390 7400							
+7370				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Sample Code for Articles and Books\=confsamp"",""Order"",""4"",""REG_SZ"""							
+7380				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\confsamp,,Conference Samples,"""					%s		
+7390				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\confsamp,Index,%s\confsamp.ivi,"""							
+7400				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\confsamp,Location,MSDNCD19d1,"""							
+7410				Group	7420 7430 7440 7450							
+7420				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Sample Code for Articles and Books\=sampcity"",""Order"",""5"",""REG_SZ"""							
+7430				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\sampcity,,Sample City,"""					%s		
+7440				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\sampcity,Index,%s\sampcity.ivi,"""							
+7450				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\sampcity,Location,MSDNCD19d1,"""							
+7460				Group	7470 7480 7490 7500							
+7470				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Sample Code for Articles and Books\=prodsamp"",""Order"",""6"",""REG_SZ"""							
+7480				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\prodsamp,,Product Samples,"""					%s		
+7490				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\prodsamp,Index,%s\prodsamp.ivi,"""							
+7500				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\prodsamp,Location,MSDNCD19d1,"""							
+7510				Group	7520 7530 7540 7550							
+7520				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\BackOffice\=buildexc"",""Order"",""2"",""REG_SZ"""							
+7530				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\buildexc,,Building Microsoft Exchange Applications,"""					%s		
+7540				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\buildexc,Index,%s\buildexc.ivi,"""							
+7550				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\buildexc,Location,MSDNCD19d1,"""							
+7560				Group	7570 7580 7590 7600							
+7570				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\BackOffice\=field"",""Order"",""3"",""REG_SZ"""							
+7580				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\field,,Field Guide to Microsoft Exchange,"""					%s		
+7590				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\field,Index,%s\field.ivi,"""							
+7600				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\field,Location,MSDNCD19d1,"""							
+7610				Group	7620 7630 7640 7650							
+7620				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Internet\=byoweb"",""Order"",""1"",""REG_SZ"""							
+7630				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\byoweb,,Build Your Own Website,"""					%s		
+7640				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\byoweb,Index,%s\byoweb.ivi,"""							
+7650				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\byoweb,Location,MSDNCD19d1,"""							
+7660				Group	7670 7680 7690 7700							
+7670				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Internet\=ie30step"",""Order"",""2"",""REG_SZ"""							
+7680				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ie30step,,Microsoft Internet Explorer 3.0 Step by Step,"""					%s		
+7690				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ie30step,Index,%s\ie30step.ivi,"""							
+7700				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ie30step,Location,MSDNCD19d1,"""							
+7710				Group	7720 7730 7740 7750							
+7720				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Internet\=learnj"",""Order"",""3"",""REG_SZ"""							
+7730				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\learnj,,Learn JAVA Now,"""					%s		
+7740				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\learnj,Index,%s\learnj.ivi,"""							
+7750				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\learnj,Location,MSDNCD19d1,"""							
+7760				Group	7770 7780 7790 7800							
+7770				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Internet\=officint"",""Order"",""4"",""REG_SZ"""							
+7780				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\officint,,Official Microsoft Internet Explorer Book,"""					%s		
+7790				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\officint,Index,%s\officint.ivi,"""							
+7800				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\officint,Location,MSDNCD19d1,"""							
+7810				Group	7820 7830 7840 7850							
+7820				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Platforms\=win95ui"",""Order"",""1"",""REG_SZ"""							
+7830				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\win95ui,,Programming the Windows 95 User Interface,"""					%s		
+7840				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\win95ui,Index,%s\win95ui.ivi,"""							
+7850				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\win95ui,Location,MSDNCD19d1,"""							
+7860				Group	7870 7880 7890 7900							
+7870				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Platforms\=hdgwin95"",""Order"",""3"",""REG_SZ"""							
+7880				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\hdgwin95,,Hardware Design Guide for Microsoft Windows 95,"""					%s		
+7890				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\hdgwin95,Index,%s\hdgwin95.ivi,"""							
+7900				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\hdgwin95,Location,MSDNCD19d1,"""							
+7910				Group	7920 7930 7940 7950							
+7920				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Platforms\=hdgwinsu"",""Order"",""4"",""REG_SZ"""							
+7930				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\hdgwinsu,,Hardware Design Guide for Microsoft Windows 95 Suppliment,"""					%s		
+7940				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\hdgwinsu,Index,%s\hdgwinsu.ivi,"""							
+7950				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\hdgwinsu,Location,MSDNCD19d1,"""							
+7960				Group	7970 7980 7990 8000							
+7970				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Technologies and Languages\=dnjet"",""Order"",""1"",""REG_SZ"""							
+7980				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnjet,,Microsoft Jet Database Engine Programmer's Guide,"""					%s		
+7990				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnjet,Index,%s\dnjet.ivi,"""							
+8000				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnjet,Location,MSDNCD19d1,"""							
+8010				Group	8020 8030 8040 8050							
+8020				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Technologies and Languages\=inole"",""Order"",""2"",""REG_SZ"""							
+8030				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\inole,,Inside OLE 2,"""					%s		
+8040				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\inole,Index,%s\inole.ivi,"""							
+8050				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\inole,Location,MSDNCD19d1,"""							
+8060				Group	8070 8080 8090 8100							
+8070				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Technologies and Languages\=inmapi"",""Order"",""3"",""REG_SZ"""							
+8080				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\inmapi,,Inside MAPI,"""					%s		
+8090				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\inmapi,Index,%s\inmapi.ivi,"""							
+8100				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\inmapi,Location,MSDNCD19d1,"""							
+8110				Group	8120 8130 8140 8150							
+8120				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual J++\=vjug"",""Order"",""1"",""REG_SZ"""							
+8130				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjug,,Visual J++ Documentation,"""					%s		
+8140				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjug,Index,%s\vjug.ivi,"""							
+8150				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjug,Location,MSDNCD19d1,"""							
+8160				Group	8170 8180 8190 8200							
+8170				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual J++\=vjapi"",""Order"",""2"",""REG_SZ"""							
+8180				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjapi,,Java API,"""					%s		
+8190				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjapi,Index,%s\vjapi.ivi,"""							
+8200				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjapi,Location,MSDNCD19d1,"""							
+8210				Group	8220 8230 8240 8250							
+8220				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual J++\=vjlang"",""Order"",""3"",""REG_SZ"""							
+8230				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjlang,,Java Language Specification,"""					%s		
+8240				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjlang,Index,%s\vjlang.ivi,"""							
+8250				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjlang,Location,MSDNCD19d1,"""							
+8260				Group	8270 8280 8290 8300							
+8270				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual J++\=vjcom"",""Order"",""4"",""REG_SZ"""							
+8280				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjcom,,Java and COM,"""					%s		
+8290				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjcom,Index,%s\vjcom.ivi,"""							
+8300				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjcom,Location,MSDNCD19d1,"""							
+8310				Group	8320 8330 8340 8350							
+8320				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual J++\=vjdao"",""Order"",""5"",""REG_SZ"""							
+8330				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjdao,,DAO SDK 3.5,"""					%s		
+8340				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjdao,Index,%s\vjdao.ivi,"""							
+8350				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjdao,Location,MSDNCD19d1,"""							
+8360				Group	8370 8380 8390 8400							
+8370				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual J++\=vjrdo"",""Order"",""6"",""REG_SZ"""							
+8380				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjrdo,,RDO 1.0,"""					%s		
+8390				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjrdo,Index,%s\vjrdo.ivi,"""							
+8400				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjrdo,Location,MSDNCD19d1,"""							
+8410				Group	8420 8430 8440 8450							
+8420				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual J++\=vjsamp"",""Order"",""7"",""REG_SZ"""							
+8430				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjsamp,,Samples, Build Errors, and Misc,"""					%s		
+8440				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjsamp,Index,%s\vjsamp.ivi,"""							
+8450				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjsamp,Location,MSDNCD19d1,"""							
+8460				Group	8470 8480 8490 8500 8510 8520 8530 8540							
+8470				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Welcome to the MSDN Library\=dshelp"",""Order"",""2"",""REG_SZ"""							
+8480				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual Studio 97\=dshelp"",""Order"",""3"",""REG_SZ"""							
+8490				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual C++\=dshelp"",""Order"",""9"",""REG_SZ"""							
+8500				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual J++\=dshelp"",""Order"",""10"",""REG_SZ"""							
+8510				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Developer Products\Visual InterDev\=dshelp"",""Order"",""20"",""REG_SZ"""							
+8520				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dshelp,,Getting Help,"""					%s		
+8530				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dshelp,Index,%s\dshelp.ivi,"""							
+8540				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dshelp,Location,MSDNCD19d1,"""							
+8550				Group	8560 8570 8580 8590							
+8560				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Books\Platforms\=3dgraph"",""Order"",""2"",""REG_SZ"""							
+8570				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\3dgraph,,3D Graphics Programming for Windows 95,"""					%s		
+8580				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\3dgraph,Index,%s\3dgraph.ivi,"""							
+8590				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\3dgraph,Location,MSDNCD19d1,"""							
+8600				Group	8610 8620 8630 8640							
+8610				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Periodicals\=vbdev"",""Order"",""7"",""REG_SZ"""							
+8620				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vbdev,,Visual Basic Developer (Pinnacle),"""					%s		
+8630				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vbdev,Index,%s\vbdev.ivi,"""							
+8640				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vbdev,Location,MSDNCD19d1,"""							
+8650				Group	8660 8670 8680 8690							
+8660				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\=ocd"",""Order"",""12"",""REG_SZ"""							
+8670				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ocd,,OLE DB Programmer's Reference,"""					%s		
+8680				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ocd,Index,%s\ocd.ivi,"""							
+8690				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ocd,Location,MSDNCD19d1,"""							
+8700				Group	8710 8720 8730 8740							
+8710				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Additional SDKs and DDKs\=dnplatf2"",""Order"",""2"",""REG_SZ"""							
+8720				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnplatf2,,Web Design Time Control SDK,"""					%s		
+8730				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnplatf2,Index,%s\dnplatf2.ivi,"""							
+8740				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnplatf2,Location,MSDNCD19d1,"""							
+8750				Group	8760 8780 8790 8770							
+8760				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Platform SDK\=pdintro"",""Order"",""1"",""REG_SZ"""							
+8770				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdintro,,Introduction,"""					%s		
+8780				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdintro,Index,%s\pdintro.ivi,"""							
+8790				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdintro,Location,MSDNCD19d1,"""							
+8800				Group	8810 8830 8840 8820							
+8810				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Platform SDK\=pdapp"",""Order"",""2"",""REG_SZ"""							
+8820				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdapp,,Building Applications,"""					%s		
+8830				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdapp,Index,%s\pdapp.ivi,"""							
+8840				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdapp,Location,MSDNCD19d1,"""							
+8850				Group	8860 8880 8890 8870							
+8860				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Platform SDK\=pdmsg"",""Order"",""3"",""REG_SZ"""							
+8870				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdmsg,,Database and Messaging Services,"""					%s		
+8880				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdmsg,Index,%s\pdmsg.ivi,"""							
+8890				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdmsg,Location,MSDNCD19d1,"""							
+8900				Group	8910 8930 8940 8920							
+8910				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Platform SDK\=pdgrmm"",""Order"",""4"",""REG_SZ"""							
+8920				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdgrmm,,Graphics and Multimedia Services,"""					%s		
+8930				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdgrmm,Index,%s\pdgrmm.ivi,"""							
+8940				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdgrmm,Location,MSDNCD19d1,"""							
+8950				Group	8960 8980 8990 8970							
+8960				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Platform SDK\=intcsdk"",""Order"",""5"",""REG_SZ"""							
+8970				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\intcsdk,,Internet Client SDK,"""					%s		
+8980				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\intcsdk,Index,%s\intcsdk.ivi,"""							
+8990				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\intcsdk,Location,MSDNCD19d1,"""							
+9000				Group	9010 9030 9040 9020							
+9010				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Platform SDK\=pdinet"",""Order"",""6"",""REG_SZ"""							
+9020				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdinet,,Internet Networking and Distributed Services,"""					%s		
+9030				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdinet,Index,%s\pdinet.ivi,"""							
+9040				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdinet,Location,MSDNCD19d1,"""							
+9050				Group	9060 9080 9090 9070							
+9060				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Platform SDK\=pdobj"",""Order"",""7"",""REG_SZ"""							
+9070				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdobj,,Object Services,"""					%s		
+9080				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdobj,Index,%s\pdobj.ivi,"""							
+9090				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdobj,Location,MSDNCD19d1,"""							
+9100				Group	9110 9130 9140 9120							
+9110				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Platform SDK\=pdsms"",""Order"",""8"",""REG_SZ"""							
+9120				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdsms,,Setup and Systems Management Services,"""					%s		
+9130				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdsms,Index,%s\pdsms.ivi,"""							
+9140				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdsms,Location,MSDNCD19d1,"""							
+9150				Group	9160 9180 9190 9170							
+9160				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Platform SDK\=pdui"",""Order"",""9"",""REG_SZ"""							
+9170				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdui,,User Interface Services,"""					%s		
+9180				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdui,Index,%s\pdui.ivi,"""							
+9190				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdui,Location,MSDNCD19d1,"""							
+9200				Group	9210 9230 9240 9220							
+9210				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Platform SDK\=pdwbase"",""Order"",""10"",""REG_SZ"""							
+9220				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdwbase,,Windows Base Services,"""					%s		
+9230				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdwbase,Index,%s\pdwbase.ivi,"""							
+9240				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdwbase,Location,MSDNCD19d1,"""							
+9250				Group	9260 9280 9290 9270							
+9260				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Folders\Microsoft Developer Network Visual Studio Edition\Platform, SDK, and DDK Documentation\Platform SDK\=pdref"",""Order"",""11"",""REG_SZ"""							
+9270				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdref,,Reference,"""					%s		
+9280				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdref,Index,%s\pdref.ivi,"""							
+9290				CustomAction	"MSDNcah.dll,AddIVITitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdref,Location,MSDNCD19d1,"""							
+--- End IVI Reg ---
+								
+--- Begin IVT Copy ---								
+9310				DetectOlderFile	"""msdev.exe"""					%120		
+9320				Depend	"9310 ? 9330 : 9340"							
+9330				Group	9350					%110		
+9340				Group	9350					%140		
+9350				Group	9360 9450 9520 9720 9790 9840 9910 10010 10030 10090 10200 10260 10310 10510 10560							
+9360				Group	9370 9380 9390 9400 9410 9420 9430 9440							
+9370		access.ivt		InstallShared	"ivt,access_ivt,access.ivt,,1030 "					%d\MSDN		
+9380		activex.ivt		InstallShared	"ivt,activex_ivt,actives.ivt,,1030 "					%d\MSDN		
+9390		transerv.ivt		InstallShared	"ivt,transerv_ivt,transerv.ivt,,1030 "					%d\MSDN		
+9400		ado.ivt		InstallShared	"ivt,ado_ivt,ado.ivt,,1030 "					%d\MSDN		
+9410		ats.ivt		InstallShared	"ivt,ats_ivt,ats.ivt,,1030 "					%d\MSDN		
+9420		bores.ivt		InstallShared	"ivt,bores_ivt,bores.ivt,,1030 "					%d\MSDN		
+9430		catapult.ivt		InstallShared	"ivt,catapult_ivt,catapult.ivt,,1030 "					%d\MSDN		
+9440		conf.ivt		InstallShared	"ivt,conf_ivt,conf.ivt,,1030 "					%d\MSDN		
+9450				Group	9460 9470 9480 9490 9500 9510							
+9460		backapp.ivt		InstallShared	"ivt,backapp_ivt,backapp.ivt,,1030 "					%d\MSDN		
+9470		backback.ivt		InstallShared	"ivt,backback_ivt,backback.ivt,,1030 "					%d\MSDN		
+9480		backint.ivt		InstallShared	"ivt,backint_ivt,backint.ivt,,1030 "					%d\MSDN		
+9490		backplat.ivt		InstallShared	"ivt,backplat_ivt,backplat.ivt,,1030 "					%d\MSDN		
+9500		backtech.ivt		InstallShared	"ivt,backtech_ivt,backtech.ivt,,1030 "					%d\MSDN		
+9510		backcase.ivt		InstallShared	"ivt,backcase_ivt,backcase.ivt,,1030 "					%d\MSDN		
+9520				Group	9530 9550 9540 9560 9570 9580 9590 9600 9610 9620 9630 9640 9650 9660 9670 9680 9690 9700 9710							
+9530		datatool.ivt		InstallShared	"ivt,datatool_ivt,datatool.ivt,,1030 "					%d\MSDN		
+9540		denali.ivt		InstallShared	"ivt,denali_ivt,denali.ivt,,1030 "					%d\MSDN		
+9550		daosdk35.ivt		InstallShared	"ivt,daosdk35_ivt,daosdk35.ivt,,1030 "					%d\MSDN		
+9560		directx.ivt		InstallShared	"ivt,directx_ivt,directx.ivt,,1030 "					%d\MSDN		
+9570		dnembed.ivt		InstallShared	"ivt,dnembed_ivt,dnembed.ivt,,1030 "					%d\MSDN		
+9580		dnmfc.ivt		InstallShared	"ivt,dnmfc_ivt,dnmfc.ivt,,1030 "					%d\MSDN		
+9590		dnmult.ivt		InstallShared	"ivt,dnmult_ivt,dnmult.ivt,,1030 "					%d\MSDN		
+9600		dnplatf.ivt		InstallShared	"ivt,dnplatf_ivt,dnplatf.ivt,,1030 "					%d\MSDN		
+9610		dnvss.ivt		InstallShared	"ivt,dnvss_ivt,dnvss.ivt,,1030 "					%d\MSDN		
+9620		dnwin95.ivt		InstallShared	"ivt,dnwin95_ivt,dnwin95.ivt,,1030 "					%d\MSDN		
+9630		dnwinnt.ivt		InstallShared	"ivt,dnwinnt_ivt,dnwinnt.ivt,,1030 "					%d\MSDN		
+9640		grk.ivt		InstallShared	"ivt,grk_ivt,grk.ivt,,1030 "					%d\MSDN		
+9650		dsdoc.ivt		InstallShared	"ivt,dsdoc_ivt,dsdoc.ivt,,1030 "					%d\MSDN		
+9660		dshelp.ivt		InstallShared	"ivt,dshelp_ivt,dshelp.ivt,,1030 "					%d\MSDN		
+9670		dsmsdn.ivt		InstallShared	"ivt,dsmsdn_ivt,dsmsdn.ivt,,1030 "					%d\MSDN		
+9680		dstour.it		InstallShared	"ivt,dstour_ivt,dstour.ivt,,1030 "					%d\MSDN		
+9690		dsug.ivt		InstallShared	"ivt,dsug_ivt,dsug.ivt,,1030 "					%d\MSDN		
+9700		excel.ivt		InstallShared	"ivt,excel_ivt,excel.ivt,,1030 "					%d\MSDN		
+9710		fpage.ivt		InstallShared	"ivt,fpage_ivt,fpage.ivt,,1030 "					%d\MSDN		
+9720				Group	9730 9740 9750 9760 9770 9780							
+9730		glossary.ivt		InstallShared	"ivt,glossary_ivt,glossary.ivt,,1030 "					%d\MSDN		
+9740		hdgwin97.ivt		InstallShared	"ivt,hdgwin97_ivt,hdgwin97.ivt,,1030 "					%d\MSDN		
+9750		htmlref.ivt		InstallShared	"ivt,htmlref_ivt,htmlref.ivt,,1030 "					%d\MSDN		
+9760		imgcomp.ivt		InstallShared	"ivt,imgcomp_ivt,imgcomp.ivt,,1030 "					%d\MSDN		
+9770		istudio.ivt		InstallShared	"ivt,istudio_ivt,istudio.ivt,,1030 "					%d\MSDN		
+9780		istudfp.ivt		InstallShared	"ivt,istudfp_ivt,istudfp.ivt,,1030 "					%d\MSDN		
+9790				Group	9800 9810 9820 9830							
+9800		java.ivt		InstallShared	"ivt,java_ivt,java.ivt,,1030 "					%d\MSDN		
+9810		jscript.ivt		InstallShared	"ivt,jscript_ivt,jscript.ivt,,1030 "					%d\MSDN		
+9820		linkview.ivt		InstallShared	"ivt,linkview_ivt,linkview.ivt,,1030 "					%d\MSDN		
+9830		kb.ivt		InstallShared	"ivt,kb_ivt,kb.ivt,,1030 "					%d\MSDN		
+9840				Group	9850 9860 9870 9880 9890 9900							
+9850		mmanager.ivt		InstallShared	"ivt,mmanager_ivt,mmanager.ivt,,1030 "					%d\MSDN		
+9860		muscprd.ivt		InstallShared	"ivt,muscprd_ivt,muscprd.ivt,,1030 "					%d\MSDN		
+9870		ntddk.ivt		InstallShared	"ivt,ntddk_ivt,ntddk.ivt,,1030 "					%d\MSDN		
+9880		nt40res.ivt		InstallShared	"ivt,nt40res_ivt,nt40res.ivt,,1030 "					%d\MSDN		
+9890		ntserv.ivt		InstallShared	"ivt,ntserv_ivt,ntserv.ivt,,1030 "					%d\MSDN		
+9900		office.ivt		InstallShared	"ivt,office_ivt,office.ivt,,1030 "					%d\MSDN		
+9910				Group	9920							
+9920		project.ivt		InstallShared	"ivt,project_ivt,project.ivt,,1030 "					%d\MSDN		
+9930				Group	9940 9950 9960 9970 9980 9990 10000							
+9940		foxtalk.ivt		InstallShared	"ivt,foxtalk_ivt,foxtalk.ivt,,1030 "					%d\MSDN		
+9950		msdnn.ivt		InstallShared	"ivt,msdnn_ivt,msdnn.ivt,,1030 "					%d\MSDN		
+9960		msj.ivt		InstallShared	"ivt,msj_ivt,msj.ivt,,1030 "					%d\MSDN		
+9970		smartacc.ivt		InstallShared	"ivt,smartacc_ivt,smartacc.ivt,,1030 "					%d\MSDN		
+9980		sqlpro.ivt		InstallShared	"ivt,sqlpro_ivt,sqlpro.ivt,,1030 "					%d\MSDN		
+9990		vcdj.ivt		InstallShared	"ivt,vcdj_ivt,vcdj.ivt,,1030 "					%d\MSDN		
+10000		vcdev.ivt		InstallShared	"ivt,vcdev_ivt,vcdev.ivt,,1030 "					%d\MSDN		
+10010				Group	10020							
+10020		tsql.ivt		InstallShared	"ivt,tsql_ivt,tsql.ivt,,1030 "					%d\MSDN		
+10030				Group	10040 10050 10060 10070 10080							
+10040		taapp.ivt		InstallShared	"ivt,taapp_ivt,taapp.ivt,,1030 "					%d\MSDN		
+10050		tabacko.ivt		InstallShared	"ivt,tabacko_ivt,tabacko.ivt,,1030 "					%d\MSDN		
+10060		taint.ivt		InstallShared	"ivt,taint_ivt,taint.ivt,,1030 "					%d\MSDN		
+10070		taplat.ivt		InstallShared	"ivt,taplat_ivt,taplat.ivt,,1030 "					%d\MSDN		
+10080		tatech.ivt		InstallShared	"ivt,tatech_ivt,tatech.ivt,,1030 "					%d\MSDN		
+10090				Group	10100 10110 10120 10130 10150 10160 10170 10180 10190 10440 10450 10460 10470 10480 10490 10500							
+10100		vbdoc.ivt		InstallShared	"ivt,vbdoc_ivt,vbdoc.ivt,,1030 "					%d\MSDN		
+10110		vbscript.ivt		InstallShared	"ivt,vbscript_ivt,vbscript.ivt,,1030 "					%d\MSDN		
+10120		vccore.ivt		InstallShared	"ivt,vccore_ivt,vccore.ivt,,1030 "					%d\MSDN		
+10130		vcedit.ivt		InstallShared	"ivt,vcedit_ivt,vcedit.ivt,,1030 "					%d\MSDN		
+10140		vcee.ivt		InstallShared	"ivt,vcee_ivt,vcee.ivt,,1030 "					%d\MSDN		
+10150		vclang.ivt		InstallShared	"ivt,vclang_ivt,vclang.ivt,,1030 "					%d\MSDN		
+10160		vcmfc.ivt		InstallShared	"ivt,vcmfc_ivt,vcmfc.ivt,,1030 "					%d\MSDN		
+10170		vcsample.ivt		InstallShared	"ivt,vcsample_ivt,vcsample.ivt,,1030 "					%d\MSDN		
+10180		vctutor.ivt		InstallShared	"ivt,vctutor_ivt,vctutor.ivt,,1030 "					%d\MSDN		
+10190		vfp.ivt		InstallShared	"ivt,vfp_ivt,vfp.ivt,,1030 "					%d\MSDN		
+10200				Group	10210 10220 10230 10240 10250							
+10210		whatsnew.ivt		InstallShared	"ivt,whatsnew_ivt,whatsnew.ivt,,1030 "					%d\MSDN		
+10220		wincesdk.ivt		InstallShared	"ivt,wincesdk_ivt,wincesdk.ivt,,1030 "					%d\MSDN		
+10230		winceddk.ivt		InstallShared	"ivt,winceddk_ivt,winceddk.ivt,,1030 "					%d\MSDN		
+10240		win95ddk.ivt		InstallShared	"ivt,win95ddk_ivt,win95ddk.ivt,,1030 "					%d\MSDN		
+10250		word.ivt		InstallShared	"ivt,word_ivt,word.ivt,,1030 "					%d\MSDN		
+10260				Group	10270 10280 10290 10300							
+10270		booksamp.ivt		InstallShared	"ivt,booksamp_ivt,booksamp.ivt,,1030 "					%d\MSDN		
+10280		confsamp.ivt		InstallShared	"ivt,confsamp_ivt,confsamp.ivt,,1030 "					%d\MSDN		
+10290		sampcity.ivt		InstallShared	"ivt,sampcity_ivt,sampcity.ivt,,1030 "					%d\MSDN		
+10300		prodsamp.ivt		InstallShared	"ivt,prodsamp_ivt,prodsamp.ivt,,1030 "					%d\MSDN		
+10310				Group	10320 10330 10340 10350 10360 10370 10380 10390 10400 10410 10420 10430							
+10320		buildexc.ivt		InstallShared	"ivt,buildexc_ivt,buildexc.ivt,,1030 "					%d\MSDN		
+10330		field.ivt		InstallShared	"ivt,field_ivt,field.ivt,,1030 "					%d\MSDN		
+10340		byoweb.ivt		InstallShared	"ivt,byoweb_ivt,byoweb.ivt,,1030 "					%d\MSDN		
+10350		ie30step.ivt		InstallShared	"ivt,ie30step_ivt,ie30step.ivt,,1030 "					%d\MSDN		
+10360		learnj.ivt		InstallShared	"ivt,learnj_ivt,learnj.ivt,,1030 "					%d\MSDN		
+10370		officint.ivt		InstallShared	"ivt,officint_ivt,officint.ivt,,1030 "					%d\MSDN		
+10380		win95ui.ivt		InstallShared	"ivt,win95ui_ivt,win95ui.ivt,,1030 "					%d\MSDN		
+10390		hdgwin95.ivt		InstallShared	"ivt,hdgwin95_ivt,hdgwin95.ivt,,1030 "					%d\MSDN		
+10400		hdgwinsu.ivt		InstallShared	"ivt,hdgwinsu_ivt,hdgwinsu.ivt,,1030 "					%d\MSDN		
+10410		dnjet.ivt		InstallShared	"ivt,dnjet_ivt,dnjet.ivt,,1030 "					%d\MSDN		
+10420		inole.ivt		InstallShared	"ivt,inole_ivt,inole.ivt,,1030 "					%d\MSDN		
+10430		inmapi.ivt		InstallShared	"ivt,inmapi_ivt,inmapi.ivt,,1030 "					%d\MSDN		
+10440		vjug.ivt		InstallShared	"ivt,vjug_ivt,vjug.ivt,,1030 "					%d\MSDN		
+10450		vjapi.ivt		InstallShared	"ivt,vjapi_ivt,vjapi.ivt,,1030 "					%d\MSDN		
+10460		vjlang.ivt		InstallShared	"ivt,vjlang_ivt,vjlang.ivt,,1030 "					%d\MSDN		
+10470		vjcom.ivt		InstallShared	"ivt,vjcom_ivt,vjcom.ivt,,1030 "					%d\MSDN		
+10480		vjdao.ivt		InstallShared	"ivt,vjdao_ivt,vjdao.ivt,,1030 "					%d\MSDN		
+10490		vjrdo.ivt		InstallShared	"ivt,vjrdo_ivt,vjrdo.ivt,,1030 "					%d\MSDN		
+10500		vjsamp.ivt		InstallShared	"ivt,vjsamp_ivt,vjsamp.ivt,,1030 "					%d\MSDN		
+10510				Group	10520 10530 10540 10550							
+10520		3dgraph.ivt		InstallShared	"ivt,3dgraph_ivt,3dgraph.ivt,,1030 "					%d\MSDN		
+10530		vbdev.ivt		InstallShared	"ivt,vbdev_ivt,vbdev.ivt,,1030 "					%d\MSDN		
+10540		ocd.ivt		InstallShared	"ivt,ocd_ivt,ocd.ivt,,1030 "					%d\MSDN		
+10550		dnplatf2.ivt		InstallShared	"ivt,dnplatf2_ivt,dnplatf2.ivt,,1030 "					%d\MSDN		
+10560				Group	10570 10580 10590 10600 10610 10620 10630 10640 10650 10660 10670							
+10570		pdintro.ivt		InstallShared	"ivt,pdintro_ivt,pdintro.ivt,,1030 "					%d\MSDN		
+10580		pdapp.ivt		InstallShared	"ivt,pdapp_ivt,pdapp.ivt,,1030 "					%d\MSDN		
+10590		pdmsg.ivt		InstallShared	"ivt,pdmsg_ivt,pdmsg.ivt,,1030 "					%d\MSDN		
+10600		pdgrmm.ivt		InstallShared	"ivt,pdgrmm_ivt,pdgrmm.ivt,,1030 "					%d\MSDN		
+10610		intcsdk.ivt		InstallShared	"ivt,intcsdk_ivt,intcsdk.ivt,,1030 "					%d\MSDN		
+10620		pdinet.ivt		InstallShared	"ivt,pdinet_ivt,pdinet.ivt,,1030 "					%d\MSDN		
+10630		pdobj.ivt		InstallShared	"ivt,pdobj_ivt,pdobj.ivt,,1030 "					%d\MSDN		
+10640		pdsms.ivt		InstallShared	"ivt,pdsms_ivt,pdsms.ivt,,1030 "					%d\MSDN		
+10650		pdui.ivt		InstallShared	"ivt,pdui_ivt,pdui.ivt,,1030 "					%d\MSDN		
+10660		pdwbase.ivt		InstallShared	"ivt,pdwbase_ivt,pdwbase.ivt,,1030 "					%d\MSDN		
+10670		pdref.ivt		InstallShared	"ivt,pdref_ivt,pdref.ivt,,1030 "					%d\MSDN		
+--- End IVT Copy ---
+								
+--- Begin IVT Reg ---								
+10710				Group	10720 10750 10730 10740							
+10720		RootDirCD		CustomAction	"msdncah.dll,RootDir,%10710"							
+10730				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Locations\MSDNCD19d1"","""",""Microsoft Developer Network Library, Visual Studio 1997, CD 1"",""REG_SZ"""							
+10740				AddRegData	"""LOCAL"",""SOFTWARE\Microsoft\InfoViewer\5.0\Locations\MSDNCD19d1"",""Path"",""%s\VStudio\MSDN\"",""REG_SZ"""					%s		
+10750				Group	10760 10850 10920 11120 11190 11240 11310 11570 11330 11510 11350 11450 11650 11700 11900 11950							
+10760				Group	10770 10780 10790 10800 10810 10820 10830 10840							
+10770				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\access,Content,%s\VStudio\MSDN\access.ivt,"""					%s		
+10780				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\activex,Content,%s\VStudio\MSDN\activex.ivt,"""					%s		
+10790				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\transerv,Content,%s\VStudio\MSDN\transerv.ivt,"""					%s		
+10800				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ado,Content,%s\VStudio\MSDN\ado.ivt,"""					%s		
+10810				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ats,Content,%s\VStudio\MSDN\ats.ivt,"""					%s		
+10820				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\bores,Content,%s\VStudio\MSDN\bores.ivt,"""					%s		
+10830				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\catapult,Content,%s\VStudio\MSDN\catapult.ivt,"""					%s		
+10840				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\conf,Content,%s\VStudio\MSDN\conf.ivt,"""					%s		
+10850				Group	10860 10870 10880 10890 10900 10910							
+10860				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backapp,Content,%s\VStudio\MSDN\backapp.ivt,"""					%s		
+10870				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backback,Content,%s\VStudio\MSDN\backback.ivt,"""					%s		
+10880				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backint,Content,%s\VStudio\MSDN\backint.ivt,"""					%s		
+10890				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backplat,Content,%s\VStudio\MSDN\backplat.ivt,"""					%s		
+10900				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backtech,Content,%s\VStudio\MSDN\backtech.ivt,"""					%s		
+10910				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\backcase,Content,%s\VStudio\MSDN\backcase.ivt,"""					%s		
+10920				Group	10940 10930 10950 10960 10980 10970 10990 11000 11010 11020 11030 11040 11050 11060 11070 11080 11090 11100 11110							
+10930				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\daosdk35,Content,%s\VStudio\MSDN\daosdk35.ivt,"""					%s		
+10940				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\datatool,Content,%s\VStudio\MSDN\datatool.ivt,"""					%s		
+10950				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\denali,Content,%s\VStudio\MSDN\denali.ivt,"""					%s		
+10960				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\directx,Content,%s\VStudio\MSDN\directx.ivt,"""					%s		
+10970				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnembed,Content,%s\VStudio\MSDN\dnembed.ivt,"""					%s		
+10980				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnmfc,Content,%s\VStudio\MSDN\dnmfc.ivt,"""					%s		
+10990				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnmult,Content,%s\VStudio\MSDN\dnmult.ivt,"""					%s		
+11000				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnplatf,Content,%s\VStudio\MSDN\dnplatf.ivt,"""					%s		
+11010				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnvss,Content,%s\VStudio\MSDN\dnvss.ivt,"""					%s		
+11020				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnwin95,Content,%s\VStudio\MSDN\dnwin95.ivt,"""					%s		
+11030				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnwinnt,Content,%s\VStudio\MSDN\dnwinnt.ivt,"""					%s		
+11040				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\grk,Content,%s\VStudio\MSDN\grk.ivt,"""					%s		
+11050				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dsdoc,Content,%s\VStudio\MSDN\dsdoc.ivt,"""					%s		
+11060				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dshelp,Content,%s\VStudio\MSDN\dshelp.ivt,"""					%s		
+11070				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dsmsdn,Content,%s\VStudio\MSDN\dsmsdn.ivt,"""					%s		
+11080				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dstour,Content,%s\VStudio\MSDN\dstour.ivt,"""					%s		
+11090				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dsug,Content,%s\VStudio\MSDN\dsug.ivt,"""					%s		
+11100				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\excel,Content,%s\VStudio\MSDN\excel.ivt,"""					%s		
+11110				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\fpage,Content,%s\VStudio\MSDN\fpage.ivt,"""					%s		
+11120				Group	11130 11140 11150 11160 11170 11180							
+11130				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\glossary,Content,%s\VStudio\MSDN\glossary.ivt,"""					%s		
+11140				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\hdgwin97,Content,%s\VStudio\MSDN\hdgwin97.ivt,"""					%s		
+11150				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\htmlref,Content,%s\VStudio\MSDN\htmlref.ivt,"""					%s		
+11160				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\imgcomp,Content,%s\VStudio\MSDN\imgcomp.ivt,"""					%s		
+11170				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\istudio,Content,%s\VStudio\MSDN\istudio.ivt,"""					%s		
+11180				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\istudfp,Content,%s\VStudio\MSDN\istudfp.ivt,"""					%s		
+11190				Group	11200 11210 11220 11230							
+11200				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\java,Content,%s\VStudio\MSDN\java.ivt,"""					%s		
+11210				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\jscript,Content,%s\VStudio\MSDN\jscript.ivt,"""					%s		
+11220				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\linkview,Content,%s\VStudio\MSDN\linkview.ivt,"""					%s		
+11230				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\kb,Content,%s\VStudio\MSDN\kb.ivt,"""					%s		
+11240				Group	11250 11260 11270 11280 11290 11300							
+11250				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\mmanager,Content,%s\VStudio\MSDN\mmanager.ivt,"""					%s		
+11260				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\muscprd,Content,%s\VStudio\MSDN\muscprd.ivt,"""					%s		
+11270				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ntddk,Content,%s\VStudio\MSDN\ntddk.ivt,"""					%s		
+11280				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\nt40res,Content,%s\VStudio\MSDN\nt40res.ivt,"""					%s		
+11290				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ntserv,Content,%s\VStudio\MSDN\ntserv.ivt,"""					%s		
+11300				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\office,Content,%s\VStudio\MSDN\office.ivt,"""					%s		
+11310				Group	11320							
+11320				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\project,Content,%s\VStudio\MSDN\project.ivt,"""					%s		
+11330				Group	11340							
+11340				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\tsql,Content,%s\VStudio\MSDN\tsql.ivt,"""					%s		
+11350				Group	11360 11370 11380 11390 11400 11410 11420 11430 11440 11830 11840 11850 11860 11870 11880 11890							
+11360				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vbdoc,Content,%s\VStudio\MSDN\vbdoc.ivt,"""					%s		
+11370				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vbscript,Content,%s\VStudio\MSDN\vbscript.ivt,"""					%s		
+11380				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vccore,Content,%s\VStudio\MSDN\vccore.ivt,"""					%s		
+11390				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcedit,Content,%s\VStudio\MSDN\vcedit.ivt,"""					%s		
+11400				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vclang,Content,%s\VStudio\MSDN\vclang.ivt,"""					%s		
+11410				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcmfc,Content,%s\VStudio\MSDN\vcmfc.ivt,"""					%s		
+11420				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcsample,Content,%s\VStudio\MSDN\vcsample.ivt,"""					%s		
+11430				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vctutor,Content,%s\VStudio\MSDN\vctutor.ivt,"""					%s		
+11440				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vfp,Content,%s\VStudio\MSDN\vfp.ivt,"""					%s		
+11450				Group	11460 11470 11480 11490 11500							
+11460				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\whatsnew,Content,%s\VStudio\MSDN\whatsnew.ivt,"""					%s		
+11470				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\wincesdk,Content,%s\VStudio\MSDN\wincesdk.ivt,"""					%s		
+11480				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\winceddk,Content,%s\VStudio\MSDN\winceddk.ivt,"""					%s		
+11490				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\win95ddk,Content,%s\VStudio\MSDN\win95ddk.ivt,"""					%s		
+11500				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\word,Content,%s\VStudio\MSDN\word.ivt,"""					%s		
+11510				Group	11520 11530 11540 11550 11560							
+11520				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\taapp,Content,%s\VStudio\MSDN\taapp.ivt,"""					%s		
+11530				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\tabacko,Content,%s\VStudio\MSDN\tabacko.ivt,"""					%s		
+11540				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\taint,Content,%s\VStudio\MSDN\taint.ivt,"""					%s		
+11550				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\taplat,Content,%s\VStudio\MSDN\taplat.ivt,"""					%s		
+11560				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\tatech,Content,%s\VStudio\MSDN\tatech.ivt,"""					%s		
+11570				Group	11580 11590 11600 11610 11620 11630 11640							
+11580				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\foxtalk,Content,%s\VStudio\MSDN\foxtalk.ivt,"""					%s		
+11590				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\msdnn,Content,%s\VStudio\MSDN\msdnn.ivt,"""					%s		
+11600				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\msj,Content,%s\VStudio\MSDN\msj.ivt,"""					%s		
+11610				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\smartacc,Content,%s\VStudio\MSDN\smartacc.ivt,"""					%s		
+11620				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\sqlpro,Content,%s\VStudio\MSDN\sqlpro.ivt,"""					%s		
+11630				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcdj,Content,%s\VStudio\MSDN\vcdj.ivt,"""					%s		
+11640				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vcdev,Content,%s\VStudio\MSDN\vcdev.ivt,"""					%s		
+11650				Group	11660 11670 11680 11690							
+11660				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\booksamp,Content,%s\VStudio\MSDN\booksamp.ivt,"""					%s		
+11670				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\confsamp,Content,%s\VStudio\MSDN\confsamp.ivt,"""					%s		
+11680				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\sampcity,Content,%s\VStudio\MSDN\sampcity.ivt,"""					%s		
+11690				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\prodsamp,Content,%s\VStudio\MSDN\prodsamp.ivt,"""					%s		
+11700				Group	11710 11720 11730 11740 11750 11760 11770 11780 11790 11800 11810 11820							
+11710				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\buildexc,Content,%s\VStudio\MSDN\buildexc.ivt,"""					%s		
+11720				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\field,Content,%s\VStudio\MSDN\field.ivt,"""					%s		
+11730				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\byoweb,Content,%s\VStudio\MSDN\byoweb.ivt,"""					%s		
+11740				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ie30step,Content,%s\VStudio\MSDN\ie30step.ivt,"""					%s		
+11750				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\learnj,Content,%s\VStudio\MSDN\learnj.ivt,"""					%s		
+11760				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\officint,Content,%s\VStudio\MSDN\officint.ivt,"""					%s		
+11770				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\win95ui,Content,%s\VStudio\MSDN\win95ui.ivt,"""					%s		
+11780				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\hdgwin95,Content,%s\VStudio\MSDN\hdgwin95.ivt,"""					%s		
+11790				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\hdgwinsu,Content,%s\VStudio\MSDN\hdgwinsu.ivt,"""					%s		
+11800				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnjet,Content,%s\VStudio\MSDN\dnjet.ivt,"""					%s		
+11810				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\inole,Content,%s\VStudio\MSDN\inole.ivt,"""					%s		
+11820				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\inmapi,Content,%s\VStudio\MSDN\inmapi.ivt,"""					%s		
+11830				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjug,Content,%s\VStudio\MSDN\vjug.ivt,"""					%s		
+11840				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjapi,Content,%s\VStudio\MSDN\vjapi.ivt,"""					%s		
+11850				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjlang,Content,%s\VStudio\MSDN\vjlang.ivt,"""					%s		
+11860				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjcom,Content,%s\VStudio\MSDN\vjcom.ivt,"""					%s		
+11870				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjdao,Content,%s\VStudio\MSDN\vjdao.ivt,"""					%s		
+11880				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjrdo,Content,%s\VStudio\MSDN\vjrdo.ivt,"""					%s		
+11890				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vjsamp,Content,%s\VStudio\MSDN\vjsamp.ivt,"""					%s		
+11900				Group	11910 11920 11930 11940							
+11910				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\3dgraph,Content,%s\VStudio\MSDN\3dgraph.ivt,"""					%s		
+11920				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\vbdev,Content,%s\VStudio\MSDN\vbdev.ivt,"""					%s		
+11930				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\ocd,Content,%s\VStudio\MSDN\ocd.ivt,"""					%s		
+11940				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\dnplatf2,Content,%s\VStudio\MSDN\dnplatf2.ivt,"""					%s		
+11950				Group	11960 11970 11980 11990 12000 12010 12020 12030 12040 12050 12060							
+11960				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdintro,Content,%s\VStudio\MSDN\pdintro.ivt,"""					%s		
+11970				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdapp,Content,%s\VStudio\MSDN\pdapp.ivt,"""					%s		
+11980				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdmsg,Content,%s\VStudio\MSDN\pdmsg.ivt,"""					%s		
+11990				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdgrmm,Content,%s\VStudio\MSDN\pdgrmm.ivt,"""					%s		
+12000				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\intcsdk,Content,%s\VStudio\MSDN\intcsdk.ivt,"""					%s		
+12010				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdinet,Content,%s\VStudio\MSDN\pdinet.ivt,"""					%s		
+12020				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdobj,Content,%s\VStudio\MSDN\pdobj.ivt,"""					%s		
+12030				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdsms,Content,%s\VStudio\MSDN\pdsms.ivt,"""					%s		
+12040				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdui,Content,%s\VStudio\MSDN\pdui.ivt,"""					%s		
+12050				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdwbase,Content,%s\VStudio\MSDN\pdwbase.ivt,"""					%s		
+12060				CustomAction	"msdncah.dll,AddIVTTitleKeyOrValue,""LOCAL,SOFTWARE\Microsoft\InfoViewer\5.0\Titles\pdref,Content,%s\VStudio\MSDN\pdref.ivt,"""					%s		
+--- End IVT Reg ---
+								
+--- Begin Program Manager Items ---								
+12110				Group	12130 12210							
+12120				CustomAction	"msdncah.dll,Detect95,win95"							
+12130				Depend	"12120 ? 12150 12170 12190 : 12140 12160 12180"							
+12140				CustomAction	"msdncah.dll,GetPathFromReg,""HKEY_LOCAL_MACHINE,Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders,Common Programs"""							
+12150				CustomAction	"msdncah.dll,GetPathFromReg,""HKEY_CURRENT_USER,Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders,Programs"""							
+12160				InstallShortcut	"%570\iv5.exe,MSDN Library Visual Studio 97,%570,%570\msdn.ico,,,"					%12140\Microsoft Developer Network		
+12170				InstallShortcut	"%570\iv5.exe,MSDN Library Visual Studio 97,%570,%570\msdn.ico,,,"					%12150\Microsoft Developer Network		
+12180				InstallShortcut	"%570\infoview.hlp,MSDN Library Visual Studio 97 - Help,%570,,,,"					%12140\Microsoft Developer Network		
+12190				InstallShortcut	"%570\infoview.hlp,MSDN Library Visual Studio 97 - Help,%570,,,,"					%12150\Microsoft Developer Network		
+12200		Microsoft Developer Network		YesNoDlg	"Would you like to create a desktop shortcut for MSDN?"							
+12210				Depend	"12200 ? 12220 12230"							
+12220				CustomAction	"msdncah.dll,GetPathFromReg,""HKEY_CURRENT_USER,Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders,Desktop"""							
+12230				InstallShortcut	"%570\iv5.exe,MSDN Library Visual Studio 97,%570,%570\msdn.ico,,,"					%12220		
+--- End Program Manager Items ---
+								
+--- Begin IE Copy ---								
+12310				Group	12320							
+12320				CustomAction	"""msdncah.dll"",CheckIEVerNo,""4.70.0.1215,IE\\\msie301.Exe"""					%s		
+--- End IE Copy ---
+								

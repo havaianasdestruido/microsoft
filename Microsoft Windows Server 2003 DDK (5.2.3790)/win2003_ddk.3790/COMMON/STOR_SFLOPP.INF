@@ -1,0 +1,61 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\storage\sfloppy\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"STOR_sflopp"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","STOR_sflopp",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+STOR_sflopp.inf
+
+
+[Files_0]
+floppy.c,STOR_sflopp_FILE_0,,
+makefile,STOR_sflopp_FILE_1,,
+sfloppy.htm,STOR_sflopp_FILE_2,,
+sfloppy.inf,STOR_sflopp_FILE_3,,
+sfloppy.rc,STOR_sflopp_FILE_4,,
+sources,STOR_sflopp_FILE_5,,
+
+[SourceDisksNames]
+1="STOR_sflopp.cab",STOR_sflopp.cab,0
+[SourceDisksFiles]
+STOR_sflopp_FILE_0=1,,97152
+STOR_sflopp_FILE_1=1,,751
+STOR_sflopp_FILE_2=1,,1805
+STOR_sflopp_FILE_3=1,,1474
+STOR_sflopp_FILE_4=1,,614
+STOR_sflopp_FILE_5=1,,278
+
+
+[Strings]
+FriendlyName=storage
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=6
+TotalSize=102074

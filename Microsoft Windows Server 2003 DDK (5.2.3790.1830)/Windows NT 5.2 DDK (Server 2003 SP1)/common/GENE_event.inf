@@ -1,0 +1,75 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\general\event\"
+Files_1=49000,"\src\general\event\exe\"
+Files_2=49000,"\src\general\event\sys\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"GENE_event"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","GENE_event",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+GENE_event.inf
+
+
+[Files_0]
+event.htm,GENE_event_FILE_0,,
+[Files_1]
+eventtest.c,GENE_event_FILE_1,,
+install.c,GENE_event_FILE_2,,
+makefile,GENE_event_FILE_3,,
+sources,GENE_event_FILE_4,,
+[Files_2]
+event.c,GENE_event_FILE_5,,
+event.h,GENE_event_FILE_6,,
+event.rc,GENE_event_FILE_7,,
+makefile,GENE_event_FILE_8,,
+public.h,GENE_event_FILE_9,,
+sources,GENE_event_FILE_10,,
+
+[SourceDisksNames]
+1="GENE_event.cab",GENE_event.cab,0
+[SourceDisksFiles]
+GENE_event_FILE_0=1,,5360
+GENE_event_FILE_1=1,,7925
+GENE_event_FILE_2=1,,11983
+GENE_event_FILE_3=1,,267
+GENE_event_FILE_4=1,,173
+GENE_event_FILE_5=1,,25776
+GENE_event_FILE_6=1,,2270
+GENE_event_FILE_7=1,,277
+GENE_event_FILE_8=1,,267
+GENE_event_FILE_9=1,,992
+GENE_event_FILE_10=1,,120
+
+
+[Strings]
+FriendlyName=general
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=11
+TotalSize=55410

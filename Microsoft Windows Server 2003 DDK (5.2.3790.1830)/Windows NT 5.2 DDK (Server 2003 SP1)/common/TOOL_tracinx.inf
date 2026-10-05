@@ -1,0 +1,65 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\tracing\i386\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"TOOL_tracinx"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_tracinx",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_tracinx.inf
+
+
+[Files_0]
+default.tmf,TOOL_tracinx_FILE_0,,
+system.tmf,TOOL_tracinx_FILE_1,,
+tracefmt.exe,TOOL_tracinx_FILE_2,,
+tracelog.exe,TOOL_tracinx_FILE_3,,
+tracepdb.exe,TOOL_tracinx_FILE_4,,
+traceprt.dll,TOOL_tracinx_FILE_5,,
+traceview.chm,TOOL_tracinx_FILE_6,,
+traceview.exe,TOOL_tracinx_FILE_7,,
+
+[SourceDisksNames]
+1="TOOL_tracinx.cab",TOOL_tracinx.cab,0
+[SourceDisksFiles]
+TOOL_tracinx_FILE_0=1,,4841
+TOOL_tracinx_FILE_1=1,,18204
+TOOL_tracinx_FILE_2=1,,24576
+TOOL_tracinx_FILE_3=1,,30208
+TOOL_tracinx_FILE_4=1,,111104
+TOOL_tracinx_FILE_5=1,,259072
+TOOL_tracinx_FILE_6=1,,1540375
+TOOL_tracinx_FILE_7=1,,399872
+
+
+[Strings]
+FriendlyName=tracing_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=8
+TotalSize=2388252

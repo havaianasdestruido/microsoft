@@ -1,0 +1,79 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\smartcrd\pscr\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"SMAR_pscr"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","SMAR_pscr",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+SMAR_pscr.inf
+
+
+[Files_0]
+makefile,SMAR_pscr_FILE_0,,
+pscr.htm,SMAR_pscr_FILE_1,,
+pscr.inf,SMAR_pscr_FILE_2,,
+pscr.rc,SMAR_pscr_FILE_3,,
+pscrcb.c,SMAR_pscr_FILE_4,,
+pscrcb.h,SMAR_pscr_FILE_5,,
+pscrcmd.c,SMAR_pscr_FILE_6,,
+pscrcmd.h,SMAR_pscr_FILE_7,,
+pscrlog.mc,SMAR_pscr_FILE_8,,
+pscrnt.c,SMAR_pscr_FILE_9,,
+pscrnt.h,SMAR_pscr_FILE_10,,
+pscrrdwr.c,SMAR_pscr_FILE_11,,
+pscrrdwr.h,SMAR_pscr_FILE_12,,
+pscrvers.h,SMAR_pscr_FILE_13,,
+sources,SMAR_pscr_FILE_14,,
+
+[SourceDisksNames]
+1="SMAR_pscr.cab",SMAR_pscr.cab,0
+[SourceDisksFiles]
+SMAR_pscr_FILE_0=1,,252
+SMAR_pscr_FILE_1=1,,16885
+SMAR_pscr_FILE_2=1,,2411
+SMAR_pscr_FILE_3=1,,1779
+SMAR_pscr_FILE_4=1,,28956
+SMAR_pscr_FILE_5=1,,1200
+SMAR_pscr_FILE_6=1,,28778
+SMAR_pscr_FILE_7=1,,2393
+SMAR_pscr_FILE_8=1,,3134
+SMAR_pscr_FILE_9=1,,72363
+SMAR_pscr_FILE_10=1,,6187
+SMAR_pscr_FILE_11=1,,10864
+SMAR_pscr_FILE_12=1,,10651
+SMAR_pscr_FILE_13=1,,645
+SMAR_pscr_FILE_14=1,,434
+
+
+[Strings]
+FriendlyName=smartcrd
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=15
+TotalSize=186932

@@ -1,0 +1,53 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\help\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"DDKSAMPLES"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","DDKSAMPLES",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+DDKSAMPLES.inf
+
+
+[Files_0]
+ddksamples.chi,DDKSAMPLES_FILE_0,,
+ddksamples.chm,DDKSAMPLES_FILE_1,,
+
+[SourceDisksNames]
+1="DDKSAMPLES.cab",DDKSAMPLES.cab,0
+[SourceDisksFiles]
+DDKSAMPLES_FILE_0=1,,22896
+DDKSAMPLES_FILE_1=1,,697332
+
+
+[Strings]
+FriendlyName=DDKSAMPLES_Doc
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=2
+TotalSize=720228

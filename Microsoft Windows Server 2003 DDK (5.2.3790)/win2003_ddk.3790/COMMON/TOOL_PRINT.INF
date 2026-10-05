@@ -1,0 +1,87 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\print\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"TOOL_print"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_print",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_print.inf
+
+
+[Files_0]
+.empty ,TOOL_print_FILE_0,,
+psfamily.dat ,TOOL_print_FILE_1,,
+ucs283h.map ,TOOL_print_FILE_2,,
+ucs283v.map ,TOOL_print_FILE_3,,
+ucs2bg5.map ,TOOL_print_FILE_4,,
+ucs2gbk.map ,TOOL_print_FILE_5,,
+ucs2jhb.map ,TOOL_print_FILE_6,,
+ucs2msj.map ,TOOL_print_FILE_7,,
+ucs2uhc.map ,TOOL_print_FILE_8,,
+uni83h.ps ,TOOL_print_FILE_9,,
+uni83v.ps ,TOOL_print_FILE_10,,
+unicnsh.ps ,TOOL_print_FILE_11,,
+unicnsv.ps ,TOOL_print_FILE_12,,
+unigbh.ps ,TOOL_print_FILE_13,,
+unigbv.ps ,TOOL_print_FILE_14,,
+unijish.ps ,TOOL_print_FILE_15,,
+unijisv.ps ,TOOL_print_FILE_16,,
+uniksh.ps ,TOOL_print_FILE_17,,
+uniksv.ps ,TOOL_print_FILE_18,,
+
+[SourceDisksNames]
+1="TOOL_print.cab",TOOL_print.cab,0
+[SourceDisksFiles]
+TOOL_print_FILE_0=1,,3
+TOOL_print_FILE_1=1,,16935
+TOOL_print_FILE_2=1,,106641
+TOOL_print_FILE_3=1,,106641
+TOOL_print_FILE_4=1,,208476
+TOOL_print_FILE_5=1,,284539
+TOOL_print_FILE_6=1,,257136
+TOOL_print_FILE_7=1,,112281
+TOOL_print_FILE_8=1,,222854
+TOOL_print_FILE_9=1,,141694
+TOOL_print_FILE_10=1,,141744
+TOOL_print_FILE_11=1,,262966
+TOOL_print_FILE_12=1,,1598
+TOOL_print_FILE_13=1,,178879
+TOOL_print_FILE_14=1,,1590
+TOOL_print_FILE_15=1,,142562
+TOOL_print_FILE_16=1,,4601
+TOOL_print_FILE_17=1,,171585
+TOOL_print_FILE_18=1,,1596
+
+
+[Strings]
+FriendlyName=print_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=19
+TotalSize=2364321

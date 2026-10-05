@@ -1,0 +1,69 @@
+// SpinMFC.odl : type library source for ActiveX Control project.
+// by Ken Bergmann
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(073F3253-30EB-11D0-B84A-00AA00C0803B), version(1.0),
+  helpstring("Corporate Benefits Sample Spin Control [MFC]"), control ]
+library SpinMFC
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CSpinMFCCtrl
+
+	[ uuid(073F3254-30EB-11D0-B84A-00AA00C0803B),
+	  helpstring("Dispatch interface for SpinMFC Control"), hidden ]
+	dispinterface _DSpinMFC
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CSpinMFCCtrl)
+			[id(1)] double Value;
+			[id(2)] double Increment;
+			[id(3)] double Maximum;
+			[id(4)] double Minimum;
+			[id(5)] short Currency;
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CSpinMFCCtrl)
+			//}}AFX_ODL_METHOD
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for CSpinMFCCtrl
+
+	[ uuid(073F3255-30EB-11D0-B84A-00AA00C0803B),
+	  helpstring("Event interface for SpinMFC Control") ]
+	dispinterface _DSpinMFCEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CSpinMFCCtrl)
+			[id(1)] void onChange();
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CSpinMFCCtrl
+
+	[ uuid(073F3256-30EB-11D0-B84A-00AA00C0803B),
+	  helpstring("SpinMFC Control"), control ]
+	coclass Spinner
+	{
+		[default] dispinterface _DSpinMFC;
+		[default, source] dispinterface _DSpinMFCEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+};

@@ -1,0 +1,93 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2,Files_3,Files_4
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2,Files_3,Files_4
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\wdm\acpi\acpisim\asl\"
+Files_1=49000,"\src\wdm\acpi\acpisim\driver\"
+Files_2=49000,"\src\wdm\acpi\acpisim\inc\"
+Files_3=49000,"\src\wdm\acpi\acpisim\inf\"
+Files_4=49000,"\src\wdm\acpi\smbbatt\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"WDM_acpi"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","WDM_acpi",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+WDM_acpi.inf
+
+
+[Files_0]
+basetbl.asl,WDM_acpi_FILE_0,,
+[Files_1]
+acpisim.c,WDM_acpi_FILE_1,,
+acpisim.h,WDM_acpi_FILE_2,,
+acpisim.htm,WDM_acpi_FILE_3,,
+acpisim.rc,WDM_acpi_FILE_4,,
+makefile,WDM_acpi_FILE_5,,
+sources,WDM_acpi_FILE_6,,
+[Files_2]
+asimlib.h,WDM_acpi_FILE_7,,
+[Files_3]
+acpisim.inf,WDM_acpi_FILE_8,,
+[Files_4]
+makefile,WDM_acpi_FILE_9,,
+pnppower.c,WDM_acpi_FILE_10,,
+smbbatt.c,WDM_acpi_FILE_11,,
+smbbatt.htm,WDM_acpi_FILE_12,,
+smbbatt.rc,WDM_acpi_FILE_13,,
+smbbattp.h,WDM_acpi_FILE_14,,
+smbmisc.c,WDM_acpi_FILE_15,,
+smbwmi.c,WDM_acpi_FILE_16,,
+sources,WDM_acpi_FILE_17,,
+
+[SourceDisksNames]
+1="WDM_acpi.cab",WDM_acpi.cab,0
+[SourceDisksFiles]
+WDM_acpi_FILE_0=1,,669
+WDM_acpi_FILE_1=1,,5119
+WDM_acpi_FILE_2=1,,1232
+WDM_acpi_FILE_3=1,,9599
+WDM_acpi_FILE_4=1,,313
+WDM_acpi_FILE_5=1,,638
+WDM_acpi_FILE_6=1,,338
+WDM_acpi_FILE_7=1,,1018
+WDM_acpi_FILE_8=1,,1397
+WDM_acpi_FILE_9=1,,636
+WDM_acpi_FILE_10=1,,53606
+WDM_acpi_FILE_11=1,,93447
+WDM_acpi_FILE_12=1,,8735
+WDM_acpi_FILE_13=1,,307
+WDM_acpi_FILE_14=1,,21576
+WDM_acpi_FILE_15=1,,36571
+WDM_acpi_FILE_16=1,,12125
+WDM_acpi_FILE_17=1,,775
+
+
+[Strings]
+FriendlyName=wdm
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=18
+TotalSize=248101

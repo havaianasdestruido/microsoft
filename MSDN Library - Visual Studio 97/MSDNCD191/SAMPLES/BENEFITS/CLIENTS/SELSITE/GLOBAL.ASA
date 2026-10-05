@@ -1,0 +1,64 @@
+<SCRIPT LANGUAGE="VBScript" RUNAT="Server">
+Sub Session_OnStart
+
+	'==Visual InterDev Generated - DataConnection startspan==
+	'--Project Data Connection
+		Session("DBConn_ConnectionString") = "DBQ=\\chloel2\BenefitDemo\benefits.mdb;DefaultDir=\\chloel2\BenefitDemo;Driver={Microsoft Access Driver (*.mdb)};DriverId=25;FIL=MS Access;ImplicitCommitSync=Yes;MaxBufferSize=512;MaxScanRows=8;PageTimeout=5;SafeTransactions=0;Threads=3;UID=admin;UserCommitSync=Yes;"
+		Session("DBConn_ConnectionTimeout") = 15
+		Session("DBConn_CommandTimeout") = 30
+		Session("DBConn_RuntimeUserName") = ""
+		Session("DBConn_RuntimePassword") = ""
+	'==Visual InterDev Generated - DataConnection endspan==
+	
+	Set DBConn = Server.CreateObject("ADODB.Connection")
+	DBConn.ConnectionTimeout = Session("DBConn_ConnectionTimeout")
+	DBConn.CommandTimeout = Session("DBConn_CommandTimeout")
+	DBConn.Open Session("DBConn_ConnectionString"), Session("DBConn_RuntimeUserName"), Session("DBConn_RuntimePassword")
+	Set Session("DBConn") = DBConn
+
+REM The abilities of each BrowserType are defined in the file Browscap.INI, which in turn must be 
+REM in the directory of Browscap.DLL ( e.g., \inetsrv\ASP\Cmpnts).  
+REM You will need to add to it as new browsers come 
+REM out; the header for each section is what Request.ServerVariables("HTTP_USER_AGENT") returns.
+REM MSWC.BrowserType returns -1 for TRUE or true, 0 for FALSE or false.%>
+
+	Set bc = Server.CreateObject("MSWC.BrowserType")
+	  
+REM browscap.ini might have a default section to handle unknown
+REM browsers, or you can handle the case here.
+
+	If bc.browser = "Unknown" then
+		 Session("ActiveXControls") = 0
+		 Session("javaapplets") = 0
+		 Session("javascript") = 0
+		 Session("majorver") = 1
+		 Session("frames") = 0
+		 Session("browser") = "Unknown"
+	else
+		 Session("ActiveXControls") = bc.ActiveXControls
+		 Session("javaapplets") = bc.javaapplets
+		 Session("javascript") = bc.javascript
+		 Session("majorver") = bc.majorver
+		 Session("frames") = bc.frames
+		 Session("browser") = bc.browser
+	end if
+
+
+	Response.Redirect "intro.asp"
+
+
+	'Insert script to be executed when a session starts
+End Sub
+
+'Sub Session_OnEnd
+	'Insert script to be executed when a session ends
+'End Sub
+
+'Sub Application_OnStart
+	'Insert script to be executed when the application starts
+'End Sub
+
+'Sub Application_OnEnd
+	'Insert script to be executed when the application ends
+'End Sub
+</SCRIPT>

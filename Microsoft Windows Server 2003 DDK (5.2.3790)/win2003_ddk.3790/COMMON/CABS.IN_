@@ -1,0 +1,1186 @@
+;============================================================================
+; The following keys are available for use in component sections, NOT
+; group sections:
+;
+;----------------------------------------------------------------------------
+; Key:
+;   PROCESSOR=
+;
+; Values:
+;   X86, NOT_X86, IA64, NOT_IA64, AMD64, NOT_AMD64, ALL
+;
+; Description:
+;   The PROCESSOR key associates processors with components.  If a component
+;   should not be installed on a computer that has a particular processor,
+;   specify PROCESSOR=[NOT_X86|NOT_IA64|NOT_AMD64] in the component's section
+;   and the checkbox next to the component in the Select Component Groups
+;   treeview control will be grayed and unselectable.
+;
+; Notes:
+;   * The values are case sensitive.
+;   * If the key is not present, the component can be installed on any
+;     computer.
+;
+; Examples:
+;   1. Allow this component to be installed on X86 and IA64 computers
+;   PROCESSOR=X86,IA64
+;
+;   2. Allow this component to be installed on all computers except AMD64
+;      machines
+;   PROCESSOR=NOT_AMD64
+;
+;   3. Specifying a processor is both valid and invalid will generate an 
+;      error and the user will not be allowed to install the component
+;   PROCESSOR=X86, NOT_X86
+;
+;   4. Specifying an unknown value will generate an error and the user will 
+;      be allowed to install the component
+;   PROCESSOR=UNKNOWN_PROCESSOR
+;
+;   5. Not specifying any value generates an error and the user will be 
+;      allowed to install the component
+;   PROCESSOR=
+;
+;----------------------------------------------------------------------------
+; Key:
+;   OS=
+;
+; Values:
+;   WIN2000, NOT_WIN2000, WINXP, NOT_WINXP, WIN2003, NOT_WIN2003, ALL
+;
+; Description:
+;   The OS key associates operating systems with components.  If a component 
+;   should not be installed on a computer that has a particular operating 
+;   system, specify 
+;   OS=[NOT_WIN2000|NOT_WINXP|NOT_WIN2003] 
+;   in the component's section and the checkbox next to the component in the 
+;   Select Component Groups treeview control will be grayed and unselectable.
+;
+; Notes:
+;   * The values are case sensitive.
+;   * If not present, the component can be installed on any computer.
+;
+; Examples:
+;   1. Allow this component to be installed only on Windows 2000 and Windows XP
+;   OS=WIN2000,WINXP
+;
+;   2. Allow this component to be installed on all computers except Windows 
+;      2000 machines
+;   OS=NOT_WIN2000 
+;
+;   3. Specifying an OS is both valid and invalid will generate an error and 
+;      the user will not be allowed to install the component
+;   OS=WINXP, NOT_WINXP 
+;
+;   4. Specifying an unknown value will generate an error and the user will 
+;      be allowed to install the component
+;   OS=UNKNOWN_OS
+;
+;   5. Not specifying any value generates an error and the user will be 
+;      allowed to install the component
+;   OS=
+;
+;
+;----------------------------------------------------------------------------
+; Key:
+;   CHECKED=
+;
+; Values:
+;   1, DDK, NOT_DDK, IFS, NOT_IFS, HAL, NOT_HAL, PDK, NOT_PDK, ALL
+;
+; Description:
+;   The CHECKED key selects a component to included in the default
+;   installation.  If a component is not valid on a particular kit, specify
+;   CHECKED=[NOT_DDK|NOT_IFS|NOT_HAL|NOT_PDK] in the component's section
+;   and the component will not be included in the specified kit's default
+;   installation.  However, the user is free to select the component.
+;
+; Notes:
+;   * The values are case sensitive.
+;   * If not present, the component will not be included in any kit's default
+;     installation.
+;
+; Examples:
+;   1. Include the component in all kits default installation
+;   CHECKED=1
+;
+;   2. Include the component ONLY in the DDK kit's default installation
+;   CHECKED=1,DDK
+;
+;   3. Include this component in the default installation of any kit except the
+;      PDK
+;   CHECKED=NOT_PDK
+;
+;   4. Specifying a kit is both valid and invalid will generate an error and 
+;      the user will not be allowed to install the component
+;   Checked=PDK, NOT_PDK
+;
+;   5. Specifying an unknown value will generate an error and the user will 
+;      be allowed to install the component
+;   checked=UNKNOWN_KIT
+;
+;   6. Not specifying any value generates an error and allows the component to 
+;      be included in the default installation on any computer 
+;   Checked=
+;
+;
+;============================================================================
+
+[Group0]
+Name="Build Environment"
+Description="Required build environment for developing Windows Device Drivers and Driver applications.  Includes headers, libraries, build tools and the Driver Development Kit build environment."
+Billboard=Build.rtf,1
+CabList="COREDDK|DDK_DBGx|DDK_DBGi"
+CABNAME=DDK_Env
+
+[Group1]
+Name="Documentation"
+Description="Documentation for the Windows Driver Development Kit"
+Billboard=Docs.rtf,3
+CabList="DDKINT|CMNDOCS"
+CABNAME=DDK_Docs
+
+[Group2]
+Name=Tools for Driver Developers
+Description=Tools for driver developers
+CabName=DDK_Tool
+
+[Group3]
+Name="Illustrative Driver Samples"
+Description="Illustrative samples included in the Windows Driver Development Kit"
+Billboard=Sample.rtf,1
+CABNAME=DDK_Samp
+
+[Group4]
+Name="Input Method Editor Samples"
+Description="Input Method Editor samples included in the Windows Driver Development Kit"
+Billboard=Sample.rtf,1
+CabList=IME_inc
+CABNAME=DDK_Samp
+
+[Group5]
+Name="Input Samples"
+Description="Input samples included in the Windows Driver Development Kit"
+Billboard=Sample.rtf,1
+CabList=INPU_inc
+CABNAME=DDK_Samp
+
+[Group6]
+Name="Kernel Samples"
+Description="Kernel Samples included in the Windows Driver Development Kit"
+Billboard=Sample.rtf,1
+CABNAME=DDK_Samp
+
+[Group7]
+Name="Network Samples"
+Description="Network samples included in the Windows Driver Development Kit"
+Billboard=Sample.rtf,1
+CabList=NETW_inc
+CABNAME=DDK_Samp
+
+[Group8]
+Name="Printer Samples"
+Description="Printer samples included in the Windows Driver Development Kit"
+Billboard=Sample.rtf,1
+CABNAME=DDK_Samp
+
+[Group9]
+Name="Smart Card Samples"
+Description="Smart Card samples included in the Windows Driver Development Kit"
+Billboard=Sample.rtf,1
+CabList=SMAR_inc
+CABNAME=DDK_Samp
+
+[Group10]
+Name="Storage Samples"
+Description="Storage samples included in the Windows Driver Development Kit"
+Billboard=Sample.rtf,1
+CabList=STOR_inc
+CABNAME=DDK_Samp
+
+[Group11]
+Name="Virtual Device Driver Samples"
+Description="Virtual Device samples included in the Windows Driver Development Kit"
+Billboard=Sample.rtf,1
+CABNAME=DDK_Samp
+
+[Group12]
+Name="Video Samples"
+Description="Video samples included in the Windows Driver Development Kit"
+Billboard=Sample.rtf,1
+CABNAME=DDK_Samp
+
+[Group13]
+Name="WDM Samples"
+Description="WDM samples included in the Windows Driver Development Kit"
+Billboard=Sample.rtf,1
+CABNAME=DDK_Samp
+
+[Common_Includes]
+FriendlyName="Windows Driver Development Kit Common headers"
+Description="Includes common headers required to build Windows Server 2003, Windows XP, and Windows 2000 drivers."
+Group=0
+Checked=1
+CabList="CMNINCS"
+Billboard=header.rtf,1
+CABNAME=DDK_hdrs
+
+[32_Common_BE]
+FriendlyName="Windows Driver Development Kit Required Build Tools"
+Description="Includes the build tools required to build Windows Server 2003, Windows XP, and Windows 2000 drivers."
+Group=0
+Checked=1
+CabList="CMNBINS|X86dBINS"
+Billboard=header.rtf,1
+CABNAME=DDK_bins
+
+[AMD64_BE]
+FriendlyName="Windows Driver Development Kit AMD64 Additional Build Tools"
+Description="(Beta) Includes additional tools required to build Windows Server 2003 drivers for AMD64"
+Group=0
+CabList="CMNBINS|A64XdBINS"
+
+[IA64_BE]
+FriendlyName="Windows Driver Development Kit IA64 Additional Build Tools"
+Description="Includes additional tools required to build Windows Server 2003 and Windows XP drivers for IA-64."
+Group=0
+Checked=NOT_PDK
+CabList="CMNBINS|XCmpdBINS|IA6dBINS"
+Billboard=header.rtf,1
+CABNAME=DDK_bins
+
+[16bit]
+FriendlyName="Windows Driver Development Kit 16-Bit Additional Build Tools"
+Description="Includes additional tools for building 16-bit VDDs for Windows 2000, Windows XP, and Windows Server 2003."
+Group=0
+PROCESSOR=X86
+CabList="D16BEBIN|D16BELIB|D16BEINC"
+
+[NINC_DDK]
+FriendlyName="Windows Server 2003 Headers"
+Description="Includes Windows Server 2003 specific headers (also requires the common headers)."
+Group=0
+Checked=1
+CabList="DDKINCS|SDKINCS1|SDKINCS2|SDKINCS3"
+Billboard=header.rtf,1
+CABNAME=DDK_hdrs
+
+[AMD64LIB]
+FriendlyName="Windows Server 2003 AMD64 Libraries"
+Description="64 bit AMD64 Libraries For Windows Server 2003 Driver Development"
+Group=0
+CabList="A64dLIB1|A64dLIB2|A64dLIB3"
+CABNAME=DDK_iBins
+
+[X86dBIN]
+FriendlyName="Windows Server 2003 x86 Libraries"
+Description="32 bit x86 Libraries For Windows Server 2003 Driver Development"
+Group=0
+Checked=1
+CabList="X86dLIB1|X86dLIB2|X86dLIB3"
+CABNAME=DDK_xBins
+
+[IA6dBIN]
+FriendlyName="Windows Server 2003 IA64 Libraries"
+Description="64 bit IA64 Libraries For Windows Server 2003 Driver Development"
+Group=0
+Checked=NOT_PDK
+CabList="IA6dLIB1|IA6dLIB2|IA6dLIB3"
+CABNAME=DDK_iBins
+
+[XPNINC_DDK]
+FriendlyName="Windows XP Headers"
+Description="Headers needed to Build Windows XP Drivers  (also requires the common headers)"
+Group=0
+CabList="XPDDKINCS|XPSDKINCS1|XPSDKINCS2|XPSDKINCS3|WXP_INCS"
+Billboard=header.rtf,1
+CABNAME=DDK_hdrs
+
+[XPX86dBIN]
+FriendlyName="Windows XP x86 Libraries"
+Description="32 bit x86 Libraries For Windows XP Driver Development"
+Group=0
+CabList="XPXLIB|XPX86dLIB1|XPX86dLIB2|XPX86dLIB3"
+CABNAME=DDK_XPxBins
+
+[XPIA6dBIN]
+FriendlyName="Windows XP IA64 Libraries"
+Description="64 bit IA64 Libraries For Windows Driver XP Development"
+Group=0
+CabList="XPILIB|XPIA6dLIB1|XPIA6dLIB2|XPIA6dLIB3"
+CABNAME=DDK_XPiBins
+
+[TOOLS6]
+FriendlyName=ACPI Power management tools
+Description=Utilities for testing ACPI Power Management (Sleeper and PMTE)
+Group=2
+Checked=1
+CabList=TOOL_acpi|TOOL_acpix|TOOL_acpii|TOOL_acpia
+CABNAME=DDK_Tools
+
+[TOOLS5]
+FriendlyName=Audio/Video streaming tools
+Description=Tools for enumerating, viewing and debugging kernel streaming filters. Include KSStudio, GraphEdt, and AMCap.
+Group=2
+Checked=1
+CabList=TOOL_avstre|TOOL_avstrex|TOOL_avstrei|TOOL_avstrea
+CABNAME=DDK_Tools
+
+[TOOLS1]
+FriendlyName=Chkinf
+Description=Perl utility for verifying INFs
+Group=2
+Checked=1
+CabList=TOOL_chkinf|TOOL_chkinfx
+CABNAME=DDK_Tools
+
+[TOOLS2]
+FriendlyName=Coinstaller
+Description=Redistributable coinstaller for device drivers
+Group=2
+Checked=1
+CabList=TOOL_coinst|TOOL_coinstx|TOOL_coinsti|TOOL_coinsta
+CABNAME=DDK_Tools
+
+[TOOLS9]
+FriendlyName=Device Console Utility
+Description=Device Console Utility
+Group=2
+Checked=1
+CabList=TOOL_devcon|TOOL_devconx|TOOL_devconi|TOOL_devcona
+CABNAME=DDK_Tools
+
+[TOOLS12]
+FriendlyName=DIMapCfg
+Description="DirectInput Device Map Files Generating Tool."
+Group=2
+Checked=1
+CabList=TOOL_dimapc|TOOL_dimapcx|TOOL_dimapci|TOOL_dimapca
+CABNAME=DDK_Tools
+
+[TOOLS3]
+FriendlyName=GenINF
+Description=GUI utility for creating device driver .inf files
+Group=2
+Checked=1
+CabList=TOOL_geninf|TOOL_geninfx
+CABNAME=DDK_Tools
+
+[TOOLS16]
+FriendlyName=IrDA Tools
+Description=Utilities for testing IrDA devices
+Group=2
+Checked=1
+CabList=TOOL_irda|TOOL_irdax|TOOL_irdai|TOOL_irdaa
+CABNAME=DDK_Tools
+
+[OSR_DC2]
+FriendlyName="Device Path Exerciser"
+Description="DC2 is an updated, enhanced, version of the DevCtl utility.  It performs a rigorous set of tests on device drivers, to ensure that those drivers correctly handle all manner of valid and invalid inputs without compromising system stability."
+Group=2
+Checked=1
+CabList="TOOL_dc2|TOOL_dc2x|TOOL_dc2i|TOOL_dc2a"
+CABNAME=DDK_Tools
+
+[TOOLS13]
+FriendlyName="OSR's DeviceTree"
+Description="DeviceTree is a driver development support utility that allows the user to examine the Device Objects and Driver Objects present in a system. Provided by Open System Resources, Inc."
+Group=2
+Checked=1
+CabList="TOOL_device|TOOL_devicex|TOOL_devicei|TOOL_devicea"
+CABNAME=DDK_Tools
+
+[TOOLS14]
+FriendlyName="OSR's PoolTag"
+Description="PoolTag is a GUI-based version of the venerable PoolMon utility that has long been provided in the Driver Development Kit.  Provided by Open Systems Resources, Inc."
+Group=2
+Checked=1
+CabList="TOOL_poolta|TOOL_pooltax|TOOL_pooltai|TOOL_pooltaa"
+CABNAME=DDK_Tools
+
+[TOOLS11]
+FriendlyName=PnpDTest
+Description="Plug and Play Driver Test Tool."
+Group=2
+Checked=1
+CabList=TOOL_pnpdte|TOOL_pnpdtex|TOOL_pnpdtei|TOOL_pnpdtea
+CABNAME=DDK_Tools
+
+[TOOLS4]
+FriendlyName=Print MDT
+Description=Print MDT utility
+Group=2
+Checked=1
+CabList=TOOL_print|TOOL_printx|TOOL_printi|TOOL_printa
+CABNAME=DDK_Tools
+
+[TOOLS_procalc]
+FriendlyName=Procalc
+Description=INF development tool
+Group=2
+Checked=1
+CabList="TOOL_procal|TOOL_procalx|TOOL_procali|TOOL_procala"
+CABNAME=DDK_Tools
+
+[TOOLS10]
+FriendlyName=SAPTest tool
+Description="SAPTest is a tool used to test the Secure Audio Path (SAP) feature. It generates content along with licenses to test various SAP scenarios."
+Group=2
+Checked=1
+CabList=TOOL_saptoo|TOOL_saptoox
+CABNAME=DDK_Tools
+
+[TOOLS7]
+FriendlyName=WIA Utilities
+Description=Utilities for testing WIA devices
+Group=2
+Checked=1
+CabList=TOOL_wia|TOOL_wiax|TOOL_wiai|TOOL_wiaa
+CABNAME=DDK_Tools
+
+[TOOLS15]
+FriendlyName=Software Tracing Tools
+Description=Software Tracing Tools
+Group=2
+Checked=1
+CabList=TOOL_tracin|TOOL_tracinx|TOOL_tracini|TOOL_tracina
+CABNAME=DDK_Tools
+
+[TOOL_other]
+FriendlyName=Other tools useful for driver developers
+Description=Includes: driver.exe, kernprof.exe, objdir.exe, poolmon.exe, regdmp.exe, and regini.exe
+Group=2
+Checked=1
+CabList=TOOL_other|TOOL_otherx|TOOL_otheri|TOOL_othera
+CABNAME=DDK_Tools
+
+[1394_DDK]
+CabList=WDM_1394
+FriendlyName="1394 Samples"
+Description="1394 Serial Bus Driver Samples"
+Group=13
+CABNAME=1394Samp
+
+[ACPI_DDK]
+CabList=WDM_acpi
+FriendlyName="ACPI Driver Sample"
+Description="An ACPI driver example which includes EC and HIDBATT"
+Group=13
+CABNAME=acpiSamp
+
+[NAUD_DDK]
+CabList="WDM_audio"
+FriendlyName="Audio Samples"
+Description="Audio Device Driver Samples"
+Group=13
+CABNAME=audSamp
+
+[NCAP_DDK]
+CabList=WDM_videoc
+FriendlyName="WDM Video Capture Samples"
+Description="WDM Video Capture Samples"
+Group=13
+CABNAME=capSamp
+
+[EVENT]
+FriendlyName="Event Notification Sample"
+Description="This sample demonstrates two different ways a Windows NT kernel-mode driver can notify an application about a hardware event."
+Group=3
+CabList="GENE_event"
+
+[IOCTL]
+FriendlyName="Ioctl Sample"
+Description="This sample demonstrates the usage of four different types of IOCTLs and how the user input & output buffer specified in the DeviceControl function is handled by the I/O subsystem and the driver in each case."
+Group=3
+CabList="GENE_ioctl"
+
+[IRPCancel]
+FriendlyName="Safe IRP Cancellation Sample"
+Description="This sample demonstrates the use of new cancel safe queue (IOCsqXXX) APIs for queuing IRPs in the driver's internal device queue."
+Group=3
+CabList="GENE_cancel"
+CABNAME=genSamp
+
+[PORTIO]
+FriendlyName="PortIO Sample"
+Description="This sample demonstrates how to reserve I/O ports with an INF file and read or write to the ports from an user application."
+Group=3
+CabList="GENE_Portio"
+CABNAME=genSamp
+
+[NGEN_DDK]
+FriendlyName="Toaster Bus Sample"
+Description="This sample contains annotated code to illustrate the functionality of bus driver, function driver, assorted class, device, and bus filter drivers, class-installer, and device-specific co-installer for a hypothetical Toaster bus and its devices."
+Group=3
+CabList="GENE_toaste"
+CABNAME=genSamp
+
+[WMI_Client]
+FriendlyName="WMI Illustrative Sample"
+Description="Sample applications for Window Management Instrumentation that demonstrates how to enumerate WBEM classes, query property types and methods."
+Group=3
+CabList="GENE_wmicli"
+CABNAME=genSamp
+
+[UPS_DDK]
+FriendlyName="UPS Minidriver Illustrative Sample"
+Description="This sample contains annotated code which illustrates the functionality of a UPS minidriver for use by the UPS service"
+Group=3
+CabList="GENE_ups"
+
+[NSTP_DDK]
+FriendlyName="Setup/Plug and Play Samples"
+Description="Samples illustrating setup, installation, and Plug and Play."
+Group=3
+CabList="SETU_pnppor|SETU_cocpyi|SETU_devupg|SETU_devcon|SETU_infs"
+CABNAME=setSamp
+
+[NHID_DDK]
+CabList=WDM_hid
+FriendlyName="HID Samples"
+Description="Human Input Device Driver Design Samples"
+Group=13
+CABNAME=hidSamp
+
+[NIME_DDK1]
+CabList=IME_chs
+FriendlyName="IME (CHS) Samples"
+Description="Input Method Editor (CHS) Samples"
+Group=4
+CABNAME=imeSamp
+
+[NIME_DDK2]
+CabList=IME_cht
+FriendlyName="IME (CHT) Samples"
+Description="Input Method Editor (CHT) Samples"
+Group=4
+CABNAME=imeSamp
+
+;[NIME_DDK3]
+;CabList=IME_docs
+;FriendlyName="IME Documentation"
+;Description="Input Method Editor Documentation"
+;Group=4
+;CABNAME=imeSamp
+
+[NIME_DDK4]
+CabList=IME_jpn
+FriendlyName="IME (JPN) Samples"
+Description="Input Method Editor (JPN) Samples"
+Group=4
+CABNAME=imeSamp
+
+[NIRD_DDK]
+CabList=NETW_irda
+FriendlyName="IRDA samples"
+Description="IRDA Device Driver Samples"
+Group=7
+CABNAME=irdSamp
+
+[NINP_DDK1]
+CabList=INPU_kbdcla|INPU_kbfilt|INPU_layout
+FriendlyName="Input (Keyboard) Samples"
+Description="Input Device (Keyboard) Driver Samples"
+Group=5
+CABNAME=inpSamp
+
+;[NINP_DDK2]
+;CabList=INPU_kbfilt
+;FriendlyName="Input Samples"
+;Description=Keyboard Filter Samples
+;Group=5
+;CABNAME=inpSamp
+
+[NINP_DDK3]
+CabList=INPU_moucla|INPU_moufil|INPU_mouser
+FriendlyName="Input (Mouse) Samples"
+Description="Input Device (Mouse) Driver Samples"
+Group=5
+CABNAME=inpSamp
+
+;[NINP_DDK4]
+;CabList=INPU_moufil
+;FriendlyName=Input Mouse Filter Samples
+;Description=Input Mouse Filter Samples
+;Group=5
+;CABNAME=inpSamp
+
+;[NINP_DDK5]
+;CabList=INPU_mouser
+;FriendlyName="Input Samples"
+;Description="Input Device Driver Samples"
+;Group=5
+;CABNAME=inpSamp
+
+[NINP_DDK6]
+CabList=INPU_pnpi80
+FriendlyName="Input (I8042) Sample"
+Description="Input Device (I8042) Driver Sample"
+Group=5
+CABNAME=inpSamp
+
+[NINP_DDK7]
+CabList=INPU_dinput
+FriendlyName="Input (DirectInput) Samples"
+Description="Input Device (DirectInput) Driver Samples"
+Group=5
+CABNAME=inpSamp
+
+[NKRN_DDK1]
+CabList=KERN_agp
+FriendlyName="Kernel-Mode AGP Samples"
+Description="Kernel-Mode AGP Driver Samples"
+Group=6
+CABNAME=krnSamp
+
+[NKRN_DDK2]
+CabList=KERN_mca
+FriendlyName="Kernel-Mode MCA Samples"
+Description="Kernel-Mode MCA Driver Samples"
+Group=6
+CABNAME=krnSamp
+
+[NKRN_DDK3]
+CabList=KERN_parpor
+FriendlyName="Kernel-Mode Parallel Port Sample"
+Description="Kernel-Mode Parallel Port Sample"
+Group=6
+CABNAME=krnSamp
+
+[NKRN_DDK4]
+CabList=KERN_serenu|KERN_serial
+FriendlyName="Kernel-Mode Serial Sample"
+Description="Kernel-Mode Serial Sample"
+Group=6
+CABNAME=krnSamp
+
+[NKRN_DDK5]
+CabList=KERN_server
+FriendlyName="Server Availability Driver Samples"
+Description="Server Availability Driver Samples"
+Group=6
+CABNAME=krnSamp
+
+;[NKRN_DDK6]
+;CabList=KERN_serial
+;FriendlyName="Kernel-Mode Serial Samples"
+;Description="Kernel-Mode Serial Samples"
+;Group=6
+;CABNAME=krnSamp
+
+[NMED_DDK1]
+CabList=MMED_gsm610|MMED_imaadp|MMED_msfilt
+FriendlyName="Multi-Media (Codec) samples"
+Description="Multi-Media Device (Codec) Driver Samples"
+Group=13
+CABNAME=medSamp
+
+;[NMED_DDK2]
+;CabList=MMED_imaadp
+;FriendlyName="Multi-Media samples"
+;Description="Multi-Media Device Driver Samples"
+;Group=13
+;CABNAME=medSamp
+
+;[NMED_DDK3]
+;CabList=MMED_msfilt
+;FriendlyName="Multi-Media Filter samples"
+;Description="Multi-Media Filter Samples"
+;Group=13
+;CABNAME=medSamp
+
+[NNET_DDK1]
+FriendlyName="Network Config Samples"
+Description="Network Driver Config Samples"
+Group=7
+CabList=NETW_config
+CABNAME=netSamp
+
+[NNET_DDK2]
+FriendlyName="Network NDIS Samples"
+Description="Network Driver NDIS Design Samples"
+Group=7
+CabList=NETW_ndis
+CABNAME=netSamp
+
+[NNET_DDK3]
+FriendlyName="Network Winsock Samples"
+Description="Winsock Socket Helper DLL Sample"
+Group=7
+CabList=NETW_wshsmp
+CABNAME=netSamp
+
+[NNET_DDK4]
+FriendlyName="Network Modem Samples"
+Description="Network Modem INF Samples"
+Group=7
+CabList=NETW_modem
+CABNAME=netSamp
+
+
+;[NNET_DDK5]
+;CabList=NETW_tdi
+;FriendlyName="TDI samples"
+;Description="TDI Driver Samples"
+;Group=7
+
+
+[NPRN_DDK1]
+FriendlyName="Printer (CPSUI) Samples"
+Description="Printer Driver (Common Property Sheet User Interface) Design Samples"
+Group=8
+CabList=PRIN_cpsuis
+CABNAME=prnSamp
+
+[NPRN_DDK2]
+FriendlyName="Printer Mini Driver Samples"
+Description="Printer Mini Driver Samples"
+Group=8
+CabList=PRIN_mini
+CABNAME=prnSamp
+
+[NPRN_DDK3]
+FriendlyName="Printer (Print Processor) Samples"
+Description="Printer Driver (Print Processor) Design Samples"
+Group=8
+CabList=PRIN_genpri
+CABNAME=prnSamp
+
+[NPRN_DDK4]
+FriendlyName="Printer INFs Samples"
+Description="Printer INFs Samples"
+Group=8
+CabList=PRIN_infs
+CABNAME=prnSamp
+
+;[NPRN_DDK5]
+;FriendlyName="Printer MDT Samples"
+;Description="Printer MDT Samples"
+;Group=8
+;CabList=PRIN_mdt
+;CABNAME=prnSamp
+
+[NPRN_DDK6]
+FriendlyName="Printer Monitor Samples"
+Description="Printer Monitor Samples"
+Group=8
+CabList=PRIN_monito
+CABNAME=prnSamp
+
+[NPRN_DDK7]
+FriendlyName="Printer MS Plotter Samples"
+Description="Printer MS Plotter Samples"
+Group=8
+CabList=PRIN_msplot
+CABNAME=prnSamp
+
+[NPRN_DDK8]
+FriendlyName="Printer OEM DLL Samples"
+Description="Printer OEM DLL Samples"
+Group=8
+CabList=PRIN_oemdll
+CABNAME=prnSamp
+
+[NPRN_DDK9]
+FriendlyName="Printer Print Provider Sample"
+Description=Printer Print Provider Sample
+Group=8
+CabList=PRIN_pp
+CABNAME=prnSamp
+
+[NPRN_DDK10]
+FriendlyName="Printer Queue Samples"
+Description="Printer Queue Samples"
+Group=8
+CabList=PRIN_queuea
+CABNAME=prnSamp
+
+[NPRN_DDK11]
+FriendlyName="Text Only Printer Driver Samples"
+Description="Text Only Printer Driver Samples"
+Group=8
+CabList=PRIN_tty
+CABNAME=prnSamp
+
+
+[NSCD_DDK1]
+CabList=SMAR_bulltl
+FriendlyName="Smart Card (Bull TLP3) Sample"
+Description="Smart Card Driver (Bull TLP3) Design Sample"
+Group=9
+CABNAME=scdSamp
+
+[NSCD_DDK2]
+CabList=SMAR_pscr
+FriendlyName="Smart Card (SCM PCMCIA WDM) Sample"
+Description="Smart Card Driver (SCM PCMCIA WDM) Design Sample"
+Group=9
+CABNAME=scdSamp
+
+[NSTO_DDK1]
+CabList=STOR_change
+FriendlyName="Storage Changers Samples"
+Description="Storage Changers Driver Samples"
+Group=10
+CABNAME=stoSamp
+
+[NSTO_DDK2]
+CabList=STOR_class
+FriendlyName="Storage Class Driver Samples"
+Description="Storage Class Driver Samples"
+Group=10
+CABNAME=stoSamp
+
+[NSTO_DDK3]
+CabList=STOR_fdc
+FriendlyName="Storage Floppy Samples"
+Description="Storage Floppy Samples"
+Group=10
+CABNAME=stoSamp
+
+[NSTO_DDK4]
+CabList=STOR_filter
+FriendlyName="Storage Filter Samples"
+Description="Storage Filter Samples"
+Group=10
+CABNAME=stoSamp
+
+[NSTO_DDK5]
+CabList=STOR_miniid
+FriendlyName="Storage Mini-IDE Samples"
+Description="Storage Mini-IDE Samples"
+Group=10
+CABNAME=stoSamp
+
+[NSTO_DDK6]
+CabList=STOR_minipo
+FriendlyName="Storage Mini-Port Samples"
+Description="Storage Mini-Port Driver Samples"
+Group=10
+CABNAME=stoSamp
+
+[NSTO_DDK7]
+CabList=STOR_sflopp
+FriendlyName="Storage Super Floppy Driver Samples"
+Description="Storage Super Floppy Driver Samples"
+Group=10
+CABNAME=stoSamp
+
+[NSTO_DDK8]
+CabList=STOR_tape
+FriendlyName="Storage Tape Samples"
+Description="Storage Tape Driver Samples"
+Group=10
+CABNAME=stoSamp
+
+[NSTO_DDK9]
+CabList=STOR_tools
+FriendlyName="Storage Tool Samples"
+Description="Storage Driver Tool Samples"
+Group=10
+CABNAME=stoSamp
+
+[NUSB_DDK]
+CabList=WDM_usb
+FriendlyName="USB Samples"
+Description="Universal Serial Bus Driver Design Samples"
+Group=13
+CABNAME=usbSamp
+
+[NVDD_DDK]
+CabList=VDD_dosioc|vdd_com_vd
+FriendlyName="Virtual DOS Driver Samples"
+Description="Virtual DOS Driver Design Samples"
+Group=11
+CABNAME=vddSamp
+
+[NVID_DDK1]
+CabList=VIDE_displa
+FriendlyName="Video Driver Samples"
+Description="Graphics Drivers Design Samples"
+Group=12
+CABNAME=vidSamp
+
+[NVID_DDK2]
+CabList=VIDE_monito
+FriendlyName="Video INF Samples"
+Description="Graphics Drivers INF Design Samples"
+Group=12
+CABNAME=vidSamp
+
+[NWIA_DDK]
+CabList=WDM_wia
+FriendlyName="WIA Samples"
+Description="Windows Image Acquisition Samples"
+Group=13
+CABNAME=wiaSamp
+
+[BDA_DDK]
+CabList=WDM_bda
+FriendlyName="BDA Samples"
+Description="Broadcast Driver Architecture Samples"
+Group=13
+CABNAME=BDAsamp
+
+[NWDM_DDK]
+FriendlyName="General WDM Samples"
+Description="General WDM Driver Design Samples"
+Group=13
+CabList=WDM_wmi
+CABNAME=wdmSamp
+
+[AVS_DDK]
+CabList=WDM_avstre
+FriendlyName="AVStream Samples"
+Description="AVStream Driver Samples"
+Group=13
+CABNAME=AVSsamp
+
+
+; Main Document Set
+; Note this does not need its own install section. It is installed by default
+; when ever any document topic is installed (look at the Group1 section for the
+; listing).
+;[DDKINT]
+;FriendlyName="Using the Windows Driver Development Documentation"
+;Description="Using the Windows Driver Development Documentation"
+;Group=1
+;CabList="DDKINT"
+;CABNAME=ddkintDocs
+
+[GSTART]
+FriendlyName="Overview of Windows Driver Development Documentation"
+Description="Overview of Windows Driver Development Documentation"
+Group=1
+CabList="GSTART"
+CABNAME=gstDocs
+Checked=1
+
+[KMARCH]
+FriendlyName="Kernel Mode Drivers Documentation"
+Description="Kernel Mode Drivers Documentation"
+Group=1
+CabList="KMARCH"
+CABNAME=kmaDocs
+Checked=1
+
+[INSTALL]
+FriendlyName="Device Installation Overview Documentation"
+Description="Device Installation Overview Documentation"
+Group=1
+CabList="INSTALL"
+CABNAME=instDocs
+Checked=1
+
+[DDTOOLS]
+FriendlyName="Driver Development Tools Documentation"
+Description="Driver Development Tools Documentation"
+Group=1
+CabList="DDTOOLS"
+CABNAME=ddtoolDocs
+Checked=1
+
+[ACPI]
+FriendlyName="ACPI Drivers Documentation"
+Description="ACPI Drivers Documentation"
+Group=1
+CabList="ACPI"
+CABNAME=acpiDocs
+Checked=1
+
+[BATTERY]
+FriendlyName="Writing Battery Miniclass Drivers Documentation"
+Description="Writing Battery Miniclass Drivers Documentation"
+Group=1
+CabList="BATTERY"
+CABNAME=batteryDocs
+Checked=1
+
+[GRAPHICS]
+FriendlyName="Graphics Drivers Documentation"
+Description="Graphics Drivers Documentation"
+Group=1
+CabList="GRAPHICS"
+CABNAME=graphicsDocs
+Checked=1
+
+[1284DOT4]
+FriendlyName="IEEE 1284.4 Devices Documentation"
+Description="IEEE 1284.4 Devices Documentation"
+Group=1
+CabList="1284DOT4"
+CABNAME=1284dot4Docs
+Checked=1
+
+[INTINPUT]
+FriendlyName="Interactive Input Devices Documentation"
+Description="Interactive Input Devices Documentation"
+Group=1
+CabList="INTINPUT"
+CABNAME=intinputDocs
+Checked=1
+
+[MODEM]
+FriendlyName="Modem Devices Documentation"
+Description="Modem Devices Documentation"
+Group=1
+CabList="MODEM"
+CABNAME=modemDocs
+Checked=1
+
+[MULTIFNC]
+FriendlyName="Multifunction Devices Documentation"
+Description="Multifunction Devices Documentation"
+Group=1
+CabList="MULTIFNC"
+CABNAME=multifncDocs
+Checked=1
+
+[NETWORK]
+FriendlyName="Network Devices and Protocols Documentation"
+Description="Network Devices and Protocols Documentation"
+Group=1
+CabList="NETWORK"
+CABNAME=networkDocs
+Checked=1
+
+[PARALLEL]
+FriendlyName="Parallel Port Devices Documentation"
+Description="Parallel Port Devices Documentation"
+Group=1
+CabList="PARALLEL"
+CABNAME=parallelDocs
+Checked=1
+
+[SERIAL]
+FriendlyName="Serial Port Devices Documentation"
+Description="Serial Port Devices Documentation"
+Group=1
+CabList="SERIAL"
+CABNAME=serialDocs
+Checked=1
+
+[SERVAPPL]
+FriendlyName="Server Appliance High Availability Documentation"
+Description="Server Appliance High Availability Documentation"
+Group=1
+CabList="SERVAPPL"
+CABNAME=servapplDocs
+Checked=1
+
+[SMART]
+FriendlyName="Smart Card Devices Documentation"
+Description="Smart Card Devices Documentation"
+Group=1
+CabList="SMART"
+CABNAME=smartDocs
+Checked=1
+
+[STILL]
+FriendlyName="Still Image Devices Documentation"
+Description="Still Image Devices Documentation"
+Group=1
+CabList="STILL"
+CABNAME=stillDocs
+Checked=1
+
+[STORAGE]
+FriendlyName="Storage Devices Documentation"
+Description="Storage Devices Documentation"
+Group=1
+CabList="STORAGE"
+CABNAME=storageDocs
+Checked=1
+
+[STREAM]
+FriendlyName="Kernel Streaming Documentation"
+Description="Kernel Streaming Documentation"
+Group=1
+CabList="STREAM"
+CABNAME=streamDocs
+Checked=1
+
+[TRACEDRV]
+FriendlyName="Trace Driver Sample"
+Description="This sample demonstrates the use of software tracing."
+Group=3
+CabList="GENE_TraceD"
+CABNAME=genSamp
+
+[OTHER]
+FriendlyName="Other Devices Documentation"
+Description="Other Devices Documentation"
+Group=1
+CabList="OTHER"
+CABNAME=otherDocs
+Checked=1
+
+[BUSES]
+FriendlyName="System Support for Buses Documentation"
+Description="System Support for Buses Documentation"
+Group=1
+CabList="BUSES"
+CABNAME=busDocs
+Checked=1
+
+[W98DDK]
+FriendlyName="Windows 98/Me Driver Documentation"
+Description="Windows 98/Me Driver Documentation"
+Group=1
+CabList="W98DDK"
+CABNAME=w98ddkDocs
+Checked=1
+
+[PREFASTDOCS]
+FriendlyName="PREfast Documentation"
+Description="PREfast Documentation"
+Group=1
+CabList="VCPREFAST"
+CABNAME=PFDOCS
+Checked=1
+
+[GLOSS]
+FriendlyName="DDK Documentation Glossary"
+Description="Driver Development Kit Documentation Glossary"
+Group=1
+CabList="GLOSS"
+CABNAME=glossDocs
+Checked=1
+
+[APPENDIX]
+FriendlyName="DDK Documentation Appendix"
+Description="Driver Development Kit Documentation Appendix"
+Group=1
+CabList="APPENDIX"
+CABNAME=appendixDocs
+Checked=1
+
+[2kddkinc]
+FriendlyName=Windows 2000 Headers
+Description="Headers required for compiling Windows 2000 drivers (also requires the common headers)"
+Group=0
+CabList="DDKINC2k|SDKINC2k1|SDKINC2k2|SDKINC2k3|W2K_INCs"
+CABNAME="N2K_DDK"
+
+[X86DBINw2k]
+FriendlyName=Windows 2000 Build Environment
+Description="Windows 2000 Build Environment (also requires the Common 32-bit build environment)"
+Group=0
+CabList="x86dbin|x86dlibc|w2k_LIBs|SDK2KLIB1|SDK2KLIB2|SDK2KLIB3"
+CABNAME=x86dbin
+
+[KEYS_AND_VALUES]
+PROCESSOR=X86, NOT_X86, IA64, NOT_IA64, AMD64, NOT_AMD64, ALL
+OS=WIN2000, NOT_WIN2000, WINXP, NOT_WINXP, WIN2003, NOT_WIN2003, ALL
+CHECKED=1, DDK, NOT_DDK, IFS, NOT_IFS, HAL, NOT_HAL, PDK, NOT_PDK, ALL
+
+
+[General]             
+Description=Microsoft Windows Driver Development Kit
+RootDescription=Microsoft Windows Driver Development Kit
+DefaultInstallDirectory=\WINDDK
+Uninstall=1
+UninstallPath=\INF\MSDDK
+ProductKey=Software\Microsoft\WINDDK
+AllUsers=1
+CustomActions=

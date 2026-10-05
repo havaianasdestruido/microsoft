@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<TITLE>fourSquare</TITLE>
+</HEAD>
+<BODY BGCOLOR="005080">
+<HR>
+<OBJECT 
+	CLASSID="clsid:5220cb21-c88d-11cf-b347-00aa00a28331">
+	<PARAM NAME="LPKPath" VALUE="BChart3d.lpk">
+</OBJECT>
+<OBJECT 
+	CLASSID="CLSID:36EBB295-7567-11D0-8317-00AA006C3AB9"
+	ID=FourSquare Width=200 Height=400
+	Codebase=bchart3d.cab#version1,0,0,0">
+	<PARAM NAME=MAXBEN VALUE=150>
+	<PARAM NAME=PRELABEL VALUE="Pre-tax:">
+	<PARAM NAME=POSTLABEL VALUE="Post-tax:">
+</OBJECT>
+
+<HR>
+<FORM NAME=theForm>
+DeltaPre: <INPUT TYPE=TEXT NAME=Pre VALUE=0> DeltaPost: <INPUT TYPE=TEXT NAME=Post VALUE=0>
+<INPUT TYPE=BUTTON NAME=Redraw VALUE=Redraw><INPUT TYPE=BUTTON NAME=Jreset VALUE=Reset></P>
+</FORM>
+<SCRIPT LANGUAGE=VBScript>
+Sub Redraw_onClick
+	dpre = theForm.Pre.Value
+	dpost = theForm.Post.Value
+	truth = FourSquare.Recalc(dpre, dpost)
+End Sub
+Sub Jreset_onClick
+   truth = FourSquare.Reset()
+End Sub
+</SCRIPT>
+<!--
+-->
+</BODY>
+</HTML>

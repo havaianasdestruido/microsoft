@@ -1,0 +1,57 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\smartcrd\inc\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"SMAR_inc"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","SMAR_inc",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+SMAR_inc.inf
+
+
+[Files_0]
+scutil.h,SMAR_inc_FILE_0,,
+smcdbg.h,SMAR_inc_FILE_1,,
+smclib.h,SMAR_inc_FILE_2,,
+smcnt.h,SMAR_inc_FILE_3,,
+
+[SourceDisksNames]
+1="SMAR_inc.cab",SMAR_inc.cab,0
+[SourceDisksFiles]
+SMAR_inc_FILE_0=1,,2497
+SMAR_inc_FILE_1=1,,746
+SMAR_inc_FILE_2=1,,29086
+SMAR_inc_FILE_3=1,,1386
+
+
+[Strings]
+FriendlyName=smartcrd
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=4
+TotalSize=33715

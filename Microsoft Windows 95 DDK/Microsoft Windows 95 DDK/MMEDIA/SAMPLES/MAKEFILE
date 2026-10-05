@@ -1,0 +1,51 @@
+##************************************************************************
+##**
+##**  THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+##**  ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED
+##**  TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR
+##**  A PARTICULAR PURPOSE.
+##**
+##**  Copyright (C) 1993 - 1995 Microsoft Corporation. All Rights Reserved.
+##**
+##**  makefile
+##**
+##**  to build a debug version:
+##**       NMAKE
+##**  to build a non debug version:
+##**       NMAKE DEBUG=NO
+##**
+##**  HISTORY:
+##**	 06/01/96		created.
+##**
+##**  Please note!  link.exe from MASM 6.11 is older than link.exe from 
+##**  MSVC 1.0 or 1.5.  Be sure you are using the link.exe from MSVC 
+##**  instead of the one from MASM when building this sample.
+##**
+##************************************************************************
+
+!ifdef MASTER_MAKE
+DIRS=auravis\
+	digitalv\
+	gsm610\
+	icsample\
+	imaadpcm\
+	mciqa\
+	mcivisca\
+	msfilter\
+	msjstick\
+	msmpu401\
+	msopl\
+	msrlec\
+	mssndsys\
+	vcr
+!ifdef DDKROOT
+!INCLUDE $(DDKROOT)\master.mk
+!else
+!ERROR > DDKROOT not defined.
+!endif
+!else
+!MESSAGE >
+!MESSAGE > The environment variable MASTER_MAKE must be defined in order to use
+!MESSAGE > this makefile.  (ie.  SET MASTER_MAKE=1)
+!MESSAGE >
+!endif

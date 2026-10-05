@@ -1,0 +1,53 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\dc2\ia64\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"TOOL_dc2i"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_dc2i",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_dc2i.inf
+
+
+[Files_0]
+dc2.exe,TOOL_dc2i_FILE_0,,
+dc2wmiparser.exe,TOOL_dc2i_FILE_1,,
+
+[SourceDisksNames]
+1="TOOL_dc2i.cab",TOOL_dc2i.cab,0
+[SourceDisksFiles]
+TOOL_dc2i_FILE_0=1,,288768
+TOOL_dc2i_FILE_1=1,,24064
+
+
+[Strings]
+FriendlyName=dc2_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=2
+TotalSize=312832

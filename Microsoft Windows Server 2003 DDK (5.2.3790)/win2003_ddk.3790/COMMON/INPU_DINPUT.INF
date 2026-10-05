@@ -1,0 +1,127 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\input\dinput\cplsvr1\"
+Files_1=49000,"\src\input\dinput\ffdrv1\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"INPU_dinput"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","INPU_dinput",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+INPU_dinput.inf
+
+
+[Files_0]
+BtnDwn.ico,INPU_dinput_FILE_0,,
+BtnUp.ico,INPU_dinput_FILE_1,,
+Button.cpp,INPU_dinput_FILE_2,,
+Config.ico,INPU_dinput_FILE_3,,
+Cplsvr1.cpp,INPU_dinput_FILE_4,,
+Cplsvr1.def,INPU_dinput_FILE_5,,
+Cplsvr1.h,INPU_dinput_FILE_6,,
+Cplsvr1.htm,INPU_dinput_FILE_7,,
+Cplsvr1.inf,INPU_dinput_FILE_8,,
+Cplsvr1.mak,INPU_dinput_FILE_9,,
+Cplsvr1.rc,INPU_dinput_FILE_10,,
+CplsvrNT.inf,INPU_dinput_FILE_11,,
+Dicpl.h,INPU_dinput_FILE_12,,
+Dicputil.cpp,INPU_dinput_FILE_13,,
+Dicputil.h,INPU_dinput_FILE_14,,
+Makefile,INPU_dinput_FILE_15,,
+Pages.cpp,INPU_dinput_FILE_16,,
+Pages.h,INPU_dinput_FILE_17,,
+Resource.h,INPU_dinput_FILE_18,,
+Resrc1.h,INPU_dinput_FILE_19,,
+Sources,INPU_dinput_FILE_20,,
+Winflag.ico,INPU_dinput_FILE_21,,
+[Files_1]
+clsfact.c,INPU_dinput_FILE_22,,
+default.mk,INPU_dinput_FILE_23,,
+effdrv.c,INPU_dinput_FILE_24,,
+effdrv.h,INPU_dinput_FILE_25,,
+effhw.c,INPU_dinput_FILE_26,,
+effpub.h,INPU_dinput_FILE_27,,
+ffdrv1.def,INPU_dinput_FILE_28,,
+ffdrv1.inf,INPU_dinput_FILE_29,,
+ffdrv1.rc,INPU_dinput_FILE_30,,
+main.c,INPU_dinput_FILE_31,,
+makefile,INPU_dinput_FILE_32,,
+makefile.wat,INPU_dinput_FILE_33,,
+makefile1,INPU_dinput_FILE_34,,
+readme.txt,INPU_dinput_FILE_35,,
+sources,INPU_dinput_FILE_36,,
+watcom.mk,INPU_dinput_FILE_37,,
+
+[SourceDisksNames]
+1="INPU_dinput.cab",INPU_dinput.cab,0
+[SourceDisksFiles]
+INPU_dinput_FILE_0=1,,766
+INPU_dinput_FILE_1=1,,766
+INPU_dinput_FILE_2=1,,5101
+INPU_dinput_FILE_3=1,,766
+INPU_dinput_FILE_4=1,,24711
+INPU_dinput_FILE_5=1,,103
+INPU_dinput_FILE_6=1,,3761
+INPU_dinput_FILE_7=1,,3322
+INPU_dinput_FILE_8=1,,6318
+INPU_dinput_FILE_9=1,,6786
+INPU_dinput_FILE_10=1,,6230
+INPU_dinput_FILE_11=1,,5162
+INPU_dinput_FILE_12=1,,6788
+INPU_dinput_FILE_13=1,,15569
+INPU_dinput_FILE_14=1,,2121
+INPU_dinput_FILE_15=1,,339
+INPU_dinput_FILE_16=1,,32550
+INPU_dinput_FILE_17=1,,2884
+INPU_dinput_FILE_18=1,,2271
+INPU_dinput_FILE_19=1,,679
+INPU_dinput_FILE_20=1,,837
+INPU_dinput_FILE_21=1,,766
+INPU_dinput_FILE_22=1,,4008
+INPU_dinput_FILE_23=1,,1816
+INPU_dinput_FILE_24=1,,33372
+INPU_dinput_FILE_25=1,,18765
+INPU_dinput_FILE_26=1,,45938
+INPU_dinput_FILE_27=1,,1978
+INPU_dinput_FILE_28=1,,166
+INPU_dinput_FILE_29=1,,15572
+INPU_dinput_FILE_30=1,,1805
+INPU_dinput_FILE_31=1,,7622
+INPU_dinput_FILE_32=1,,267
+INPU_dinput_FILE_33=1,,43
+INPU_dinput_FILE_34=1,,1485
+INPU_dinput_FILE_35=1,,2306
+INPU_dinput_FILE_36=1,,479
+INPU_dinput_FILE_37=1,,486
+
+
+[Strings]
+FriendlyName=input
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=38
+TotalSize=264704

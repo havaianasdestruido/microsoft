@@ -1,0 +1,81 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\print\genprint\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"PRIN_genpri"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","PRIN_genpri",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+PRIN_genpri.inf
+
+
+[Files_0]
+emf.c,PRIN_genpri_FILE_0,,
+genprint.htm,PRIN_genpri_FILE_1,,
+local.c,PRIN_genpri_FILE_2,,
+local.h,PRIN_genpri_FILE_3,,
+makefile,PRIN_genpri_FILE_4,,
+parsparm.c,PRIN_genpri_FILE_5,,
+raw.c,PRIN_genpri_FILE_6,,
+sources,PRIN_genpri_FILE_7,,
+support.c,PRIN_genpri_FILE_8,,
+text.c,PRIN_genpri_FILE_9,,
+util.c,PRIN_genpri_FILE_10,,
+winprint.c,PRIN_genpri_FILE_11,,
+winprint.def,PRIN_genpri_FILE_12,,
+winprint.h,PRIN_genpri_FILE_13,,
+winprint.prf,PRIN_genpri_FILE_14,,
+winprint.rc,PRIN_genpri_FILE_15,,
+
+[SourceDisksNames]
+1="PRIN_genpri.cab",PRIN_genpri.cab,0
+[SourceDisksFiles]
+PRIN_genpri_FILE_0=1,,97692
+PRIN_genpri_FILE_1=1,,8525
+PRIN_genpri_FILE_2=1,,2402
+PRIN_genpri_FILE_3=1,,2020
+PRIN_genpri_FILE_4=1,,199
+PRIN_genpri_FILE_5=1,,8342
+PRIN_genpri_FILE_6=1,,3482
+PRIN_genpri_FILE_7=1,,1031
+PRIN_genpri_FILE_8=1,,2811
+PRIN_genpri_FILE_9=1,,23834
+PRIN_genpri_FILE_10=1,,1480
+PRIN_genpri_FILE_11=1,,22173
+PRIN_genpri_FILE_12=1,,230
+PRIN_genpri_FILE_13=1,,1640
+PRIN_genpri_FILE_14=1,,35
+PRIN_genpri_FILE_15=1,,339
+
+
+[Strings]
+FriendlyName=print
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=16
+TotalSize=176235

@@ -1,0 +1,73 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\general\ioctl\"
+Files_1=49000,"\src\general\ioctl\exe\"
+Files_2=49000,"\src\general\ioctl\sys\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"GENE_ioctl"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","GENE_ioctl",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+GENE_ioctl.inf
+
+
+[Files_0]
+ioctl.htm,GENE_ioctl_FILE_0,,
+[Files_1]
+install.c,GENE_ioctl_FILE_1,,
+makefile,GENE_ioctl_FILE_2,,
+sources,GENE_ioctl_FILE_3,,
+testapp.c,GENE_ioctl_FILE_4,,
+[Files_2]
+MAKEFILE,GENE_ioctl_FILE_5,,
+sioctl.c,GENE_ioctl_FILE_6,,
+sioctl.h,GENE_ioctl_FILE_7,,
+sioctl.rc,GENE_ioctl_FILE_8,,
+sources,GENE_ioctl_FILE_9,,
+
+[SourceDisksNames]
+1="GENE_ioctl.cab",GENE_ioctl.cab,0
+[SourceDisksFiles]
+GENE_ioctl_FILE_0=1,,4302
+GENE_ioctl_FILE_1=1,,11650
+GENE_ioctl_FILE_2=1,,267
+GENE_ioctl_FILE_3=1,,151
+GENE_ioctl_FILE_4=1,,7146
+GENE_ioctl_FILE_5=1,,267
+GENE_ioctl_FILE_6=1,,21418
+GENE_ioctl_FILE_7=1,,1232
+GENE_ioctl_FILE_8=1,,252
+GENE_ioctl_FILE_9=1,,86
+
+
+[Strings]
+FriendlyName=general
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=10
+TotalSize=46771

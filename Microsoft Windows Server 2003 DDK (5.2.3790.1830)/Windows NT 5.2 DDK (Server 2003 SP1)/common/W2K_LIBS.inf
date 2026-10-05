@@ -1,0 +1,63 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\lib\w2k\"
+Files_1=49000,"\lib\w2k\i386\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"W2K_LIBS"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","W2K_LIBS",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+W2K_LIBS.inf
+
+
+[Files_0]
+stub512.com,W2K_LIBS_FILE_0,,
+[Files_1]
+csq.lib,W2K_LIBS_FILE_1,,
+libc.lib,W2K_LIBS_FILE_2,,
+ntstrsafe.lib,W2K_LIBS_FILE_3,,
+sehupd.lib,W2K_LIBS_FILE_4,,
+wdmsec.lib,W2K_LIBS_FILE_5,,
+
+[SourceDisksNames]
+1="W2K_LIBS.cab",W2K_LIBS.cab,0
+[SourceDisksFiles]
+W2K_LIBS_FILE_0=1,,512
+W2K_LIBS_FILE_1=1,,106262
+W2K_LIBS_FILE_2=1,,2946740
+W2K_LIBS_FILE_3=1,,938196
+W2K_LIBS_FILE_4=1,,6272
+W2K_LIBS_FILE_5=1,,571116
+
+
+[Strings]
+FriendlyName=W2K_Library_Files
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=6
+TotalSize=4569098

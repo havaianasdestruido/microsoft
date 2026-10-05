@@ -1,0 +1,81 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\mmedia\gsm610\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"MMED_gsm610"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","MMED_gsm610",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+MMED_gsm610.inf
+
+
+[Files_0]
+codec.c,MMED_gsm610_FILE_0,,
+codec.h,MMED_gsm610_FILE_1,,
+codec.rc,MMED_gsm610_FILE_2,,
+codec.rcv,MMED_gsm610_FILE_3,,
+config.c,MMED_gsm610_FILE_4,,
+debug.c,MMED_gsm610_FILE_5,,
+debug.h,MMED_gsm610_FILE_6,,
+gsm610.c,MMED_gsm610_FILE_7,,
+gsm610.h,MMED_gsm610_FILE_8,,
+init.c,MMED_gsm610_FILE_9,,
+makefile,MMED_gsm610_FILE_10,,
+msgsm32.prf,MMED_gsm610_FILE_11,,
+msgsm610.def,MMED_gsm610_FILE_12,,
+msgsm610.htm,MMED_gsm610_FILE_13,,
+oemsetup.inf,MMED_gsm610_FILE_14,,
+sources,MMED_gsm610_FILE_15,,
+
+[SourceDisksNames]
+1="MMED_gsm610.cab",MMED_gsm610.cab,0
+[SourceDisksFiles]
+MMED_gsm610_FILE_0=1,,92240
+MMED_gsm610_FILE_1=1,,12228
+MMED_gsm610_FILE_2=1,,2693
+MMED_gsm610_FILE_3=1,,1397
+MMED_gsm610_FILE_4=1,,27397
+MMED_gsm610_FILE_5=1,,7961
+MMED_gsm610_FILE_6=1,,2377
+MMED_gsm610_FILE_7=1,,60013
+MMED_gsm610_FILE_8=1,,3316
+MMED_gsm610_FILE_9=1,,4665
+MMED_gsm610_FILE_10=1,,551
+MMED_gsm610_FILE_11=1,,124
+MMED_gsm610_FILE_12=1,,671
+MMED_gsm610_FILE_13=1,,2246
+MMED_gsm610_FILE_14=1,,178
+MMED_gsm610_FILE_15=1,,1401
+
+
+[Strings]
+FriendlyName=mmedia
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=16
+TotalSize=219458

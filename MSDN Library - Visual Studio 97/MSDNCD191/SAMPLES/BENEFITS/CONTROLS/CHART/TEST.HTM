@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>foursquare</title>
+</head>
+<body bgcolor="005080">
+<hr>
+<object  
+classid="CLSID:A78B4ECD-7566-11D0-8317-00AA006C3AB9"
+id=foursquare width=220 height=440
+codebase="benchart.CAB#version=1,0,0,0">
+<param name=maxben value=150>
+<param name=bgcolor value=20608>
+<param name=fgcolor value=  16777215>
+<param name=prelabel value = "Pre-tax:">
+<param name=postlabel value= "Post-tax:">
+</object>
+<hr>
+<form name=theForm>
+deltaPre: <input type=text name=pre value=0> deltaPost: <input type=text name=post value=0>
+<input type=button name=redraw value=Redraw><input type=button name=Jreset value=Reset></p>
+</form>
+<script language=VBScript>
+Sub redraw_onClick
+	dpre = theForm.pre.Value
+	dpost = theForm.post.Value
+	truth = foursquare.recalc(dpre, dpost)
+End Sub
+Sub Jreset_onClick
+   truth = foursquare.reset()
+End Sub
+</script>
+<!--
+-->
+</body>
+</html>

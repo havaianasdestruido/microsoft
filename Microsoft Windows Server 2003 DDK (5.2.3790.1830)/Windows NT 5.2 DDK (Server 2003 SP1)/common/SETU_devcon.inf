@@ -1,0 +1,69 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\setup\devcon\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"SETU_devcon"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","SETU_devcon",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+SETU_devcon.inf
+
+
+[Files_0]
+cmds.cpp,SETU_devcon_FILE_0,,
+devcon.cpp,SETU_devcon_FILE_1,,
+devcon.h,SETU_devcon_FILE_2,,
+devcon.htm,SETU_devcon_FILE_3,,
+devcon.rc,SETU_devcon_FILE_4,,
+dump.cpp,SETU_devcon_FILE_5,,
+makefile,SETU_devcon_FILE_6,,
+msg.mc,SETU_devcon_FILE_7,,
+rc_ids.h,SETU_devcon_FILE_8,,
+sources,SETU_devcon_FILE_9,,
+
+[SourceDisksNames]
+1="SETU_devcon.cab",SETU_devcon.cab,0
+[SourceDisksFiles]
+SETU_devcon_FILE_0=1,,56779
+SETU_devcon_FILE_1=1,,25946
+SETU_devcon_FILE_2=1,,3741
+SETU_devcon_FILE_3=1,,29083
+SETU_devcon_FILE_4=1,,1041
+SETU_devcon_FILE_5=1,,33196
+SETU_devcon_FILE_6=1,,38
+SETU_devcon_FILE_7=1,,25081
+SETU_devcon_FILE_8=1,,570
+SETU_devcon_FILE_9=1,,618
+
+
+[Strings]
+FriendlyName=setup
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=10
+TotalSize=176093

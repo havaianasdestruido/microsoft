@@ -1,0 +1,81 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\bin\win64\x86\amd64\"
+Files_1=49000,"\bin\win64\x86\amd64\1033\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"A64xdBINS"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","A64xdBINS",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+A64xdBINS.inf
+
+
+[Files_0]
+build.exe,A64xdBINS_FILE_0,,
+c1.dll,A64xdBINS_FILE_1,,
+c1xx.dll,A64xdBINS_FILE_2,,
+c2.dll,A64xdBINS_FILE_3,,
+cl.exe,A64xdBINS_FILE_4,,
+lib.exe,A64xdBINS_FILE_5,,
+link.exe,A64xdBINS_FILE_6,,
+ml64.exe,A64xdBINS_FILE_7,,
+msobj80.dll,A64xdBINS_FILE_8,,
+mspdb80.dll,A64xdBINS_FILE_9,,
+msvcp80.dll,A64xdBINS_FILE_10,,
+msvcr80.dll,A64xdBINS_FILE_11,,
+wmimofck.exe,A64xdBINS_FILE_12,,
+[Files_1]
+clui.dll,A64xdBINS_FILE_13,,
+linkui.dll,A64xdBINS_FILE_14,,
+
+[SourceDisksNames]
+1="A64xdBINS.cab",A64xdBINS.cab,0
+[SourceDisksFiles]
+A64xdBINS_FILE_0=1,,123392
+A64xdBINS_FILE_1=1,,544768
+A64xdBINS_FILE_2=1,,1945600
+A64xdBINS_FILE_3=1,,2043904
+A64xdBINS_FILE_4=1,,90112
+A64xdBINS_FILE_5=1,,5120
+A64xdBINS_FILE_6=1,,507904
+A64xdBINS_FILE_7=1,,360960
+A64xdBINS_FILE_8=1,,53248
+A64xdBINS_FILE_9=1,,247808
+A64xdBINS_FILE_10=1,,520192
+A64xdBINS_FILE_11=1,,491520
+A64xdBINS_FILE_12=1,,77416
+A64xdBINS_FILE_13=1,,372736
+A64xdBINS_FILE_14=1,,50688
+
+
+[Strings]
+FriendlyName=AMD64_CrossCompile_Build_Tools
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=15
+TotalSize=7435368

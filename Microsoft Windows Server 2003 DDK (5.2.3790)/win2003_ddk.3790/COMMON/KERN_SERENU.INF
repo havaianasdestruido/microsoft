@@ -1,0 +1,75 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\kernel\serenum\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"KERN_serenu"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","KERN_serenu",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+KERN_serenu.inf
+
+
+[Files_0]
+enum.c,KERN_serenu_FILE_0,,
+log.c,KERN_serenu_FILE_1,,
+log.h,KERN_serenu_FILE_2,,
+makefile,KERN_serenu_FILE_3,,
+pch.h,KERN_serenu_FILE_4,,
+pnp.c,KERN_serenu_FILE_5,,
+power.c,KERN_serenu_FILE_6,,
+serenum.c,KERN_serenu_FILE_7,,
+serenum.h,KERN_serenu_FILE_8,,
+serenum.htm,KERN_serenu_FILE_9,,
+serenum.rc,KERN_serenu_FILE_10,,
+sources,KERN_serenu_FILE_11,,
+string.c,KERN_serenu_FILE_12,,
+
+[SourceDisksNames]
+1="KERN_serenu.cab",KERN_serenu.cab,0
+[SourceDisksFiles]
+KERN_serenu_FILE_0=1,,47707
+KERN_serenu_FILE_1=1,,3184
+KERN_serenu_FILE_2=1,,950
+KERN_serenu_FILE_3=1,,519
+KERN_serenu_FILE_4=1,,195
+KERN_serenu_FILE_5=1,,44812
+KERN_serenu_FILE_6=1,,6916
+KERN_serenu_FILE_7=1,,16613
+KERN_serenu_FILE_8=1,,14366
+KERN_serenu_FILE_9=1,,2381
+KERN_serenu_FILE_10=1,,313
+KERN_serenu_FILE_11=1,,310
+KERN_serenu_FILE_12=1,,21793
+
+
+[Strings]
+FriendlyName=kernel
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=13
+TotalSize=160059

@@ -1,0 +1,53 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\help\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"GRAPHICS"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","GRAPHICS",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+GRAPHICS.inf
+
+
+[Files_0]
+graphics.chi,GRAPHICS_FILE_0,,
+graphics.chm,GRAPHICS_FILE_1,,
+
+[SourceDisksNames]
+1="GRAPHICS.cab",GRAPHICS.cab,0
+[SourceDisksFiles]
+GRAPHICS_FILE_0=1,,190667
+GRAPHICS_FILE_1=1,,3454888
+
+
+[Strings]
+FriendlyName=GRAPHICS_Doc
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=2
+TotalSize=3645555

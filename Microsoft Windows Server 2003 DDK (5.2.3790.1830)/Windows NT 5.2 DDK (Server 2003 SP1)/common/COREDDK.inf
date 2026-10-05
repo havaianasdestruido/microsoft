@@ -1,0 +1,55 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"COREDDK"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","COREDDK",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+COREDDK.inf
+
+
+[Files_0]
+install.htm,COREDDK_FILE_0,,
+relnote.htm,COREDDK_FILE_1,,
+srcindex.htm,COREDDK_FILE_2,,
+
+[SourceDisksNames]
+1="COREDDK.cab",COREDDK.cab,0
+[SourceDisksFiles]
+COREDDK_FILE_0=1,,46904
+COREDDK_FILE_1=1,,61633
+COREDDK_FILE_2=1,,420773
+
+
+[Strings]
+FriendlyName=DDK_Core_Files
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=3
+TotalSize=529310

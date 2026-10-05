@@ -1,0 +1,55 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\dimapcfg\x86\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"TOOL_dimapcx"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_dimapcx",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_dimapcx.inf
+
+
+[Files_0]
+diactfrm.dll,TOOL_dimapcx_FILE_0,,
+dimapcfg.exe,TOOL_dimapcx_FILE_1,,
+genre.ini,TOOL_dimapcx_FILE_2,,
+
+[SourceDisksNames]
+1="TOOL_dimapcx.cab",TOOL_dimapcx.cab,0
+[SourceDisksFiles]
+TOOL_dimapcx_FILE_0=1,,413184
+TOOL_dimapcx_FILE_1=1,,43520
+TOOL_dimapcx_FILE_2=1,,71942
+
+
+[Strings]
+FriendlyName=dimapcfg_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=3
+TotalSize=528646

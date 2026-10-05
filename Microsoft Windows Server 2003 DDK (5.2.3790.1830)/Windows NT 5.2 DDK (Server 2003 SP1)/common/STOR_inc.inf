@@ -1,0 +1,63 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\storage\inc\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"STOR_inc"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","STOR_inc",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+STOR_inc.inf
+
+
+[Files_0]
+class.h,STOR_inc_FILE_0,,
+ide.h,STOR_inc_FILE_1,,
+idedump.h,STOR_inc_FILE_2,,
+ideuser.h,STOR_inc_FILE_3,,
+physlogi.h,STOR_inc_FILE_4,,
+rbc.h,STOR_inc_FILE_5,,
+tape.h,STOR_inc_FILE_6,,
+
+[SourceDisksNames]
+1="STOR_inc.cab",STOR_inc.cab,0
+[SourceDisksFiles]
+STOR_inc_FILE_0=1,,6427
+STOR_inc_FILE_1=1,,15345
+STOR_inc_FILE_2=1,,2439
+STOR_inc_FILE_3=1,,3958
+STOR_inc_FILE_4=1,,2458
+STOR_inc_FILE_5=1,,3994
+STOR_inc_FILE_6=1,,6359
+
+
+[Strings]
+FriendlyName=storage
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=7
+TotalSize=40980

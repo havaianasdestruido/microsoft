@@ -1,0 +1,97 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\wdm\wmi\wmiacpi\"
+Files_1=49000,"\src\wdm\wmi\wmifilt\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"WDM_wmi"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","WDM_wmi",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+WDM_wmi.inf
+
+
+[Files_0]
+acpimof.def,WDM_wmi_FILE_0,,
+acpimof.mof,WDM_wmi_FILE_1,,
+acpimof.rc,WDM_wmi_FILE_2,,
+device.asl,WDM_wmi_FILE_3,,
+makefile,WDM_wmi_FILE_4,,
+makefile.inc,WDM_wmi_FILE_5,,
+readme.htm,WDM_wmi_FILE_6,,
+sources,WDM_wmi_FILE_7,,
+wmi-acpi.htm,WDM_wmi_FILE_8,,
+[Files_1]
+filter.c,WDM_wmi_FILE_9,,
+filter.h,WDM_wmi_FILE_10,,
+filter.mof,WDM_wmi_FILE_11,,
+filter.rc,WDM_wmi_FILE_12,,
+inf.htm,WDM_wmi_FILE_13,,
+makefile,WDM_wmi_FILE_14,,
+makefile.inc,WDM_wmi_FILE_15,,
+pnp.c,WDM_wmi_FILE_16,,
+power.c,WDM_wmi_FILE_17,,
+readme.htm,WDM_wmi_FILE_18,,
+sources,WDM_wmi_FILE_19,,
+util.c,WDM_wmi_FILE_20,,
+wmifilt.htm,WDM_wmi_FILE_21,,
+wmisamp.c,WDM_wmi_FILE_22,,
+
+[SourceDisksNames]
+1="WDM_wmi.cab",WDM_wmi.cab,0
+[SourceDisksFiles]
+WDM_wmi_FILE_0=1,,23
+WDM_wmi_FILE_1=1,,5239
+WDM_wmi_FILE_2=1,,671
+WDM_wmi_FILE_3=1,,32611
+WDM_wmi_FILE_4=1,,247
+WDM_wmi_FILE_5=1,,537
+WDM_wmi_FILE_6=1,,10794
+WDM_wmi_FILE_7=1,,490
+WDM_wmi_FILE_8=1,,118281
+WDM_wmi_FILE_9=1,,9822
+WDM_wmi_FILE_10=1,,4337
+WDM_wmi_FILE_11=1,,30923
+WDM_wmi_FILE_12=1,,461
+WDM_wmi_FILE_13=1,,3593
+WDM_wmi_FILE_14=1,,782
+WDM_wmi_FILE_15=1,,598
+WDM_wmi_FILE_16=1,,8943
+WDM_wmi_FILE_17=1,,4831
+WDM_wmi_FILE_18=1,,8618
+WDM_wmi_FILE_19=1,,567
+WDM_wmi_FILE_20=1,,7971
+WDM_wmi_FILE_21=1,,6559
+WDM_wmi_FILE_22=1,,53913
+
+
+[Strings]
+FriendlyName=wdm
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=23
+TotalSize=310811

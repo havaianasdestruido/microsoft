@@ -1,0 +1,67 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\other\i386\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"TOOL_otherx"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_otherx",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_otherx.inf
+
+
+[Files_0]
+drivers.exe,TOOL_otherx_FILE_0,,
+guidgen.exe,TOOL_otherx_FILE_1,,
+msdis130.dll,TOOL_otherx_FILE_2,,
+msvcp70.dll,TOOL_otherx_FILE_3,,
+msvcr70.dll,TOOL_otherx_FILE_4,,
+objdir.exe,TOOL_otherx_FILE_5,,
+poolmon.exe,TOOL_otherx_FILE_6,,
+pooltag.txt,TOOL_otherx_FILE_7,,
+regdmp.exe,TOOL_otherx_FILE_8,,
+
+[SourceDisksNames]
+1="TOOL_otherx.cab",TOOL_otherx.cab,0
+[SourceDisksFiles]
+TOOL_otherx_FILE_0=1,,8192
+TOOL_otherx_FILE_1=1,,13824
+TOOL_otherx_FILE_2=1,,290816
+TOOL_otherx_FILE_3=1,,487424
+TOOL_otherx_FILE_4=1,,344064
+TOOL_otherx_FILE_5=1,,15872
+TOOL_otherx_FILE_6=1,,27648
+TOOL_otherx_FILE_7=1,,88007
+TOOL_otherx_FILE_8=1,,23552
+
+
+[Strings]
+FriendlyName=other_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=9
+TotalSize=1299399

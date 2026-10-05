@@ -1,0 +1,63 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\print\pp\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"PRIN_pp"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","PRIN_pp",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+PRIN_pp.inf
+
+
+[Files_0]
+makefile,PRIN_pp_FILE_0,,
+port.c,PRIN_pp_FILE_1,,
+pp.c,PRIN_pp_FILE_2,,
+pp.def,PRIN_pp_FILE_3,,
+pp.h,PRIN_pp_FILE_4,,
+pp.htm,PRIN_pp_FILE_5,,
+sources,PRIN_pp_FILE_6,,
+
+[SourceDisksNames]
+1="PRIN_pp.cab",PRIN_pp.cab,0
+[SourceDisksFiles]
+PRIN_pp_FILE_0=1,,38
+PRIN_pp_FILE_1=1,,7864
+PRIN_pp_FILE_2=1,,21424
+PRIN_pp_FILE_3=1,,67
+PRIN_pp_FILE_4=1,,9112
+PRIN_pp_FILE_5=1,,6573
+PRIN_pp_FILE_6=1,,397
+
+
+[Strings]
+FriendlyName=print
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=7
+TotalSize=45475

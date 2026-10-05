@@ -1,0 +1,83 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\setup\pnpports\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"SETU_pnppor"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","SETU_pnppor",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+SETU_pnppor.inf
+
+
+[Files_0]
+advandlg.c,SETU_pnppor_FILE_0,,
+makefile,SETU_pnppor_FILE_1,,
+pnpports.def,SETU_pnppor_FILE_2,,
+pnpports.htm,SETU_pnppor_FILE_3,,
+ports.c,SETU_pnppor_FILE_4,,
+ports.h,SETU_pnppor_FILE_5,,
+ports.ico,SETU_pnppor_FILE_6,,
+ports.rc,SETU_pnppor_FILE_7,,
+ports.rc2,SETU_pnppor_FILE_8,,
+portstr.h,SETU_pnppor_FILE_9,,
+pp.c,SETU_pnppor_FILE_10,,
+pp.h,SETU_pnppor_FILE_11,,
+pp_lpt.c,SETU_pnppor_FILE_12,,
+pp_lpt.h,SETU_pnppor_FILE_13,,
+resource.h,SETU_pnppor_FILE_14,,
+sources,SETU_pnppor_FILE_15,,
+util.c,SETU_pnppor_FILE_16,,
+
+[SourceDisksNames]
+1="SETU_pnppor.cab",SETU_pnppor.cab,0
+[SourceDisksFiles]
+SETU_pnppor_FILE_0=1,,48640
+SETU_pnppor_FILE_1=1,,488
+SETU_pnppor_FILE_2=1,,155
+SETU_pnppor_FILE_3=1,,6592
+SETU_pnppor_FILE_4=1,,31669
+SETU_pnppor_FILE_5=1,,6578
+SETU_pnppor_FILE_6=1,,1086
+SETU_pnppor_FILE_7=1,,9421
+SETU_pnppor_FILE_8=1,,310
+SETU_pnppor_FILE_9=1,,848
+SETU_pnppor_FILE_10=1,,28563
+SETU_pnppor_FILE_11=1,,6154
+SETU_pnppor_FILE_12=1,,34834
+SETU_pnppor_FILE_13=1,,1840
+SETU_pnppor_FILE_14=1,,3783
+SETU_pnppor_FILE_15=1,,831
+SETU_pnppor_FILE_16=1,,8483
+
+
+[Strings]
+FriendlyName=setup
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=17
+TotalSize=190275

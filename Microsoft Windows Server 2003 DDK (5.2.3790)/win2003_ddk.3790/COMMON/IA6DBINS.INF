@@ -1,0 +1,109 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\bin\ia64\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"IA6dBINS"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","IA6dBINS",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+IA6dBINS.inf
+
+
+[Files_0]
+binplace.exe,IA6dBINS_FILE_0,,
+build.exe,IA6dBINS_FILE_1,,
+c1.dll,IA6dBINS_FILE_2,,
+c1xx.dll,IA6dBINS_FILE_3,,
+c2.dll,IA6dBINS_FILE_4,,
+cl.exe,IA6dBINS_FILE_5,,
+cvtres.exe,IA6dBINS_FILE_6,,
+FusionManifestValidator.exe,IA6dBINS_FILE_7,,
+lib.exe,IA6dBINS_FILE_8,,
+link.exe,IA6dBINS_FILE_9,,
+makedirs.exe,IA6dBINS_FILE_10,,
+mc.exe,IA6dBINS_FILE_11,,
+midl.exe,IA6dBINS_FILE_12,,
+midlc.exe,IA6dBINS_FILE_13,,
+mofcomp.exe,IA6dBINS_FILE_14,,
+mofd.dll,IA6dBINS_FILE_15,,
+msdis130.dll,IA6dBINS_FILE_16,,
+msobj10.dll,IA6dBINS_FILE_17,,
+mspdb60.dll,IA6dBINS_FILE_18,,
+mspdb70.dll,IA6dBINS_FILE_19,,
+msvcp70.dll,IA6dBINS_FILE_20,,
+msvcr70.dll,IA6dBINS_FILE_21,,
+nmake.exe,IA6dBINS_FILE_22,,
+pidview.exe,IA6dBINS_FILE_23,,
+preprocessor.exe,IA6dBINS_FILE_24,,
+rc.exe,IA6dBINS_FILE_25,,
+rcdll.dll,IA6dBINS_FILE_26,,
+tracewpp.exe,IA6dBINS_FILE_27,,
+wbemcomn.dll,IA6dBINS_FILE_28,,
+wmimofck.exe,IA6dBINS_FILE_29,,
+
+[SourceDisksNames]
+1="IA6dBINS.cab",IA6dBINS.cab,0
+[SourceDisksFiles]
+IA6dBINS_FILE_0=1,,481792
+IA6dBINS_FILE_1=1,,271360
+IA6dBINS_FILE_2=1,,1577984
+IA6dBINS_FILE_3=1,,4858880
+IA6dBINS_FILE_4=1,,4276224
+IA6dBINS_FILE_5=1,,158720
+IA6dBINS_FILE_6=1,,43520
+IA6dBINS_FILE_7=1,,40448
+IA6dBINS_FILE_8=1,,9728
+IA6dBINS_FILE_9=1,,1638400
+IA6dBINS_FILE_10=1,,11776
+IA6dBINS_FILE_11=1,,56320
+IA6dBINS_FILE_12=1,,110080
+IA6dBINS_FILE_13=1,,1946624
+IA6dBINS_FILE_14=1,,40448
+IA6dBINS_FILE_15=1,,376320
+IA6dBINS_FILE_16=1,,637952
+IA6dBINS_FILE_17=1,,219136
+IA6dBINS_FILE_18=1,,761856
+IA6dBINS_FILE_19=1,,804864
+IA6dBINS_FILE_20=1,,1278464
+IA6dBINS_FILE_21=1,,902144
+IA6dBINS_FILE_22=1,,190464
+IA6dBINS_FILE_23=1,,49664
+IA6dBINS_FILE_24=1,,77472
+IA6dBINS_FILE_25=1,,8192
+IA6dBINS_FILE_26=1,,266240
+IA6dBINS_FILE_27=1,,567296
+IA6dBINS_FILE_28=1,,933888
+IA6dBINS_FILE_29=1,,128616
+
+
+[Strings]
+FriendlyName=IA64_Build_Tools
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=30
+TotalSize=22724872

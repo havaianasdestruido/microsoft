@@ -1,0 +1,191 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\chkinf\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"TOOL_chkinf"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_chkinf",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_chkinf.inf
+
+
+[Files_0]
+.empty ,TOOL_chkinf_FILE_0,,
+1394.pm ,TOOL_chkinf_FILE_1,,
+61883.pm ,TOOL_chkinf_FILE_2,,
+ActivityMonitor.pm ,TOOL_chkinf_FILE_3,,
+AntiVirus.pm ,TOOL_chkinf_FILE_4,,
+AVC.pm ,TOOL_chkinf_FILE_5,,
+Battery.pm ,TOOL_chkinf_FILE_6,,
+BlueTooth.pm ,TOOL_chkinf_FILE_7,,
+CDROM.pm ,TOOL_chkinf_FILE_8,,
+CFSMetaDataServer.pm ,TOOL_chkinf_FILE_9,,
+chkinf.bat ,TOOL_chkinf_FILE_10,,
+chkinf.htm ,TOOL_chkinf_FILE_11,,
+chkinf.pm ,TOOL_chkinf_FILE_12,,
+Compression.pm ,TOOL_chkinf_FILE_13,,
+Computer.pm ,TOOL_chkinf_FILE_14,,
+ContentScreener.pm ,TOOL_chkinf_FILE_15,,
+ContinuousBackup.pm ,TOOL_chkinf_FILE_16,,
+CopyProtection.pm ,TOOL_chkinf_FILE_17,,
+dirs ,TOOL_chkinf_FILE_18,,
+DiskDrive.pm ,TOOL_chkinf_FILE_19,,
+display.pm ,TOOL_chkinf_FILE_20,,
+DOT4.pm ,TOOL_chkinf_FILE_21,,
+Dot4Print.pm ,TOOL_chkinf_FILE_22,,
+Encryption.pm ,TOOL_chkinf_FILE_23,,
+faxreg.pm ,TOOL_chkinf_FILE_24,,
+FDC.pm ,TOOL_chkinf_FILE_25,,
+FloppyDisk.pm ,TOOL_chkinf_FILE_26,,
+FSFilterSystem.pm ,TOOL_chkinf_FILE_27,,
+generic.pm ,TOOL_chkinf_FILE_28,,
+HDC.pm ,TOOL_chkinf_FILE_29,,
+HIDClass.pm ,TOOL_chkinf_FILE_30,,
+HSM.pm ,TOOL_chkinf_FILE_31,,
+image.pm ,TOOL_chkinf_FILE_32,,
+InfFile.pm ,TOOL_chkinf_FILE_33,,
+infrared.pm ,TOOL_chkinf_FILE_34,,
+Infrastructure.pm ,TOOL_chkinf_FILE_35,,
+InfSection.pm ,TOOL_chkinf_FILE_36,,
+Keyboard.pm ,TOOL_chkinf_FILE_37,,
+Media.pm ,TOOL_chkinf_FILE_38,,
+MediumChanger.pm ,TOOL_chkinf_FILE_39,,
+modem.pm ,TOOL_chkinf_FILE_40,,
+monitor.pm ,TOOL_chkinf_FILE_41,,
+Mouse.pm ,TOOL_chkinf_FILE_42,,
+MTD.pm ,TOOL_chkinf_FILE_43,,
+Multifunction.pm ,TOOL_chkinf_FILE_44,,
+MultiportSerial.pm ,TOOL_chkinf_FILE_45,,
+net.pm ,TOOL_chkinf_FILE_46,,
+NetClient.pm ,TOOL_chkinf_FILE_47,,
+NetService.pm ,TOOL_chkinf_FILE_48,,
+NetTrans.pm ,TOOL_chkinf_FILE_49,,
+OpenFileBackup.pm ,TOOL_chkinf_FILE_50,,
+PCMCIA.pm ,TOOL_chkinf_FILE_51,,
+PhysicalQuotaManagement.pm ,TOOL_chkinf_FILE_52,,
+pnpprinters.pm ,TOOL_chkinf_FILE_53,,
+Ports.pm ,TOOL_chkinf_FILE_54,,
+Printer.pm ,TOOL_chkinf_FILE_55,,
+Processor.pm ,TOOL_chkinf_FILE_56,,
+QuotaManagement.pm ,TOOL_chkinf_FILE_57,,
+Replication.pm ,TOOL_chkinf_FILE_58,,
+SBP2.pm ,TOOL_chkinf_FILE_59,,
+SCSIAdapter.pm ,TOOL_chkinf_FILE_60,,
+SecurityAccelerator.pm ,TOOL_chkinf_FILE_61,,
+SecurityEnhancer.pm ,TOOL_chkinf_FILE_62,,
+SmartCardReader.pm ,TOOL_chkinf_FILE_63,,
+SmartGlob.pm ,TOOL_chkinf_FILE_64,,
+System.pm ,TOOL_chkinf_FILE_65,,
+TapeDrive.pm ,TOOL_chkinf_FILE_66,,
+Undelete.pm ,TOOL_chkinf_FILE_67,,
+USB.pm ,TOOL_chkinf_FILE_68,,
+Volume.pm ,TOOL_chkinf_FILE_69,,
+WCEUSBS.pm ,TOOL_chkinf_FILE_70,,
+
+[SourceDisksNames]
+1="TOOL_chkinf.cab",TOOL_chkinf.cab,0
+[SourceDisksFiles]
+TOOL_chkinf_FILE_0=1,,3
+TOOL_chkinf_FILE_1=1,,3605
+TOOL_chkinf_FILE_2=1,,3464
+TOOL_chkinf_FILE_3=1,,3473
+TOOL_chkinf_FILE_4=1,,3461
+TOOL_chkinf_FILE_5=1,,3449
+TOOL_chkinf_FILE_6=1,,3475
+TOOL_chkinf_FILE_7=1,,3479
+TOOL_chkinf_FILE_8=1,,3471
+TOOL_chkinf_FILE_9=1,,3477
+TOOL_chkinf_FILE_10=1,,14826
+TOOL_chkinf_FILE_11=1,,18446
+TOOL_chkinf_FILE_12=1,,235681
+TOOL_chkinf_FILE_13=1,,3465
+TOOL_chkinf_FILE_14=1,,2624
+TOOL_chkinf_FILE_15=1,,3473
+TOOL_chkinf_FILE_16=1,,3475
+TOOL_chkinf_FILE_17=1,,3471
+TOOL_chkinf_FILE_18=1,,21
+TOOL_chkinf_FILE_19=1,,9047
+TOOL_chkinf_FILE_20=1,,18821
+TOOL_chkinf_FILE_21=1,,3471
+TOOL_chkinf_FILE_22=1,,3117
+TOOL_chkinf_FILE_23=1,,3463
+TOOL_chkinf_FILE_24=1,,27371
+TOOL_chkinf_FILE_25=1,,3469
+TOOL_chkinf_FILE_26=1,,3483
+TOOL_chkinf_FILE_27=1,,3471
+TOOL_chkinf_FILE_28=1,,3475
+TOOL_chkinf_FILE_29=1,,3469
+TOOL_chkinf_FILE_30=1,,3479
+TOOL_chkinf_FILE_31=1,,3449
+TOOL_chkinf_FILE_32=1,,41704
+TOOL_chkinf_FILE_33=1,,30693
+TOOL_chkinf_FILE_34=1,,27209
+TOOL_chkinf_FILE_35=1,,3471
+TOOL_chkinf_FILE_36=1,,5140
+TOOL_chkinf_FILE_37=1,,13420
+TOOL_chkinf_FILE_38=1,,13791
+TOOL_chkinf_FILE_39=1,,3538
+TOOL_chkinf_FILE_40=1,,167443
+TOOL_chkinf_FILE_41=1,,5158
+TOOL_chkinf_FILE_42=1,,16982
+TOOL_chkinf_FILE_43=1,,3469
+TOOL_chkinf_FILE_44=1,,3489
+TOOL_chkinf_FILE_45=1,,3493
+TOOL_chkinf_FILE_46=1,,31213
+TOOL_chkinf_FILE_47=1,,49597
+TOOL_chkinf_FILE_48=1,,33443
+TOOL_chkinf_FILE_49=1,,55208
+TOOL_chkinf_FILE_50=1,,3471
+TOOL_chkinf_FILE_51=1,,3475
+TOOL_chkinf_FILE_52=1,,3187
+TOOL_chkinf_FILE_53=1,,3489
+TOOL_chkinf_FILE_54=1,,3473
+TOOL_chkinf_FILE_55=1,,121349
+TOOL_chkinf_FILE_56=1,,3479
+TOOL_chkinf_FILE_57=1,,3475
+TOOL_chkinf_FILE_58=1,,3467
+TOOL_chkinf_FILE_59=1,,3451
+TOOL_chkinf_FILE_60=1,,3485
+TOOL_chkinf_FILE_61=1,,3499
+TOOL_chkinf_FILE_62=1,,3477
+TOOL_chkinf_FILE_63=1,,3493
+TOOL_chkinf_FILE_64=1,,4400
+TOOL_chkinf_FILE_65=1,,3475
+TOOL_chkinf_FILE_66=1,,3537
+TOOL_chkinf_FILE_67=1,,3461
+TOOL_chkinf_FILE_68=1,,3470
+TOOL_chkinf_FILE_69=1,,3479
+TOOL_chkinf_FILE_70=1,,3459
+
+
+[Strings]
+FriendlyName=chkinf_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=71
+TotalSize=1106436

@@ -1,0 +1,26 @@
+Microsoft Programmers Library 1.4
+Released July 1991
+For DOS
+
+Programmer's Library is a comprehensive collection of the most useful
+reference information available for programmers in MS-DOS and OS/2
+environments. With Programmer's Library you can instantly get
+authoritative information about programming from books, manuals, and
+sample code in the following categories: Microsoft OS/2 References,
+Microsoft Windows References, MS-DOS References, Microsoft Network
+References, Microsoft Systems Journal, Hardware References, Microsoft
+C Language References, Microsoft Macro Assembler References,
+Microsoft BASIC Language References, Microsoft Pascal Language
+References, Microsoft FORTRAN Language References
+
+In addition, the Microsoft Programmer's Library CD-ROM contains
+valuable programs, data, and sample code files
+
+This uses the same DOS based library program as Microsoft Bookshelf
+1991 for DOS.
+
+Version 1.4 contains Microsoft Windows 3.0 programming documentation.
+
+Important: This is a very early CD-ROM disk, and as such is not in a 
+standard format and will not open in many ISO utilities. Burn it to a 
+CD and DOS or Windows 9x should recognize it.

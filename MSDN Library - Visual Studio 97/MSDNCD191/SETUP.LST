@@ -1,0 +1,18 @@
+[Params]
+	WndTitle   = MSDN Library Edition Setup
+	WndMess    = Starting Microsoft Developer Network Library Edition Setup...
+	TmpDirSize = 2000
+	TmpDirName = ~msstfqf.t
+	CmdLine    = acmsetup /T setup.stf /S %s %s
+	DrvModName = ACMSETUP	
+	DrvWinClass = Stuff-Shell
+	Require31  = This program requires Windows 95 or Windows NT 3.51 or higher.
+
+[Files]
+	setup.inf = setup.inf
+	acme\acmsetup.exe = acmsetup.exe
+	acme\acmsetup.hlp = acmsetup.hlp
+	acme\mssetup.dll  = mssetup.dll
+	acme\selfreg.dll = selfreg.dll
+	acme\setup.stf = setup.stf
+	acme\msdncah.dll = msdncah.dll

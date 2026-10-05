@@ -1,0 +1,268 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "by Ken Bergmann\0"
+            VALUE "CompanyName", "Microsoft Corporation\0"
+            VALUE "FileDescription", "Corporate Benefits Sample [C++ Server]\0"
+            VALUE "FileVersion", "1, 0, 0, 0\0"
+            VALUE "InternalName", "BenefitsCPP\0"
+            VALUE "LegalCopyright", "Copyright © 1996-1997, All Rights Reserved.\0"
+            VALUE "OriginalFilename", "bencpp.dll\0"
+            VALUE "ProductName", "Corporate Benefits Sample [C++ Server]\0"
+            VALUE "ProductVersion", "1, 0, 0, 0\0"
+            VALUE "OLESelfRegister", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "1 typelib bencpp.tlb\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    icErrSrcType                                   "Invalid Source Type On Initialization."
+    icErrOpenDB                                    "Could not open database."
+    icErrReqFld                                    "A required field has not been filled in - "
+    icErrFormat                                    "Invalid field format - "
+    icErrExpand                                    "Object could not expand."
+    icErrPKId                                      "Object may only be deleted by Primary Key, which was not supplied."
+    icErrObjectOp                                  "This function operators on only one object per call.  Optional parameters are mutually exclusive."
+    icErrBadIndex                                  "Object encountered an invalid index value."
+    scBnfName                                      "Benefit Name"
+    scBnfTypeName                                  "Benefit Type Name"
+    scEmplCnt                                      "Employee Count"
+    scLvwDesc                                      "Description"
+    scLvwCode                                      "Code"
+    scLvwPKId                                      "PKId"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    scDel                                          ".CAdmin.Delete"
+    scDelEmpl                                      ".CAdmin.Delete.Employee"
+    scDelBank                                      ".CAdmin.Delete.Bank"
+    scDelDep                                       ".CAdmin.Delete.Dependant"
+    scDelBnf                                       ".CAdmin.Delete.Benefit"
+    scDelBnfLnk                                    ".CAdmin.Delete.BenefitLink"
+    scExecFillArray                                ".CAdmin.ExecFillArray"
+    scExecFillList                                 ".CAdmin.ExecFillList"
+    scFillLstBank                                  ".CAdmin.FillBankList"
+    scFillLstBnf                                   ".CAdmin.FillBenefitList"
+    scFillLstEmpl                                  ".CAdmin.FillEmployeeList"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    scGetLstBank                                   ".CAdmin.GetListBanks"
+    scGetLstBnf                                    ".CAdmin.GetListBenefits"
+    scGetLstEmpl                                   ".CAdmin.GetListEmployees"
+    scGetDomain                                    ".CAdmin.GetDomain"
+    scInit                                         ".CAdmin.Init"
+    scIns                                          ".CAdmin.Insert"
+    scInsEmpl                                      ".CAdmin.Insert.Employee"
+    scInsBank                                      ".CAdmin.Insert.Bank"
+    scInsDep                                       ".CAdmin.Insert.Dependant"
+    scInsBnf                                       ".CAdmin.Insert.Benefit"
+    scInsBnfLnk                                    ".CAdmin.Insert.BenefitLink"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    scUpd                                          ".CAdmin.Update"
+    scUpdEmpl                                      ".CAdmin.Update.Employee"
+    scUpdBank                                      ".CAdmin.Update.Bank"
+    scUpdDep                                       ".CAdmin.Update.Dependant"
+    scUpdBnf                                       ".CAdmin.Update.Benefit"
+    scUpdBnfLnk                                    ".CAdmin.Update.BenefitLink"
+    scGetBnfTaxTypes                               ".CAdmin.GetBenefitTaxTypes"
+    scGetBnfTypes                                  ".CAdmin.GetBenefitTypes"
+    scGetDepTypes                                  ".CAdmin.GetDependantTypes"
+    scGetEmplBnfCvrgTypes                          ".CAdmin.GetEmployeeBenefitCoverageTypes"
+    scGetEmplBnfTaxTypes                           ".CAdmin.GetEmployeeBenefitTaxTypes"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    scIsUserValid                                  ".CAdmin.IsUserValid"
+    scGetNumEmplsPerBnf                            ".CAdmin.GetNumEmplsPerBenefit"
+    scGetNumEmplsPerBnfType                        ".CAdmin.GetNumEmplsPerBenefitType"
+    scExecBoolMDB                                  ".CAdmin.ExecBoolMDB"
+    scExecBoolSQL                                  ".CAdmin.ExecBoolSQL"
+    scBankExpand                                   ".CBank.Expand"
+    scDepExpand                                    ".CDependant.Expand"
+    scEmplExpand                                   ".CEmployee.Expand"
+    scBnfExpand                                    ".CBenefit.Expand"
+    scBnfLnkExpand                                 ".CBenefitLink.Expand"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    scExecute                                      "EXECUTE "
+    scGNEPBSQL1                                    "SELECT tbBenefit.Description, Count(tbEmplBnf.EmployeeID) FROM tbEmplBnf, tbBenefit, tbEmployee WHERE tbEmplBnf.EmployeeID = tbEmployee.PKId AND tbEmplBnf.BenefitId = tbBenefit.PKId"
+    scGNEPBSQL2                                    " AND tbEmployee.Gender = 1 "
+    scGNEPBSQL3                                    " AND tbEmployee.Gender = 0 "
+    scGNEPBSQL4                                    " AND tbEmplBnf.TaxId = "
+    scGNEPBSQL5                                    " AND tbEmplBnf.CoverageId = "
+    scGNEPBSQL6                                    " GROUP BY tbBenefit.Description ORDER BY tbBenefit.Description"
+    scGNEPBTSQL1                                   "SELECT tbBnfType.Descr, Count(tbEmplBnf.EmployeeID) FROM tbEmplBnf, tbBenefit, tbBnfType, tbEmployee WHERE tbEmplBnf.EmployeeID = tbEmployee.PKId AND tbEmplBnf.BenefitId = tbBenefit.PKId AND tbBnfType.PKId = tbBenefit.BnfTypeId"
+    scGNEPBTSQL2                                   " GROUP BY tbBnfType.Descr ORDER BY tbBnfType.Descr"
+    scCHKUSER                                      "SELECT COUNT(*) FROM tbEmployee WHERE tbEmployee.UserName = "
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    scIns_Bank                                     "pcIns_Bank"
+    scUpd_Bank                                     "pcUpd_Bank"
+    scDel_Bank                                     "pcDel_Bank"
+    scGet_Bank_MDB                                 "SELECT * FROM tbBank WHERE PKId = "
+    scGet_Bank_SQL                                 "EXECUTE pcGet_Bank "
+    scLvw_Bank_MDB                                 "SELECT Name AS [Bank Name], PKId, Code AS [Bank Code], Address1 AS [Address Line 1], Address2 AS [Address Line 2], City AS [City Name] FROM tbBank"
+    scLvw_Bank_SQL                                 "EXECUTE pcLvw_Bank"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    scIns_Benefit                                  "pcIns_Benefit"
+    scUpd_Benefit                                  "pcUpd_Benefit"
+    scDel_Benefit                                  "pcDel_Benefit"
+    scGet_Benefit_MDB                              "SELECT * FROM tbBenefit WHERE PKId = "
+    scGet_Benefit_SQL                              "EXECUTE pcGet_Benefit "
+    scLvw_Benefit_MDB                              "SELECT Description AS [Benefit Description], PKId, BnfTaxId AS [Benefit Tax], Cost AS [Benefit Cost], Minimum AS [Benefit Minimum], Maximum AS [Benefit Maximum], Increment AS [Benefit Increment], Multiples AS [Benefit Multiples] FROM tbBenefit"
+    scLvw_Benefit_SQL                              "EXECUTE pcLvw_Benefit"
+    scLvw_BnfTax_MDB                               "SELECT Descr, PKId, Code FROM tbBnfTax"
+    scLvw_BnfTax_SQL                               "EXECUTE pcLvw_BnfTax"
+    scLvw_BnfType_MDB                              "SELECT Descr, PKId, Code FROM tbBnfType"
+    scLvw_BnfType_SQL                              "EXECUTE pcLvw_BnfType"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    scIns_Dependant                                "pcIns_Dependant"
+    scUpd_Dependant                                "pcUpd_Dependant"
+    scDel_Dependant                                "pcDel_Dependant"
+    scGet_Dependant_MDB                            "SELECT * FROM tbDependant WHERE PKId = "
+    scGet_Dependant_SQL                            "EXECUTE pcGet_Dependant "
+    scLvw_DependantByEmployeeId_MDB                "SELECT LastName AS [Last Name], PKId, FirstName AS [First Name], DateOfBirth AS [Date Of Birth] FROM tbDependant WHERE EmployeeId = "
+    scLvw_DependantByEmployeeId_SQL                "EXECUTE pcLvw_DependantByEmployeeId "
+    scLvw_DepType_MDB                              "SELECT Descr, PKId, Code FROM tbDepType"
+    scLvw_DepType_SQL                              "EXECUTE pcLvw_DepType"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    scIns_EmplBnf                                  "pcIns_EmplBnf"
+    scUpd_EmplBnf                                  "pcUpd_EmplBnf"
+    scDel_EmplBnf                                  "pcDel_EmplBnf"
+    scGet_EmplBnf_MDB                              "SELECT * FROM tbEmplBnf WHERE PKId = "
+    scGet_EmplBnf_SQL                              "EXECUTE pcGet_EmplBnf "
+    scLvw_EmplBnfByEmployeeId_MDB                  "SELECT EmployeeId AS [Employee Id], PKId, BenefitId AS [Benefit Id], TaxId AS [Employee Benefit Tax], CoverageId AS [Employee Benefit Coverage], Amount AS [Employee Benefit Amount] FROM tbEmplBnf WHERE EmployeeId = "
+    scLvw_EmplBnfByEmployeeId_SQL                  "EXECUTE pcLvw_EmplBnfByEmployeeId "
+    scLvw_EmplBnfCoverage_MDB                      "SELECT Descr, PKId, Code FROM tbEmplBnfCoverage"
+    scLvw_EmplBnfCoverage_SQL                      "EXECUTE pcLvw_EmplBnfCoverage"
+    scLvw_EmplBnfTax_MDB                           "SELECT Descr, PKId, Code FROM tbEmplBnfTax"
+    scLvw_EmplBnfTax_SQL                           "EXECUTE pcLvw_EmplBnfTax"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    scIns_Employee                                 "pcIns_Employee"
+    scUpd_Employee                                 "pcUpd_Employee"
+    scDel_Employee                                 "pcDel_Employee"
+    scGet_Employee_MDB                             "SELECT * FROM tbEmployee WHERE PKId = "
+    scGet_Employee_SQL                             "EXECUTE pcGet_Employee "
+    scLvw_Employee_MDB                             "SELECT LastName AS [Last Name], PKId, FirstName AS [First Name], UserName AS [Employee User Name], Position AS [Employee Position], Address1 AS [Address 1], Address2 AS [Address 2], City AS [City Name], DateOfBirth AS [Date Of Birth], StartDate AS [Employee Start Date], EndDate AS [Employee End Date] FROM tbEmployee"
+    scLvw_Employee_SQL                             "EXECUTE pcLvw_Employee"
+    scLvw_EmployeeByBankId_MDB                     "SELECT LastName AS [Last Name], PKId, FirstName AS [First Name], UserName AS [Employee User Name], Position AS [Employee Position], Address1 AS [Address 1], Address2 AS [Address 2], City AS [City Name], DateOfBirth AS [Date Of Birth], StartDate AS [Employee Start Date], EndDate AS [Employee End Date] FROM tbEmployee WHERE BankId = "
+    scLvw_EmployeeByBankId_SQL                     "EXECUTE pcLvw_EmployeeByBankId "
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 typelib bencpp.tlb
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,189 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"lib\w2k\i386\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"x86dLIBc"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","x86dLIBc",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+x86dLIBc.inf
+
+[Files_0]	   
+advapi32.lib       ,advapi32.lib
+battc.lib	   ,battc.lib
+cfgmgr32.lib       ,cfgmgr32.lib
+comctl32.lib       ,comctl32.lib
+comdlg32.lib       ,comdlg32.lib
+compstui.lib       ,compstui.lib
+csrsrv.lib	   ,csrsrv.lib
+dinput.lib	   ,dinput.lib
+dsound.lib	   ,dsound.lib
+dxapi.lib	   ,dxapi.lib
+framedyn.lib       ,framedyn.lib
+gdi32.lib	   ,gdi32.lib
+hal.lib		   ,hal.lib
+hid.lib		   ,hid.lib
+hidclass.lib       ,hidclass.lib
+hidparse.lib       ,hidparse.lib
+htmlhelp.lib       ,htmlhelp.lib
+htui.lib	   ,htui.lib
+imm32.lib	   ,imm32.lib
+int64.lib	   ,int64.lib
+kernel32.lib       ,kernel32.lib
+ks.lib		   ,ks.lib
+ksguid.lib	   ,ksguid.lib
+ksuser.lib	   ,ksuser.lib
+libcntpr.lib       ,libcntpr.lib
+lsadll.lib	   ,lsadll.lib
+msports.lib	   ,msports.lib
+ndis.lib	   ,ndis.lib
+ndispnp.lib	   ,ndispnp.lib
+netdtect.lib       ,netdtect.lib
+newdev.lib	   ,newdev.lib
+ntdll.lib	   ,ntdll.lib
+ntoskrnl.lib       ,ntoskrnl.lib
+ntvdm.lib	   ,ntvdm.lib
+ole32.lib	   ,ole32.lib
+oleaut32.lib       ,oleaut32.lib
+pciidex.lib	   ,pciidex.lib
+portcls.lib	   ,portcls.lib
+powrprof.lib       ,powrprof.lib
+scsiport.lib       ,scsiport.lib
+scsiwmi.lib	   ,scsiwmi.lib
+setupapi.lib       ,setupapi.lib
+shell32.lib	   ,shell32.lib
+smclib.lib	   ,smclib.lib
+spoolss.lib	   ,spoolss.lib
+sti.lib		   ,sti.lib
+stream.lib	   ,stream.lib
+streams.lib	   ,streams.lib
+tape.lib	   ,tape.lib
+tdi.lib		   ,tdi.lib
+umpdddi.lib	   ,umpdddi.lib
+uniime.lib	   ,uniime.lib
+usbcamd.lib	   ,usbcamd.lib
+usbd.lib	   ,usbd.lib
+user32.lib	   ,user32.lib
+uuid.lib	   ,uuid.lib
+version.lib	   ,version.lib
+videoprt.lib       ,videoprt.lib
+wbemuuid.lib       ,wbemuuid.lib
+wdm.lib		   ,wdm.lib
+win32k.lib	   ,win32k.lib
+winmm.lib	   ,winmm.lib
+winppi.lib	   ,winppi.lib
+winspool.lib       ,winspool.lib
+wmilib.lib	   ,wmilib.lib
+ws2_32.lib	   ,ws2_32.lib
+wsock32.lib	   ,wsock32.lib
+shlwapi.lib        ,shlwapi.lib
+
+[SourceDisksNames]
+1="x86dLIBc.cab",x86dLIBc.cab,0
+
+[SourceDisksFiles]
+advapi32.lib=1
+battc.lib=1
+cfgmgr32.lib=1
+comctl32.lib=1
+comdlg32.lib=1
+compstui.lib=1
+csrsrv.lib=1
+dinput.lib=1
+dsound.lib=1
+dxapi.lib=1
+framedyn.lib=1
+gdi32.lib=1
+hal.lib=1
+hid.lib=1
+hidclass.lib=1
+hidparse.lib=1
+htmlhelp.lib=1
+htui.lib=1
+imm32.lib=1
+int64.lib=1
+kernel32.lib=1
+ks.lib=1
+ksguid.lib=1
+ksuser.lib=1
+libc.lib=1
+libc.pdb=1
+libcd.lib=1
+libcd.pdb=1
+libcmt.lib=1
+libcntpr.lib=1
+lsadll.lib=1
+msports.lib=1
+ndis.lib=1
+ndispnp.lib=1
+netdtect.lib=1
+newdev.lib=1
+ntdll.lib=1
+ntoskrnl.lib=1
+ntvdm.lib=1
+ole32.lib=1
+oleaut32.lib=1
+pciidex.lib=1
+portcls.lib=1
+powrprof.lib=1
+scsiport.lib=1
+scsiwmi.lib=1
+setupapi.lib=1
+shell32.lib=1
+smclib.lib=1
+spoolss.lib=1
+sti.lib=1
+stream.lib=1
+streams.lib=1
+tape.lib=1
+tdi.lib=1
+umpdddi.lib=1
+uniime.lib=1
+usbcamd.lib=1
+usbd.lib=1
+user32.lib=1
+uuid.lib=1
+version.lib=1
+videoprt.lib=1
+wbemuuid.lib=1
+wdm.lib=1
+win32k.lib=1
+winmm.lib=1
+winppi.lib=1
+winspool.lib=1
+wmilib.lib=1
+ws2_32.lib=1
+wsock32.lib=1
+shlwapi.lib=1
+
+[Strings]
+FriendlyName=x86_Libraries
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=89
+TotalSize=34353052

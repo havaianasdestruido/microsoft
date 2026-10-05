@@ -1,0 +1,97 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2,Files_3
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2,Files_3
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\debug\"
+Files_1=49000,"\debug\i386\"
+Files_2=49000,"\debug\i386\dll\"
+Files_3=49000,"\debug\i386\exe\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"DDK_DBGx"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","DDK_DBGx",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+DDK_DBGx.inf
+
+
+[Files_0]
+ntldr_dbg,DDK_DBGx_FILE_0,,
+[Files_1]
+hal.dll,DDK_DBGx_FILE_1,,
+halaacpi.dll,DDK_DBGx_FILE_2,,
+halacpi.dll,DDK_DBGx_FILE_3,,
+halapic.dll,DDK_DBGx_FILE_4,,
+halmacpi.dll,DDK_DBGx_FILE_5,,
+halmps.dll,DDK_DBGx_FILE_6,,
+ntkrnlmp.exe,DDK_DBGx_FILE_7,,
+ntkrnlpa.exe,DDK_DBGx_FILE_8,,
+ntkrpamp.exe,DDK_DBGx_FILE_9,,
+ntoskrnl.exe,DDK_DBGx_FILE_10,,
+[Files_2]
+hal.pdb,DDK_DBGx_FILE_11,,
+halaacpi.pdb,DDK_DBGx_FILE_12,,
+halacpi.pdb,DDK_DBGx_FILE_13,,
+halapic.pdb,DDK_DBGx_FILE_14,,
+halmacpi.pdb,DDK_DBGx_FILE_15,,
+halmps.pdb,DDK_DBGx_FILE_16,,
+[Files_3]
+ntkrnlmp.pdb,DDK_DBGx_FILE_17,,
+ntkrnlpa.pdb,DDK_DBGx_FILE_18,,
+ntkrpamp.pdb,DDK_DBGx_FILE_19,,
+ntoskrnl.pdb,DDK_DBGx_FILE_20,,
+
+[SourceDisksNames]
+1="DDK_DBGx.cab",DDK_DBGx.cab,0
+[SourceDisksFiles]
+DDK_DBGx_FILE_0=1,,327792
+DDK_DBGx_FILE_1=1,,174080
+DDK_DBGx_FILE_2=1,,147456
+DDK_DBGx_FILE_3=1,,110592
+DDK_DBGx_FILE_4=1,,157184
+DDK_DBGx_FILE_5=1,,145408
+DDK_DBGx_FILE_6=1,,157184
+DDK_DBGx_FILE_7=1,,4719104
+DDK_DBGx_FILE_8=1,,4792320
+DDK_DBGx_FILE_9=1,,4792320
+DDK_DBGx_FILE_10=1,,4719104
+DDK_DBGx_FILE_11=1,,158720
+DDK_DBGx_FILE_12=1,,150528
+DDK_DBGx_FILE_13=1,,125952
+DDK_DBGx_FILE_14=1,,150528
+DDK_DBGx_FILE_15=1,,150528
+DDK_DBGx_FILE_16=1,,150528
+DDK_DBGx_FILE_17=1,,1780736
+DDK_DBGx_FILE_18=1,,1780736
+DDK_DBGx_FILE_19=1,,1780736
+DDK_DBGx_FILE_20=1,,1780736
+
+
+[Strings]
+FriendlyName=Extra_Debug_Files
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=21
+TotalSize=28252272

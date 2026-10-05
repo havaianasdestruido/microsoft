@@ -1,0 +1,51 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\devcon\amd64\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"TOOL_devcona"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_devcona",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_devcona.inf
+
+
+[Files_0]
+devcon.exe,TOOL_devcona_FILE_0,,
+
+[SourceDisksNames]
+1="TOOL_devcona.cab",TOOL_devcona.cab,0
+[SourceDisksFiles]
+TOOL_devcona_FILE_0=1,,62464
+
+
+[Strings]
+FriendlyName=devcon_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=1
+TotalSize=62464

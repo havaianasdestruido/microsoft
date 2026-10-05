@@ -1,0 +1,130 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\bin\bin16"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"d16bebin"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","d16bebin",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+d16bebin.inf
+
+[Files_0]
+bind16.exe      ,bind16.exe     
+c1.err          ,c1.err         
+c13216.exe      ,c13216.exe     
+c1xx3216.exe    ,c1xx3216.exe   
+c23216.exe      ,c23216.exe     
+c23pcd.exe      ,c23pcd.exe     
+c33216.exe      ,c33216.exe     
+cl.def          ,cl.def         
+cl.err          ,cl.err         
+cl.exe          ,cl.exe         
+cl.msg          ,cl.msg         
+cl16.exe        ,cl16.exe       
+cvpack.err      ,cvpack.err     
+cvpack16.exe    ,cvpack16.exe   
+exe2bin.exe     ,exe2bin.exe    
+exehdr.exe      ,exehdr.exe     
+fixexe.exe      ,fixexe.exe     
+gensig.exe      ,gensig.exe     
+getsize.exe     ,getsize.exe    
+h2inc.exe       ,h2inc.exe      
+index.exe       ,index.exe      
+lib.exe         ,lib.exe        
+lib16.exe       ,lib16.exe      
+link.exe        ,link.exe       
+link16.exe      ,link16.exe     
+masm.exe        ,masm.exe       
+mkpublic.exe    ,mkpublic.exe   
+mspdb41.dll     ,mspdb41.dll    
+msym.exe        ,msym.exe       
+nosrvbld.exe    ,nosrvbld.exe   
+q23.exe         ,q23.exe        
+rc.exe          ,rc.exe         
+rc16.exe        ,rc16.exe       
+rclater.exe     ,rclater.exe    
+rcpp.exe        ,rcpp.exe       
+rcqq.err        ,rcqq.err       
+rcqq.exe        ,rcqq.exe       
+reloc.exe       ,reloc.exe      
+stripz.exe      ,stripz.exe     
+vcpack.exe      ,vcpack.exe     
+winstub.exe     ,winstub.exe    
+
+[SourceDisksNames]
+1="d16bebin.cab",d16bebin.cab,0
+
+[SourceDisksFiles]
+bind16.exe     =1
+c1.err         =1
+c13216.exe     =1
+c1xx3216.exe   =1
+c23216.exe     =1
+c23pcd.exe     =1
+c33216.exe     =1
+cl.def         =1
+cl.err         =1
+cl.exe         =1
+cl.msg         =1
+cl16.exe       =1
+cvpack.err     =1
+cvpack16.exe   =1
+exe2bin.exe    =1
+exehdr.exe     =1
+fixexe.exe     =1
+gensig.exe     =1
+getsize.exe    =1
+h2inc.exe      =1
+index.exe      =1
+lib.exe        =1
+lib16.exe      =1
+link.exe       =1
+link16.exe     =1
+masm.exe       =1
+mkpublic.exe   =1
+mspdb41.dll    =1
+msym.exe       =1
+nosrvbld.exe   =1
+q23.exe        =1
+rc.exe         =1
+rc16.exe       =1
+rclater.exe    =1
+rcpp.exe       =1
+rcqq.err       =1
+rcqq.exe       =1
+reloc.exe      =1
+stripz.exe     =1
+vcpack.exe     =1
+winstub.exe    =1
+
+[Strings]
+FriendlyName=16Bit_Build_Tools
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=41
+TotalSize=4267969

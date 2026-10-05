@@ -1,0 +1,67 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\general\ups\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"GENE_ups"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","GENE_ups",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+GENE_ups.inf
+
+
+[Files_0]
+demoups.cpp,GENE_ups_FILE_0,,
+demoups.def,GENE_ups_FILE_1,,
+DemoUPS.dsp,GENE_ups_FILE_2,,
+DemoUPS.dsw,GENE_ups_FILE_3,,
+demoups.h,GENE_ups_FILE_4,,
+demoups.htm,GENE_ups_FILE_5,,
+DemoUPS.inf,GENE_ups_FILE_6,,
+Makefile,GENE_ups_FILE_7,,
+Sources,GENE_ups_FILE_8,,
+
+[SourceDisksNames]
+1="GENE_ups.cab",GENE_ups.cab,0
+[SourceDisksFiles]
+GENE_ups_FILE_0=1,,5027
+GENE_ups_FILE_1=1,,98
+GENE_ups_FILE_2=1,,4020
+GENE_ups_FILE_3=1,,539
+GENE_ups_FILE_4=1,,1528
+GENE_ups_FILE_5=1,,20782
+GENE_ups_FILE_6=1,,399
+GENE_ups_FILE_7=1,,64
+GENE_ups_FILE_8=1,,233
+
+
+[Strings]
+FriendlyName=general
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=9
+TotalSize=32690

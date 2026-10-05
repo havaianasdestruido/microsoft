@@ -1,0 +1,105 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\lib\wxp\"
+Files_1=49000,"\lib\wxp\i386\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"XPXLIB"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","XPXLIB",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+XPXLIB.inf
+
+
+[Files_0]
+stub512.com,XPXLIB_FILE_0,,
+[Files_1]
+csq.lib,XPXLIB_FILE_1,,
+libc.lib,XPXLIB_FILE_2,,
+libcd.lib,XPXLIB_FILE_3,,
+libci.lib,XPXLIB_FILE_4,,
+libcid.lib,XPXLIB_FILE_5,,
+libcimt.lib,XPXLIB_FILE_6,,
+libcimtd.lib,XPXLIB_FILE_7,,
+libcmt.lib,XPXLIB_FILE_8,,
+libcmtd.lib,XPXLIB_FILE_9,,
+libcp.lib,XPXLIB_FILE_10,,
+libcpd.lib,XPXLIB_FILE_11,,
+libcpmt.lib,XPXLIB_FILE_12,,
+libcpmtd.lib,XPXLIB_FILE_13,,
+msvcirt.lib,XPXLIB_FILE_14,,
+msvcirtd.lib,XPXLIB_FILE_15,,
+msvcprt.lib,XPXLIB_FILE_16,,
+msvcprtd.lib,XPXLIB_FILE_17,,
+msvcr40d.lib,XPXLIB_FILE_18,,
+msvcrt.lib,XPXLIB_FILE_19,,
+msvcrt4.lib,XPXLIB_FILE_20,,
+msvcrt4d.lib,XPXLIB_FILE_21,,
+msvcrtd.lib,XPXLIB_FILE_22,,
+ntstrsafe.lib,XPXLIB_FILE_23,,
+sehupd.lib,XPXLIB_FILE_24,,
+strsafe.lib,XPXLIB_FILE_25,,
+wdmsec.lib,XPXLIB_FILE_26,,
+
+[SourceDisksNames]
+1="XPXLIB.cab",XPXLIB.cab,0
+[SourceDisksFiles]
+XPXLIB_FILE_0=1,,512
+XPXLIB_FILE_1=1,,97420
+XPXLIB_FILE_2=1,,2714294
+XPXLIB_FILE_3=1,,2922376
+XPXLIB_FILE_4=1,,919918
+XPXLIB_FILE_5=1,,931608
+XPXLIB_FILE_6=1,,1080636
+XPXLIB_FILE_7=1,,1091972
+XPXLIB_FILE_8=1,,3126480
+XPXLIB_FILE_9=1,,3356372
+XPXLIB_FILE_10=1,,1432794
+XPXLIB_FILE_11=1,,1648286
+XPXLIB_FILE_12=1,,1475518
+XPXLIB_FILE_13=1,,1653182
+XPXLIB_FILE_14=1,,101936
+XPXLIB_FILE_15=1,,102414
+XPXLIB_FILE_16=1,,903060
+XPXLIB_FILE_17=1,,909626
+XPXLIB_FILE_18=1,,425064
+XPXLIB_FILE_19=1,,285572
+XPXLIB_FILE_20=1,,1177224
+XPXLIB_FILE_21=1,,1194860
+XPXLIB_FILE_22=1,,295434
+XPXLIB_FILE_23=1,,860138
+XPXLIB_FILE_24=1,,6162
+XPXLIB_FILE_25=1,,64604
+XPXLIB_FILE_26=1,,547590
+
+
+[Strings]
+FriendlyName=Wxp_Library_Files
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=27
+TotalSize=29325052

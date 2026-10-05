@@ -1,0 +1,103 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2,Files_3,Files_4,Files_5
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2,Files_3,Files_4,Files_5
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\vdd\dosioctl\"
+Files_1=49000,"\src\vdd\dosioctl\bin16\"
+Files_2=49000,"\src\vdd\dosioctl\dosapp\"
+Files_3=49000,"\src\vdd\dosioctl\dosdrvr\"
+Files_4=49000,"\src\vdd\dosioctl\ioctlvdd\"
+Files_5=49000,"\src\vdd\dosioctl\krnldrvr\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"VDD_dosioc"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","VDD_dosioc",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+VDD_dosioc.inf
+
+
+[Files_0]
+build16.bat,VDD_dosioc_FILE_0,,
+test.cmd,VDD_dosioc_FILE_1,,
+[Files_1]
+link.exe,VDD_dosioc_FILE_2,,
+masm.exe,VDD_dosioc_FILE_3,,
+[Files_2]
+dosapp.asm,VDD_dosioc_FILE_4,,
+dosapp.inc,VDD_dosioc_FILE_5,,
+makefile,VDD_dosioc_FILE_6,,
+xio.inc,VDD_dosioc_FILE_7,,
+[Files_3]
+dosdrvr.asm,VDD_dosioc_FILE_8,,
+makefile,VDD_dosioc_FILE_9,,
+[Files_4]
+ioctlvdd.c,VDD_dosioc_FILE_10,,
+ioctlvdd.def,VDD_dosioc_FILE_11,,
+ioctlvdd.h,VDD_dosioc_FILE_12,,
+ioctlvdd.htm,VDD_dosioc_FILE_13,,
+makefile,VDD_dosioc_FILE_14,,
+sources,VDD_dosioc_FILE_15,,
+[Files_5]
+krnldrvr.c,VDD_dosioc_FILE_16,,
+krnldrvr.h,VDD_dosioc_FILE_17,,
+krnldrvr.htm,VDD_dosioc_FILE_18,,
+krnldrvr.rc,VDD_dosioc_FILE_19,,
+makefile,VDD_dosioc_FILE_20,,
+sources,VDD_dosioc_FILE_21,,
+
+[SourceDisksNames]
+1="VDD_dosioc.cab",VDD_dosioc.cab,0
+[SourceDisksFiles]
+VDD_dosioc_FILE_0=1,,269
+VDD_dosioc_FILE_1=1,,978
+VDD_dosioc_FILE_2=1,,364544
+VDD_dosioc_FILE_3=1,,124448
+VDD_dosioc_FILE_4=1,,3953
+VDD_dosioc_FILE_5=1,,73
+VDD_dosioc_FILE_6=1,,654
+VDD_dosioc_FILE_7=1,,1009
+VDD_dosioc_FILE_8=1,,8757
+VDD_dosioc_FILE_9=1,,719
+VDD_dosioc_FILE_10=1,,6448
+VDD_dosioc_FILE_11=1,,145
+VDD_dosioc_FILE_12=1,,395
+VDD_dosioc_FILE_13=1,,7703
+VDD_dosioc_FILE_14=1,,252
+VDD_dosioc_FILE_15=1,,288
+VDD_dosioc_FILE_16=1,,7567
+VDD_dosioc_FILE_17=1,,1547
+VDD_dosioc_FILE_18=1,,8547
+VDD_dosioc_FILE_19=1,,264
+VDD_dosioc_FILE_20=1,,252
+VDD_dosioc_FILE_21=1,,95
+
+
+[Strings]
+FriendlyName=vdd
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=22
+TotalSize=538907

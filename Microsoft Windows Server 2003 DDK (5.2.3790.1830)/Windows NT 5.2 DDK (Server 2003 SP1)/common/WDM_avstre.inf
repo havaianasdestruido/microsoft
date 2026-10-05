@@ -1,0 +1,127 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\wdm\avstream\avshws\"
+Files_1=49000,"\src\wdm\avstream\avssamp\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"WDM_avstre"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","WDM_avstre",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+WDM_avstre.inf
+
+
+[Files_0]
+avshws.h,WDM_avstre_FILE_0,,
+avshws.htm,WDM_avstre_FILE_1,,
+avshws.inf,WDM_avstre_FILE_2,,
+avshws.rc,WDM_avstre_FILE_3,,
+capture.cpp,WDM_avstre_FILE_4,,
+capture.h,WDM_avstre_FILE_5,,
+device.cpp,WDM_avstre_FILE_6,,
+device.h,WDM_avstre_FILE_7,,
+filter.cpp,WDM_avstre_FILE_8,,
+filter.h,WDM_avstre_FILE_9,,
+hwsim.cpp,WDM_avstre_FILE_10,,
+hwsim.h,WDM_avstre_FILE_11,,
+image.cpp,WDM_avstre_FILE_12,,
+image.h,WDM_avstre_FILE_13,,
+makefile,WDM_avstre_FILE_14,,
+purecall.c,WDM_avstre_FILE_15,,
+sources,WDM_avstre_FILE_16,,
+[Files_1]
+audio.cpp,WDM_avstre_FILE_17,,
+audio.h,WDM_avstre_FILE_18,,
+avssamp.cpp,WDM_avstre_FILE_19,,
+avssamp.h,WDM_avstre_FILE_20,,
+avssamp.htm,WDM_avstre_FILE_21,,
+avssamp.inf,WDM_avstre_FILE_22,,
+avssamp.rc,WDM_avstre_FILE_23,,
+avss_w2k.inf,WDM_avstre_FILE_24,,
+capture.cpp,WDM_avstre_FILE_25,,
+capture.h,WDM_avstre_FILE_26,,
+filter.cpp,WDM_avstre_FILE_27,,
+filter.h,WDM_avstre_FILE_28,,
+image.cpp,WDM_avstre_FILE_29,,
+image.h,WDM_avstre_FILE_30,,
+makefile,WDM_avstre_FILE_31,,
+purecall.c,WDM_avstre_FILE_32,,
+sources,WDM_avstre_FILE_33,,
+video.cpp,WDM_avstre_FILE_34,,
+video.h,WDM_avstre_FILE_35,,
+wave.cpp,WDM_avstre_FILE_36,,
+wave.h,WDM_avstre_FILE_37,,
+
+[SourceDisksNames]
+1="WDM_avstre.cab",WDM_avstre.cab,0
+[SourceDisksFiles]
+WDM_avstre_FILE_0=1,,3743
+WDM_avstre_FILE_1=1,,16182
+WDM_avstre_FILE_2=1,,2198
+WDM_avstre_FILE_3=1,,623
+WDM_avstre_FILE_4=1,,51042
+WDM_avstre_FILE_5=1,,8754
+WDM_avstre_FILE_6=1,,20270
+WDM_avstre_FILE_7=1,,7493
+WDM_avstre_FILE_8=1,,5518
+WDM_avstre_FILE_9=1,,1852
+WDM_avstre_FILE_10=1,,17732
+WDM_avstre_FILE_11=1,,7344
+WDM_avstre_FILE_12=1,,22919
+WDM_avstre_FILE_13=1,,9652
+WDM_avstre_FILE_14=1,,362
+WDM_avstre_FILE_15=1,,822
+WDM_avstre_FILE_16=1,,744
+WDM_avstre_FILE_17=1,,19224
+WDM_avstre_FILE_18=1,,3734
+WDM_avstre_FILE_19=1,,2857
+WDM_avstre_FILE_20=1,,2859
+WDM_avstre_FILE_21=1,,14384
+WDM_avstre_FILE_22=1,,3113
+WDM_avstre_FILE_23=1,,622
+WDM_avstre_FILE_24=1,,2911
+WDM_avstre_FILE_25=1,,4643
+WDM_avstre_FILE_26=1,,5882
+WDM_avstre_FILE_27=1,,21565
+WDM_avstre_FILE_28=1,,6139
+WDM_avstre_FILE_29=1,,23854
+WDM_avstre_FILE_30=1,,9931
+WDM_avstre_FILE_31=1,,265
+WDM_avstre_FILE_32=1,,824
+WDM_avstre_FILE_33=1,,793
+WDM_avstre_FILE_34=1,,43486
+WDM_avstre_FILE_35=1,,5776
+WDM_avstre_FILE_36=1,,12713
+WDM_avstre_FILE_37=1,,4214
+
+
+[Strings]
+FriendlyName=wdm
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=38
+TotalSize=367039

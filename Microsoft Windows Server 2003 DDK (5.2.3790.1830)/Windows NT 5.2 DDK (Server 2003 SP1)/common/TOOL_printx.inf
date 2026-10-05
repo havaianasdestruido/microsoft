@@ -1,0 +1,65 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\print\x86\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"TOOL_printx"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_printx",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_printx.inf
+
+
+[Files_0]
+makentf.exe,TOOL_printx_FILE_0,,
+mdt.htm,TOOL_printx_FILE_1,,
+minidev.cnt,TOOL_printx_FILE_2,,
+minidev.exe,TOOL_printx_FILE_3,,
+minidev.hlp,TOOL_printx_FILE_4,,
+pgremlin.msi,TOOL_printx_FILE_5,,
+stdnames.gpd,TOOL_printx_FILE_6,,
+tips.txt,TOOL_printx_FILE_7,,
+
+[SourceDisksNames]
+1="TOOL_printx.cab",TOOL_printx.cab,0
+[SourceDisksFiles]
+TOOL_printx_FILE_0=1,,106496
+TOOL_printx_FILE_1=1,,4820
+TOOL_printx_FILE_2=1,,1035
+TOOL_printx_FILE_3=1,,1883136
+TOOL_printx_FILE_4=1,,50485
+TOOL_printx_FILE_5=1,,2221568
+TOOL_printx_FILE_6=1,,13957
+TOOL_printx_FILE_7=1,,3293
+
+
+[Strings]
+FriendlyName=print_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=8
+TotalSize=4284790

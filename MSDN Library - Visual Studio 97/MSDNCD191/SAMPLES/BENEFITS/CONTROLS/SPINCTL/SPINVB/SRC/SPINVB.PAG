@@ -1,0 +1,115 @@
+VERSION 5.00
+Begin VB.PropertyPage SpinnerProperties 
+   Caption         =   "Spinner Settings"
+   ClientHeight    =   3105
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   3180
+   PaletteMode     =   0  'Halftone
+   ScaleHeight     =   3105
+   ScaleWidth      =   3180
+   Begin VB.TextBox txtIncrement 
+      Height          =   285
+      Left            =   240
+      TabIndex        =   7
+      Top             =   2520
+      Width           =   2295
+   End
+   Begin VB.TextBox txtMinimum 
+      Height          =   285
+      Left            =   240
+      TabIndex        =   5
+      Top             =   1800
+      Width           =   2295
+   End
+   Begin VB.TextBox txtMaximum 
+      Height          =   285
+      Left            =   240
+      TabIndex        =   3
+      Top             =   1080
+      Width           =   2295
+   End
+   Begin VB.TextBox txtValue 
+      Height          =   285
+      Left            =   240
+      TabIndex        =   1
+      Top             =   360
+      Width           =   2295
+   End
+   Begin VB.Label lblIncrement 
+      Caption         =   "Increment"
+      Height          =   195
+      Left            =   240
+      TabIndex        =   6
+      Top             =   2280
+      Width           =   735
+   End
+   Begin VB.Label lblMinimum 
+      Caption         =   "Minimum"
+      Height          =   195
+      Left            =   240
+      TabIndex        =   4
+      Top             =   1560
+      Width           =   735
+   End
+   Begin VB.Label lblMaximum 
+      Caption         =   "Maximum"
+      Height          =   195
+      Left            =   240
+      TabIndex        =   2
+      Top             =   840
+      Width           =   735
+   End
+   Begin VB.Label lblValue 
+      Caption         =   "Value"
+      Height          =   195
+      Left            =   240
+      TabIndex        =   0
+      Top             =   120
+      Width           =   735
+   End
+End
+Attribute VB_Name = "SpinnerProperties"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+'SpinVB.pag  - Copyright (C) 1996 Microsoft Corporation
+'            - All rights reserved.
+'Date        - 12/20/96
+'Authors     - Ken Bergmann, James Braum, Steve Kirk
+'Purpose     - Property Page for SpinVB control
+
+Private Sub txtIncrement_Change()
+Changed = True
+End Sub
+
+Private Sub txtMaximum_Change()
+Changed = True
+End Sub
+
+Private Sub txtMinimum_Change()
+Changed = True
+End Sub
+
+Private Sub txtValue_Change()
+Changed = True
+End Sub
+
+Private Sub PropertyPage_ApplyChanges()
+Dim oControl As Variant
+For Each oControl In SelectedControls
+    oControl.Minimum = txtMinimum.Text
+    oControl.Maximum = txtMaximum.Text
+    oControl.Increment = txtIncrement.Text
+    oControl.Value = txtValue.Text
+Next
+End Sub
+
+Private Sub PropertyPage_SelectionChanged()
+txtMinimum.Text = SelectedControls(0).Minimum
+txtMaximum.Text = SelectedControls(0).Maximum
+txtIncrement.Text = SelectedControls(0).Increment
+txtValue.Text = SelectedControls(0).Value
+End Sub
+

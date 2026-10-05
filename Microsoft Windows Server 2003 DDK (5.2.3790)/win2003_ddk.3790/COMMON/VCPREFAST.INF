@@ -1,0 +1,53 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\help\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"VCPREFAST"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","VCPREFAST",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+VCPREFAST.inf
+
+
+[Files_0]
+vcprefast.chi,VCPREFAST_FILE_0,,
+vcprefast.chm,VCPREFAST_FILE_1,,
+
+[SourceDisksNames]
+1="VCPREFAST.cab",VCPREFAST.cab,0
+[SourceDisksFiles]
+VCPREFAST_FILE_0=1,,26009
+VCPREFAST_FILE_1=1,,144630
+
+
+[Strings]
+FriendlyName=VCPREFAST_Doc
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=2
+TotalSize=170639

@@ -1,0 +1,65 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\network\wshsmple\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"NETW_wshsmp"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","NETW_wshsmp",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+NETW_wshsmp.inf
+
+
+[Files_0]
+makefile,NETW_wshsmp_FILE_0,,
+readme.htm,NETW_wshsmp_FILE_1,,
+smpletcp.h,NETW_wshsmp_FILE_2,,
+sources,NETW_wshsmp_FILE_3,,
+wshsmple.c,NETW_wshsmp_FILE_4,,
+wshsmple.def,NETW_wshsmp_FILE_5,,
+wshsmple.h,NETW_wshsmp_FILE_6,,
+wshsmple.rc,NETW_wshsmp_FILE_7,,
+
+[SourceDisksNames]
+1="NETW_wshsmp.cab",NETW_wshsmp.cab,0
+[SourceDisksFiles]
+NETW_wshsmp_FILE_0=1,,269
+NETW_wshsmp_FILE_1=1,,2733
+NETW_wshsmp_FILE_2=1,,4763
+NETW_wshsmp_FILE_3=1,,446
+NETW_wshsmp_FILE_4=1,,121565
+NETW_wshsmp_FILE_5=1,,1084
+NETW_wshsmp_FILE_6=1,,3179
+NETW_wshsmp_FILE_7=1,,313
+
+
+[Strings]
+FriendlyName=network
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=8
+TotalSize=134352

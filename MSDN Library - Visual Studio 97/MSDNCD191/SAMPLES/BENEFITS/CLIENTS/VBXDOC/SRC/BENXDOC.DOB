@@ -1,0 +1,2135 @@
+VERSION 5.00
+Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.1#0"; "COMCTL32.OCX"
+Begin VB.UserDocument benxdoc 
+   BackColor       =   &H80000005&
+   ClientHeight    =   5235
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   8880
+   HScrollSmallChange=   225
+   ScaleHeight     =   5235
+   ScaleWidth      =   8880
+   VScrollSmallChange=   225
+   Begin VB.OptionButton optDatabase 
+      BackColor       =   &H80000005&
+      Caption         =   "Microsoft Access"
+      Height          =   195
+      Index           =   1
+      Left            =   3600
+      TabIndex        =   91
+      Top             =   1920
+      Width           =   2000
+   End
+   Begin VB.CommandButton btDelete 
+      Caption         =   "&Delete"
+      Enabled         =   0   'False
+      Height          =   315
+      Left            =   7005
+      TabIndex        =   55
+      Top             =   4470
+      Visible         =   0   'False
+      Width           =   1215
+   End
+   Begin VB.CommandButton btUpdate 
+      Caption         =   "&Update"
+      Enabled         =   0   'False
+      Height          =   300
+      Left            =   7005
+      TabIndex        =   54
+      Top             =   4170
+      Visible         =   0   'False
+      Width           =   1215
+   End
+   Begin VB.CommandButton btInsert 
+      Caption         =   "&Insert"
+      Enabled         =   0   'False
+      Height          =   300
+      Left            =   7005
+      TabIndex        =   53
+      Top             =   3870
+      Visible         =   0   'False
+      Width           =   1215
+   End
+   Begin VB.OptionButton optDatabase 
+      BackColor       =   &H80000005&
+      Caption         =   "Microsoft SQL Server"
+      Height          =   195
+      Index           =   0
+      Left            =   3600
+      TabIndex        =   28
+      Top             =   1695
+      Width           =   2000
+   End
+   Begin VB.PictureBox pnlMain 
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
+      BorderStyle     =   0  'None
+      ForeColor       =   &H80000008&
+      Height          =   1575
+      Index           =   4
+      Left            =   3240
+      ScaleHeight     =   1575
+      ScaleWidth      =   5100
+      TabIndex        =   81
+      Top             =   960
+      Visible         =   0   'False
+      Width           =   5100
+      Begin VB.ComboBox cmbBenefitLinkTax 
+         Height          =   315
+         Left            =   855
+         Sorted          =   -1  'True
+         Style           =   2  'Dropdown List
+         TabIndex        =   85
+         Top             =   855
+         Width           =   4200
+      End
+      Begin VB.ComboBox cmbBenefitLinkCoverage 
+         Height          =   315
+         Left            =   855
+         Sorted          =   -1  'True
+         Style           =   2  'Dropdown List
+         TabIndex        =   84
+         Top             =   465
+         Width           =   4200
+      End
+      Begin VB.TextBox txtBenefitLinkAmount 
+         Height          =   285
+         Left            =   855
+         TabIndex        =   83
+         Top             =   1230
+         Width           =   1695
+      End
+      Begin VB.ComboBox cmbBenefitDesc 
+         Height          =   315
+         Left            =   855
+         Sorted          =   -1  'True
+         Style           =   2  'Dropdown List
+         TabIndex        =   82
+         Top             =   60
+         Width           =   4200
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Taxes"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   26
+         Left            =   360
+         TabIndex        =   90
+         Top             =   915
+         Width           =   435
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Coverage"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   25
+         Left            =   105
+         TabIndex        =   89
+         Top             =   525
+         Width           =   690
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Amount"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   24
+         Left            =   255
+         TabIndex        =   88
+         Top             =   1275
+         Width           =   540
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Description"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   23
+         Left            =   0
+         TabIndex        =   87
+         Top             =   60
+         Width           =   795
+      End
+      Begin VB.Label lblBenefitLinkID 
+         BackColor       =   &H80000005&
+         Height          =   255
+         Left            =   2760
+         TabIndex        =   86
+         Top             =   1260
+         Visible         =   0   'False
+         Width           =   1215
+      End
+   End
+   Begin VB.Frame fraTreeView 
+      BackColor       =   &H80000005&
+      BorderStyle     =   0  'None
+      Height          =   4035
+      Left            =   0
+      TabIndex        =   51
+      Top             =   960
+      Visible         =   0   'False
+      Width           =   3195
+      Begin ComctlLib.TreeView tvwMain 
+         Height          =   3945
+         Left            =   60
+         TabIndex        =   52
+         Top             =   60
+         Visible         =   0   'False
+         Width           =   3090
+         _ExtentX        =   5450
+         _ExtentY        =   6959
+         _Version        =   327680
+         HideSelection   =   0   'False
+         Indentation     =   53
+         LabelEdit       =   1
+         Sorted          =   -1  'True
+         Style           =   7
+         ImageList       =   "imgMain"
+         Appearance      =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         MouseIcon       =   "benxdoc.dox":0000
+      End
+   End
+   Begin VB.CommandButton btLogin 
+      Caption         =   "Login"
+      Default         =   -1  'True
+      Height          =   630
+      Left            =   3585
+      TabIndex        =   27
+      Top             =   2730
+      Width           =   2040
+   End
+   Begin VB.TextBox txtUserName 
+      Height          =   300
+      Left            =   4530
+      MaxLength       =   20
+      TabIndex        =   26
+      Text            =   "admin"
+      Top             =   2280
+      Width           =   1095
+   End
+   Begin VB.PictureBox pnlHead 
+      Align           =   1  'Align Top
+      Appearance      =   0  'Flat
+      AutoRedraw      =   -1  'True
+      BackColor       =   &H80000005&
+      BorderStyle     =   0  'None
+      FillColor       =   &H80000005&
+      ForeColor       =   &H80000005&
+      Height          =   795
+      Left            =   0
+      Picture         =   "benxdoc.dox":001C
+      ScaleHeight     =   795
+      ScaleWidth      =   8880
+      TabIndex        =   24
+      Top             =   0
+      Width           =   8880
+      Begin VB.Label lblCurrent 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Employee Name"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   20.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H8000000D&
+         Height          =   480
+         Left            =   5205
+         TabIndex        =   25
+         Top             =   105
+         Visible         =   0   'False
+         Width           =   3225
+      End
+   End
+   Begin VB.PictureBox pnlMain 
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
+      BorderStyle     =   0  'None
+      ForeColor       =   &H80000008&
+      Height          =   3015
+      Index           =   1
+      Left            =   3180
+      ScaleHeight     =   3015
+      ScaleWidth      =   5190
+      TabIndex        =   1
+      Top             =   960
+      Visible         =   0   'False
+      Width           =   5190
+      Begin VB.TextBox txtBenefitDesc 
+         Height          =   285
+         Left            =   930
+         TabIndex        =   50
+         Top             =   60
+         Width           =   4200
+      End
+      Begin VB.ComboBox cmbBenefitTax 
+         Height          =   315
+         Left            =   930
+         Sorted          =   -1  'True
+         Style           =   2  'Dropdown List
+         TabIndex        =   3
+         Top             =   825
+         Width           =   4200
+      End
+      Begin VB.ComboBox cmbBenefitType 
+         Height          =   315
+         Left            =   930
+         Sorted          =   -1  'True
+         Style           =   2  'Dropdown List
+         TabIndex        =   2
+         Top             =   420
+         Width           =   4200
+      End
+      Begin VB.TextBox txtBenefitMultiples 
+         Height          =   285
+         Left            =   930
+         TabIndex        =   5
+         Top             =   1575
+         Width           =   1935
+      End
+      Begin VB.TextBox txtBenefitMinimum 
+         Height          =   285
+         Left            =   930
+         TabIndex        =   6
+         Top             =   1935
+         Width           =   1935
+      End
+      Begin VB.TextBox txtBenefitMaximum 
+         Height          =   285
+         Left            =   930
+         TabIndex        =   7
+         Top             =   2295
+         Width           =   1935
+      End
+      Begin VB.TextBox txtBenefitIncrement 
+         Height          =   285
+         Left            =   930
+         TabIndex        =   4
+         Top             =   1215
+         Width           =   1935
+      End
+      Begin VB.TextBox txtBenefitCost 
+         Height          =   285
+         Left            =   930
+         TabIndex        =   8
+         Top             =   2655
+         Width           =   1935
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Description"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   10
+         Left            =   60
+         TabIndex        =   36
+         Top             =   60
+         Width           =   795
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Taxes"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   11
+         Left            =   420
+         TabIndex        =   35
+         Top             =   855
+         Width           =   435
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Type"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   12
+         Left            =   495
+         TabIndex        =   34
+         Top             =   450
+         Width           =   360
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Cost"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   13
+         Left            =   555
+         TabIndex        =   33
+         Top             =   2685
+         Width           =   315
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Increment"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   15
+         Left            =   165
+         TabIndex        =   32
+         Top             =   1245
+         Width           =   705
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Min"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   14
+         Left            =   615
+         TabIndex        =   31
+         Top             =   1965
+         Width           =   255
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Multiple"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   16
+         Left            =   330
+         TabIndex        =   30
+         Top             =   1605
+         Width           =   540
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Max"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   17
+         Left            =   570
+         TabIndex        =   29
+         Top             =   2325
+         Width           =   300
+      End
+   End
+   Begin VB.PictureBox pnlMain 
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
+      BorderStyle     =   0  'None
+      ForeColor       =   &H80000008&
+      Height          =   3855
+      Index           =   0
+      Left            =   3420
+      ScaleHeight     =   3855
+      ScaleWidth      =   4890
+      TabIndex        =   37
+      Top             =   1020
+      Visible         =   0   'False
+      Width           =   4890
+      Begin VB.TextBox txtEmployeePosition 
+         Height          =   285
+         Left            =   660
+         TabIndex        =   14
+         Top             =   1500
+         Width           =   1680
+      End
+      Begin VB.TextBox txtEmployeeUserName 
+         Height          =   285
+         Left            =   660
+         TabIndex        =   15
+         Top             =   1830
+         Width           =   1680
+      End
+      Begin VB.TextBox txtEmployeeAddress1 
+         Height          =   285
+         Left            =   660
+         TabIndex        =   11
+         Top             =   345
+         Width           =   4200
+      End
+      Begin VB.TextBox txtEmployeeAddress2 
+         Height          =   285
+         Left            =   660
+         TabIndex        =   12
+         Top             =   690
+         Width           =   4200
+      End
+      Begin VB.TextBox txtEmployeeCity 
+         Height          =   285
+         Left            =   660
+         TabIndex        =   13
+         Top             =   1050
+         Width           =   4200
+      End
+      Begin VB.TextBox txtEmployeeBankAccount 
+         Height          =   285
+         Left            =   660
+         TabIndex        =   23
+         Top             =   3495
+         Width           =   2880
+      End
+      Begin VB.ComboBox cmbBank 
+         Height          =   315
+         Left            =   660
+         TabIndex        =   22
+         Top             =   3075
+         Width           =   2895
+      End
+      Begin VB.OptionButton optEmployeeGender 
+         BackColor       =   &H80000005&
+         Caption         =   "Female"
+         Height          =   255
+         Index           =   1
+         Left            =   3240
+         TabIndex        =   21
+         Top             =   2535
+         Width           =   855
+      End
+      Begin VB.OptionButton optEmployeeGender 
+         BackColor       =   &H80000005&
+         Caption         =   "Male"
+         Height          =   255
+         Index           =   0
+         Left            =   3240
+         TabIndex        =   20
+         Top             =   2295
+         Width           =   855
+      End
+      Begin VB.TextBox txtEmployeeEndDate 
+         Height          =   285
+         Left            =   3225
+         TabIndex        =   17
+         Top             =   1830
+         Width           =   1635
+      End
+      Begin VB.TextBox txtEmployeeStartDate 
+         Height          =   285
+         Left            =   3240
+         TabIndex        =   16
+         Top             =   1500
+         Width           =   1635
+      End
+      Begin VB.TextBox txtEmployeeBD 
+         Height          =   285
+         Left            =   660
+         TabIndex        =   18
+         Top             =   2280
+         Width           =   1680
+      End
+      Begin VB.TextBox txtEmployeeSalary 
+         Height          =   285
+         Left            =   660
+         TabIndex        =   19
+         Top             =   2625
+         Width           =   1680
+      End
+      Begin VB.TextBox txtEmployeeFirstName 
+         Height          =   285
+         Left            =   660
+         TabIndex        =   9
+         Top             =   0
+         Width           =   1680
+      End
+      Begin VB.TextBox txtEmployeeLastName 
+         Height          =   285
+         Left            =   2415
+         TabIndex        =   10
+         Top             =   0
+         Width           =   2445
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Account"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   31
+         Left            =   0
+         TabIndex        =   48
+         Top             =   3525
+         Width           =   600
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Bank"
+         ForeColor       =   &H80000008&
+         Height          =   255
+         Index           =   30
+         Left            =   225
+         TabIndex        =   47
+         Top             =   3120
+         Width           =   375
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "User Id"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   29
+         Left            =   90
+         TabIndex        =   46
+         Top             =   1875
+         Width           =   510
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "End Date"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   9
+         Left            =   2490
+         TabIndex        =   45
+         Top             =   1875
+         Width           =   675
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Start Date"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   8
+         Left            =   2445
+         TabIndex        =   44
+         Top             =   1545
+         Width           =   720
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Birthday"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   7
+         Left            =   45
+         TabIndex        =   43
+         Top             =   2340
+         Width           =   570
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Salary"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   6
+         Left            =   165
+         TabIndex        =   42
+         Top             =   2670
+         Width           =   435
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Position"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   5
+         Left            =   45
+         TabIndex        =   41
+         Top             =   1545
+         Width           =   555
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "City"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   4
+         Left            =   345
+         TabIndex        =   40
+         Top             =   1080
+         Width           =   255
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Address"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   2
+         Left            =   30
+         TabIndex        =   39
+         Top             =   375
+         Width           =   570
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Name"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   1
+         Left            =   180
+         TabIndex        =   38
+         Top             =   45
+         Width           =   420
+      End
+   End
+   Begin VB.PictureBox pnlMain 
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
+      BorderStyle     =   0  'None
+      ForeColor       =   &H80000008&
+      Height          =   2325
+      Index           =   3
+      Left            =   3420
+      ScaleHeight     =   2325
+      ScaleWidth      =   4890
+      TabIndex        =   67
+      Top             =   1020
+      Visible         =   0   'False
+      Width           =   4890
+      Begin VB.ComboBox cmbDependantType 
+         Height          =   315
+         Left            =   660
+         Sorted          =   -1  'True
+         Style           =   2  'Dropdown List
+         TabIndex        =   76
+         Top             =   375
+         Width           =   4200
+      End
+      Begin VB.TextBox txtDependantLastName 
+         Height          =   285
+         Left            =   2400
+         TabIndex        =   75
+         Top             =   15
+         Width           =   2445
+      End
+      Begin VB.TextBox txtDependantBD 
+         Height          =   285
+         Left            =   660
+         TabIndex        =   74
+         Top             =   750
+         Width           =   1680
+      End
+      Begin VB.TextBox txtDependantFirstName 
+         Height          =   285
+         Left            =   660
+         TabIndex        =   73
+         Top             =   15
+         Width           =   1680
+      End
+      Begin VB.OptionButton optDependantGender 
+         BackColor       =   &H80000005&
+         Caption         =   "Male"
+         Height          =   255
+         Index           =   0
+         Left            =   660
+         TabIndex        =   72
+         Top             =   1215
+         Width           =   855
+      End
+      Begin VB.OptionButton optDependantGender 
+         BackColor       =   &H80000005&
+         Caption         =   "Female"
+         Height          =   255
+         Index           =   1
+         Left            =   660
+         TabIndex        =   71
+         Top             =   1455
+         Width           =   855
+      End
+      Begin VB.Frame Frame1 
+         BackColor       =   &H80000005&
+         BorderStyle     =   0  'None
+         Caption         =   "Frame1"
+         Height          =   555
+         Left            =   600
+         TabIndex        =   68
+         Top             =   1740
+         Width           =   1095
+         Begin VB.OptionButton optDependantStatus 
+            BackColor       =   &H80000005&
+            Caption         =   "Active"
+            Height          =   255
+            Index           =   0
+            Left            =   60
+            TabIndex        =   70
+            Top             =   60
+            Width           =   975
+         End
+         Begin VB.OptionButton optDependantStatus 
+            BackColor       =   &H80000005&
+            Caption         =   "Inactive"
+            Height          =   255
+            Index           =   1
+            Left            =   60
+            TabIndex        =   69
+            Top             =   300
+            Width           =   975
+         End
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Type"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   0
+         Left            =   225
+         TabIndex        =   80
+         Top             =   420
+         Width           =   360
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Birthday"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   27
+         Left            =   45
+         TabIndex        =   79
+         Top             =   780
+         Width           =   570
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Name"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   28
+         Left            =   165
+         TabIndex        =   78
+         Top             =   60
+         Width           =   420
+      End
+      Begin VB.Label lblDependantID 
+         BackColor       =   &H80000005&
+         Height          =   255
+         Left            =   2460
+         TabIndex        =   77
+         Top             =   1800
+         Visible         =   0   'False
+         Width           =   1215
+      End
+   End
+   Begin VB.PictureBox pnlMain 
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
+      BorderStyle     =   0  'None
+      ForeColor       =   &H80000008&
+      Height          =   2010
+      Index           =   2
+      Left            =   3300
+      ScaleHeight     =   2010
+      ScaleWidth      =   5040
+      TabIndex        =   56
+      Top             =   900
+      Visible         =   0   'False
+      Width           =   5040
+      Begin VB.TextBox txtBankName 
+         Height          =   285
+         Left            =   780
+         TabIndex        =   61
+         Top             =   105
+         Width           =   4200
+      End
+      Begin VB.TextBox txtBankCode 
+         Height          =   285
+         Left            =   780
+         TabIndex        =   60
+         Top             =   465
+         Width           =   4200
+      End
+      Begin VB.TextBox txtBankCity 
+         Height          =   285
+         Left            =   780
+         TabIndex        =   59
+         Top             =   1650
+         Width           =   4200
+      End
+      Begin VB.TextBox txtBankAddress2 
+         Height          =   285
+         Left            =   780
+         TabIndex        =   58
+         Top             =   1290
+         Width           =   4200
+      End
+      Begin VB.TextBox txtBankAddress1 
+         Height          =   285
+         Left            =   780
+         TabIndex        =   57
+         Top             =   930
+         Width           =   4200
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Code"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   22
+         Left            =   330
+         TabIndex        =   66
+         Top             =   495
+         Width           =   375
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "City"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   21
+         Left            =   450
+         TabIndex        =   65
+         Top             =   1695
+         Width           =   255
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Address2"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   20
+         Left            =   45
+         TabIndex        =   64
+         Top             =   1320
+         Width           =   660
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Address1"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   19
+         Left            =   45
+         TabIndex        =   63
+         Top             =   975
+         Width           =   660
+      End
+      Begin VB.Label lblMain 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         AutoSize        =   -1  'True
+         BackColor       =   &H80000005&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Name"
+         ForeColor       =   &H80000008&
+         Height          =   195
+         Index           =   18
+         Left            =   285
+         TabIndex        =   62
+         Top             =   135
+         Width           =   420
+      End
+   End
+   Begin VB.Label lblStatus 
+      Alignment       =   2  'Center
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
+      BackStyle       =   0  'Transparent
+      Caption         =   "Ready"
+      ForeColor       =   &H80000008&
+      Height          =   180
+      Left            =   1440
+      TabIndex        =   49
+      Top             =   3435
+      Width           =   6405
+   End
+   Begin ComctlLib.ImageList imgMain 
+      Left            =   2325
+      Top             =   4590
+      _ExtentX        =   1005
+      _ExtentY        =   1005
+      BackColor       =   -2147483643
+      ImageWidth      =   16
+      ImageHeight     =   16
+      MaskColor       =   16777215
+      _Version        =   327680
+      BeginProperty Images {0713E8C2-850A-101B-AFC0-4210102A8DA7} 
+         NumListImages   =   7
+         BeginProperty ListImage1 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
+            Picture         =   "benxdoc.dox":6D19
+            Key             =   "Employee"
+         EndProperty
+         BeginProperty ListImage2 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
+            Picture         =   "benxdoc.dox":6E2B
+            Key             =   "Employees"
+         EndProperty
+         BeginProperty ListImage3 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
+            Picture         =   "benxdoc.dox":6F3D
+            Key             =   "Dependant"
+         EndProperty
+         BeginProperty ListImage4 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
+            Picture         =   "benxdoc.dox":704F
+            Key             =   "Dependants"
+         EndProperty
+         BeginProperty ListImage5 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
+            Picture         =   "benxdoc.dox":7161
+            Key             =   "Bank"
+         EndProperty
+         BeginProperty ListImage6 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
+            Picture         =   "benxdoc.dox":7273
+            Key             =   "Benefit"
+         EndProperty
+         BeginProperty ListImage7 {0713E8C3-850A-101B-AFC0-4210102A8DA7} 
+            Picture         =   "benxdoc.dox":7385
+            Key             =   "Benefits"
+         EndProperty
+      EndProperty
+   End
+   Begin VB.Label lblUserName 
+      Alignment       =   1  'Right Justify
+      AutoSize        =   -1  'True
+      BackStyle       =   0  'Transparent
+      Caption         =   "User Name:"
+      Height          =   195
+      Left            =   3600
+      TabIndex        =   0
+      Top             =   2325
+      Width           =   840
+   End
+End
+Attribute VB_Name = "benxdoc"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+'BenXDoc.dob - Copyright (C) 1996 Microsoft Corporation
+'            - All rights reserved.
+'Date        - 12/20/96
+'Authors     - Ken Bergmann
+'Purpose     - ActiveX Document Client for Benefits API
+Option Explicit
+
+Private oAdmin      As New CAdmin
+Private bAdmin      As Boolean
+Private bUpdate     As Boolean
+Private iCurrentPic As Integer
+Private lPKId       As Long
+Private sDataSource As String
+Private sUser       As String
+
+Private Const icEmployee = 0
+Private Const icBenefit = 1
+Private Const icBank = 2
+Private Const icDependant = 3
+Private Const icBenefitLink = 4
+
+Private Const icDoDataDirect = 1
+
+Private Const icInvalidUser = 0
+Private Const icValidUser = 1
+Private Const icValidAdmin = 2
+'ClearBank
+'Purpose     - Clear bank controls
+Private Sub ClearBank()
+txtBankName = ""
+txtBankAddress1 = ""
+txtBankAddress2 = ""
+txtBankCity = ""
+txtBankCode = ""
+End Sub
+
+'ClearBenefit
+'Purpose     - Clear benefit controls
+Private Sub ClearBenefit()
+txtBenefitDesc = ""
+txtBenefitCost = ""
+txtBenefitIncrement = ""
+txtBenefitMultiples = ""
+txtBenefitMaximum = ""
+txtBenefitMinimum = ""
+cmbBenefitTax.ListIndex = -1
+cmbBenefitType.ListIndex = -1
+End Sub
+
+'ClearBenefitLink
+'Purpose     - Clear benefit link controls
+Private Sub ClearBenefitLink()
+lblBenefitLinkID = ""
+txtBenefitLinkAmount = ""
+cmbBenefitDesc.ListIndex = -1
+cmbBenefitLinkCoverage.ListIndex = -1
+cmbBenefitLinkTax.ListIndex = -1
+End Sub
+
+'ClearDependant
+'Purpose     - Clear dependant controls
+Private Sub ClearDependant()
+lblDependantID = ""
+txtDependantFirstName = ""
+txtDependantLastName = ""
+txtDependantBD = ""
+cmbDependantType.ListIndex = -1
+optDependantStatus(0) = True
+optDependantGender(0) = True
+End Sub
+
+'ClearEmployee
+'Purpose     - Clear employee controls
+Private Sub ClearEmployee()
+txtEmployeeFirstName = ""
+txtEmployeeLastName = ""
+txtEmployeeAddress1 = ""
+txtEmployeeAddress2 = ""
+txtEmployeeCity = ""
+txtEmployeeSalary = ""
+txtEmployeePosition = ""
+txtEmployeeBD = ""
+txtEmployeeStartDate = ""
+txtEmployeeEndDate = ""
+txtEmployeeUserName = ""
+optEmployeeGender(0) = True
+cmbBank.Text = ""
+txtEmployeeBankAccount = ""
+End Sub
+
+'CurrentPanel
+'Purpose     - Returns the current active panle
+'Outputs     - (Integer) Indicates panel index
+Function CurrentPanel() As Integer
+Dim iPanel As Integer
+For iPanel = pnlMain.LBound To pnlMain.UBound
+    If pnlMain(iPanel).Visible Then
+        CurrentPanel = iPanel
+        Exit Function
+    End If
+Next iPanel
+CurrentPanel = 0
+End Function
+
+'DspBank
+'Purpose     - Display Bank
+Sub DspBank()
+Dim oEmp    As CEmployee
+Dim oBnk    As CBank
+Dim oEmps   As CListEmployee
+Dim nTmp    As ComctlLib.Node
+Dim lBnk    As Long
+Dim sKey    As String
+
+On Error Resume Next
+
+Set nTmp = tvwMain.Nodes(tvwMain.SelectedItem.Key)
+sKey = nTmp.Key
+If nTmp Is Nothing Then
+    ClearBank
+Else
+    lBnk = CLng(Mid$(nTmp.Tag, 2))
+    Set nTmp = Nothing
+    Set oBnk = oAdmin.Banks(lBnk)
+    txtBankName = oBnk.Name
+    txtBankAddress1 = oBnk.Address1
+    txtBankAddress2 = oBnk.Address2
+    txtBankCity = oBnk.City
+    txtBankCode = oBnk.Code
+    
+    'Fill Employees
+    If bAdmin Then
+        Set oEmps = oBnk.Employees
+        Set nTmp = tvwMain.Nodes.Add(sKey, tvwChild, "SB!" & sKey, "Employees")
+        nTmp.Image = "Employees"
+        For Each oEmp In oEmps
+            Err = False
+            Set nTmp = tvwMain.Nodes.Add("SB!" & sKey, tvwChild, "E" & CStr(oEmp.PKId) & "!" & sKey, oEmp.LastName & ", " & oEmp.FirstName)
+            If Not CBool(Err) Then
+                nTmp.Tag = "E" & CStr(oEmp.PKId)
+                nTmp.Image = "Employee"
+            End If
+        Next oEmp
+        Set nTmp = Nothing
+        Set oEmp = Nothing
+        Set oEmps = Nothing
+    End If
+    Set oBnk = Nothing
+End If
+If Not bAdmin Then
+    btInsert.Enabled = False
+    btUpdate.Enabled = True
+    btDelete.Enabled = False
+End If
+End Sub
+
+'DspBenefit
+'Purpose     - Display benefit
+Sub DspBenefit()
+Dim oBnf As CBenefit
+Dim nTmp As ComctlLib.Node
+Dim lBnf As Long
+
+On Error Resume Next
+
+Set nTmp = tvwMain.SelectedItem
+If nTmp Is Nothing Then
+    ClearBenefit
+Else
+    lBnf = CLng(Mid$(nTmp.Tag, 2))
+    Set oBnf = oAdmin.Benefits(lBnf)
+    txtBenefitDesc = oBnf.Description
+    FindItem cmbBenefitTax, oBnf.BnfTaxId
+    FindItem cmbBenefitType, oBnf.BnfTypeId
+    txtBenefitCost = oBnf.Cost
+    txtBenefitIncrement = oBnf.Increment
+    txtBenefitMaximum = oBnf.Maximum
+    txtBenefitMinimum = oBnf.Minimum
+    txtBenefitMultiples = oBnf.Multiples
+    Set oBnf = Nothing
+End If
+End Sub
+
+'DspBenefitLink
+'Purpose     - Display benefit link
+Sub DspBenefitLink()
+Dim oBnfLnk As CBenefitLink
+Dim nTmp As ComctlLib.Node
+Dim lBnfLnk As Long
+Dim lEmp As Long
+
+On Error Resume Next
+
+Set nTmp = tvwMain.SelectedItem
+If nTmp Is Nothing Then
+    ClearBenefitLink
+Else
+    lEmp = CLng(Mid$(nTmp.Parent.Parent.Tag, 2))
+    lBnfLnk = CLng(Mid$(nTmp.Tag, 2))
+    Set oBnfLnk = oAdmin.Employees(lEmp).BenefitLinks(lBnfLnk)
+    lblBenefitLinkID = oBnfLnk.PKId
+    FindItem cmbBenefitDesc, oBnfLnk.Benefit.PKId
+    txtBenefitLinkAmount = oBnfLnk.Amount
+    FindItem cmbBenefitLinkCoverage, oBnfLnk.CoverageId
+    FindItem cmbBenefitLinkTax, oBnfLnk.TaxId
+    Set oBnfLnk = Nothing
+End If
+If Not bAdmin Then
+    btInsert.Enabled = False
+    btUpdate.Enabled = True
+    btDelete.Enabled = True
+End If
+End Sub
+
+'DspDependant
+'Purpose     - Display dependant
+Sub DspDependant()
+Dim oDep As CDependant
+Dim nTmp As ComctlLib.Node
+Dim lEmp As Long
+Dim lDep As Long
+
+'On Error Resume Next
+
+Set nTmp = tvwMain.SelectedItem
+If nTmp Is Nothing Then
+    ClearBenefitLink
+Else
+    lEmp = CLng(Mid$(nTmp.Parent.Parent.Tag, 2))
+    lDep = CLng(Mid$(nTmp.Tag, 2))
+    Set oDep = oAdmin.Employees(lEmp).Dependants(lDep)
+    lblDependantID = oDep.PKId
+    txtDependantFirstName = oDep.FirstName
+    txtDependantLastName = oDep.LastName
+    txtDependantBD = oDep.DateOfBirth
+    FindItem cmbDependantType, oDep.DepTypeId
+    If oDep.Status Then
+        optDependantStatus(0) = True
+    Else
+        optDependantStatus(1) = True
+    End If
+    If oDep.Gender Then
+        optDependantGender(0) = True
+    Else
+        optDependantGender(1) = True
+    End If
+    Set oDep = Nothing
+End If
+If Not bAdmin Then
+    btInsert.Enabled = False
+    btUpdate.Enabled = True
+    btDelete.Enabled = True
+End If
+End Sub
+
+'DspEmployee
+'Purpose     - Display employee
+Sub DspEmployee()
+Dim oEmp As CEmployee
+Dim nTmp As ComctlLib.Node
+Dim lEmp As Long
+Dim sKey As String
+
+Dim oBnfLnks As CListBenefitLink
+Dim oDeps As CListDependant
+Dim oBnfLnk As CBenefitLink
+Dim oDep As CDependant
+Dim oBnk As CBank
+
+On Error Resume Next
+Set nTmp = tvwMain.Nodes(tvwMain.SelectedItem.Key)
+sKey = nTmp.Key
+If nTmp Is Nothing Then
+    ClearEmployee
+Else
+    lEmp = CLng(Mid$(nTmp.Tag, 2))
+    Set oEmp = oAdmin.Employees(lEmp)
+    txtEmployeeFirstName = oEmp.FirstName
+    txtEmployeeLastName = oEmp.LastName
+    txtEmployeeAddress1 = oEmp.Address1
+    FindItem cmbBank, oEmp.Bank.PKId
+    txtEmployeeBankAccount = oEmp.BankAccount
+    txtEmployeeCity = oEmp.City
+    txtEmployeeBD = oEmp.DateOfBirth
+    txtEmployeeSalary = oEmp.Salary
+    txtEmployeeStartDate = oEmp.StartDate
+    txtEmployeeEndDate = oEmp.EndDate
+    txtEmployeePosition = oEmp.Position
+    txtEmployeeUserName = oEmp.UserName
+    If oEmp.Gender Then
+        optEmployeeGender(0) = True
+    Else
+        optEmployeeGender(1) = True
+    End If
+    Set oDeps = oEmp.Dependants
+    Set oBnfLnks = oEmp.BenefitLinks
+    
+    'Fill Dependants
+    Err = False
+    Set nTmp = tvwMain.Nodes.Add(sKey, tvwChild, "SD!" & sKey, "Dependants")
+    If Not CBool(Err) Then
+        nTmp.Image = "Dependants"
+        For Each oDep In oDeps
+            Err = False
+            Set nTmp = tvwMain.Nodes.Add("SD!" & sKey, tvwChild, "D" & CStr(oDep.PKId) & "!" & sKey, oDep.LastName & ", " & oDep.FirstName)
+            If Not CBool(Err) Then
+                nTmp.Tag = "D" & CStr(oDep.PKId)
+                nTmp.Image = "Dependant"
+            End If
+        Next oDep
+    End If
+    Set oDep = Nothing
+    Set oDeps = Nothing
+    
+    'Fill Benefits
+    Err = False
+    Set nTmp = tvwMain.Nodes.Add(sKey, tvwChild, "SF!" & sKey, "Benefits")
+    If Not CBool(Err) Then
+        nTmp.Image = "Benefits"
+        For Each oBnfLnk In oBnfLnks
+            Err = False
+            Set nTmp = tvwMain.Nodes.Add("SF!" & sKey, tvwChild, "F" & CStr(oBnfLnk.PKId) & "!" & sKey, oBnfLnk.Benefit.Description)
+            If Not CBool(Err) Then
+                nTmp.Tag = "F" & CStr(oBnfLnk.PKId)
+                nTmp.Image = "Benefit"
+            End If
+        Next oBnfLnk
+    End If
+    Set oBnfLnk = Nothing
+    Set oBnfLnks = Nothing
+    
+    'Add Bank Node
+    Err = False
+    Set nTmp = tvwMain.Nodes.Add(sKey, tvwChild, "B" & CStr(oEmp.Bank.PKId) & "!" & sKey, oEmp.Bank.Name & " (" & oEmp.Bank.Code & ")")
+    If Not CBool(Err) Then
+        nTmp.Tag = "B" & CStr(oEmp.Bank.PKId)
+        nTmp.Image = "Bank"
+    End If
+    Set oEmp = Nothing
+End If
+If Not bAdmin Then
+    btInsert.Enabled = False
+    btUpdate.Enabled = True
+    btDelete.Enabled = False
+End If
+End Sub
+
+'FillDomain
+'Purpose     - Fill a control with a list
+'Inputs      - (Variant)    lstControl
+'            - (oDomain)    CList
+Sub FillDomain(lstControl, oDomain As CList)
+Dim oList   As CList
+
+lstControl.Clear
+For Each oList In oDomain
+    lstControl.AddItem oList("Description")
+    lstControl.ItemData(lstControl.NewIndex) = oList("PKId")
+Next oList
+Set oList = Nothing
+End Sub
+
+'FindItem
+'Purpose     - Searches for an itemdata and selects the item
+'Assumptions - N/A
+'Inputs      - (Control)    ctlMe
+'            - (Integer)    iItem
+Private Sub FindItem(ctlMe As Control, ByVal iItem As Integer)
+Dim iIndex As Integer
+ctlMe.ListIndex = -1
+For iIndex = 0 To ctlMe.ListCount - 1
+    If ctlMe.ItemData(iIndex) = iItem Then
+        ctlMe.ListIndex = iIndex
+        Exit For
+    End If
+Next iIndex
+End Sub
+
+'LoadBanks
+'Purpose     - Load control with banks
+Sub LoadBanks()
+Dim oBank As CBank
+cmbBank.Clear
+For Each oBank In oAdmin.Banks
+    cmbBank.AddItem oBank.Name
+    cmbBank.ItemData(cmbBank.NewIndex) = oBank.PKId
+Next oBank
+Set oBank = Nothing
+End Sub
+
+'LoadBenefits
+'Purpose     - Load control with benefits
+Sub LoadBenefits()
+Dim oBenefit As CBenefit
+cmbBenefitDesc.Clear
+For Each oBenefit In oAdmin.Benefits
+    cmbBenefitDesc.AddItem oBenefit.Description
+    cmbBenefitDesc.ItemData(cmbBenefitDesc.NewIndex) = oBenefit.PKId
+Next oBenefit
+Set oBenefit = Nothing
+End Sub
+
+'MoveButtons
+'Purpose     - Move the buttons
+'Inputs      - (Integer)    iWhere
+Sub MoveButtons(ByVal iWhere As Integer)
+Select Case iWhere
+    Case 0:
+        btInsert.Move 3200, 960
+        btUpdate.Move 3200, 1260
+        btDelete.Move 3200, 1560
+    Case 1:
+        btInsert.Move 7000, 3870
+        btUpdate.Move 7000, 4170
+        btDelete.Move 7000, 4470
+End Select
+DoEvents
+End Sub
+
+'ShowAdmin
+'Purpose     - Show admin view of data
+Sub ShowAdmin()
+Dim nTemp As ComctlLib.Node
+Dim oEmps As CListEmployee
+Dim oBnks As CListBank
+Dim oBnfs As CListBenefit
+Dim oEmp As CEmployee
+Dim oBnk As CBank
+Dim oBnf As CBenefit
+
+'hide current panel if updating
+pnlMain(CurrentPanel).Visible = False
+MoveButtons 0
+btUpdate.Enabled = False
+btDelete.Enabled = False
+
+oAdmin.FillListEmployees
+Set oEmps = oAdmin.Employees
+
+oAdmin.FillListBanks
+Set oBnks = oAdmin.Banks
+
+oAdmin.FillListBenefits
+Set oBnfs = oAdmin.Benefits
+
+tvwMain.Nodes.Clear
+
+'Fill Employees
+Set nTemp = tvwMain.Nodes.Add(Key:="MEmployee", Text:="Employees")
+nTemp.Image = "Employees"
+For Each oEmp In oEmps
+    Set nTemp = tvwMain.Nodes.Add("MEmployee", tvwChild, "E" & CStr(oEmp.PKId), oEmp.LastName & ", " & oEmp.FirstName)
+    nTemp.Tag = "E" & CStr(oEmp.PKId)
+    nTemp.Image = "Employee"
+Next oEmp
+Set oEmp = Nothing
+Set oEmps = Nothing
+
+'Fill Benefits
+Set nTemp = tvwMain.Nodes.Add(Key:="MBenefit", Text:="Benefits")
+nTemp.Image = "Benefits"
+For Each oBnf In oBnfs
+    Set nTemp = tvwMain.Nodes.Add("MBenefit", tvwChild, "F" & CStr(oBnf.PKId), oBnf.Description)
+    nTemp.Tag = "F" & CStr(oBnf.PKId)
+    nTemp.Image = "Benefit"
+Next oBnf
+Set oBnf = Nothing
+Set oBnfs = Nothing
+
+'Fill Banks
+Set nTemp = tvwMain.Nodes.Add(Key:="MBank", Text:="Banks")
+nTemp.Image = "Bank"
+For Each oBnk In oBnks
+    Set nTemp = tvwMain.Nodes.Add("MBank", tvwChild, "B" & CStr(oBnk.PKId), oBnk.Name & " (" & oBnk.Code & ")")
+    nTemp.Tag = "B" & CStr(oBnk.PKId)
+    nTemp.Image = "Bank"
+Next oBnk
+Set oBnk = Nothing
+Set oBnks = Nothing
+
+LoadBanks
+LoadBenefits
+    
+lblCurrent = "Administrator"
+lblCurrent.Visible = True
+End Sub
+
+'ShowPanel
+'Purpose     - Show a panel
+'Inputs      - (Integer)    iPanel
+Sub ShowPanel(ByVal iPanel As Integer)
+Dim iIndex As Integer
+
+pnlMain(iPanel).Visible = True
+If btInsert.Caption = "&Insert" Then btInsert.Enabled = False
+If bAdmin Then btUpdate.Enabled = True
+If bAdmin And btInsert.Caption = "&Insert" Then btDelete.Enabled = True
+pnlMain(iPanel).ZOrder
+For iIndex = icEmployee To icBenefitLink
+    If iIndex <> iPanel Then pnlMain(iIndex).Visible = False
+Next iIndex
+MoveButtons 1
+btInsert.ZOrder
+btUpdate.ZOrder
+btDelete.ZOrder
+End Sub
+
+'ShowUser
+'Purpose     - Show a user view of data
+Sub ShowUser()
+Dim oEmp    As New CEmployee
+Dim oLst    As CList
+Dim nTemp   As ComctlLib.Node
+Dim sTemp   As String
+
+oAdmin.FillListEmployees
+oAdmin.FillListBenefits
+oAdmin.FillListBanks
+
+tvwMain.Nodes.Clear
+btDelete.Enabled = False
+LoadBanks
+LoadBenefits
+
+If oAdmin.ExecFillList("SELECT * FROM tbEmployee WHERE UserName = '" & sUser & "'", oLst) Then
+    oEmp.PKId = oLst("PKId")
+    Set oEmp.Admin = oAdmin
+    sTemp = oEmp.LastName & ", " & oEmp.FirstName
+    Set nTemp = tvwMain.Nodes.Add(Key:="E" & CStr(oEmp.PKId), Text:=sTemp)
+    nTemp.Tag = "E" & CStr(oEmp.PKId)
+    Set oEmp = Nothing
+    nTemp.Image = "Employee"
+    nTemp.Selected = True
+    Set tvwMain.SelectedItem = tvwMain.Nodes(nTemp.Key)
+    DspEmployee
+    ShowPanel icEmployee
+    lblCurrent = sTemp
+    lblCurrent.Visible = True
+End If
+End Sub
+
+Private Sub btDelete_Click()
+On Error GoTo errbtDelete_Click
+Screen.MousePointer = vbHourglass
+Select Case CurrentPanel
+    Case icEmployee:
+        Dim oEmployee As CEmployee
+        Set oEmployee = oAdmin.Employees(CLng(Mid$(tvwMain.SelectedItem.Tag, 2)))
+        oAdmin.Delete oEmployee:=oEmployee
+    Case icBenefit:
+        Dim oBenefit As CBenefit
+        Set oBenefit = oAdmin.Benefits(CLng(Mid$(tvwMain.SelectedItem.Tag, 2)))
+        oAdmin.Delete oBenefit:=oBenefit
+    Case icBank:
+        Dim oBank As CBank
+        Set oBank = oAdmin.Banks(CLng(Mid$(tvwMain.SelectedItem.Tag, 2)))
+        oAdmin.Delete oBank:=oBank
+    Case icDependant:
+        Dim oDependant As CDependant
+        Set oDependant = oAdmin.Employees(CLng(Mid$(tvwMain.SelectedItem.Parent.Parent.Tag, 2))).Dependants(CLng(lblDependantID))
+        oAdmin.Delete oDependant:=oDependant
+    Case icBenefitLink:
+        Dim oBenefitLink As CBenefitLink
+        Set oBenefitLink = oAdmin.Employees(CLng(Mid$(tvwMain.SelectedItem.Parent.Parent.Tag, 2))).BenefitLinks(CLng(lblBenefitLinkID))
+        oAdmin.Delete oBenefitLink:=oBenefitLink
+End Select
+pnlMain(CurrentPanel).Visible = False
+MoveButtons 0
+btInsert.Enabled = True
+If bAdmin Then
+    ShowAdmin
+Else
+    ShowUser
+End If
+Screen.MousePointer = vbDefault
+Exit Sub
+errbtDelete_Click:
+MsgBox Err.Description, vbExclamation, "Delete Error"
+Screen.MousePointer = vbDefault
+Exit Sub
+End Sub
+
+Private Sub btInsert_Click()
+On Error GoTo errbtInsert_Click
+Dim nTemp As ComctlLib.Node
+Dim sKey As String
+
+Screen.MousePointer = vbHourglass
+Select Case btInsert.Caption
+    Case "&Insert":
+        btInsert.Caption = "Ok"
+        btUpdate.Caption = "Cancel"
+        btDelete.Enabled = False
+        fraTreeView.Enabled = False
+        Select Case tvwMain.SelectedItem
+            Case "Employees":
+                ClearEmployee
+                ShowPanel icEmployee
+            Case "Benefits":
+                If tvwMain.SelectedItem.Key = "MBenefit" Then
+                    ClearBenefit
+                    ShowPanel icBenefit
+                Else
+                    ClearBenefitLink
+                    ShowPanel icBenefitLink
+                End If
+            Case "Banks":
+                ClearBank
+                ShowPanel icBank
+            Case "Dependants":
+                ClearDependant
+                ShowPanel icDependant
+            Case Else:
+                btInsert.Caption = "&Insert"
+                btUpdate.Caption = "&Update"
+                btDelete.Enabled = True
+                fraTreeView.Enabled = True
+                MsgBox "Select appropriate node for insert.", vbInformation, "Benefits 1997"
+        End Select
+    Case "Ok":
+        Select Case tvwMain.SelectedItem
+            Case "Employees":
+                Dim oEmployee As New CEmployee
+                oEmployee.FirstName = txtEmployeeFirstName
+                oEmployee.LastName = txtEmployeeLastName
+                oEmployee.Address1 = txtEmployeeAddress1
+                Set oEmployee.Bank = oAdmin.Banks(cmbBank.ItemData(cmbBank.ListIndex))
+                oEmployee.BankAccount = txtEmployeeBankAccount
+                oEmployee.City = txtEmployeeCity
+                oEmployee.DateOfBirth = txtEmployeeBD
+                oEmployee.Salary = txtEmployeeSalary
+                oEmployee.StartDate = txtEmployeeStartDate
+                oEmployee.EndDate = txtEmployeeEndDate
+                oEmployee.Position = txtEmployeePosition
+                oEmployee.UserName = txtEmployeeUserName
+                If optEmployeeGender(0) Then
+                    oEmployee.Gender = True
+                Else
+                    oEmployee.Gender = False
+                End If
+                oAdmin.Insert oEmployee:=oEmployee
+                Set oEmployee = Nothing
+            Case "Benefits":
+                If tvwMain.SelectedItem.Key = "MBenefit" Then
+                    Dim oBenefit As New CBenefit
+                    oBenefit.Description = txtBenefitDesc
+                    oBenefit.BnfTaxId = cmbBenefitTax.ItemData(cmbBenefitTax.ListIndex)
+                    oBenefit.BnfTypeId = cmbBenefitType.ItemData(cmbBenefitType.ListIndex)
+                    oBenefit.Cost = txtBenefitCost
+                    oBenefit.Increment = txtBenefitIncrement
+                    oBenefit.Maximum = txtBenefitMaximum
+                    oBenefit.Minimum = txtBenefitMinimum
+                    oBenefit.Multiples = txtBenefitMultiples
+                    oAdmin.Insert oBenefit:=oBenefit
+                    Set oBenefit = Nothing
+                Else
+                    Dim oBenefitLink As New CBenefitLink
+                    Set oBenefitLink.Employee = oAdmin.Employees(CLng(Mid$(tvwMain.SelectedItem.Parent.Tag, 2)))
+                    Set oBenefitLink.Benefit = oAdmin.Benefits(cmbBenefitDesc.ItemData(cmbBenefitDesc.ListIndex))
+                    oBenefitLink.CoverageId = cmbBenefitLinkCoverage.ItemData(cmbBenefitLinkCoverage.ListIndex)
+                    oBenefitLink.TaxId = cmbBenefitLinkTax.ItemData(cmbBenefitLinkTax.ListIndex)
+                    oBenefitLink.Amount = txtBenefitLinkAmount
+                    oAdmin.Insert oBenefitLink:=oBenefitLink
+                    Set oBenefitLink = Nothing
+                End If
+            Case "Banks":
+                Dim oBank As New CBank
+                oBank.Name = txtBankName
+                oBank.Address1 = txtBankAddress1
+                oBank.Address2 = txtBankAddress2
+                oBank.City = txtBankCity
+                oBank.Code = txtBankCode
+                oAdmin.Insert oBank:=oBank
+                Set oBank = Nothing
+            Case "Dependants":
+                Dim oDependant As New CDependant
+                oDependant.FirstName = txtDependantFirstName
+                oDependant.LastName = txtDependantLastName
+                oDependant.DateOfBirth = txtDependantBD
+                oDependant.DepTypeId = cmbDependantType.ItemData(cmbDependantType.ListIndex)
+                If optDependantGender(0) Then
+                    oDependant.Gender = True
+                Else
+                    oDependant.Gender = False
+                End If
+                If optDependantStatus(0) Then
+                    oDependant.Status = True
+                Else
+                    oDependant.Status = False
+                End If
+                Set oDependant.Employee = oAdmin.Employees(CLng(Mid$(tvwMain.SelectedItem.Parent.Tag, 2)))
+                oAdmin.Insert oDependant:=oDependant
+                Set oDependant = Nothing
+        End Select
+        If bAdmin Then
+            ShowAdmin
+        Else
+            ShowUser
+        End If
+        btInsert.Caption = "&Insert"
+        btUpdate.Caption = "&Update"
+        fraTreeView.Enabled = True
+End Select
+Screen.MousePointer = vbDefault
+Exit Sub
+errbtInsert_Click:
+MsgBox Err.Description, vbExclamation, "Insert Error"
+Screen.MousePointer = vbDefault
+Exit Sub
+End Sub
+
+Private Sub btLogin_Click()
+Dim oLst  As CList
+Dim bODBC As Boolean
+Dim iUser As Integer
+Dim sDS   As String
+
+On Error Resume Next
+
+If Not (oAdmin Is Nothing) Then
+    oAdmin.Term
+    Set oAdmin = Nothing
+    Set oAdmin = New CAdmin
+End If
+If optDatabase(0).Value Then
+    bODBC = True
+    sDS = "ODBC;DSN=" & sDataSource & ";"
+Else
+    If optDatabase(1).Value Then
+        bODBC = False
+        sDS = sDataSource
+    Else
+        MsgBox "Please select datasource", vbOKOnly
+        Exit Sub
+    End If
+End If
+lblStatus = "Loading Services from ..." & sDataSource
+lblStatus.Refresh
+lblCurrent.Visible = False
+If Not oAdmin.Init(bODBC, sDS, icDoDataDirect, 0, 0) Then
+    MsgBox "Could not connect to data source.", vbOKOnly
+    Set oAdmin = Nothing
+    lblStatus = "Current Data Source = " & sDataSource
+    lblStatus.Refresh
+    Exit Sub
+Else
+    lblStatus = "Validating UserName..."
+    lblStatus.Refresh
+    sUser = Trim$(txtUserName)
+    iUser = oAdmin.IsUserValid(sUser)
+    If iUser = icInvalidUser Then
+        MsgBox "Invalid user name.", vbOKOnly
+        lblStatus = "Current Data Source = " & sDataSource
+        lblStatus.Refresh
+        Exit Sub
+    End If
+    
+    lblStatus = "Retrieving Domain Data...Benefit Tax Types"
+    lblStatus.Refresh
+    If oAdmin.GetBenefitTaxTypes(oLst) Then FillDomain cmbBenefitTax, oLst
+    lblStatus = "Retrieving Domain Data...Benefit Types"
+    lblStatus.Refresh
+    If oAdmin.GetBenefitTypes(oLst) Then FillDomain cmbBenefitType, oLst
+    lblStatus = "Retrieving Domain Data...Dependant Types"
+    lblStatus.Refresh
+    If oAdmin.GetDependantTypes(oLst) Then FillDomain cmbDependantType, oLst
+    lblStatus = "Retrieving Domain Data...Employee Benefit Coverage Types"
+    lblStatus.Refresh
+    If oAdmin.GetEmployeeBenefitCoverageTypes(oLst) Then FillDomain cmbBenefitLinkCoverage, oLst
+    lblStatus = "Retrieving Domain Data...Employee Benefit Tax Types"
+    lblStatus.Refresh
+    If oAdmin.GetEmployeeBenefitTaxTypes(oLst) Then FillDomain cmbBenefitLinkTax, oLst
+    Set oLst = Nothing
+    
+    If iUser = icValidAdmin Then
+        bAdmin = True
+        lblStatus = "Preparing Administration Mode..."
+        lblStatus.Refresh
+        ShowAdmin
+    Else
+        If iUser = icValidUser Then
+            bAdmin = False
+            lblStatus = "Preparing User Mode..."
+            lblStatus.Refresh
+            ShowUser
+        Else
+            MsgBox "Invalid user name.", vbOKOnly
+            lblStatus = "Current Data Source = " & sDataSource
+            lblStatus.Refresh
+            Exit Sub
+        End If
+    End If
+    
+    lblStatus = ""
+    lblStatus.Refresh
+    lblUserName.Visible = False
+    txtUserName.Visible = False
+    btLogin.Visible = False
+    btInsert.Visible = True
+    btUpdate.Visible = True
+    btDelete.Visible = True
+    optDatabase(0).Visible = False
+    optDatabase(1).Visible = False
+    tvwMain.Visible = True
+    fraTreeView.Visible = True
+End If
+End Sub
+
+Private Sub btUpdate_Click()
+On Error GoTo errbtUpdate_Click
+Screen.MousePointer = vbHourglass
+Select Case btUpdate.Caption
+    Case "&Update":
+        lblCurrent = "Updating..."
+        Screen.MousePointer = vbHourglass
+        btInsert.Visible = False
+        btUpdate.Visible = False
+        btDelete.Visible = False
+        Select Case CurrentPanel
+            Case icEmployee:
+                Dim oEmployee As CEmployee
+                Set oEmployee = oAdmin.Employees(CLng(Mid$(tvwMain.SelectedItem.Tag, 2)))
+                oEmployee.FirstName = txtEmployeeFirstName
+                oEmployee.LastName = txtEmployeeLastName
+                oEmployee.Address1 = txtEmployeeAddress1
+                Set oEmployee.Bank = oAdmin.Banks(cmbBank.ItemData(cmbBank.ListIndex))
+                oEmployee.BankAccount = txtEmployeeBankAccount
+                oEmployee.City = txtEmployeeCity
+                oEmployee.DateOfBirth = txtEmployeeBD
+                oEmployee.Salary = txtEmployeeSalary
+                oEmployee.StartDate = txtEmployeeStartDate
+                oEmployee.EndDate = txtEmployeeEndDate
+                oEmployee.Position = txtEmployeePosition
+                oEmployee.UserName = txtEmployeeUserName
+                If optEmployeeGender(0) Then
+                    oEmployee.Gender = True
+                Else
+                    oEmployee.Gender = False
+                End If
+                oAdmin.Update oEmployee:=oEmployee
+            Case icBenefit:
+                Dim oBenefit As CBenefit
+                Set oBenefit = oAdmin.Benefits(CLng(Mid$(tvwMain.SelectedItem.Tag, 2)))
+                oBenefit.Description = txtBenefitDesc
+                oBenefit.BnfTaxId = cmbBenefitTax.ItemData(cmbBenefitTax.ListIndex)
+                oBenefit.BnfTypeId = cmbBenefitType.ItemData(cmbBenefitType.ListIndex)
+                oBenefit.Cost = txtBenefitCost
+                oBenefit.Increment = txtBenefitIncrement
+                oBenefit.Maximum = txtBenefitMaximum
+                oBenefit.Minimum = txtBenefitMinimum
+                oBenefit.Multiples = txtBenefitMultiples
+                oAdmin.Update oBenefit:=oBenefit
+            Case icBenefitLink:
+                Dim oBenefitLink As CBenefitLink
+                Set oBenefitLink = oAdmin.Employees(CLng(Mid$(tvwMain.SelectedItem.Parent.Parent.Tag, 2))).BenefitLinks(CLng(lblBenefitLinkID))
+                Set oBenefitLink.Benefit = oAdmin.Benefits(cmbBenefitDesc.ItemData(cmbBenefitDesc.ListIndex))
+                oBenefitLink.CoverageId = cmbBenefitLinkCoverage.ItemData(cmbBenefitLinkCoverage.ListIndex)
+                oBenefitLink.TaxId = cmbBenefitLinkTax.ItemData(cmbBenefitLinkTax.ListIndex)
+                oBenefitLink.Amount = txtBenefitLinkAmount
+                oAdmin.Update oBenefitLink:=oBenefitLink
+            Case icBank:
+                Dim oBank As CBank
+                Set oBank = oAdmin.Banks(CLng(Mid$(tvwMain.SelectedItem.Tag, 2)))
+                oBank.Name = txtBankName
+                oBank.Address1 = txtBankAddress1
+                oBank.Address2 = txtBankAddress2
+                oBank.City = txtBankCity
+                oBank.Code = txtBankCode
+                oAdmin.Update oBank:=oBank
+                LoadBanks
+            Case icDependant:
+                Dim oDependant As New CDependant
+                Set oDependant = oAdmin.Employees(CLng(Mid$(tvwMain.SelectedItem.Parent.Parent.Tag, 2))).Dependants(CLng(lblDependantID))
+                oDependant.FirstName = txtDependantFirstName
+                oDependant.LastName = txtDependantLastName
+                oDependant.DateOfBirth = txtDependantBD
+                oDependant.DepTypeId = cmbDependantType.ItemData(cmbDependantType.ListIndex)
+                If optDependantGender(0) Then
+                    oDependant.Gender = True
+                Else
+                    oDependant.Gender = False
+                End If
+                If optDependantStatus(0) Then
+                    oDependant.Status = True
+                Else
+                    oDependant.Status = False
+                End If
+                oAdmin.Update oDependant:=oDependant
+        End Select
+
+Dim sKeyMain    As String
+Dim sKeySub     As String
+
+Select Case CurrentPanel
+Case icDependant, icBenefitLink
+    bUpdate = True
+    sKeySub = tvwMain.SelectedItem.Tag
+    sKeyMain = tvwMain.SelectedItem.Parent.Parent.Tag
+    If bAdmin Then
+        ShowAdmin
+    Else
+        ShowUser
+    End If
+    Set tvwMain.SelectedItem = tvwMain.Nodes(sKeyMain)
+    tvwMain_NodeClick tvwMain.Nodes(sKeyMain)
+    Set tvwMain.SelectedItem = tvwMain.Nodes(sKeySub & "!" & sKeyMain)
+    bUpdate = False
+    tvwMain_NodeClick tvwMain.Nodes(sKeySub & "!" & sKeyMain)
+Case Else
+    sKeyMain = tvwMain.SelectedItem.Tag
+    If bAdmin Then
+        ShowAdmin
+    Else
+        ShowUser
+    End If
+    Set tvwMain.SelectedItem = tvwMain.Nodes(sKeyMain)
+    tvwMain_NodeClick tvwMain.Nodes(sKeyMain)
+End Select
+        
+    Case "Cancel":
+        btUpdate.Caption = "&Update"
+        btUpdate.Enabled = False
+        btInsert.Caption = "&Insert"
+        pnlMain(CurrentPanel).Visible = False
+        MoveButtons 0
+        btDelete.Enabled = False
+        fraTreeView.Enabled = True
+End Select
+btInsert.Visible = True
+btUpdate.Visible = True
+btDelete.Visible = True
+Screen.MousePointer = vbDefault
+Exit Sub
+
+errbtUpdate_Click:
+    MsgBox Err.Description, vbExclamation, "Update Error"
+    btInsert.Enabled = False
+    btUpdate.Enabled = True
+    btDelete.Enabled = True
+    btInsert.Visible = True
+    btUpdate.Visible = True
+    btDelete.Visible = True
+    Screen.MousePointer = vbDefault
+    Exit Sub
+End Sub
+
+Private Sub optDatabase_Click(Index As Integer)
+Dim sTemp As String
+If Index = 0 Then sTemp = InputBox$("Please enter the datasource name.", App.Title, "benefits")
+If Index = 1 Then sTemp = InputBox$("Please enter the UNC of the database file.", App.Title)
+sTemp = Trim$(sTemp)
+If Len(sTemp) Then sDataSource = sTemp
+lblStatus = "Current Data Source = " & sTemp
+End Sub
+
+Private Sub optDatabase_DblClick(Index As Integer)
+Dim sTemp As String
+If Index = 0 Then sTemp = InputBox$("Please enter the datasource name.", App.Title, "benefits")
+If Index = 1 Then sTemp = InputBox$("Please enter the UNC of the database file.", App.Title)
+sTemp = Trim$(sTemp)
+If Len(sTemp) Then sDataSource = sTemp
+lblStatus = "Current Data Source = " & sTemp
+End Sub
+
+Private Sub pnlHead_Resize()
+On Error Resume Next
+Dim iLbl   As Integer
+Dim iWidth As Integer
+
+iWidth = pnlHead.Width
+iLbl = lblCurrent.Width + 100
+If iWidth < 2325 Then lblCurrent.Visible = False: Exit Sub
+If (iWidth - 2325) < iLbl Then lblCurrent.Visible = False: Exit Sub
+lblCurrent.Left = iWidth - iLbl
+End Sub
+
+Private Sub tvwMain_NodeClick(ByVal Node As ComctlLib.Node)
+On Error Resume Next
+Dim sTag As String
+Select Case Node.Text
+    Case "Employees", "Banks", "Benefits", "Dependants"
+        pnlMain(CurrentPanel).Visible = False
+        MoveButtons 0
+        btInsert.Enabled = True
+        btUpdate.Enabled = False
+        btDelete.Enabled = False
+End Select
+
+sTag = Node.Parent.Parent.Tag
+Select Case Left$(Node.Tag, 1)
+    Case "B"
+        DspBank
+        ShowPanel icBank
+    Case "E"
+        DspEmployee
+        If Not bUpdate Then ShowPanel icEmployee
+    Case "F"
+        If Len(sTag) Then
+            If Left$(sTag, 1) = "E" Then
+                DspBenefitLink
+                ShowPanel icBenefitLink
+            Else
+                DspBenefit
+                ShowPanel icBenefit
+            End If
+        Else
+            DspBenefit
+            ShowPanel icBenefit
+        End If
+    Case "D"
+        DspDependant
+        ShowPanel icDependant
+End Select
+End Sub
+
+Private Sub UserDocument_Initialize()
+lblStatus = "Current Data Source = " & sDataSource
+lblStatus.Refresh
+End Sub
+
+Private Sub UserDocument_Terminate()
+On Error Resume Next
+If Not (oAdmin Is Nothing) Then oAdmin.Term
+Set oAdmin = Nothing
+End Sub
+

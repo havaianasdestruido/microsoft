@@ -1,0 +1,55 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\setup\devupgrd\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"SETU_devupg"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","SETU_devupg",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+SETU_devupg.inf
+
+
+[Files_0]
+devupgrd.htm,SETU_devupg_FILE_0,,
+devupgrd.inf,SETU_devupg_FILE_1,,
+migrate.dll,SETU_devupg_FILE_2,,
+
+[SourceDisksNames]
+1="SETU_devupg.cab",SETU_devupg.cab,0
+[SourceDisksFiles]
+SETU_devupg_FILE_0=1,,57208
+SETU_devupg_FILE_1=1,,978
+SETU_devupg_FILE_2=1,,381200
+
+
+[Strings]
+FriendlyName=setup
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=3
+TotalSize=439386

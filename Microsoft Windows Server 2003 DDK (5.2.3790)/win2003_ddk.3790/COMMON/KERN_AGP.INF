@@ -1,0 +1,111 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2,Files_3
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2,Files_3
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\kernel\agp\agp440\"
+Files_1=49000,"\src\kernel\agp\agplib\"
+Files_2=49000,"\src\kernel\agp\inc\"
+Files_3=49000,"\src\kernel\agp\uagp35\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"KERN_agp"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","KERN_agp",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+KERN_agp.inf
+
+
+[Files_0]
+agp440.h,KERN_agp_FILE_0,,
+agp440.htm,KERN_agp_FILE_1,,
+agp440.inf,KERN_agp_FILE_2,,
+agp440.rc,KERN_agp_FILE_3,,
+gart.c,KERN_agp_FILE_4,,
+init.c,KERN_agp_FILE_5,,
+makefile,KERN_agp_FILE_6,,
+sources,KERN_agp_FILE_7,,
+[Files_1]
+agplib.h,KERN_agp_FILE_8,,
+agplib.htm,KERN_agp_FILE_9,,
+config.c,KERN_agp_FILE_10,,
+dispatch.c,KERN_agp_FILE_11,,
+init.c,KERN_agp_FILE_12,,
+intrface.c,KERN_agp_FILE_13,,
+makefile,KERN_agp_FILE_14,,
+resource.c,KERN_agp_FILE_15,,
+sources,KERN_agp_FILE_16,,
+utils.c,KERN_agp_FILE_17,,
+wmi.c,KERN_agp_FILE_18,,
+[Files_2]
+agp.h,KERN_agp_FILE_19,,
+[Files_3]
+gart.c,KERN_agp_FILE_20,,
+init.c,KERN_agp_FILE_21,,
+makefile,KERN_agp_FILE_22,,
+sources,KERN_agp_FILE_23,,
+uagp35.h,KERN_agp_FILE_24,,
+uagp35.htm,KERN_agp_FILE_25,,
+uagp35.inf,KERN_agp_FILE_26,,
+uagp35.rc,KERN_agp_FILE_27,,
+
+[SourceDisksNames]
+1="KERN_agp.cab",KERN_agp.cab,0
+[SourceDisksFiles]
+KERN_agp_FILE_0=1,,3460
+KERN_agp_FILE_1=1,,9303
+KERN_agp_FILE_2=1,,3204
+KERN_agp_FILE_3=1,,302
+KERN_agp_FILE_4=1,,34934
+KERN_agp_FILE_5=1,,8568
+KERN_agp_FILE_6=1,,287
+KERN_agp_FILE_7=1,,227
+KERN_agp_FILE_8=1,,16037
+KERN_agp_FILE_9=1,,2271
+KERN_agp_FILE_10=1,,41228
+KERN_agp_FILE_11=1,,29611
+KERN_agp_FILE_12=1,,33911
+KERN_agp_FILE_13=1,,33148
+KERN_agp_FILE_14=1,,285
+KERN_agp_FILE_15=1,,37477
+KERN_agp_FILE_16=1,,277
+KERN_agp_FILE_17=1,,7661
+KERN_agp_FILE_18=1,,13122
+KERN_agp_FILE_19=1,,6037
+KERN_agp_FILE_20=1,,42413
+KERN_agp_FILE_21=1,,10592
+KERN_agp_FILE_22=1,,285
+KERN_agp_FILE_23=1,,227
+KERN_agp_FILE_24=1,,4400
+KERN_agp_FILE_25=1,,12681
+KERN_agp_FILE_26=1,,3729
+KERN_agp_FILE_27=1,,302
+
+
+[Strings]
+FriendlyName=kernel
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=28
+TotalSize=355979

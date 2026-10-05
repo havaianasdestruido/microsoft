@@ -1,0 +1,83 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\network\modem\fakemodem\"
+Files_1=49000,"\src\network\modem\infs\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"NETW_modem"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","NETW_modem",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+NETW_modem.inf
+
+
+[Files_0]
+fakemodem.h,NETW_modem_FILE_0,,
+fakemodem.htm,NETW_modem_FILE_1,,
+fakemodm.rc,NETW_modem_FILE_2,,
+init.c,NETW_modem_FILE_3,,
+ioctl.c,NETW_modem_FILE_4,,
+makefile,NETW_modem_FILE_5,,
+mdmfake.inf,NETW_modem_FILE_6,,
+open.c,NETW_modem_FILE_7,,
+pnp.c,NETW_modem_FILE_8,,
+power.c,NETW_modem_FILE_9,,
+readwrit.c,NETW_modem_FILE_10,,
+sources,NETW_modem_FILE_11,,
+util.c,NETW_modem_FILE_12,,
+[Files_1]
+mfsupra.inf,NETW_modem_FILE_13,,
+smpdata.inf,NETW_modem_FILE_14,,
+smpvoice.inf,NETW_modem_FILE_15,,
+
+[SourceDisksNames]
+1="NETW_modem.cab",NETW_modem.cab,0
+[SourceDisksFiles]
+NETW_modem_FILE_0=1,,9988
+NETW_modem_FILE_1=1,,20451
+NETW_modem_FILE_2=1,,350
+NETW_modem_FILE_3=1,,17350
+NETW_modem_FILE_4=1,,20586
+NETW_modem_FILE_5=1,,249
+NETW_modem_FILE_6=1,,12167
+NETW_modem_FILE_7=1,,3366
+NETW_modem_FILE_8=1,,14199
+NETW_modem_FILE_9=1,,2734
+NETW_modem_FILE_10=1,,19607
+NETW_modem_FILE_11=1,,901
+NETW_modem_FILE_12=1,,3968
+NETW_modem_FILE_13=1,,2384
+NETW_modem_FILE_14=1,,22792
+NETW_modem_FILE_15=1,,18674
+
+
+[Strings]
+FriendlyName=network
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=16
+TotalSize=169766

@@ -1,0 +1,53 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\devicetree\x86\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"TOOL_devicex"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_devicex",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_devicex.inf
+
+
+[Files_0]
+devicetree.chm,TOOL_devicex_FILE_0,,
+devicetree.exe,TOOL_devicex_FILE_1,,
+
+[SourceDisksNames]
+1="TOOL_devicex.cab",TOOL_devicex.cab,0
+[SourceDisksFiles]
+TOOL_devicex_FILE_0=1,,314386
+TOOL_devicex_FILE_1=1,,618496
+
+
+[Strings]
+FriendlyName=devicetree_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=2
+TotalSize=932882

@@ -1,0 +1,55 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\tools\avstream\"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"TOOL_avstre"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","TOOL_avstre",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+TOOL_avstre.inf
+
+
+[Files_0]
+.empty ,TOOL_avstre_FILE_0,,
+KsStudio.chm ,TOOL_avstre_FILE_1,,
+MCStream.txt ,TOOL_avstre_FILE_2,,
+
+[SourceDisksNames]
+1="TOOL_avstre.cab",TOOL_avstre.cab,0
+[SourceDisksFiles]
+TOOL_avstre_FILE_0=1,,3
+TOOL_avstre_FILE_1=1,,87991
+TOOL_avstre_FILE_2=1,,1369
+
+
+[Strings]
+FriendlyName=avstream_TOOL
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=3
+TotalSize=89363

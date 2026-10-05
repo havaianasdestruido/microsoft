@@ -1,0 +1,17 @@
+.OPTION EXPLICIT
+.Set Cabinet=on
+.Set Compress=on
+.Set MaxDiskSize=CDROM
+.Set ReservePerCabinetSize=6144
+.Set DiskDirectoryTemplate=
+.Set CompressionType=MSZIP
+.Set CompressionLevel=7
+.Set CompressionMemory=21
+.Set CabinetNameTemplate="SpinMFC.CAB"
+"SpinMFC.INF"
+"SpinMFC.ocx"
+"MFC42D.DLL"
+"MSVCRTD.DLL"
+"MFCO42D.DLL"
+
+

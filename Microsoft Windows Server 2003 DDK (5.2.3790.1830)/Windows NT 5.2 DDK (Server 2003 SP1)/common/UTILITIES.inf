@@ -1,0 +1,53 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\help\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"UTILITIES"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","UTILITIES",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+UTILITIES.inf
+
+
+[Files_0]
+utilities.chi,UTILITIES_FILE_0,,
+utilities.chm,UTILITIES_FILE_1,,
+
+[SourceDisksNames]
+1="UTILITIES.cab",UTILITIES.cab,0
+[SourceDisksFiles]
+UTILITIES_FILE_0=1,,12397
+UTILITIES_FILE_1=1,,88928
+
+
+[Strings]
+FriendlyName=UTILITIES_Doc
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=2
+TotalSize=101325

@@ -1,0 +1,53 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"bin\w2k"
+InfFiles=17,"msddk\3790"
+DefaultDestDir=49000,"x86dbin"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","x86dbin",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+x86dbin.inf
+
+
+[Files_0]
+coffbase.txt,CMNBINS_FILE_0,,
+set2k.bat,CMNBINS_FILE_1,,
+
+[SourceDisksNames]
+1="x86dbin.cab",x86dbin.cab,0
+[SourceDisksFiles]
+CMNBINS_FILE_0=1,,52341
+CMNBINS_FILE_1=1,,310
+
+
+[Strings]
+FriendlyName=Comon_Build_Tools
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=2
+TotalSize=52651

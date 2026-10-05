@@ -1,0 +1,35 @@
+Collection=winddk.col
+
+ddkint;Windows DDK
+ddkhowto;Windows DDK
+GStart;Windows DDK
+kmarch;Windows DDK\General Driver Information
+Framework;Windows DDK\General Driver Information
+install;Windows DDK\General Driver Information
+gloss;Windows DDK\General Driver Information
+acpi;Windows DDK\Device Technologies
+battery;Windows DDK\Device Technologies
+graphics;Windows DDK\Device Technologies
+1284dot4;Windows DDK\Device Technologies
+intinput;Windows DDK\Device Technologies
+modem;Windows DDK\Device Technologies
+multifnc;Windows DDK\Device Technologies
+network;Windows DDK\Device Technologies
+parallel;Windows DDK\Device Technologies
+portable;Windows DDK\Device Technologies
+serial;Windows DDK\Device Technologies
+servappl;Windows DDK\Device Technologies
+smart;Windows DDK\Device Technologies
+still;Windows DDK\Device Technologies
+storage;Windows DDK\Device Technologies
+audstream;Windows DDK\Device Technologies
+vidcapstream;Windows DDK\Device Technologies
+other;Windows DDK\Device Technologies
+buses;Windows DDK\Device Technologies
+ddtools;Windows DDK\Tools
+utilities;Windows DDK\Tools
+ddksamples;Windows DDK
+
+w98ddk;Windows DDK
+
+ifsk;Windows DDK

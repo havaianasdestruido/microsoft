@@ -1,0 +1,127 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0,Files_1,Files_2
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0,Files_1,Files_2
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\storage\miniport\aha154x\"
+Files_1=49000,"\src\storage\miniport\i2o\"
+Files_2=49000,"\src\storage\miniport\initio\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"STOR_minipo"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","STOR_minipo",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+STOR_minipo.inf
+
+
+[Files_0]
+aha154dt.h,STOR_minipo_FILE_0,,
+aha154x.c,STOR_minipo_FILE_1,,
+aha154x.h,STOR_minipo_FILE_2,,
+aha154x.htm,STOR_minipo_FILE_3,,
+aha154x.inf,STOR_minipo_FILE_4,,
+aha154x.mof,STOR_minipo_FILE_5,,
+aha154x.rc,STOR_minipo_FILE_6,,
+makefile,STOR_minipo_FILE_7,,
+makefile.inc,STOR_minipo_FILE_8,,
+sources,STOR_minipo_FILE_9,,
+support.c,STOR_minipo_FILE_10,,
+support.h,STOR_minipo_FILE_11,,
+txtsetup.oem,STOR_minipo_FILE_12,,
+wmi.c,STOR_minipo_FILE_13,,
+[Files_1]
+i2obscsi.h,STOR_minipo_FILE_14,,
+i2ocontrol.h,STOR_minipo_FILE_15,,
+i2oexec.h,STOR_minipo_FILE_16,,
+i2omp.c,STOR_minipo_FILE_17,,
+i2omp.h,STOR_minipo_FILE_18,,
+i2omp.htm,STOR_minipo_FILE_19,,
+i2omp.rc,STOR_minipo_FILE_20,,
+i2omsg.h,STOR_minipo_FILE_21,,
+i2omstor.h,STOR_minipo_FILE_22,,
+i2otypes.h,STOR_minipo_FILE_23,,
+i2outil.h,STOR_minipo_FILE_24,,
+makefile,STOR_minipo_FILE_25,,
+oemsetup.inf,STOR_minipo_FILE_26,,
+sources,STOR_minipo_FILE_27,,
+txtsetup.oem,STOR_minipo_FILE_28,,
+[Files_2]
+i950.h,STOR_minipo_FILE_29,,
+ini910u.c,STOR_minipo_FILE_30,,
+ini910u.htm,STOR_minipo_FILE_31,,
+ini910u.rc,STOR_minipo_FILE_32,,
+initio.inf,STOR_minipo_FILE_33,,
+makefile,STOR_minipo_FILE_34,,
+sources,STOR_minipo_FILE_35,,
+txtsetup.oem,STOR_minipo_FILE_36,,
+
+[SourceDisksNames]
+1="STOR_minipo.cab",STOR_minipo.cab,0
+[SourceDisksFiles]
+STOR_minipo_FILE_0=1,,4708
+STOR_minipo_FILE_1=1,,119406
+STOR_minipo_FILE_2=1,,16386
+STOR_minipo_FILE_3=1,,2978
+STOR_minipo_FILE_4=1,,3199
+STOR_minipo_FILE_5=1,,2102
+STOR_minipo_FILE_6=1,,2715
+STOR_minipo_FILE_7=1,,252
+STOR_minipo_FILE_8=1,,156
+STOR_minipo_FILE_9=1,,467
+STOR_minipo_FILE_10=1,,2339
+STOR_minipo_FILE_11=1,,195
+STOR_minipo_FILE_12=1,,3246
+STOR_minipo_FILE_13=1,,11852
+STOR_minipo_FILE_14=1,,15526
+STOR_minipo_FILE_15=1,,3336
+STOR_minipo_FILE_16=1,,45189
+STOR_minipo_FILE_17=1,,333747
+STOR_minipo_FILE_18=1,,13232
+STOR_minipo_FILE_19=1,,1903
+STOR_minipo_FILE_20=1,,497
+STOR_minipo_FILE_21=1,,45954
+STOR_minipo_FILE_22=1,,28509
+STOR_minipo_FILE_23=1,,1632
+STOR_minipo_FILE_24=1,,12055
+STOR_minipo_FILE_25=1,,366
+STOR_minipo_FILE_26=1,,1909
+STOR_minipo_FILE_27=1,,298
+STOR_minipo_FILE_28=1,,1797
+STOR_minipo_FILE_29=1,,37054
+STOR_minipo_FILE_30=1,,114182
+STOR_minipo_FILE_31=1,,2285
+STOR_minipo_FILE_32=1,,1909
+STOR_minipo_FILE_33=1,,3329
+STOR_minipo_FILE_34=1,,252
+STOR_minipo_FILE_35=1,,384
+STOR_minipo_FILE_36=1,,3962
+
+
+[Strings]
+FriendlyName=storage
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=37
+TotalSize=839308

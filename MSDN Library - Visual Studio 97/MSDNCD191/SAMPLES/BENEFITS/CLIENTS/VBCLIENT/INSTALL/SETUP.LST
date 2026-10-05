@@ -1,0 +1,64 @@
+[BootStrap]
+File1=1,,setup1.ex_,setup1.exe,$(WinPath),,,1/16/1997 0:00:00,164864,5.0.0.3716,"","",""
+File2=1,,VB5StKit.dl_,VB5StKit.dll,$(WinSysPath),,$(Shared),1/16/1997 0:00:00,29696,5.0.37.16,"","",""
+File3=1,,MSVBVM50.dl_,MSVBVM50.dll,$(WinSysPathSysFile),$(DLLSelfRegister),,1/24/1997 17:44:42,1334032,5.0.37.24,"","",""
+File4=1,,StdOle2.tl_,StdOle2.tlb,$(WinSysPathSysFile),$(TLBRegister),,1/15/1997 0:00:00,16896,2.20.4054.1,"","",""
+File5=1,,OleAut32.dl_,OleAut32.dll,$(WinSysPathSysFile),$(DLLSelfRegister),,1/15/1997 0:00:00,491792,2.20.4054.1,"","",""
+File6=1,,OlePro32.dl_,OlePro32.dll,$(WinSysPathSysFile),$(DLLSelfRegister),,1/15/1997 0:00:00,32528,5.0.4055.1,"","",""
+File7=1,,AsycFilt.dl_,AsycFilt.dll,$(WinSysPathSysFile),,,1/15/1997 0:00:00,120592,2.20.4056.1,"","",""
+File8=1,,Ctl3d32.dl_,Ctl3d32.dll,$(WinSysPathSysFile),,,8/21/1996 0:00:00,27136,2.31.0.0,"","",""
+File9=1,,ComCat.dl_,ComCat.dll,$(WinSysPathSysFile),$(DLLSelfRegister),,10/31/1996 0:00:00,22288,4.71.1441.1,"","",""
+[Files]
+File1=1,,DAO350.DL_,DAO350.DLL,$(MSDAOPath),$(DLLSelfRegister),$(Shared),12/5/1996 0:00:00,582144,3.50.3602.0,"","",""
+File2=1,,MSJtEr35.dl_,MSJtEr35.dll,$(WinSysPathSysFile),,,12/5/1996 0:00:00,24336,3.50.3602.0,"","",""
+File3=1,,MSJInt35.dl_,MSJInt35.dll,$(WinSysPathSysFile),,,1/13/1997 0:00:00,37136,3.50.3602.5,"","",""
+File4=1,,MSVCRT40.dl_,MSVCRT40.dll,$(WinSysPathSysFile),,,7/31/1996 0:00:00,326656,4.10.0.6038,"","",""
+File5=1,,MSJet35.dl_,MSJet35.dll,$(WinSysPathSysFile),$(DLLSelfRegister),,12/21/1996 0:00:00,1039360,3.50.3602.4,"","",""
+File6=1,,VBAJet32.dl_,VBAJet32.dll,$(WinSysPathSysFile),,,1/22/1997 0:00:00,18192,5.0.0.7122,"","",""
+File7=1,,VB5DB.dl_,VB5DB.dll,$(WinSysPath),,$(Shared),1/21/1997 0:00:00,78608,5.0.37.21,"","",""
+File8=1,,MSRD2x35.dl_,MSRD2x35.dll,$(WinSysPathSysFile),$(DLLSelfRegister),,12/5/1996 0:00:00,251664,3.50.3602.0,"","",""
+File9=1,,MsRepl35.dl_,MsRepl35.dll,$(WinSysPathSysFile),,,12/5/1996 0:00:00,403216,3.50.3602.0,"","",""
+File10=1,,ODBCJt32.dl_,ODBCJt32.dll,$(WinSysPathSysFile),,,12/5/1996 0:00:00,241664,3.50.3602.0,"","",""
+File11=1,,ODBCJI32.dl_,ODBCJI32.dll,$(WinSysPathSysFile),,,12/5/1996 0:00:00,37888,3.50.3602.0,"","",""
+File12=1,,ODBCTL32.dl_,ODBCTL32.dll,$(WinSysPathSysFile),,,12/5/1996 0:00:00,77824,3.50.3602.0,"","",""
+File13=1,,odbc32.dl_,odbc32.dll,$(WinSysPath),,$(Shared),12/5/1996 0:00:00,246544,3.0.23.1,"","",""
+File14=1,,ODBCINT.DL_,ODBCINT.DLL,$(WinSysPath),,$(Shared),12/5/1996 0:00:00,63488,3.0.23.1,"","",""
+File15=1,,MSRdo20.dl_,MSRdo20.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/16/1997 0:00:00,417040,5.0.37.14,"","",""
+File16=1,,rdocurs.dl_,rdocurs.dll,$(WinSysPath),,$(Shared),1/16/1997 0:00:00,97552,1.0.0.256,"","",""
+File17=1,,adme.dl_,adme.dll,$(WinSysPath),,$(Shared),1/12/1997 0:00:00,57856,1997.1.8.205,"","",""
+File18=1,,dtccm.dl_,dtccm.dll,$(WinSysPath),,$(Shared),1/12/1997 0:00:00,194048,1997.1.8.205,"","",""
+File19=1,,dtctrace.dl_,dtctrace.dll,$(WinSysPath),,$(Shared),1/12/1997 0:00:00,7168,1.0.0.2,"","",""
+File20=1,,dtcutil.dl_,dtcutil.dll,$(WinSysPath),,$(Shared),1/12/1997 0:00:00,48128,1997.1.8.205,"","",""
+File21=1,,msdtcprx.dl_,msdtcprx.dll,$(WinSysPath),,$(Shared),1/12/1997 0:00:00,171008,1997.1.8.205,"","",""
+File22=1,,xolehlp.dl_,xolehlp.dll,$(WinSysPath),,$(Shared),1/12/1997 0:00:00,22016,1997.1.8.205,"","",""
+File23=1,,CliReg32.ex_,CliReg32.exe,$(WinSysPath),,$(Shared),1/16/1997 0:00:00,44544,5.0.37.16,"","",""
+File24=1,,AutPrx32.dl_,AutPrx32.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/15/1997 0:00:00,140288,5.0.37.15,"","",""
+File25=1,,AUTMGR32.EX_,AUTMGR32.EXE,$(WinSysPath),$(EXESelfRegister),$(Shared),1/15/1997 0:00:00,153088,5.0.37.15,"","",""
+File26=1,,ODKOB32.DL_,ODKOB32.DLL,$(WinSysPath),,$(Shared),1/16/1997 0:00:00,16896,4.0.37.16,"","",""
+File27=1,,RACMGR32.EX_,RACMGR32.EXE,$(WinSysPath),,$(Shared),1/16/1997 0:00:00,60928,5.0.0.3716,"","",""
+File28=1,,RACReg32.dl_,RACReg32.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/16/1997 0:00:00,21504,5.0.0.3716,"","",""
+File29=1,,VBAR332.DL_,VBAR332.DLL,$(WinSysPath),,$(Shared),1/11/1997 0:00:00,368912,3.0.0.6908,"","",""
+File30=1,,COMCTL32.OC_,COMCTL32.OCX,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/16/1997 0:00:00,579856,5.0.37.14,"","",""
+File31=1,,MSCHART.OC_,MSCHART.OCX,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/16/1997 0:00:00,1004816,5.0.37.14,"","",""
+File32=1,,sbarvb.oc_,sbarvb.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/27/1997 11:26:10,98304,1.0.0.0,"","",""
+File33=1,,benvb.dl_,benvb.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/27/1997 11:34:08,382464,1.0.0.0,"","",""
+File34=1,,bencppr.ex_,bencppr.exe,$(WinSysPath),$(EXESelfRegister),$(Shared),1/27/1997 12:48:40,454656,1.0.0.1,"","",""
+File35=1,,bencpp.dl_,bencpp.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/27/1997 12:48:38,482816,1.0.0.1,"","",""
+File36=1,,benvbr.ex_,benvbr.exe,$(WinSysPath),$(EXESelfRegister),$(Shared),1/27/1997 11:28:58,384000,1.0.0.0,"","",""
+File37=1,,benvbe.dl_,benvbe.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/27/1997 11:35:34,390656,1.0.0.0,"","",""
+File38=1,,bloccpp.ex_,bloccpp.exe,$(AppPath),,,1/27/1997 11:48:02,372736,1.0.0.0,"","Corporate Benefits (Local C++)","$(AppPath)\bloccpp.exe"
+File39=1,,bloccppr.ex_,bloccppr.exe,$(AppPath),,,1/27/1997 11:49:28,372736,1.0.0.0,"","Corporate Benefits (Remote C++)","$(AppPath)\bloccppr.exe"
+File40=1,,blocvb.ex_,blocvb.exe,$(AppPath),,,1/27/1997 11:43:20,372224,1.0.0.0,"","Corporate Benefits (Local VB)","$(AppPath)\blocvb.exe"
+File41=1,,blocvbr.ex_,blocvbr.exe,$(AppPath),,,1/27/1997 11:45:14,372224,1.0.0.0,"","Corporate Benefits (Remote VB)","$(AppPath)\blocvbr.exe"
+File42=1,,bengloss.ht_,bengloss.htm,$(AppPath),,,1/27/1997 11:07:58,4706,,"","",""
+File43=1,,benefits.mdb,benefits.mdb,$(AppPath),,,1/27/1997,231424,,"","",""
+
+[Setup]
+Title=Corporate Benefits Sample Application
+DefProgramGroup=Corporate Benefits
+DefaultDir=$(ProgramFiles)\Corporate Benefits
+Setup=setup1.exe
+AppExe=blocvb.exe
+AppToUninstall=blocvb.exe
+AppPath=
+

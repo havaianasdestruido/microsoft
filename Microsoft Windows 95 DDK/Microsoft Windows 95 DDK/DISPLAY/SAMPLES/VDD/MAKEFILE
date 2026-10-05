@@ -1,0 +1,29 @@
+##************************************************************************
+##**
+##**  THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+##**  ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED
+##**  TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR
+##**  A PARTICULAR PURPOSE.
+##**
+##**  Copyright (C) 1993 - 1995 Microsoft Corporation. All Rights Reserved.
+##**
+##**  makefile
+##**
+##**  HISTORY:
+##**	 06/01/96		created.
+##**
+##************************************************************************
+
+!ifdef MASTER_MAKE
+DIRS=ati cirrus s3 tseng video7 xga
+!ifdef DDKROOT
+!INCLUDE $(DDKROOT)\master.mk
+!else
+!ERROR > DDKROOT not defined.
+!endif
+!else
+!MESSAGE >
+!MESSAGE > The environment variable MASTER_MAKE must be defined in order to use
+!MESSAGE > this makefile.  (ie.  SET MASTER_MAKE=1)
+!MESSAGE >
+!endif

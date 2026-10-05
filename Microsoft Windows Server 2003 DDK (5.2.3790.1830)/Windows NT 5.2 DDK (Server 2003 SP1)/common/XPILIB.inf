@@ -1,0 +1,55 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\lib\wxp\ia64\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"XPILIB"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","XPILIB",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+XPILIB.inf
+
+
+[Files_0]
+csq.lib,XPILIB_FILE_0,,
+ntstrsafe.lib,XPILIB_FILE_1,,
+wdmsec.lib,XPILIB_FILE_2,,
+
+[SourceDisksNames]
+1="XPILIB.cab",XPILIB.cab,0
+[SourceDisksFiles]
+XPILIB_FILE_0=1,,150388
+XPILIB_FILE_1=1,,1528982
+XPILIB_FILE_2=1,,681522
+
+
+[Strings]
+FriendlyName=Wxp_Library_Files
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=3
+TotalSize=2360892

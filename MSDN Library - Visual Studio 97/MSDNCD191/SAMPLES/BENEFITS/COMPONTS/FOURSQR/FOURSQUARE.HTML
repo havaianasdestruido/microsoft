@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>foursquare</title>
+<script language=JavaScript>
+
+function doredraw()
+{
+	
+	//alert("am in the right finction.");
+	//alert(window.document.theForm.pre.Value + " and " + window.document.theForm.post.Value);
+	dpre = parseInt(window.document.theForm.pre.Value);
+	dpost = parseInt(window.document.theForm.post.Value);
+	window.document.theForm.pre.Value=0;
+	window.document.theForm.post.Value=0;
+	alert( dpre + " and " + dpost);
+	//alert(window.document.applets[0].name);
+	window.document.applets[0].recalc(dpre, dpost);
+}
+
+
+function doreset()
+{
+   document.applets[0].reset();
+   // document.fourtwo.reset();
+}
+
+</script>
+
+
+</head>
+<body bgcolor="005080">
+<hr>
+<applet
+    code=foursquare.class
+    id=foursquare 
+	width=220 
+    height=440>
+    <param name=maxben value=426.55f>
+	<param name=bgcolor value=20608>
+	<param name=fgcolor value=  16777215>
+	<param name=prelabel value = "Pre-tax:">
+	<param name=postlabel value= "Post-tax:">
+	<param name=midlabel value = "base pay">
+	<param name=currency value= "$">
+</applet>
+<form name=theForm>
+deltaPre: <input type=text name=pre value=0 onChange="document.applets[0].recalc(parseInt(this.value), 0)"> 
+deltaPost: <input type=text name=post value=0 onChange="document.applets[0].recalc(0,parseInt(this.value))">
+<input type=button name=redraw value=Redraw onClick="doredraw()">
+<input type=button name=Jreset value=Reset onClick="doreset()"></p>
+</form>
+
+</body>
+</html>

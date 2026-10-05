@@ -1,0 +1,11 @@
+LIBRARY         bencpp
+DESCRIPTION     'Corporate Benefits Sample [C++ Object]'
+
+CODE            PRELOAD DISCARDABLE
+DATA            PRELOAD SINGLE
+
+EXPORTS
+                DllGetClassObject   PRIVATE  
+                DllCanUnloadNow     PRIVATE        
+				DllRegisterServer   PRIVATE
+				DllUnregisterServer PRIVATE

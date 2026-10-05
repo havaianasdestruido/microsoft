@@ -1,0 +1,67 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\smartcrd\bulltlp3\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"SMAR_bulltl"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","SMAR_bulltl",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+SMAR_bulltl.inf
+
+
+[Files_0]
+bulltlp3.h,SMAR_bulltl_FILE_0,,
+bulltlp3.htm,SMAR_bulltl_FILE_1,,
+bulltlp3.inf,SMAR_bulltl_FILE_2,,
+bulltlp3.rc,SMAR_bulltl_FILE_3,,
+makefile,SMAR_bulltl_FILE_4,,
+sources,SMAR_bulltl_FILE_5,,
+tlp3cb.c,SMAR_bulltl_FILE_6,,
+tlp3log.mc,SMAR_bulltl_FILE_7,,
+tlp3nt.c,SMAR_bulltl_FILE_8,,
+
+[SourceDisksNames]
+1="SMAR_bulltl.cab",SMAR_bulltl.cab,0
+[SourceDisksFiles]
+SMAR_bulltl_FILE_0=1,,6275
+SMAR_bulltl_FILE_1=1,,8911
+SMAR_bulltl_FILE_2=1,,2397
+SMAR_bulltl_FILE_3=1,,634
+SMAR_bulltl_FILE_4=1,,252
+SMAR_bulltl_FILE_5=1,,205
+SMAR_bulltl_FILE_6=1,,56382
+SMAR_bulltl_FILE_7=1,,2868
+SMAR_bulltl_FILE_8=1,,78511
+
+
+[Strings]
+FriendlyName=smartcrd
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=9
+TotalSize=156435

@@ -1,0 +1,73 @@
+[Version]
+AdvancedInf = 2
+Signature ="$CHICAGO$"
+SetupClass = Base
+
+[DefaultInstall]
+CopyFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+RequiredEngine = setupapi;
+AddReg = RegVersion,DocKey
+
+[DefaultUninstall]
+DelFiles=InfFiles,Files_0
+CustomDestination= PDCDest
+DelReg = RegVersion,DocKey
+
+[DestinationDirs]
+Files_0=49000,"\src\network\config\bindview\"
+InfFiles=17,"msddk\3790.1830"
+DefaultDestDir=49000,"NETW_config"
+
+[RegVersion]
+"HKLM","SOFTWARE\Microsoft\WINDDK\Restart\Cabs","NETW_config",0,"done"
+
+[PDCDest]
+49000,49001,49002=SDKCust, 17
+
+[SDKCust]
+;if key below exists, use this string to seed install path
+"HKLM", "Software\Microsoft\WINDDK", "SFNDirectory",,"%DefaultDir%"
+
+[DocKey]
+
+[InfFiles]
+NETW_config.inf
+
+
+[Files_0]
+binding.cpp,NETW_config_FILE_0,,
+bindview.cpp,NETW_config_FILE_1,,
+bindview.h,NETW_config_FILE_2,,
+bindview.htm,NETW_config_FILE_3,,
+bindview.ico,NETW_config_FILE_4,,
+bindview.rc,NETW_config_FILE_5,,
+component.cpp,NETW_config_FILE_6,,
+makefile,NETW_config_FILE_7,,
+netcfgapi.cpp,NETW_config_FILE_8,,
+netcfgapi.h,NETW_config_FILE_9,,
+resource.h,NETW_config_FILE_10,,
+sources,NETW_config_FILE_11,,
+
+[SourceDisksNames]
+1="NETW_config.cab",NETW_config.cab,0
+[SourceDisksFiles]
+NETW_config_FILE_0=1,,20791
+NETW_config_FILE_1=1,,63234
+NETW_config_FILE_2=1,,6980
+NETW_config_FILE_3=1,,12961
+NETW_config_FILE_4=1,,766
+NETW_config_FILE_5=1,,6028
+NETW_config_FILE_6=1,,24902
+NETW_config_FILE_7=1,,249
+NETW_config_FILE_8=1,,19089
+NETW_config_FILE_9=1,,2778
+NETW_config_FILE_10=1,,1701
+NETW_config_FILE_11=1,,767
+
+
+[Strings]
+FriendlyName=network
+AppKey=SOFTWARE\Microsoft\WINDDK
+FileCount=12
+TotalSize=160246
