@@ -1,1 +1,6 @@
-for /f "usebackq delims=" %f in (`dir /b /s *.iso`) do "C:\Program Files\7-Zip\7z.exe" x "%f" -o"%~pf%~nf"
+@echo off
+rem ⚡ Bolt: Replaced 'dir /b /s' with native 'for /R' loop to avoid spawning a subshell
+rem and corrected loop variable syntax from %f to %%f for batch file execution.
+for /R %%f in (*.iso) do (
+    "C:\Program Files\7-Zip\7z.exe" x "%%f" -o"%%~dpf%%~nf"
+)
