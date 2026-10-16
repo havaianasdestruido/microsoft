@@ -24,8 +24,12 @@ BYTE  FILTER_CRLF[] = { 0x0a };
 //
 // The precomputes values used in converting base 256 to base 85
 //
+// These are the fixed powers of 85 (85^4, 85^3, 85^2, 85^1).  They are
+// declared static const so that the translator is free to substitute the
+// values at each constant-indexed use; see FilterConvertToASCII85.
+//
 
-DWORD ConstAscii85[] = {
+static const DWORD ConstAscii85[] = {
     52200625L,
       614125L,
         7225L,
@@ -92,8 +96,6 @@ Revision History:
 
 {
     DWORD dwNewNum, dwTmp;
-    PDWORD pConst;
-    BYTE   i;
 
 
 
@@ -117,14 +119,30 @@ Revision History:
 
     if (!bZeroOpt || dwNewNum ) {
 
-        for ( i = 0, pConst = ConstAscii85;
-                i < 4  ;
-            i++, pConst++ ) {
-            dwTmp    = dwNewNum / *pConst;
-            dwNewNum -= (*pConst * dwTmp);
-            *pbConvert++ = (BYTE) dwTmp + '!';
+        //
+        // The four divisors are compile time constants (the powers of 85
+        // above), so each division can be performed with a multiply and a
+        // shift instead of the division instruction.  Reading them through
+        // a non-constant table pointer hid that from the translator and
+        // forced four hardware divides per four converted bytes.  The
+        // arithmetic below is identical to the loop it replaces.
+        //
 
-        }
+        dwTmp = dwNewNum / ConstAscii85[0];
+        dwNewNum -= ConstAscii85[0] * dwTmp;
+        *pbConvert++ = (BYTE) dwTmp + '!';
+
+        dwTmp = dwNewNum / ConstAscii85[1];
+        dwNewNum -= ConstAscii85[1] * dwTmp;
+        *pbConvert++ = (BYTE) dwTmp + '!';
+
+        dwTmp = dwNewNum / ConstAscii85[2];
+        dwNewNum -= ConstAscii85[2] * dwTmp;
+        *pbConvert++ = (BYTE) dwTmp + '!';
+
+        dwTmp = dwNewNum / ConstAscii85[3];
+        dwNewNum -= ConstAscii85[3] * dwTmp;
+        *pbConvert++ = (BYTE) dwTmp + '!';
 
         *pbConvert = (BYTE) dwNewNum + '!';
         return 5;
