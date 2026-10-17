@@ -1776,10 +1776,17 @@ BOOL    CalcSampleRate( IN OUT PWAVE_INFO       WaveInfo )
 
                 for ( p = 2; p < 256; p++)
                     {
+                    // ⚡ Bolt: Removed variable-divisor division from the inner loop
+                    // by calculating the ratio incrementally. Eliminates ~32,000 divisions.
+                    DWORD step = (1 << 10) / p;
+                    DWORD step_rem = (1 << 10) % p;
+                    DWORD ratio = ( ((DWORD)(p + 1)) << 10 ) / p;
+                    DWORD rem = ( ((DWORD)(p + 1)) << 10 ) % p;
+
                     last_diff=((DWORD)300) << 10;
                     for ( t = p+1; t < 256; t++)
                         {
-                        test_ratio= ( ((DWORD)t) << 10 ) / ( ((DWORD)p) );
+                        test_ratio= ratio;
                         if ( test_ratio == target_ratio )
                             {
                             best_ratio = test_ratio;
@@ -1809,6 +1816,14 @@ BOOL    CalcSampleRate( IN OUT PWAVE_INFO       WaveInfo )
                            }
 
                         last_diff = test_diff;
+
+                        ratio += step;
+                        rem += step_rem;
+                        if ( rem >= p )
+                            {
+                            ratio++;
+                            rem -= p;
+                            }
 
                         }                       // End FOR (t < 256)
 
