@@ -10,3 +10,6 @@
 ## 2024-05-24 - [Hardware loop division optimization]
 **Learning:** Found an integer division inside a heavily iterated nested loop (`CalcSampleRate` in `HARDWARE.C`) where the divisor remained constant in the inner loop.
 **Action:** Always consider converting constant-divisor divisions into strength-reduced additive loops, or hoisting the division, to avoid the high cycle cost of hardware division instructions on tight paths.
+## 2024-05-24 - [CD TOC Parse Loop Optimization]
+**Learning:** In `readtoc.c`, repetitive integer divisions inside a track-parsing loop can be cached. The operation `AbsoluteAddress / 75` was used multiple times per loop iteration for frame, second, and minute derivations.
+**Action:** When parsing timestamps or coordinates in inner loops, hoist intermediate division products into a local variable (e.g., `TotalSeconds`) instead of recalculating the division or multiplying constants inside the division.

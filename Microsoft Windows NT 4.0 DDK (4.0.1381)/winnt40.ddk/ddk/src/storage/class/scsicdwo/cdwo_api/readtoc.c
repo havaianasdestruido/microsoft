@@ -118,6 +118,7 @@ void ReadTableOfContents( HANDLE DeviceHandle ) {
     ULONG            Seconds;
     ULONG            Frames;
     ULONG            i;
+    ULONG            TotalSeconds; // ⚡ Bolt: Added to cache division result
 
     TocLength = 804;    // 100 tracks, 8 bytes each, plus 4 byte header
 
@@ -159,8 +160,10 @@ void ReadTableOfContents( HANDLE DeviceHandle ) {
 
             AbsoluteAddress = BigToLittleEndian( *(UNALIGNED ULONG*)( TrackRecord + 4 ));
 
-            Minutes = ( AbsoluteAddress / ( 60 * 75 ));
-            Seconds = ( AbsoluteAddress / 75 ) % 60;
+            // ⚡ Bolt: Replaced duplicate divisions by 75 with a single division.
+            TotalSeconds = AbsoluteAddress / 75;
+            Minutes = TotalSeconds / 60;
+            Seconds = TotalSeconds % 60;
             Frames  = ( AbsoluteAddress % 75 );
 
             printf(
