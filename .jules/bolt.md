@@ -10,3 +10,6 @@
 ## 2024-05-24 - [Hardware loop division optimization]
 **Learning:** Found an integer division inside a heavily iterated nested loop (`CalcSampleRate` in `HARDWARE.C`) where the divisor remained constant in the inner loop.
 **Action:** Always consider converting constant-divisor divisions into strength-reduced additive loops, or hoisting the division, to avoid the high cycle cost of hardware division instructions on tight paths.
+## 2024-05-24 - [Floppy disk format tracking optimization]
+**Learning:** Found redundant division (`/`) and modulo (`%`) calculations inside a high-frequency format sector loop (`FlFormat` in `FLOPPY.C`). The dividend and divisor (`currentTrack` and `driveMediaConstants->NumberOfHeads`) remained constant for the entire track, causing unnecessary hardware division per sector formatted.
+**Action:** Always hoist loop-invariant division and modulo calculations out of loops. When targeting older compilers or the NT DDK, these basic optimizations are not reliably done automatically. Be mindful of C89 rules requiring block-scoped variable declarations when hoisting.
