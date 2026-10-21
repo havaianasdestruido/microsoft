@@ -7379,6 +7379,7 @@ Return Value:
     UCHAR                   numTransferSectors;
     PMDL                    mdl;
     PCHAR                   ioBuffer;
+    ULONG                   trackIndex;
 
     irpSp = IoGetCurrentIrpStackLocation(Irp);
     controllerData = DisketteExtension->ControllerData;
@@ -7459,10 +7460,12 @@ Return Value:
          currentSector += numTransferSectors) {
 
         // Compute cylinder, head and sector from absolute sector.
+        // trackIndex hoisted to reduce division-in-loop cost.
 
-        currentCylinder = (UCHAR) (currentSector/sectorsPerTrack/numberOfHeads);
+        trackIndex = currentSector/sectorsPerTrack;
+        currentCylinder = (UCHAR) (trackIndex/numberOfHeads);
         trackSector = (UCHAR) (currentSector%sectorsPerTrack);
-        currentHead = (UCHAR) (currentSector/sectorsPerTrack%numberOfHeads);
+        currentHead = (UCHAR) (trackIndex%numberOfHeads);
         numTransferSectors = sectorsPerTrack - trackSector;
         if (lastSector - currentSector < numTransferSectors) {
             numTransferSectors = (UCHAR) (lastSector - currentSector);
