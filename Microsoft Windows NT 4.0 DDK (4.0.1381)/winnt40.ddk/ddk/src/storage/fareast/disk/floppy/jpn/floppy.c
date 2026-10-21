@@ -7340,14 +7340,18 @@ Return Value:
         // Fill the buffer with the format of this track.
         //
 
-        for (whichSector = 0;
-             whichSector < driveMediaConstants->SectorsPerTrack;
-             whichSector++) {
+        {
+            // ⚡ Bolt: Hoisted loop-invariant divisions out of the formatting loop.
+            // currentTrack and NumberOfHeads are constant across sectors in a track.
+            UCHAR currentCylinder = currentTrack / driveMediaConstants->NumberOfHeads;
+            UCHAR currentHead = currentTrack % driveMediaConstants->NumberOfHeads;
 
-            controllerData->IoBuffer[whichSector*4] =
-                    currentTrack/driveMediaConstants->NumberOfHeads;
-            controllerData->IoBuffer[whichSector*4 + 1] =
-                    currentTrack%driveMediaConstants->NumberOfHeads;
+            for (whichSector = 0;
+                 whichSector < driveMediaConstants->SectorsPerTrack;
+                 whichSector++) {
+
+                controllerData->IoBuffer[whichSector*4] = currentCylinder;
+                controllerData->IoBuffer[whichSector*4 + 1] = currentHead;
             if (formatExParameters) {
                 controllerData->IoBuffer[whichSector*4 + 2] =
                         (UCHAR) formatExParameters->SectorNumber[whichSector];
@@ -7366,6 +7370,7 @@ Return Value:
                  controllerData->IoBuffer[whichSector*4 + 2],
                  controllerData->IoBuffer[whichSector*4 + 3])
                 );
+        }
         }
 
         //
