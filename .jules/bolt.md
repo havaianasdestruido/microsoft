@@ -13,3 +13,7 @@
 ## 2024-05-24 - [Floppy disk format tracking optimization]
 **Learning:** Found redundant division (`/`) and modulo (`%`) calculations inside a high-frequency format sector loop (`FlFormat` in `FLOPPY.C`). The dividend and divisor (`currentTrack` and `driveMediaConstants->NumberOfHeads`) remained constant for the entire track, causing unnecessary hardware division per sector formatted.
 **Action:** Always hoist loop-invariant division and modulo calculations out of loops. When targeting older compilers or the NT DDK, these basic optimizations are not reliably done automatically. Be mindful of C89 rules requiring block-scoped variable declarations when hoisting.
+
+## 2024-05-24 - [Common Subexpression Elimination in Legacy C DDKs]
+**Learning:** Legacy C compilers targeting the Windows NT DDK do not effectively perform common subexpression elimination for expensive operations like hardware divisions/modulos inside loops. Manually caching these expressions (e.g. `currentSector / sectorsPerTrack`) yields measurable improvements on the static analysis tool without sacrificing readability.
+**Action:** When working in the older C codebase, actively look for and manually hoist or cache redundant arithmetic expressions inside tight loops.
