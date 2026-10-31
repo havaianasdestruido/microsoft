@@ -7457,12 +7457,14 @@ Return Value:
     for (currentSector = firstSector;
          currentSector < lastSector;
          currentSector += numTransferSectors) {
+        ULONG trackNumber;
 
         // Compute cylinder, head and sector from absolute sector.
 
-        currentCylinder = (UCHAR) (currentSector/sectorsPerTrack/numberOfHeads);
-        trackSector = (UCHAR) (currentSector%sectorsPerTrack);
-        currentHead = (UCHAR) (currentSector/sectorsPerTrack%numberOfHeads);
+        trackNumber = currentSector / sectorsPerTrack;
+        currentCylinder = (UCHAR) (trackNumber / numberOfHeads);
+        trackSector = (UCHAR) (currentSector % sectorsPerTrack);
+        currentHead = (UCHAR) (trackNumber % numberOfHeads);
         numTransferSectors = sectorsPerTrack - trackSector;
         if (lastSector - currentSector < numTransferSectors) {
             numTransferSectors = (UCHAR) (lastSector - currentSector);
