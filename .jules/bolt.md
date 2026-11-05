@@ -17,3 +17,7 @@
 ## 2024-05-24 - [Common Subexpression Elimination in Legacy C DDKs]
 **Learning:** Legacy C compilers targeting the Windows NT DDK do not effectively perform common subexpression elimination for expensive operations like hardware divisions/modulos inside loops. Manually caching these expressions (e.g. `currentSector / sectorsPerTrack`) yields measurable improvements on the static analysis tool without sacrificing readability.
 **Action:** When working in the older C codebase, actively look for and manually hoist or cache redundant arithmetic expressions inside tight loops.
+
+## 2024-05-25 - [Strength reduction in MGA Brush Cache Initialization]
+**Learning:** Found division and modulo operations inside two loop blocks that iterate through an array allocating an incrementing memory layout in the MGA video display driver (`bMilEnableBrushCache` in `BRUSH.C`). Since the layout delta changes on specific modulo patterns, replacing expensive `%` and `/` instructions with a conditional increment directly tracking `x` and `y` avoids hundreds of division operations per cache initialization.
+**Action:** When observing division or modulo inside a loop iterating over monotonically increasing physical/linear space representations (like caching or paging), tracking the logical 2D dimensions with an addition and an `if (x >= limit) { x -= limit; y++; }` is much faster and completely avoids the division hardware path.
