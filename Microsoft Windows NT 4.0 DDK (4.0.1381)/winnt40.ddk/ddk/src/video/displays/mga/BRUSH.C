@@ -359,6 +359,10 @@ BOOL bMilEnableBrushCache(
     ppdev->cBrushCache = cBrushCache;
     ppdev->pbe         = pbe;
 
+    ulTmp       = ulLinearStart - ppdev->ulYDstOrg;
+    x           = ulTmp % ppdev->cxMemory;
+    y           = ulTmp / ppdev->cxMemory;
+
     for (i = 0; i < cBrushCache; i++)
     {
         // If we hadn't allocated 'pbe' with FL_ZERO_MEMORY, we would have
@@ -373,8 +377,6 @@ BOOL bMilEnableBrushCache(
         // memory, assuming a HW_PATTERN_PITCH stride.
 
         ulTmp       = ulLinearStart - ppdev->ulYDstOrg;
-        x           = ulTmp % ppdev->cxMemory;
-        y           = ulTmp / ppdev->cxMemory;
         pbe->ulLeft = x & 31;
         pbe->ulYDst = (y * ppdev->cxMemory + x) >> 5;
 
@@ -391,10 +393,14 @@ BOOL bMilEnableBrushCache(
             if ((i & 1) == 0)
             {
                 ulLinearStart += 16;
+                x += 16;
+                if (x >= (LONG)ppdev->cxMemory) { x -= ppdev->cxMemory; y++; }
             }
             else
             {
                 ulLinearStart += (256 - 16);
+                x += (256 - 16);
+                if (x >= (LONG)ppdev->cxMemory) { x -= ppdev->cxMemory; y++; }
             }
         }
         else
@@ -404,10 +410,14 @@ BOOL bMilEnableBrushCache(
             if ((i % 3) == 2)
             {
                 ulLinearStart += (256 - 16);
+                x += (256 - 16);
+                if (x >= (LONG)ppdev->cxMemory) { x -= ppdev->cxMemory; y++; }
             }
             else
             {
                 ulLinearStart += 8;
+                x += 8;
+                if (x >= (LONG)ppdev->cxMemory) { x -= ppdev->cxMemory; y++; }
             }
         }
 
@@ -501,6 +511,10 @@ PDEV*   ppdev)
     ppdev->cBrushCache = cBrushCache;
     ppdev->pbe         = pbe;
 
+    ulTmp         = ulLinearStart - ppdev->ulYDstOrg;
+    x             = ulTmp % ppdev->cxMemory;
+    y             = ulTmp / ppdev->cxMemory;
+
     do {
         // If we hadn't allocated 'pbe' with FL_ZERO_MEMORY, we would have
         // to initialize pbe->prbVerify, too...
@@ -514,8 +528,6 @@ PDEV*   ppdev)
         // memory, assuming a '32' stride:
 
         ulTmp         = ulLinearStart - ppdev->ulYDstOrg;
-        x             = ulTmp % ppdev->cxMemory;
-        y             = ulTmp / ppdev->cxMemory;
         pbe->ulLeft   = x & 31;
         pbe->ulYDst   = (y * ppdev->cxMemory + x) >> 5;
 
@@ -525,10 +537,14 @@ PDEV*   ppdev)
         if ((cBrushCache & 1) == 0)
         {
             ulLinearStart += 16;
+            x += 16;
+            if (x >= (LONG)ppdev->cxMemory) { x -= ppdev->cxMemory; y++; }
         }
         else
         {
             ulLinearStart += (256 - 16);
+            x += (256 - 16);
+            if (x >= (LONG)ppdev->cxMemory) { x -= ppdev->cxMemory; y++; }
         }
 
     } while (pbe++, --cBrushCache != 0);
